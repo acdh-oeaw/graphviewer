@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Termsets>
+	<item>
+      <type>cmd</type> 
+      <key>cmd-profiles</key> 
+      <name>ComponentRegistry profiles</name>       
+      <url>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/</url> 
+	   <url_prefix>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/</url_prefix>
+	   <!-- <xsl:param name="cmdprofiles_uri" select="'http://localhost:8080/MDService2/compprofile/'" /> -->	   
+      <format>cmd</format> 
+   </item>
+   <item>
+      <type>cmd</type> 
+      <key>cmd-components</key> 
+      <name>ComponentRegistry components</name>       
+      <url>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/components/</url> 
+      <url_prefix>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/components/</url_prefix>
+<!--      <xsl:param name="components_uri" select="'http://localhost:8080/MDService2/comp/'" />-->
+      <format>cmd</format> 
+   </item>
+   <item>
+      <type>dcr</type> 
+      <key>isocat</key> 
+      <name>ISOcat</name> 
+<!--      <url>http://www.isocat.org/rest/profile/5.rdf</url> -->
+      <url>file:/C:/Users/m/3lingua/clarin/CMDI/SMC/cache/isocat_profile5.rdf.xml</url>
+      <url_prefix>http://www.isocat.org/datcat/</url_prefix> 
+      <format>rdf</format> 
+   </item>
+   <item>
+      <type>dcr</type> 
+      <key>dce</key> 
+      <name>dublincore elements</name> 
+      <url>http://purl.org/dc/elements/1.1/</url> 
+      <url_prefix>http://purl.org/dc/elements/1.1/</url_prefix> 
+      <format>rdf</format> 
+   </item>
+   <item>
+      <type>dcr</type> 
+      <key>dct</key> 
+      <name>dublincore terms</name> 
+      <url>http://dublincore.org/2010/10/11/dcterms.rdf</url> 
+      <url_prefix>http://purl.org/dc/terms/</url_prefix> 
+      <format>rdf</format> 
+   </item>
+   <item>
+      <type>rr</type> 
+      <key>relcat</key> 
+      <name>Relation Registry CMDI-set</name> 
+      <url>http://lux13.mpi.nl/relcat/rest/set/cmdi</url> 
+      <url_prefix>null</url_prefix> 
+      <format>rdf</format> 
+   </item>
+</Termsets>
