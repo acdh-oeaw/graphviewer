@@ -35,7 +35,7 @@ public class SMC {
 	public static void main(String[] args) {
 			
 		SMC smc = new SMC();
-		smc.addParam("operation", "termsets");		
+		smc.addParam("data_key", "dcr-cmd-map");		
 		InputStream is = smc.listTermsets("");
 		String output_path = Utils.getConfig("cache.dir") +  smc.getParam("operation") + "_.xml" ;		
 		File f = Utils.write2File(output_path, is);
