@@ -35,12 +35,13 @@ public class SMC {
 	public static void main(String[] args) {
 			
 		SMC smc = new SMC();
-		smc.addParam("data_key", "dcr-cmd-map");		
-		InputStream is = smc.listTermsets("");
-		String output_path = Utils.getConfig("cache.dir") +  smc.getParam("operation") + "_.xml" ;		
+		smc.init();		
+		/*
+		 * InputStream is = smc.listTermsets("");
+		String output_path = Utils.getConfig("cache.dir") +  smc.getParam("data_key") + "_.xml" ;		
 		File f = Utils.write2File(output_path, is);
 		log.debug("result stored in: " + f.getAbsolutePath());
-
+*/
 	}
 
 /**
@@ -56,6 +57,8 @@ public class SMC {
 		// set URL as srcFile (for MDTransformer to pass to xsl-scripts)
 		// TODO: WHY??
 		//transformer.setSrcFile(Utils.getConfig("termsets.config.file"));
+		addParam("data_key", "dcr-cmd-map");
+		
 		transformer.setParams(getParams());
 		
 		transformer.setTranskey("init");
@@ -65,7 +68,7 @@ public class SMC {
 			resultStream = transformer.transformXML(is);
 
 			// store the result in the cache
-			String output_path = Utils.getConfig("cache.dir") +  getParam("operation") + ".xml" ;		
+			String output_path = Utils.getConfig("cache.dir") +  getParam("data_key") + ".xml" ;		
 			File f = Utils.write2File(output_path, resultStream);
 			log.debug("result stored in: " + f.getAbsolutePath());
 
