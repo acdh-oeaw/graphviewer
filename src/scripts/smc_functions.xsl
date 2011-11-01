@@ -52,6 +52,7 @@
 		</Termsets>
 	</xsl:function>
 
+<!--
 <xsl:function name="my:profile2termset" >
     <xsl:param name="term"/>
     
@@ -62,9 +63,9 @@
 
 <xsl:function name="my:profile" >
     <xsl:param name="term"/>
-    <xsl:param name="resolve" /> <!--  true|false-->
+    <xsl:param name="resolve" /> <!-\-  true|false-\->
     
-    <!-- <xsl:message>cmdprofiles_uri: <xsl:value-of select="$cmdprofiles_uri" /></xsl:message>  -->
+    <!-\- <xsl:message>cmdprofiles_uri: <xsl:value-of select="$cmdprofiles_uri" /></xsl:message>  -\->
     
 	<xsl:variable name="profile" select="$cmd_profiles//profileDescription[name=$term or $term='all']" />
     
@@ -78,8 +79,7 @@
     </xsl:choose>
     
         
-</xsl:function>
-
+</xsl:function>-->
 
 <!--  constructs a dot-path from ancestor-CMD_component-elements -->
 <xsl:function name="my:context" >

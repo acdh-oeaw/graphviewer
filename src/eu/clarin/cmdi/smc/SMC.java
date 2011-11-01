@@ -3,10 +3,10 @@ package eu.clarin.cmdi.smc;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.transform.TransformerException;
@@ -24,17 +24,22 @@ import eu.clarin.cmdi.mdservice.internal.Utils;
  */
 public class SMC {
 	
+	public SMC () {
+		Utils.loadConfig("smc.properties");
+		this.addParam("cache_dir", Utils.getConfig("cache.dir"));
+	}
 	private Map<String,String[]> params;
 	
 	public static Logger log = Logger.getLogger("SMC");
 	
 	public static void main(String[] args) {
-	
-		Utils.loadConfig("smc.properties");
+			
 		SMC smc = new SMC();
-		smc.addParam("operation", "cmd-terms");
-		smc.addParam("cache_dir", Utils.getConfig("cache.dir"));
-		smc.init();
+		smc.addParam("operation", "termsets");		
+		InputStream is = smc.listTermsets("");
+		String output_path = Utils.getConfig("cache.dir") +  smc.getParam("operation") + "_.xml" ;		
+		File f = Utils.write2File(output_path, is);
+		log.debug("result stored in: " + f.getAbsolutePath());
 
 	}
 
@@ -81,7 +86,7 @@ public class SMC {
 	 * 
 	 * @return
 	 */
-	public Map<String,String[]> getParams() {
+	private Map<String,String[]> getParams() {
 		if (params == null) {
 			params = new HashMap<String,String[]>();
 		}
@@ -107,14 +112,14 @@ public class SMC {
 	 * @param key
 	 * @return
 	 */
-	public String getParam(String key) {
+	private String getParam(String key) {
 		String v = "";
 		if (!(getParams().get(key)==null)) v=(String)getParams().get(key)[0];
 		return v;
 	}
 
-	public static InputStream getStream(String uri, String rep) throws IOException
-	{
+	private static InputStream getStream(String uri, String rep) throws IOException
+	{ 
 		
 		URL url = new URL(uri);
 		URLConnection urlConnection = url.openConnection();
@@ -134,7 +139,7 @@ public class SMC {
 
 	
 	
-	public static void test() {
+	private static void test() {
 		//String uri = "http://www.isocat.org/rest/profile/5";
 		String uri = "http://www.isocat.org/rest/user/guest/search?keywords=chinese"; 
 		String output_path = "C:/Users/m/3lingua/clarin/CMDI/SMC/output/isocat_search.dcif.xml";
@@ -148,4 +153,34 @@ public class SMC {
 		}
 
 	}
+	
+	/** 
+	 * list termsets 
+	 * @param context internal key(?) of the context set to start from; '*' or 'top' or '' for default top-level list
+	 * @return stream with XML listing the available termsets
+	 */
+	public InputStream listTermsets(String context) {
+		InputStream is =null;
+		is = Utils.load2Stream(Utils.getConfig("termsets.config.file"));
+		return is;
+	}
+	
+	/**
+	 * list terms of a set
+	 * @param context
+	 * @return
+	 */	
+	public InputStream listTerms(String context) {
+		return null;
+	}
+	
+	/**
+	 *  map from souce term to target-terms 
+	 * @param term
+	 * @return
+	 */
+	public InputStream map(String term) {
+		return null;
+	}
+	
 }
