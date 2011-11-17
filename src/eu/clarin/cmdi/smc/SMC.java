@@ -8,6 +8,14 @@ import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+//import org.apache.commons.configuration.Configuration;
+//import org.apache.commons.lang.exception.NestableException;
+//import org.apache.commons.configuration.ConfigurationException;
+//import org.apache.commons.configuration.PropertiesConfiguration;
+//
+
+
 
 import javax.xml.transform.TransformerException;
 
@@ -25,12 +33,17 @@ import eu.clarin.cmdi.mdservice.internal.Utils;
 public class SMC {
 	
 	public SMC () {
-		Utils.loadConfig("smc.properties");
+		//Utils.loadConfig("smc.properties");
+		
+		this.configure();
 		this.addParam("cache_dir", Utils.getConfig("cache.dir"));
+		//this.addParam("cache_dir", config.getString("cache.dir"));
+		
 	}
 	private Map<String,String[]> params;
 	
 	public static Logger log = Logger.getLogger("SMC");
+	
 	
 	public static void main(String[] args) {
 			
@@ -44,6 +57,18 @@ public class SMC {
 */
 	}
 
+	public void configure(){
+		Utils.loadConfig("smc", "smc.properties", this.getClass().getClassLoader());
+	}
+	public void configure(String configPath) {
+		try {
+			Utils.loadConfig("smc", configPath, this.getClass().getClassLoader());
+			//config = new PropertiesConfiguration("smc.properties");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 /**
  * load data from registries based on configuration
  * transform and store as local xml in cache.dir  
@@ -51,9 +76,11 @@ public class SMC {
 	public void init () {
  
 		InputStream is =null;
-		is = Utils.load2Stream(Utils.getConfig("termsets.config.file"));
+		is = Utils.load2Stream(Utils.getConfig("termsets.config.file"),this.getClass().getClassLoader());
+		//is = Utils.load2Stream(config.getString("termsets.config.file"));
 		
 		MDTransformer transformer = new MDTransformer();
+		//transformer.configure(config, this.getClass().getClassLoader());
 		// set URL as srcFile (for MDTransformer to pass to xsl-scripts)
 		// TODO: WHY??
 		//transformer.setSrcFile(Utils.getConfig("termsets.config.file"));
@@ -69,6 +96,7 @@ public class SMC {
 
 			// store the result in the cache
 			String output_path = Utils.getConfig("cache.dir") +  getParam("data_key") + ".xml" ;		
+			//String output_path = config.getString("cache.dir") +  getParam("data_key") + ".xml" ;
 			File f = Utils.write2File(output_path, resultStream);
 			log.debug("result stored in: " + f.getAbsolutePath());
 
@@ -164,7 +192,7 @@ public class SMC {
 	 */
 	public InputStream listTermsets(String context) {
 		InputStream is =null;
-		is = Utils.load2Stream(Utils.getConfig("termsets.config.file"));
+		is = Utils.load2Stream(Utils.getConfig("termsets.config.file").trim(), this.getClass().getClassLoader());
 		return is;
 	}
 	
