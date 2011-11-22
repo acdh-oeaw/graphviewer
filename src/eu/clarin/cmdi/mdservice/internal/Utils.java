@@ -9,6 +9,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -56,6 +60,9 @@ public class Utils {
 	 * Constant filename of application properties file.
 	 */
 	private static String config_path = "mdservice.properties";
+	private static Hashtable<String, Properties> config_hashtable;
+	
+	//obsolete
 	private static Properties  config;	
 
 
@@ -73,44 +80,83 @@ public class Utils {
 	 */
 	public static void loadConfig(String configPath) {
 		
+		config = createConfig(configPath,Utils.class.getClassLoader());
+	}
+	
+	public static Properties createConfig(String configPath, ClassLoader loader) {
+		
+		Properties properties = null;
+		
 		System.setProperty("javax.xml.transform.TransformerFactory", "net.sf.saxon.TransformerFactoryImpl");
 		InputStream config_file;
-		 
+		if (loader == null){
+			loader = Utils.class.getClassLoader();
+		}
 		try {			
-			config_file = Utils.class.getClassLoader().getResourceAsStream(configPath);
+			config_file = loader.getResourceAsStream(configPath);
 			if (config_file == null) {
 			    log.error("CONFIGURATION ERROR: Properties file not found!");
 			} else {
-				log.debug("Reading configuration from: " + Utils.class.getClassLoader().getResource(configPath));
-				config = new Properties();
-				config.load(config_file);	
+				log.debug("Reading configuration from: " + loader.getResource(configPath));
+				properties = new Properties();
+				properties.load(config_file);	
 			}
 			
 		} catch (Exception e) {
 			log.error("CONFIGURATION LOAD ERROR: " + e.getLocalizedMessage());
 		} 
+		
+		return properties;
 	}
 	
+
+	public static void loadConfig(String appname, String configPath, ClassLoader loader) {
+		
+		if (config_hashtable == null){
+			config_hashtable = new Hashtable<String, Properties>();
+		}
+		if (!config_hashtable.containsKey(appname)){
+			Properties config = createConfig(configPath,loader);
+			config_hashtable.put(appname, config);
+		}
+
+	}
+
 	/**
 	 * Returns application configuration properties.
 	 * 
 	 * @return
 	 */
+	//obsolete
 	public static Properties getConfig() {
 		if (config==null)  {
 			loadConfig(config_path);
 		}
 		return config;
 	}
-	
+	public static Properties getAppConfig(String appname){
+		return config_hashtable.get(appname);
+	}
 /**
  * convenience function to get a config property value
  * @param key
  * @return
  */
 	public static String getConfig(String key) {
-			return getConfig().getProperty(key);		
+	
+			//return getConfig().getProperty(key);
+			
+			Enumeration keys = config_hashtable.keys();
+        	while (keys.hasMoreElements()) {
+            	String _key = (String) keys.nextElement();
+            	if (((Properties)config_hashtable.get(_key)).getProperty(key) != null){
+            		return ((Properties)config_hashtable.get(_key)).getProperty(key);
+            	}
+        	}
+			return null;
+					
 	}
+	
 	
 	/**
 	 * Creates error message string from exception data.
@@ -142,16 +188,22 @@ public class Utils {
 	 * @param path
 	 * @return
 	 */
-	public static InputStream load2Stream (String path) {
+	public static InputStream load2Stream (String path) {	
+		return load2Stream(path,Utils.class.getClassLoader());
+	}
+	
+	public static InputStream load2Stream (String path, ClassLoader loader) {
 		
 		InputStream file=null;
-		 
+		if (loader == null){
+			loader = Utils.class.getClassLoader();
+		}
 		try {			
-			file = Utils.class.getClassLoader().getResourceAsStream(path);
+			file = loader.getResourceAsStream(path);
 			if (file == null) {
 			    log.error("File not found!: " + path);
 			} else {
-				log.debug("Reading in: " + Utils.class.getClassLoader().getResource(path));
+				log.debug("Reading in: " + loader.getResource(path));
 			}
 		}   catch (Exception e) {
 			log.error(Utils.errorMessage(e));
@@ -159,6 +211,7 @@ public class Utils {
 		
 		return file;
 	}
+	
 	
 	/**
 	 * Writes data from stream to file.

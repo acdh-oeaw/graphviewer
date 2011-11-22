@@ -17,6 +17,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 import java.util.Map.Entry;
 
@@ -48,6 +49,10 @@ public class MDTransformer {
 	private String transkey;
 	private URL srcFile ;
 	private Map<String, String[]> params;
+	
+	private Properties config;
+	private ClassLoader loader = null;
+	
 		
 	// don't use singleton!! Bad things happen
 	// private MDTransformer singleton;
@@ -57,6 +62,19 @@ public class MDTransformer {
 	//	tfactory = TransformerFactory.newInstance();	
 	//}
 	
+	public ClassLoader getLoader(){
+		if (loader == null){
+			return Utils.class.getClassLoader();
+		}
+		return loader;
+	}
+	public void configure(String configPath){
+		config = Utils.createConfig(configPath, null);
+	}
+	public void configure(Properties _config, ClassLoader _loader){
+		config = _config;
+		loader = _loader;
+	}
 	
 	public URL getSrcFile() {
 		return srcFile;
@@ -81,6 +99,12 @@ public class MDTransformer {
 		return this.params;
 	}
 
+	public Properties getConfig(){
+		if (config == null){
+			 return Utils.getConfig();
+		}
+		return config;
+	}
 	/**
 	 * Get the path to the xsl file from properties, based on the key (aka format-parameter)
 	 * @param key
@@ -89,10 +113,10 @@ public class MDTransformer {
 	 */
 	private String getXSLPath (String key) throws NoStylesheetException {		
 		String xslpath = "";
-		String xslfilename= Utils.getConfig().getProperty("xsl." + key);
+		String xslfilename= getConfig().getProperty("xsl." + key);
 		
 		if (xslfilename!=null) {			
-			xslpath =  Utils.getConfig().getProperty("scripts.path") + xslfilename;
+			xslpath =  getConfig().getProperty("scripts.path") + xslfilename;
 		} else {
 			throw new NoStylesheetException("No Stylesheet found for format-key: " + key);
 		}
@@ -109,28 +133,31 @@ public class MDTransformer {
 	 * @return the stylesheet to be applied (as StreamSource)
 	 * @throws NoStylesheetException If the stylesheet could not be located
 	 */
+	
 	private StreamSource getXSLStreamSource (String key) throws NoStylesheetException{		
 		
 		InputStream xslstream;
-					
+			
 		//URL myURL = new URL (getXSLPath(key));
 		//xslstream = myURL.openStream();
 		String xslPath = getXSLPath(key);
-		xslstream = this.getClass().getClassLoader().getResourceAsStream(xslPath);
+		xslstream = getLoader().getResourceAsStream(xslPath);
 		StreamSource streamSource = new StreamSource(xslstream);
 
-		streamSource.setSystemId(this.getClass().getClassLoader().getResource(xslPath).toString());
+		streamSource.setSystemId(getLoader().getResource(xslPath).toString());
 		return streamSource ;	
 		
 	}
-	
+
 	public void setTranskey(String key){
 		transkey = key;
 	}
 	
 	public String getTranskey(){
 		//return params.get("x-cmd-format")[0];
-		
+		if (transkey == null & params.containsKey("fullformat")) {
+			transkey = params.get("fullformat")[0] ;
+		}
 		if (transkey.equals("") & params.containsKey("fullformat")) {
 			transkey = params.get("fullformat")[0] ;	
 		}
