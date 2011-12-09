@@ -50,13 +50,14 @@ public class SMC {
 			
 		SMC smc = new SMC();
 
-		//smc.init();		
+		smc.init();		
 		
-		InputStream is = smc.listTermsets("");
-		String output_path = Utils.getConfig("cache.dir") +  smc.getParam("data_key") + "_.xml" ;		
+//		InputStream is = smc.listTerms("isocat");
+		/* InputStream is = smc.map("nome do projecto");
+		String output_path = Utils.getConfig("cache.dir") +  "test_res_map.xml" ;		
 		File f = Utils.write2File(output_path, is);
 		log.debug("result stored in: " + f.getAbsolutePath());
-
+*/
 	}
 
 	public void configure(){
@@ -89,7 +90,8 @@ public class SMC {
 		// set URL as srcFile (for MDTransformer to pass to xsl-scripts)
 		// TODO: WHY??
 		//transformer.setSrcFile(Utils.getConfig("termsets.config.file"));
-		addParam("data_key", "dcr-cmd-map");
+	//	addParam("data_key", "dcr-cmd-map");
+		addParam("data_key", "cmd-profiles-raw");
 
 		// this is necessary for the transformer (in MDUTILS-library) to search for the resources (config and xsls) in the correct context)
 		//transformer.configure(Utils.getConfig(), this.getClass().getClassLoader());
@@ -222,9 +224,10 @@ public class SMC {
 		//transformer.setSrcFile(Utils.getConfig("termsets.config.file"));
 		
 		addParam("set", context);
+		addParam("term", "*");
 		 
 		transformer.setParams(getParams());		
-		transformer.setTranskey("op");
+		transformer.setTranskey("list");
 
 		InputStream resultStream=null;
 		try {
@@ -257,14 +260,10 @@ public class SMC {
 		// this is necessary for the transformer (in MDUTILS-library) to search for the resources (config and xsls) in the correct context)
 		transformer.configure(Utils.getAppConfig(appname), this.getClass().getClassLoader());
 		
-		// set URL as srcFile (for MDTransformer to pass to xsl-scripts)
-		// TODO: WHY??
-		//transformer.setSrcFile(Utils.getConfig("termsets.config.file"));
-		
 		addParam("term", term);
 		 
 		transformer.setParams(getParams());		
-		transformer.setTranskey("op");
+		transformer.setTranskey("map");
 
 		InputStream resultStream=null;
 		try {

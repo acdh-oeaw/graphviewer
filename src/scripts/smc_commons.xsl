@@ -31,7 +31,67 @@
    <xsl:variable name="dcr-terms" select="my:getData('dcr-terms')" />
    <xsl:variable name="cmd-terms" select="my:getData('cmd-terms')" />
    <xsl:variable name="dcr-cmd-map" select="my:getData('dcr-cmd-map')" />
+
     
+    <!--
+        serves individual datasets (cmd-profiles, dcr-termsets...)
+        primitive cache mechanism - 
+        if data of given key is already stored, serve it, 
+        otherwise build a new (but don't store in cache - within this function)
+        regard the cache-param - beware of the param-value in recursive calls (currently 'use' is fixed for deeper calls)  
+    -->
+    
+    <xsl:function name="my:getData">
+        <xsl:param name="key"></xsl:param>
+        <xsl:param name="cache"></xsl:param>
+        
+        <xsl:variable name="cached_data_file" select="concat($cache_dir, $key, '.xml')"></xsl:variable>
+        <xsl:message>
+            cache: <xsl:value-of select="$cache" />
+            <xsl:value-of select="$cached_data_file" />: <xsl:value-of select="doc-available($cached_data_file)" />
+        </xsl:message>
+        <xsl:choose>
+            <xsl:when test="doc-available($cached_data_file) and $cache='use'">
+                <xsl:message>reading in: <xsl:value-of select="$cached_data_file" />                    
+                </xsl:message>
+                <xsl:copy-of select="document($cached_data_file)"></xsl:copy-of>
+            </xsl:when>
+            <xsl:when test="$key='cmd-profiles-raw'">
+                <xsl:copy-of select="document(my:config('cmd-profiles','url'))" />                
+            </xsl:when>
+            <xsl:when test="$key='cmd-resolved'">
+                <xsl:apply-templates select="my:getData('cmd-profiles')" mode="include" />                
+            </xsl:when>
+            <xsl:when test="$key='cmd-terms'">
+                <xsl:copy-of select="my:profiles2termsets(my:getData('cmd-resolved')//profileDescription)" />
+            </xsl:when>
+            <xsl:when test="$key='dcr-terms'">
+                <xsl:call-template name="load-dcr" />								
+            </xsl:when>
+            <xsl:when test="$key='termsets'">
+                <xsl:call-template name="termsets" />								
+            </xsl:when>
+            <xsl:when test="$key='dcr-cmd-map'">
+                <xsl:call-template name="dcr-cmd-map" />
+            </xsl:when>
+            <!-- for debugging -->
+            <xsl:when test="$key='termsets-config'">
+                <xsl:copy-of select="$termsets_config" />								
+            </xsl:when>
+            <xsl:otherwise>	
+                <diagnostics>unknown data: <xsl:value-of select="$key" /></diagnostics>
+            </xsl:otherwise>
+        </xsl:choose>
+        
+    </xsl:function>
+    
+    <!-- overload method with one param and value of global cache-param as default -->    
+    <xsl:function name="my:getData">
+        <xsl:param name="key"></xsl:param>
+        <xsl:copy-of select="my:getData($key,$cache)"></xsl:copy-of>
+    </xsl:function>
+    
+
 <!-- load all dcrs from the configuration and transform them into Termsets
        (uses mode=dcr-templates in dcr_rdf2terms.xsl)    
    -->
@@ -95,62 +155,9 @@ TODO: missing: isocat@langs, RR-sets -->
     return a property of a Termset from the configuration.
 -->    
     <xsl:function name="my:config">
-        <xsl:param name="id"></xsl:param>
+        <xsl:param name="key"></xsl:param>
         <xsl:param name="property"></xsl:param>
-        <xsl:value-of select="$termsets_config//*[id=$id]/*[name()=$property]"></xsl:value-of>
-    </xsl:function>
-    
-<!-- overload method with one param and cache=use as default -->    
-    <xsl:function name="my:getData">
-        <xsl:param name="key"></xsl:param>
-        <xsl:copy-of select="my:getData($key,'use')"></xsl:copy-of>
-    </xsl:function>
- 
-    <!--
- serves individual datasets (cmd-profiles, dcr-termsets...)
-    primitive cache mechanism - 
-    if data of given key is already stored, serve it, 
-    otherwise build a new (but don't store in cache - within this function)
-    regard the cache-param - beware of the param-value in recursive calls (currently 'use' is fixed for deeper calls)  
- -->
-        
-    <xsl:function name="my:getData">
-        <xsl:param name="key"></xsl:param>
-        <xsl:param name="cache"></xsl:param>
-        
-        <xsl:variable name="cached_data_file" select="concat($cache_dir, $key, '.xml')"></xsl:variable>
-        <xsl:message>
-            <xsl:value-of select="$cached_data_file" />: <xsl:value-of select="doc-available($cached_data_file)" />
-        </xsl:message>
-        <xsl:choose>
-            <xsl:when test="doc-available($cached_data_file) and $cache='use'">
-                <xsl:message>reading in: <xsl:value-of select="$cached_data_file" />                    
-                </xsl:message>
-                <xsl:copy-of select="document($cached_data_file)"></xsl:copy-of>
-            </xsl:when>
-            <xsl:when test="$key='cmd-profiles-raw'">
-                <xsl:copy-of select="document(my:config('cmd-profiles','url'))" />			
-            </xsl:when>
-            <xsl:when test="$key='cmd-resolved'">
-                <xsl:apply-templates select="my:getData('cmd-profiles')" mode="include" />                
-            </xsl:when>
-            <xsl:when test="$key='cmd-terms'">
-                <xsl:copy-of select="my:profiles2termsets(my:getData('cmd-resolved')//profileDescription)" />
-            </xsl:when>
-            <xsl:when test="$key='dcr-terms'">
-                <xsl:call-template name="load-dcr" />								
-            </xsl:when>
-            <xsl:when test="$key='termsets'">
-                <xsl:call-template name="termsets" />								
-            </xsl:when>
-            <xsl:when test="$key='dcr-cmd-map'">
-                <xsl:call-template name="dcr-cmd-map" />
-            </xsl:when>		            
-            <xsl:otherwise>	
-                <diagnostics>unknown data: <xsl:value-of select="$key" /></diagnostics>
-            </xsl:otherwise>
-        </xsl:choose>
-        
+        <xsl:value-of select="$termsets_config//*[key=$key]/*[name()=$property]"></xsl:value-of>
     </xsl:function>
     
     

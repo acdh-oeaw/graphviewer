@@ -17,7 +17,13 @@
     
     
  <xsl:template match="/">
-     <xsl:choose>     
+     <xsl:choose>   
+     		<xsl:when test="not($term='')">
+                 <xsl:variable name="matching_concepts" select="$dcr-cmd-map//Concept[Term=$term]"></xsl:variable>
+	             <xsl:for-each select="$matching_concepts//Term[@set='cmd']">
+	                 <xsl:value-of select="." />;                     
+	             </xsl:for-each>             
+         </xsl:when>  
      <!-- if $set=*, list all termsets -->
          <xsl:when test="$set='*' or $set='top'">
                 <xsl:copy-of select="my:getData('termsets')"></xsl:copy-of>             
