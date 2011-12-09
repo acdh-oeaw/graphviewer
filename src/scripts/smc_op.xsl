@@ -17,11 +17,12 @@
     
     
  <xsl:template match="/">
-     <xsl:choose>
-         <!-- if $term=*, list all terms -->
+     <xsl:choose>     
+     <!-- if $set=*, list all termsets -->
          <xsl:when test="$set='*' or $set='top'">
                 <xsl:copy-of select="my:getData('termsets')"></xsl:copy-of>             
-         </xsl:when>         
+         </xsl:when>
+             <!-- if $term=*, list all terms -->         
          <xsl:when test="$term='*'">
              <Termset set="{$set}" xml:lang="{$lang}">
               <xsl:for-each  select="$dcr-cmd-map//Term[@set=$set and @xml:lang=$lang]" >
@@ -35,8 +36,7 @@
                  <xsl:value-of select="." />;                     
              </xsl:for-each>
          </xsl:otherwise>
-     </xsl:choose>
-     
+     </xsl:choose>     
      
  </xsl:template>
     

@@ -31,6 +31,7 @@ import eu.clarin.cmdi.mdservice.internal.Utils;
  *
  */
 public class SMC {
+	private static String appname="smc"; 
 	
 	public SMC () {
 		//Utils.loadConfig("smc.properties");
@@ -48,7 +49,8 @@ public class SMC {
 	public static void main(String[] args) {
 			
 		SMC smc = new SMC();
-		smc.init();		
+
+		//smc.init();		
 		
 		InputStream is = smc.listTermsets("");
 		String output_path = Utils.getConfig("cache.dir") +  smc.getParam("data_key") + "_.xml" ;		
@@ -58,11 +60,11 @@ public class SMC {
 	}
 
 	public void configure(){
-		Utils.loadConfig("smc", "smc.properties", this.getClass().getClassLoader());
+		Utils.loadConfig(appname, "smc.properties", this.getClass().getClassLoader());
 	}
 	public void configure(String configPath) {
 		try {
-			Utils.loadConfig("smc", configPath, this.getClass().getClassLoader());
+			Utils.loadConfig(appname, configPath, this.getClass().getClassLoader());
 			
 			//config = new PropertiesConfiguration("smc.properties");
 		} catch (Exception e) {
@@ -75,21 +77,22 @@ public class SMC {
  * transform and store as local xml in cache.dir  
  */
 	public void init () {
- 
+		 
 		InputStream is =null;
 		is = Utils.load2Stream(Utils.getConfig("termsets.config.file"),this.getClass().getClassLoader());
 		//is = Utils.load2Stream(config.getString("termsets.config.file"));
 		
 		
 		MDTransformer transformer = new MDTransformer();
-		//transformer.configure(config, this.getClass().getClassLoader());
+		transformer.configure(Utils.getAppConfig(appname), this.getClass().getClassLoader());
+		
 		// set URL as srcFile (for MDTransformer to pass to xsl-scripts)
 		// TODO: WHY??
 		//transformer.setSrcFile(Utils.getConfig("termsets.config.file"));
 		addParam("data_key", "dcr-cmd-map");
 
 		// this is necessary for the transformer (in MDUTILS-library) to search for the resources (config and xsls) in the correct context)
-		transformer.configure(Utils.getConfig(), this.getClass().getClassLoader());
+		//transformer.configure(Utils.getConfig(), this.getClass().getClassLoader());
 		
 		transformer.setParams(getParams());		
 		transformer.setTranskey("init");
@@ -102,7 +105,7 @@ public class SMC {
 			String output_path = Utils.getConfig("cache.dir") +  getParam("data_key") + ".xml" ;		
 			//String output_path = config.getString("cache.dir") +  getParam("data_key") + ".xml" ;
 			File f = Utils.write2File(output_path, resultStream);
-			log.debug("result stored in: " + f.getAbsolutePath());
+			log.debug("SMC.init(): result stored in: " + f.getAbsolutePath());
 
 		} catch (IOException e1) {
 			log.debug(Utils.errorMessage(e1));
@@ -194,7 +197,7 @@ public class SMC {
 	 * @param context internal key(?) of the context set to start from; '*' or 'top' or '' for default top-level list
 	 * @return stream with XML listing the available termsets
 	 */
-	public InputStream listTermsets(String context) {
+	public InputStream listTermsets(String context) {		
 		InputStream is =null;
 		is = Utils.load2Stream(Utils.getConfig("termsets.config.file").trim(), this.getClass().getClassLoader());
 		return is;
@@ -206,7 +209,38 @@ public class SMC {
 	 * @return
 	 */	
 	public InputStream listTerms(String context) {
-		return null;
+		 
+		InputStream is =null;
+		is = Utils.load2Stream(Utils.getConfig("termsets.config.file"),this.getClass().getClassLoader());
+		
+		MDTransformer transformer = new MDTransformer();
+		// this is necessary for the transformer (in MDUTILS-library) to search for the resources (config and xsls) in the correct context)
+		transformer.configure(Utils.getAppConfig(appname), this.getClass().getClassLoader());
+		
+		// set URL as srcFile (for MDTransformer to pass to xsl-scripts)
+		// TODO: WHY??
+		//transformer.setSrcFile(Utils.getConfig("termsets.config.file"));
+		
+		addParam("set", context);
+		 
+		transformer.setParams(getParams());		
+		transformer.setTranskey("op");
+
+		InputStream resultStream=null;
+		try {
+			resultStream = transformer.transformXML(is);
+
+		} catch (IOException e1) {
+			log.debug(Utils.errorMessage(e1));
+		} catch (InterruptedException e1) {
+			log.debug(Utils.errorMessage(e1));
+		} catch (TransformerException e1) {		
+			log.debug(Utils.errorMessage(e1));
+		} catch (NoStylesheetException e1) {
+			log.debug(Utils.errorMessage(e1));
+		}
+		
+		return resultStream;
 	}
 	
 	/**
@@ -215,7 +249,38 @@ public class SMC {
 	 * @return
 	 */
 	public InputStream map(String term) {
-		return null;
+		 
+		InputStream is =null;
+		is = Utils.load2Stream(Utils.getConfig("termsets.config.file"),this.getClass().getClassLoader());
+		
+		MDTransformer transformer = new MDTransformer();
+		// this is necessary for the transformer (in MDUTILS-library) to search for the resources (config and xsls) in the correct context)
+		transformer.configure(Utils.getAppConfig(appname), this.getClass().getClassLoader());
+		
+		// set URL as srcFile (for MDTransformer to pass to xsl-scripts)
+		// TODO: WHY??
+		//transformer.setSrcFile(Utils.getConfig("termsets.config.file"));
+		
+		addParam("term", term);
+		 
+		transformer.setParams(getParams());		
+		transformer.setTranskey("op");
+
+		InputStream resultStream=null;
+		try {
+			resultStream = transformer.transformXML(is);
+
+		} catch (IOException e1) {
+			log.debug(Utils.errorMessage(e1));
+		} catch (InterruptedException e1) {
+			log.debug(Utils.errorMessage(e1));
+		} catch (TransformerException e1) {		
+			log.debug(Utils.errorMessage(e1));
+		} catch (NoStylesheetException e1) {
+			log.debug(Utils.errorMessage(e1));
+		}
+		
+		return resultStream;
 	}
 	
 }

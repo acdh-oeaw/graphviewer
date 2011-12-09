@@ -26,7 +26,7 @@ currently the main map is produced in a separate step and loaded from static-xml
 </history>
 -->
  
-<xsl:import href="cmd_commons.xsl"/>
+<!--<xsl:import href="cmd_commons.xsl"/>-->
     
 <xsl:output method="xml" indent="yes" />
 	
