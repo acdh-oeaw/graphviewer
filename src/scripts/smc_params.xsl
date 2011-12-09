@@ -10,7 +10,7 @@
     <!-- used to config smc_init.xsl -->  
     <xsl:param name="data_key" select="'termsets'" /> <!-- cmd-profiles-raw , cmd-resolved, cmd-terms, dcr-terms, dcr-cmd-map -->
     
-    <xsl:param name="cache" select="'skip'" /> <!-- use, skip, refresh (refresh not working yet) -->
+    <xsl:param name="cache" select="'use'" /> <!-- use, skip, refresh (refresh not working yet) -->
     <xsl:param name="cache_dir" select="'file:/C:/Users/m/3lingua/clarin/CMDI/SMC/cache/'" />
     
 </xsl:stylesheet>

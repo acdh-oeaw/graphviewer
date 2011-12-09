@@ -91,7 +91,7 @@ public class SMC {
 		// TODO: WHY??
 		//transformer.setSrcFile(Utils.getConfig("termsets.config.file"));
 	//	addParam("data_key", "dcr-cmd-map");
-		addParam("data_key", "cmd-profiles-raw");
+		addParam("data_key", "cmd-terms");
 
 		// this is necessary for the transformer (in MDUTILS-library) to search for the resources (config and xsls) in the correct context)
 		//transformer.configure(Utils.getConfig(), this.getClass().getClassLoader());

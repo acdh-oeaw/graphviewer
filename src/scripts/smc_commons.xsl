@@ -60,7 +60,7 @@
                 <xsl:copy-of select="document(my:config('cmd-profiles','url'))" />                
             </xsl:when>
             <xsl:when test="$key='cmd-resolved'">
-                <xsl:apply-templates select="my:getData('cmd-profiles')" mode="include" />                
+                <xsl:apply-templates select="my:getData('cmd-profiles-raw')" mode="include" />                
             </xsl:when>
             <xsl:when test="$key='cmd-terms'">
                 <xsl:copy-of select="my:profiles2termsets(my:getData('cmd-resolved')//profileDescription)" />
