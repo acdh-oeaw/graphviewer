@@ -49,12 +49,12 @@ public class SMC {
 			
 		SMC smc = new SMC();
 		smc.init();		
-		/*
-		 * InputStream is = smc.listTermsets("");
+		
+		InputStream is = smc.listTermsets("");
 		String output_path = Utils.getConfig("cache.dir") +  smc.getParam("data_key") + "_.xml" ;		
 		File f = Utils.write2File(output_path, is);
 		log.debug("result stored in: " + f.getAbsolutePath());
-*/
+
 	}
 
 	public void configure(){
@@ -63,6 +63,7 @@ public class SMC {
 	public void configure(String configPath) {
 		try {
 			Utils.loadConfig("smc", configPath, this.getClass().getClassLoader());
+			
 			//config = new PropertiesConfiguration("smc.properties");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -79,15 +80,18 @@ public class SMC {
 		is = Utils.load2Stream(Utils.getConfig("termsets.config.file"),this.getClass().getClassLoader());
 		//is = Utils.load2Stream(config.getString("termsets.config.file"));
 		
+		
 		MDTransformer transformer = new MDTransformer();
 		//transformer.configure(config, this.getClass().getClassLoader());
 		// set URL as srcFile (for MDTransformer to pass to xsl-scripts)
 		// TODO: WHY??
 		//transformer.setSrcFile(Utils.getConfig("termsets.config.file"));
 		addParam("data_key", "dcr-cmd-map");
+
+		// this is necessary for the transformer (in MDUTILS-library) to search for the resources (config and xsls) in the correct context)
+		transformer.configure(Utils.getConfig(), this.getClass().getClassLoader());
 		
-		transformer.setParams(getParams());
-		
+		transformer.setParams(getParams());		
 		transformer.setTranskey("init");
 		// here the transformation is invoked
 		InputStream resultStream;
@@ -206,7 +210,7 @@ public class SMC {
 	}
 	
 	/**
-	 *  map from souce term to target-terms 
+	 *  map from source term to target-terms 
 	 * @param term
 	 * @return
 	 */
