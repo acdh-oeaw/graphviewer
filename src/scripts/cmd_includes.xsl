@@ -29,9 +29,9 @@
 	        
         <!-- <xsl:variable name="resolved_fn" select="replace(@filename, 'http://www.clarin.eu/cmd/components', 'file:///C:/Users/master/3lingua/clarin/CMDI/_repo2/metadata/toolkit/components')" /> -->
         
-        <xsl:message>document-uri:<xsl:value-of select="document-uri(/)" /></xsl:message>
+<!--        <xsl:message>document-uri:<xsl:value-of select="document-uri(/)" /></xsl:message>
         <xsl:message>resolved_fn:<xsl:value-of select="$resolved_fn" /></xsl:message>        
-        
+-->        
         <!-- some of the outer CMD_Component attributes can overwrite the inner CMD_Component attributes -->        
         <xsl:variable name="outer-attr" select="@CardinalityMin|@CardinalityMax"/>
         <xsl:for-each select="document($resolved_fn)/CMD_ComponentSpec/CMD_Component">
