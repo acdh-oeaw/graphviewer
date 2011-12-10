@@ -37,7 +37,7 @@ public class SMC {
 		//Utils.loadConfig("smc.properties");
 		
 		this.configure();
-		this.addParam("cache_dir", Utils.getConfig("cache.dir"));
+		this.addParam("cache_dir", "file:/" + Utils.getConfig("cache.dir"));
 		//this.addParam("cache_dir", config.getString("cache.dir"));
 		
 	}
@@ -52,8 +52,8 @@ public class SMC {
 
 		//smc.init();		
 		
-		InputStream is = smc.listTerms("isocat");
-		//InputStream is = smc.map("nome do projecto");
+		//InputStream is = smc.listTerms("isocat");
+		InputStream is = smc.map("nome do projecto");
 		String output_path = Utils.getConfig("cache.dir") +  "test_res_map.xml" ;		
 		File f = Utils.write2File(output_path, is);
 		log.debug("result stored in: " + f.getAbsolutePath());
