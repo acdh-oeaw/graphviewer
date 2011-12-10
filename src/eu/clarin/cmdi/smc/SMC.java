@@ -50,10 +50,10 @@ public class SMC {
 			
 		SMC smc = new SMC();
 
-		smc.init();		
+		//smc.init();		
 		
-		//InputStream is = smc.listTerms("isocat");
-		InputStream is = smc.map("nome do projecto");
+		InputStream is = smc.listTerms("isocat");
+		//InputStream is = smc.map("nome do projecto");
 		String output_path = Utils.getConfig("cache.dir") +  "test_res_map.xml" ;		
 		File f = Utils.write2File(output_path, is);
 		log.debug("result stored in: " + f.getAbsolutePath());
@@ -223,7 +223,8 @@ public class SMC {
 		// TODO: WHY??
 		//transformer.setSrcFile(Utils.getConfig("termsets.config.file"));
 		
-		addParam("set", context);
+		addParam("operation", "list");
+		addParam("context", context);
 		addParam("term", "*");
 		 
 		transformer.setParams(getParams());		
@@ -260,6 +261,8 @@ public class SMC {
 		// this is necessary for the transformer (in MDUTILS-library) to search for the resources (config and xsls) in the correct context)
 		transformer.configure(Utils.getAppConfig(appname), this.getClass().getClassLoader());
 		
+		
+		addParam("operation", "map");
 		addParam("term", term);
 		 
 		transformer.setParams(getParams());		
