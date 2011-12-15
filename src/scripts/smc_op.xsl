@@ -23,7 +23,7 @@
      		    <Terms>
                  <xsl:variable name="matching_concepts" select="$dcr-cmd-map//Concept[Term=$term]"></xsl:variable>
 	             <xsl:for-each select="$matching_concepts//Term[@set='cmd']">
-	                 <xsl:copy-of select="." />;                     
+	                 <xsl:copy-of select="." />                  
 	             </xsl:for-each>
      		    </Terms>
      		</xsl:when>  
