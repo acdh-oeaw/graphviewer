@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Termsets type="list">
+   <Termset>
+      <type>dcr</type>
+      <key>dce</key>
+      <name>dublincore elements</name>
+      <url>http://purl.org/dc/elements/1.1/</url>
+      <url_prefix>http://purl.org/dc/elements/1.1/</url_prefix>
+      <format>rdf</format>
+   </Termset>
+   <Termset>
+      <type>dcr</type>
+      <key>dct</key>
+      <name>dublincore terms</name>
+      <url>http://dublincore.org/2010/10/11/dcterms.rdf</url>
+      <url_prefix>http://purl.org/dc/terms/</url_prefix>
+      <format>rdf</format>
+   </Termset>
+   <Termset>
+      <type>dcr</type>
+      <key>isocat</key>
+      <name>ISOcat</name>
+      <url>file:/C:/Users/m/3lingua/clarin/CMDI/SMC/cache/isocat_profile5.rdf.xml</url>
+      <url_prefix>http://www.isocat.org/datcat/</url_prefix>
+      <format>rdf</format>
+      <Termset>
+         <key>isocat-ar</key>
+         <name>ISOcat Arabic</name>
+      </Termset>
+      <Termset>
+         <key>isocat-bg</key>
+         <name>ISOcat Bulgarian</name>
+      </Termset>
+      <Termset>
+         <key>isocat-ca</key>
+         <name>ISOcat Catalan</name>
+      </Termset>
+      <Termset>
+         <key>isocat-zh</key>
+         <name>ISOcat Chinese</name>
+      </Termset>
+      <Termset>
+         <key>isocat-hr</key>
+         <name>ISOcat Croatian</name>
+      </Termset>
+      <Termset>
+         <key>isocat-cs</key>
+         <name>ISOcat Czech</name>
+      </Termset>
+      <Termset>
+         <key>isocat-da</key>
+         <name>ISOcat Danish</name>
+      </Termset>
+      <Termset>
+         <key>isocat-nl</key>
+         <name>ISOcat Dutch</name>
+      </Termset>
+      <Termset>
+         <key>isocat-en</key>
+         <name>ISOcat English</name>
+      </Termset>
+      <Termset>
+         <key>isocat-et</key>
+         <name>ISOcat Estonian</name>
+      </Termset>
+      <Termset>
+         <key>isocat-fi</key>
+         <name>ISOcat Finnish</name>
+      </Termset>
+      <Termset>
+         <key>isocat-fr</key>
+         <name>ISOcat French</name>
+      </Termset>
+      <Termset>
+         <key>isocat-de</key>
+         <name>ISOcat German</name>
+      </Termset>
+      <Termset>
+         <key>isocat-el</key>
+         <name>ISOcat Greek</name>
+      </Termset>
+      <Termset>
+         <key>isocat-he</key>
+         <name>ISOcat Hebrew</name>
+      </Termset>
+      <Termset>
+         <key>isocat-hu</key>
+         <name>ISOcat Hungarian</name>
+      </Termset>
+      <Termset>
+         <key>isocat-is</key>
+         <name>ISOcat Icelandic</name>
+      </Termset>
+      <Termset>
+         <key>isocat-ga</key>
+         <name>ISOcat Irish</name>
+      </Termset>
+      <Termset>
+         <key>isocat-it</key>
+         <name>ISOcat Italian</name>
+      </Termset>
+      <Termset>
+         <key>isocat-ja</key>
+         <name>ISOcat Japanese</name>
+      </Termset>
+      <Termset>
+         <key>isocat-ko</key>
+         <name>ISOcat Korean</name>
+      </Termset>
+      <Termset>
+         <key>isocat-lv</key>
+         <name>ISOcat Latvian</name>
+      </Termset>
+      <Termset>
+         <key>isocat-lt</key>
+         <name>ISOcat Lithuanian</name>
+      </Termset>
+      <Termset>
+         <key>isocat-lb</key>
+         <name>ISOcat Luxembourgish</name>
+      </Termset>
+      <Termset>
+         <key>isocat-mt</key>
+         <name>ISOcat Maltese</name>
+      </Termset>
+      <Termset>
+         <key>isocat-no</key>
+         <name>ISOcat Norwegian</name>
+      </Termset>
+      <Termset>
+         <key>isocat-pl</key>
+         <name>ISOcat Polish</name>
+      </Termset>
+      <Termset>
+         <key>isocat-pt</key>
+         <name>ISOcat Portuguese</name>
+      </Termset>
+      <Termset>
+         <key>isocat-ro</key>
+         <name>ISOcat Romanian</name>
+      </Termset>
+      <Termset>
+         <key>isocat-ru</key>
+         <name>ISOcat Russian</name>
+      </Termset>
+      <Termset>
+         <key>isocat-sr</key>
+         <name>ISOcat Serbian</name>
+      </Termset>
+      <Termset>
+         <key>isocat-sk</key>
+         <name>ISOcat Slovak</name>
+      </Termset>
+      <Termset>
+         <key>isocat-sl</key>
+         <name>ISOcat Slovene</name>
+      </Termset>
+      <Termset>
+         <key>isocat-es</key>
+         <name>ISOcat Spanish</name>
+      </Termset>
+      <Termset>
+         <key>isocat-sv</key>
+         <name>ISOcat Swedish</name>
+      </Termset>
+      <Termset>
+         <key>isocat-tr</key>
+         <name>ISOcat Turkish</name>
+      </Termset>
+      <Termset>
+         <key>isocat-cy</key>
+         <name>ISOcat Welsh</name>
+      </Termset>
+   </Termset>
+   <Termset type="cmd">
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1297242111880</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>AnnotationTool</key>
+         <id>clarin.eu:cr1:p_1297242111880</id>
+         <name>AnnotationTool</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1271859438224</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>avatech-recognizer</key>
+         <id>clarin.eu:cr1:p_1271859438224</id>
+         <name>avatech-recognizer</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1288172614014</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>BamdesLexicalResource</key>
+         <id>clarin.eu:cr1:p_1288172614014</id>
+         <name>BamdesLexicalResource</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1288172614021</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>BamdesMultimodalCorpus</key>
+         <id>clarin.eu:cr1:p_1288172614021</id>
+         <name>BamdesMultimodalCorpus</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1288172614020</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>BamdesOralCorpus</key>
+         <id>clarin.eu:cr1:p_1288172614020</id>
+         <name>BamdesOralCorpus</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1288172614017</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>BamdesTool</key>
+         <id>clarin.eu:cr1:p_1288172614017</id>
+         <name>BamdesTool</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1288172614019</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>BamdesWrittenCorpus</key>
+         <id>clarin.eu:cr1:p_1288172614019</id>
+         <name>BamdesWrittenCorpus</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1280305685223</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>Bedevaartbank</key>
+         <id>clarin.eu:cr1:p_1280305685223</id>
+         <name>Bedevaartbank</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1280305685225</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>Boedelbank</key>
+         <id>clarin.eu:cr1:p_1280305685225</id>
+         <name>Boedelbank</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1295178776901</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>BookProfile</key>
+         <id>clarin.eu:cr1:p_1295178776901</id>
+         <name>BookProfile</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1316422391224</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>CenterProfile</key>
+         <id>clarin.eu:cr1:p_1316422391224</id>
+         <name>CenterProfile</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1311927752332</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>CLARINWebService</key>
+         <id>clarin.eu:cr1:p_1311927752332</id>
+         <name>CLARINWebService</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1271859438175</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>cmdi-virtual-collection</key>
+         <id>clarin.eu:cr1:p_1271859438175</id>
+         <name>cmdi-virtual-collection</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1284723009187</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>collection</key>
+         <id>clarin.eu:cr1:p_1284723009187</id>
+         <name>collection</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1271859438218</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>component-dc-terms</key>
+         <id>clarin.eu:cr1:p_1271859438218</id>
+         <name>component-dc-terms</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1271859438217</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>component-dc-terms-modular</key>
+         <id>clarin.eu:cr1:p_1271859438217</id>
+         <name>component-dc-terms-modular</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1271859438236</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>component-olac</key>
+         <id>clarin.eu:cr1:p_1271859438236</id>
+         <name>component-olac</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1280305685227</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>DBNL</key>
+         <id>clarin.eu:cr1:p_1280305685227</id>
+         <name>DBNL</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1288172614023</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>DcmiTerms</key>
+         <id>clarin.eu:cr1:p_1288172614023</id>
+         <name>DcmiTerms</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1295178776911</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>Demo_Karel_Vandas</key>
+         <id>clarin.eu:cr1:p_1295178776911</id>
+         <name>Demo_Karel_Vandas</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1280305685229</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>DIDDD</key>
+         <id>clarin.eu:cr1:p_1280305685229</id>
+         <name>DIDDD</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1280305685255</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>DIDDD_sub_location</key>
+         <id>clarin.eu:cr1:p_1280305685255</id>
+         <name>DIDDD_sub_location</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1280305685233</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>DSOL</key>
+         <id>clarin.eu:cr1:p_1280305685233</id>
+         <name>DSOL</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1280305685235</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>DynaSAND</key>
+         <id>clarin.eu:cr1:p_1280305685235</id>
+         <name>DynaSAND</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1280305685257</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>DynaSAND_sub_location</key>
+         <id>clarin.eu:cr1:p_1280305685257</id>
+         <name>DynaSAND_sub_location</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1290431694629</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>EastRepublican</key>
+         <id>clarin.eu:cr1:p_1290431694629</id>
+         <name>EastRepublican</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1290431694484</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>Example_Profile_Instance</key>
+         <id>clarin.eu:cr1:p_1290431694484</id>
+         <name>Example_Profile_Instance</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1280305685249</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>Familienamenbank</key>
+         <id>clarin.eu:cr1:p_1280305685249</id>
+         <name>Familienamenbank</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1280305685239</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>GTRP</key>
+         <id>clarin.eu:cr1:p_1280305685239</id>
+         <name>GTRP</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1280305685259</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>GTRP_sub_location</key>
+         <id>clarin.eu:cr1:p_1280305685259</id>
+         <name>GTRP_sub_location</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1274880881842</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>HETest</key>
+         <id>clarin.eu:cr1:p_1274880881842</id>
+         <name>HETest</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1274880881843</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>HETest</key>
+         <id>clarin.eu:cr1:p_1274880881843</id>
+         <name>HETest</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1274880881885</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>imdi-corpus</key>
+         <id>clarin.eu:cr1:p_1274880881885</id>
+         <name>imdi-corpus</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1271859438204</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>imdi-profile-instance</key>
+         <id>clarin.eu:cr1:p_1271859438204</id>
+         <name>imdi-profile-instance</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1272022528363</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>LexicalResourceProfile</key>
+         <id>clarin.eu:cr1:p_1272022528363</id>
+         <name>LexicalResourceProfile</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1280305685243</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>Liederenbank</key>
+         <id>clarin.eu:cr1:p_1280305685243</id>
+         <name>Liederenbank</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1289827960126</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>LrtInventoryResource</key>
+         <id>clarin.eu:cr1:p_1289827960126</id>
+         <name>LrtInventoryResource</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1284723009188</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>olac</key>
+         <id>clarin.eu:cr1:p_1284723009188</id>
+         <name>olac</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1288172614026</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>OLAC-DcmiTerms</key>
+         <id>clarin.eu:cr1:p_1288172614026</id>
+         <name>OLAC-DcmiTerms</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1280305685251</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>PLAND</key>
+         <id>clarin.eu:cr1:p_1280305685251</id>
+         <name>PLAND</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1290431694584</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>RECOGNIZER</key>
+         <id>clarin.eu:cr1:p_1290431694584</id>
+         <name>RECOGNIZER</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1271859438174</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>service</key>
+         <id>clarin.eu:cr1:p_1271859438174</id>
+         <name>service</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1288172614049</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>serviceDescription</key>
+         <id>clarin.eu:cr1:p_1288172614049</id>
+         <name>serviceDescription</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1295178776920</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>serviceDescription</key>
+         <id>clarin.eu:cr1:p_1295178776920</id>
+         <name>serviceDescription</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1295178776924</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>serviceDescription</key>
+         <id>clarin.eu:cr1:p_1295178776924</id>
+         <name>serviceDescription</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1271859438165</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>SessionProfile</key>
+         <id>clarin.eu:cr1:p_1271859438165</id>
+         <name>SessionProfile</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1280305685245</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>Soundbites</key>
+         <id>clarin.eu:cr1:p_1280305685245</id>
+         <name>Soundbites</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1271859438166</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>SpeechCorpusProfile</key>
+         <id>clarin.eu:cr1:p_1271859438166</id>
+         <name>SpeechCorpusProfile</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1271859438161</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>SpeechCorpusProfile_Autonomata_speaker</key>
+         <id>clarin.eu:cr1:p_1271859438161</id>
+         <name>SpeechCorpusProfile_Autonomata_speaker</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1282306194508</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>teiHeader</key>
+         <id>clarin.eu:cr1:p_1282306194508</id>
+         <name>teiHeader</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1271859438237</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>tei-textDesc</key>
+         <id>clarin.eu:cr1:p_1271859438237</id>
+         <name>tei-textDesc</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1271859438164</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>TextCorpusProfile</key>
+         <id>clarin.eu:cr1:p_1271859438164</id>
+         <name>TextCorpusProfile</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1271859438162</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>TextProfile</key>
+         <id>clarin.eu:cr1:p_1271859438162</id>
+         <name>TextProfile</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1274880881941</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>TITUS_metadata</key>
+         <id>clarin.eu:cr1:p_1274880881941</id>
+         <name>TITUS_metadata</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1282306194483</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>TITUS_metadata</key>
+         <id>clarin.eu:cr1:p_1282306194483</id>
+         <name>TITUS_metadata</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1282306194485</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>TITUS_metadata</key>
+         <id>clarin.eu:cr1:p_1282306194485</id>
+         <name>TITUS_metadata</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1297242111879</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>Tool</key>
+         <id>clarin.eu:cr1:p_1297242111879</id>
+         <name>Tool</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1280305685253</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>Voornamenbank</key>
+         <id>clarin.eu:cr1:p_1280305685253</id>
+         <name>Voornamenbank</name>
+      </Termset>
+      <key>cmd-profiles</key>
+      <id>clarin.eu:cr1:p_1280305685247</id>
+      <name>CMD Profiles</name>
+      <Termset>
+         <key>VVB</key>
+         <id>clarin.eu:cr1:p_1280305685247</id>
+         <name>VVB</name>
+      </Termset>
+   </Termset>
+</Termsets>

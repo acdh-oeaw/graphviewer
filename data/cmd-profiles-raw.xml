@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profileDescriptions>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1297242111880</id>
+      <description>Description of a tooladapted from adept for interviews</description>
+      <name>AnnotationTool</name>
+      <registrationDate>2011-02-09T13:13:59+00:00</registrationDate>
+      <creatorName>Eric Sanders</creatorName>
+      <userId>8</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1297242111880</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1288172614014</id>
+      <description>Lexical Resource as used by BAMDES (for theharvestingday.eu)</description>
+      <name>BamdesLexicalResource</name>
+      <registrationDate>2010-10-27T13:47:42+00:00</registrationDate>
+      <creatorName>Dieter Van Uytvanck</creatorName>
+      <userId>4</userId>
+      <domainName>computational_linguistics</domainName>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1288172614014</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1288172614021</id>
+      <description>Oral Corpus as used by BAMDES (for theharvestingday.eu)</description>
+      <name>BamdesMultimodalCorpus</name>
+      <registrationDate>2010-10-27T14:00:41+00:00</registrationDate>
+      <creatorName>Dieter Van Uytvanck</creatorName>
+      <userId>4</userId>
+      <domainName>computational_linguistics</domainName>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1288172614021</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1288172614020</id>
+      <description>Oral Corpus as used by BAMDES (for theharvestingday.eu)</description>
+      <name>BamdesOralCorpus</name>
+      <registrationDate>2010-10-27T14:00:05+00:00</registrationDate>
+      <creatorName>Dieter Van Uytvanck</creatorName>
+      <userId>4</userId>
+      <domainName>computational_linguistics</domainName>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1288172614020</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1288172614017</id>
+      <description>Tool as used by BAMDES (for theharvestingday.eu)</description>
+      <name>BamdesTool</name>
+      <registrationDate>2010-10-27T13:48:54+00:00</registrationDate>
+      <creatorName>Dieter Van Uytvanck</creatorName>
+      <userId>4</userId>
+      <domainName>computational_linguistics</domainName>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1288172614017</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1288172614019</id>
+      <description>Written Corpus as used by BAMDES (for theharvestingday.eu)</description>
+      <name>BamdesWrittenCorpus</name>
+      <registrationDate>2010-10-27T13:59:28+00:00</registrationDate>
+      <creatorName>Dieter Van Uytvanck</creatorName>
+      <userId>4</userId>
+      <domainName>computational_linguistics</domainName>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1288172614019</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1280305685223</id>
+      <description>Profile for Bedevaartbank</description>
+      <name>Bedevaartbank</name>
+      <registrationDate>2010-07-30T07:33:53+00:00</registrationDate>
+      <creatorName>Folkert de Vriend</creatorName>
+      <userId>5</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685223</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1280305685225</id>
+      <description>Profile for Boedelbank</description>
+      <name>Boedelbank</name>
+      <registrationDate>2010-07-30T07:36:25+00:00</registrationDate>
+      <creatorName>Folkert de Vriend</creatorName>
+      <userId>5</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685225</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1316422391224</id>
+      <description>A profile that contains all information about a CLARIN center. To be stored in the center registry.</description>
+      <name>CenterProfile</name>
+      <registrationDate>2011-09-22T09:49:24+00:00</registrationDate>
+      <creatorName>Dieter Van Uytvanck</creatorName>
+      <userId>4</userId>
+      <domainName>Other</domainName>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1316422391224</ns2:href>
+      <groupName>CLARIN-D</groupName>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1311927752332</id>
+      <description>This is a core model which can be used as a basis for web service registry specific models. In principal this profile shouldn't be instantiated, instead new profiles can be created which extend the structure build by the components in this profile. Valid instantiations of these extensions allow validation of the core elements against the schema of this profile. If you have any questions please feel free to contact Menzo.Windhouwer AT mpi.nl.</description>
+      <name>CLARINWebService</name>
+      <registrationDate>2011-08-08T14:31:40+00:00</registrationDate>
+      <creatorName>mwindhouwer</creatorName>
+      <userId>36</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1311927752332</ns2:href>
+      <groupName>CLARIN core WS descr (tentative)</groupName>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1311927752335</id>
+      <description>This is a core model which can be used as a basis for web service registry specific models. In principle this profile shouldn't be instantiated, instead new profiles can be created which extend the structure built by the components in this profile. Valid instantiations of these extensions allow validation of the core elements against the schema of this profile. More detailed information, including facilities to validate compliance with this core model, can be found at: http://www.isocat.org/clarin/ws/cmd-core/</description>
+      <name>CLARINWebService</name>
+      <registrationDate>2011-11-16T16:09:37+00:00</registrationDate>
+      <creatorName>mwindhouwer</creatorName>
+      <userId>36</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1311927752335</ns2:href>
+      <groupName>CLARIN core WS descr - version 1.0</groupName>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1271859438175</id>
+      <description>A component for describing personalized sets of metadata descriptions</description>
+      <name>cmdi-virtual-collection</name>
+      <registrationDate>2010-04-21T14:18:30+00:00</registrationDate>
+      <creatorName>Patrick Duin</creatorName>
+      <userId>2</userId>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438175</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1284723009187</id>
+      <description>minimal collection profile (started for OLAC records)</description>
+      <name>collection</name>
+      <registrationDate>2010-10-15T18:58:37+00:00</registrationDate>
+      <creatorName>Matej Durco</creatorName>
+      <userId>16</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1284723009187</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1271859438218</id>
+      <description>DC metadata</description>
+      <name>component-dc-terms</name>
+      <registrationDate>2010-04-21T14:19:45+00:00</registrationDate>
+      <creatorName>Patrick Duin</creatorName>
+      <userId>2</userId>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438218</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1271859438217</id>
+      <description>DC metadata</description>
+      <name>component-dc-terms-modular</name>
+      <registrationDate>2010-04-21T14:19:45+00:00</registrationDate>
+      <creatorName>Patrick Duin</creatorName>
+      <userId>2</userId>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438217</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1271859438236</id>
+      <description>OLAC metadata</description>
+      <name>component-olac</name>
+      <registrationDate>2010-04-21T14:19:48+00:00</registrationDate>
+      <creatorName>Patrick Duin</creatorName>
+      <userId>2</userId>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438236</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1280305685227</id>
+      <description>Profile for DBNL</description>
+      <name>DBNL</name>
+      <registrationDate>2010-07-30T07:37:50+00:00</registrationDate>
+      <creatorName>Folkert de Vriend</creatorName>
+      <userId>5</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685227</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1288172614023</id>
+      <description>DCMI Terms vocabulary, see http://dublincore.org/documents/dcmi-terms/</description>
+      <name>DcmiTerms</name>
+      <registrationDate>2010-10-28T13:41:46+00:00</registrationDate>
+      <creatorName>Dieter Van Uytvanck</creatorName>
+      <userId>4</userId>
+      <domainName>Other</domainName>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1288172614023</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1280305685229</id>
+      <description>Profile for DIDDD</description>
+      <name>DIDDD</name>
+      <registrationDate>2010-07-30T07:39:00+00:00</registrationDate>
+      <creatorName>Folkert de Vriend</creatorName>
+      <userId>5</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685229</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1280305685255</id>
+      <description>Profile for locations subdivision perspective on DIDDD</description>
+      <name>DIDDD_sub_location</name>
+      <registrationDate>2010-07-30T08:02:52+00:00</registrationDate>
+      <creatorName>Folkert de Vriend</creatorName>
+      <userId>5</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685255</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1280305685233</id>
+      <description>Profile for DSOL</description>
+      <name>DSOL</name>
+      <registrationDate>2010-07-30T07:41:45+00:00</registrationDate>
+      <creatorName>Folkert de Vriend</creatorName>
+      <userId>5</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685233</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1280305685235</id>
+      <description>Profile for DynaSAND</description>
+      <name>DynaSAND</name>
+      <registrationDate>2010-07-30T07:42:39+00:00</registrationDate>
+      <creatorName>Folkert de Vriend</creatorName>
+      <userId>5</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685235</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1280305685257</id>
+      <description>Profile for locations subdivision perspective on DynaSAND</description>
+      <name>DynaSAND_sub_location</name>
+      <registrationDate>2010-07-30T08:03:47+00:00</registrationDate>
+      <creatorName>Folkert de Vriend</creatorName>
+      <userId>5</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685257</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1290431694629</id>
+      <description>Profile for East Republican document</description>
+      <name>EastRepublican</name>
+      <registrationDate>2011-01-06T09:17:54+00:00</registrationDate>
+      <creatorName>cyrilpestel</creatorName>
+      <userId>27</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1290431694629</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1290431694484</id>
+      <description>Just a simple profile that combines several metadata components</description>
+      <name>Example_Profile_Instance</name>
+      <registrationDate>2010-11-24T15:21:00+00:00</registrationDate>
+      <creatorName>Dieter Van Uytvanck</creatorName>
+      <userId>4</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1290431694484</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1280305685249</id>
+      <description>Profile for Familienamenbank</description>
+      <name>Familienamenbank</name>
+      <registrationDate>2010-07-30T07:51:23+00:00</registrationDate>
+      <creatorName>Folkert de Vriend</creatorName>
+      <userId>5</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685249</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1280305685239</id>
+      <description>Profile for GTRP</description>
+      <name>GTRP</name>
+      <registrationDate>2010-07-30T07:44:20+00:00</registrationDate>
+      <creatorName>Folkert de Vriend</creatorName>
+      <userId>5</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685239</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1280305685259</id>
+      <description>Profile for locations subdivision perspective on GTRP</description>
+      <name>GTRP_sub_location</name>
+      <registrationDate>2010-07-30T08:05:03+00:00</registrationDate>
+      <creatorName>Folkert de Vriend</creatorName>
+      <userId>5</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685259</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1274880881885</id>
+      <description>IMDI corpus profile</description>
+      <name>imdi-corpus</name>
+      <registrationDate>2010-06-02T13:16:26+00:00</registrationDate>
+      <creatorName>Alexander Koenig</creatorName>
+      <userId>10</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1274880881885</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1271859438204</id>
+      <description>IMDI metadata</description>
+      <name>imdi-profile-instance</name>
+      <registrationDate>2010-04-21T14:19:43+00:00</registrationDate>
+      <creatorName>Patrick Duin</creatorName>
+      <userId>2</userId>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438204</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1272022528363</id>
+      <description>a profile for describing a lexical resource</description>
+      <name>LexicalResourceProfile</name>
+      <registrationDate>2010-04-26T10:13:06+00:00</registrationDate>
+      <creatorName>Laura van Eerten</creatorName>
+      <userId>19</userId>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1272022528363</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1280305685243</id>
+      <description>Profile for Liederenbank</description>
+      <name>Liederenbank</name>
+      <registrationDate>2010-07-30T07:48:00+00:00</registrationDate>
+      <creatorName>Folkert de Vriend</creatorName>
+      <userId>5</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685243</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1289827960126</id>
+      <description>Resources as stored before in the CLARIN LRT inventory</description>
+      <name>LrtInventoryResource</name>
+      <registrationDate>2010-11-15T14:55:57+00:00</registrationDate>
+      <creatorName>Dieter Van Uytvanck</creatorName>
+      <userId>4</userId>
+      <domainName>linguistics_and_literature</domainName>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1289827960126</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1284723009188</id>
+      <description>OLAC metadata (with ConceptLinks to dublincore added)</description>
+      <name>olac</name>
+      <registrationDate>2010-10-17T10:12:42+00:00</registrationDate>
+      <creatorName>Matej Durco</creatorName>
+      <userId>16</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1284723009188</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1288172614026</id>
+      <description>OLAC profile, extension of the DCMI Terms profile with some OLAC-specific attributes</description>
+      <name>OLAC-DcmiTerms</name>
+      <registrationDate>2010-10-28T13:49:30+00:00</registrationDate>
+      <creatorName>Dieter Van Uytvanck</creatorName>
+      <userId>4</userId>
+      <domainName>Other</domainName>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1288172614026</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1280305685251</id>
+      <description>Profile for PLAND</description>
+      <name>PLAND</name>
+      <registrationDate>2010-07-30T07:52:12+00:00</registrationDate>
+      <creatorName>Folkert de Vriend</creatorName>
+      <userId>5</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685251</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1290431694584</id>
+      <description>See: http://www.mpi.nl/avatech/</description>
+      <name>RECOGNIZER</name>
+      <registrationDate>2010-12-06T17:10:22+00:00</registrationDate>
+      <creatorName>Dieter Van Uytvanck</creatorName>
+      <userId>4</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1290431694584</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1271859438174</id>
+      <description>The Service Component describes a service and its capabilities. The Service component for this proposal currently only covers the technical metadata required to support the process of profile matching and will need to be extended with descriptive components, like documentation, organizational information, contact etc intended for human end users.</description>
+      <name>service</name>
+      <registrationDate>2010-04-21T14:18:25+00:00</registrationDate>
+      <creatorName>Patrick Duin</creatorName>
+      <userId>2</userId>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438174</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1295178776924</id>
+      <description>MyGrid Webservice</description>
+      <name>serviceDescription</name>
+      <registrationDate>2011-01-20T16:47:49+00:00</registrationDate>
+      <creatorName>Dieter Van Uytvanck</creatorName>
+      <userId>4</userId>
+      <domainName>Other</domainName>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1295178776924</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1271859438165</id>
+      <description>Clarin-NL profiles</description>
+      <name>SessionProfile</name>
+      <registrationDate>2010-04-21T14:18:10+00:00</registrationDate>
+      <creatorName>Patrick Duin</creatorName>
+      <userId>2</userId>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438165</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1280305685245</id>
+      <description>Profile for Soundbites</description>
+      <name>Soundbites</name>
+      <registrationDate>2010-07-30T07:48:44+00:00</registrationDate>
+      <creatorName>Folkert de Vriend</creatorName>
+      <userId>5</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685245</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1271859438166</id>
+      <description>Clarin-NL profiles</description>
+      <name>SpeechCorpusProfile</name>
+      <registrationDate>2010-04-21T14:18:10+00:00</registrationDate>
+      <creatorName>Patrick Duin</creatorName>
+      <userId>2</userId>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438166</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1271859438161</id>
+      <description>Clarin-NL profiles</description>
+      <name>SpeechCorpusProfile_Autonomata_speaker</name>
+      <registrationDate>2010-04-21T14:18:10+00:00</registrationDate>
+      <creatorName>Patrick Duin</creatorName>
+      <userId>2</userId>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438161</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1282306194508</id>
+      <description>a version of the teiHeader, based on the recommended header in http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD7
+encoding fileDesc and profileDesc components, leaving out encodingDesc and revisionDesc</description>
+      <name>teiHeader</name>
+      <registrationDate>2010-09-01T20:35:21+00:00</registrationDate>
+      <creatorName>Matej Durco</creatorName>
+      <userId>16</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1282306194508</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1271859438237</id>
+      <description>A component for the textDesc element in the TEI P5 header element. Please note
+            that because of the freedom provided by the TEI this module will generate compatible
+            descriptions, but not each existing TEI textDesc element will necessarily comply to it.</description>
+      <name>tei-textDesc</name>
+      <registrationDate>2010-04-21T14:19:50+00:00</registrationDate>
+      <creatorName>Patrick Duin</creatorName>
+      <userId>2</userId>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438237</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1271859438164</id>
+      <description>Clarin-NL profiles</description>
+      <name>TextCorpusProfile</name>
+      <registrationDate>2010-04-21T14:18:10+00:00</registrationDate>
+      <creatorName>Patrick Duin</creatorName>
+      <userId>2</userId>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438164</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1271859438162</id>
+      <description>Clarin-NL profiles</description>
+      <name>TextProfile</name>
+      <registrationDate>2010-04-21T14:18:10+00:00</registrationDate>
+      <creatorName>Patrick Duin</creatorName>
+      <userId>2</userId>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438162</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1282306194485</id>
+      <description>TITUS Metadata profile
+http://titus.uni-frankfurt.de</description>
+      <name>TITUS_metadata</name>
+      <registrationDate>2010-08-23T14:56:03+00:00</registrationDate>
+      <creatorName>Svetlana Ahlborn</creatorName>
+      <userId>11</userId>
+      <domainName>historical_linguistics</domainName>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1282306194485</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1297242111879</id>
+      <description>Description of a tool</description>
+      <name>Tool</name>
+      <registrationDate>2011-02-09T09:07:00+00:00</registrationDate>
+      <creatorName>Therese Leinonen</creatorName>
+      <userId>18</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1297242111879</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1280305685253</id>
+      <description>Profile for Voornamenbank</description>
+      <name>Voornamenbank</name>
+      <registrationDate>2010-07-30T07:53:03+00:00</registrationDate>
+      <creatorName>Folkert de Vriend</creatorName>
+      <userId>5</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685253</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1280305685247</id>
+      <description>Profile for VVB</description>
+      <name>VVB</name>
+      <registrationDate>2010-07-30T07:50:33+00:00</registrationDate>
+      <creatorName>Folkert de Vriend</creatorName>
+      <userId>5</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685247</ns2:href>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+</profileDescriptions>
