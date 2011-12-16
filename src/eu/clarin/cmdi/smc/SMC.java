@@ -261,7 +261,7 @@ public class SMC {
 		// this is necessary for the transformer (in MDUTILS-library) to search for the resources (config and xsls) in the correct context)
 		transformer.configure(Utils.getAppConfig(appname), this.getClass().getClassLoader());
 		
-		
+		log.debug("term: " + term);
 		addParam("operation", "map");
 		addParam("term", term);
 		 

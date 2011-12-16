@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:my="myFunctions"
-    exclude-result-prefixes="xs"
-    version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:my="myFunctions" exclude-result-prefixes="xs my" version="2.0">
     
     <xsl:include href="smc_params.xsl"/>
     <xsl:include href="smc_functions.xsl"/>
@@ -25,23 +22,19 @@
 <!--    needed in cmd_includes.xsl --> 
    <xsl:variable name="cmd_components_uri" select="my:config('cmd-components','url')" />
    <xsl:variable name="cmd_profiles_uri" select="my:config('cmd-profiles','url')" />
-
-<!-- intermediate datasets bound into variables,to prevent calling the function every time --> 
     
+<!-- intermediate datasets bound into variables,to prevent calling the function every time -->
    <xsl:variable name="dcr-terms" select="my:getData('dcr-terms')" />
    <xsl:variable name="cmd-terms" select="my:getData('cmd-terms')" />
    <xsl:variable name="dcr-cmd-map" select="my:getData('dcr-cmd-map')" />
-
+   <xsl:variable name="isocat-languages" select="my:getData('isocat-languages')" />
     
-    <!--
-        serves individual datasets (cmd-profiles, dcr-termsets...)
+ <!-- serves individual datasets (cmd-profiles, dcr-termsets...)
         primitive cache mechanism - 
         if data of given key is already stored, serve it, 
         otherwise build a new (but don't store in cache - within this function)
-        regard the cache-param - beware of the param-value in recursive calls (currently 'use' is fixed for deeper calls)  
-    -->
-    
-    <xsl:function name="my:getData">
+        regard the cache-param - beware of the param-value in recursive calls (currently 'use' is fixed for deeper calls)     -->
+  <xsl:function name="my:getData">
         <xsl:param name="key"></xsl:param>
         <xsl:param name="cache"></xsl:param>
         
@@ -71,6 +64,9 @@
             <xsl:when test="$key='termsets'">
                 <xsl:call-template name="termsets" />								
             </xsl:when>
+            <xsl:when test="$key='isocat-languages'">
+                <xsl:copy-of select="document(my:config('isocat-languages','url'))" />								
+            </xsl:when>
             <xsl:when test="$key='dcr-cmd-map'">
                 <xsl:call-template name="dcr-cmd-map" />
             </xsl:when>
@@ -81,8 +77,7 @@
             <xsl:otherwise>	
                 <diagnostics>unknown data: <xsl:value-of select="$key" /></diagnostics>
             </xsl:otherwise>
-        </xsl:choose>
-        
+        </xsl:choose>    
     </xsl:function>
     
     <!-- overload method with one param and value of global cache-param as default -->    
@@ -91,31 +86,25 @@
         <xsl:copy-of select="my:getData($key,$cache)"></xsl:copy-of>
     </xsl:function>
     
-
 <!-- load all dcrs from the configuration and transform them into Termsets
-       (uses mode=dcr-templates in dcr_rdf2terms.xsl)    
-   -->
+       (uses mode=dcr-templates in dcr_rdf2terms.xsl)       -->
     <xsl:template name="load-dcr">
         <Termsets type="dcr">
           <xsl:for-each select="$termsets_config//*[type='dcr']" >
               <xsl:variable name="dcr_termset" select="document(url)" />            
                   <xsl:apply-templates select="$dcr_termset" mode="dcr" >
                       <xsl:with-param name="set" select="key"></xsl:with-param>
-                  </xsl:apply-templates>
-              
+                  </xsl:apply-templates>              
           </xsl:for-each>
         </Termsets>
     </xsl:template>
 
-<!--
-    invert the profiles-termsets + match with data from DCRs = create map datcat -> cmd-elements[] 
--->	
+<!-- invert the profiles-termsets + match with data from DCRs = create map datcat -> cmd-elements[] -->	
 <xsl:template name="dcr-cmd-map">
     <Termset type="dcr-cmd-map" >	
         <xsl:for-each-group select="$cmd-terms//Term[not(@datcat='')]" group-by="@datcat">
             <Concept id="{@datcat}" type="datcat">
-                <xsl:copy-of select="$dcr-terms//Concept[@id=current()/@datcat]/Term" />
-                
+                <xsl:copy-of select="$dcr-terms//Concept[@id=current()/@datcat]/Term" />                
                 <xsl:for-each select="current-group()">
                     <xsl:variable name="parent_profile" select="ancestor::Termset[@type='CMD_Profile']/@id" />
                     <Term set="cmd" type="full-path" schema="{$parent_profile}" id="{@id}"><xsl:value-of select="@path" /></Term>
@@ -128,14 +117,27 @@
 
 <!-- list dcr-termsets + cmd (+ cmd-profiles) 
 TODO: missing: isocat@langs, RR-sets -->    
-<xsl:template name="termsets">
+<xsl:template name="termsets">    
     <Termsets type="list">
         <!-- add dcr-termsets directly from config -->
-        <xsl:for-each select="$termsets_config//*[type='dcr']" >
+        <xsl:for-each select="$termsets_config//*[type='dcr'][not(key='isocat')]" >
             <Termset>
                 <xsl:copy-of select="*" />
             </Termset>                        
+        </xsl:for-each>        
+        <xsl:for-each select="$termsets_config//*[type='dcr'][key='isocat']" >
+            <Termset>
+                <xsl:copy-of select="*" />
+                <xsl:for-each select="$isocat-languages/languages/language" >
+                    <Termset>
+<!--                        name="Finnish" search="finnish" tag="fi"-->
+                        <key>isocat-<xsl:value-of select="@tag"></xsl:value-of></key>                        
+                        <name>ISOcat <xsl:value-of select="@name"></xsl:value-of></name>
+                    </Termset>
+                </xsl:for-each>
+            </Termset>                        
         </xsl:for-each>
+        
         <Termset type="cmd">
           <xsl:for-each select="$cmd-terms//Termset" >
               <key>cmd-profiles</key>
@@ -151,14 +153,10 @@ TODO: missing: isocat@langs, RR-sets -->
     </Termsets>
 </xsl:template>
 
-<!--
-    return a property of a Termset from the configuration.
--->    
+<!-- return a property of a Termset from the configuration. -->    
     <xsl:function name="my:config">
         <xsl:param name="key"></xsl:param>
         <xsl:param name="property"></xsl:param>
         <xsl:value-of select="$termsets_config//*[key=$key]/*[name()=$property]"></xsl:value-of>
     </xsl:function>
-    
-    
 </xsl:stylesheet>

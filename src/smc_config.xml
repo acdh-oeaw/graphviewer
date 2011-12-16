@@ -29,6 +29,15 @@
       <format>rdf</format> 
    </item>
    <item>
+      <!-- no "standard" type, because this is for special handling of isocat -->
+      <type>dcrx</type>
+      <key>isocat-languages</key> 
+      <name>ISOcat Languages</name>
+      <url>http://www.isocat.org/rest/info/languages.xml</url>      
+      <url_prefix></url_prefix> 
+      <format>rdf</format> 
+   </item>
+   <item>
       <type>dcr</type> 
       <key>dce</key> 
       <name>dublincore elements</name> 

@@ -8,12 +8,11 @@
     <xsl:param name="termset_config_file" select="'config.xml'" />
     
     <!-- used to config smc_init.xsl -->  
-    <!-- allowed values:  cmd-profiles-raw , cmd-resolved, cmd-terms, dcr-terms, dcr-cmd-map -->
+    <!-- allowed values:  cmd-profiles-raw , cmd-resolved, cmd-terms, dcr-terms, dcr-cmd-map, isocat-languages -->
     <xsl:param name="data_key" select="'termsets'" /> 
     
     <!-- use, skip, refresh (refresh not working yet) -->
     <xsl:param name="cache" select="'use'" /> 
 <!--    <xsl:param name="cache_dir" select="'file:/C:/Users/m/3lingua/clarin/CMDI/SMC/cache/'" />-->
-    <xsl:variable name="cache_dir" select="'file:/C:/Users/m/3lingua/clarin/CMDI/SMC/cache/'" />
-    
+    <xsl:variable name="cache_dir" select="'file:/C:/Users/m/3lingua/clarin/CMDI/_repo2/SMC/data/'" />    
 </xsl:stylesheet>
