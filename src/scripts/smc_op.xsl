@@ -14,7 +14,7 @@
   <xsl:param name="operation">list</xsl:param> <!-- list | map --> 
  <xsl:param name="context">*</xsl:param>
  <xsl:param name="term"></xsl:param>
- <xsl:param name="lang">pt</xsl:param>
+ <!--<xsl:param name="lang">pt</xsl:param>-->
     
     
  <xsl:template match="/">
@@ -32,11 +32,25 @@
              </xsl:when>
           <!-- list all terms of given context-->         
          <xsl:when test="$operation='list'">
-                 <Termset set="{$context}" xml:lang="{$lang}">
-                     <xsl:for-each  select="$dcr-cmd-map//Term[@set=$context and @xml:lang=$lang]" >
-                         <xsl:copy-of select="." />
-                     </xsl:for-each>
-                 </Termset>
+             <!--separate handling for isocat, because of lang -->
+                <xsl:choose>
+                    <xsl:when test="starts-with($context, 'isocat')">
+                        <xsl:variable name="lang" select="if(starts-with($context, 'isocat')) then substring-after($context, 'isocat-') else 'en'"></xsl:variable>
+                        <Termset set="{$context}" xml:lang="{$lang}">                            
+                            <xsl:for-each  select="$dcr-cmd-map//Term[@set='isocat' and @xml:lang=$lang]" >
+                                <xsl:copy-of select="." />
+                            </xsl:for-each>
+                        </Termset>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <Termset set="{$context}" >                            
+                            <xsl:for-each  select="$dcr-cmd-map//Term[@set=$context]" >
+                                <xsl:copy-of select="." />
+                            </xsl:for-each>
+                        </Termset>
+                    </xsl:otherwise>                    
+                </xsl:choose>
+                
          </xsl:when>
          <xsl:otherwise>
              <diagnostics>unknown operation: <xsl:value-of select="$operation"></xsl:value-of></diagnostics>
