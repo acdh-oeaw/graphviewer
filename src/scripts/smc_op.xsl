@@ -38,14 +38,21 @@
                         <xsl:variable name="lang" select="if(starts-with($context, 'isocat')) then substring-after($context, 'isocat-') else 'en'"></xsl:variable>
                         <Termset set="{$context}" xml:lang="{$lang}">                            
                             <xsl:for-each  select="$dcr-cmd-map//Term[@set='isocat' and @xml:lang=$lang]" >
-                                <xsl:copy-of select="." />
+                                <xsl:copy >
+                                    <xsl:copy-of select="@*" />
+                                    <xsl:attribute name="concept-id" select="ancestor::Concept/@id"></xsl:attribute>
+                                </xsl:copy>
                             </xsl:for-each>
                         </Termset>
                     </xsl:when>
                     <xsl:otherwise>
                         <Termset set="{$context}" >                            
                             <xsl:for-each  select="$dcr-cmd-map//Term[@set=$context]" >
-                                <xsl:copy-of select="." />
+                                <xsl:copy >
+                                    <xsl:copy-of select="@*" />
+                                    <xsl:attribute name="concept-id" select="ancestor::Concept/@id"></xsl:attribute>
+                                </xsl:copy>
+                                
                             </xsl:for-each>
                         </Termset>
                     </xsl:otherwise>                    
