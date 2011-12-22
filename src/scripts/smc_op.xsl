@@ -41,7 +41,7 @@
                                 <xsl:copy >
                                     <xsl:copy-of select="@*" />
                                     <xsl:attribute name="concept-id" select="ancestor::Concept/@id"></xsl:attribute>
-                                    <xsl:copy-of select="." />
+                                    <xsl:value-of select="." />
                                 </xsl:copy>
                             </xsl:for-each>
                         </Termset>
@@ -52,7 +52,7 @@
                                 <xsl:copy >
                                     <xsl:copy-of select="@*" />
                                     <xsl:attribute name="concept-id" select="ancestor::Concept/@id"></xsl:attribute>
-                                    <xsl:copy-of select="." />
+                                    <xsl:value-of select="." />
                                 </xsl:copy>
                                 
                             </xsl:for-each>
