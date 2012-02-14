@@ -22,8 +22,8 @@
       <type>dcr</type> 
       <key>isocat</key> 
       <name>ISOcat</name> 
-<!--      <url>http://www.isocat.org/rest/profile/5.rdf</url> -->
-      <url>file:/C:/Users/m/3lingua/clarin/CMDI/SMC/cache/isocat_profile5.rdf.xml</url>
+     <url>http://www.isocat.org/rest/profile/5.rdf</url> 
+<!--       <url>file:/C:/Users/m/3lingua/clarin/CMDI/SMC/cache/isocat_profile5.rdf.xml</url> -->
 <!--      www.isocat.org/rest/info/languages.xml-->
       <url_prefix>http://www.isocat.org/datcat/</url_prefix> 
       <format>rdf</format> 
