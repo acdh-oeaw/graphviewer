@@ -139,10 +139,10 @@ TODO: missing: isocat@langs, RR-sets -->
         </xsl:for-each>
         
         <Termset type="cmd">
-          <xsl:for-each select="$cmd-terms//Termset" >
-              <key>cmd-profiles</key>
-              <id><xsl:value-of select="@id"></xsl:value-of></id>
-              <name>CMD Profiles</name>
+            <key>cmd-profiles</key>
+            <id>cmd-profiles</id>
+            <name>CMD Profiles</name>
+          <xsl:for-each select="$cmd-terms//Termset" >              
               <Termset>
                   <key><xsl:value-of select="@name"></xsl:value-of></key>
                   <id><xsl:value-of select="@id"></xsl:value-of></id>

@@ -14,7 +14,7 @@
   xmlns:dcam="http://purl.org/dc/dcam/"
   exclude-result-prefixes=""
 >
-<!-- 
+<!--  
 <purpose> starting script for SemanticMapping components
 
 generate lists for Terms (CMDI-Elements, CMDI-components, Datcats)
