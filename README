@@ -1,0 +1,26 @@
+
+************************************
+  SMC - Semantic Mapping Component
+************************************
+
+SMC is a module within the CMDI framework [1] of the CLARIN infrastructure.
+
+It provides mappings between fields in heterogeneous metadata descriptions
+building on top of Data Category Registry (ISOcat [2])
+
+[1] http://clarin.eu/cmdi
+[2] http://isocat.org
+
+Overview
+--------
+
+The code consists mainly of XSL-stylesheets 
+[src/scripts/*.xsl]
+and a minimal Java "application" (meant mainly to invoke the initialization steps)
+[src/eu/clarin/cmdi/smc/SMC.java]
+
+
+Installation
+-------------
+
+TODO!
