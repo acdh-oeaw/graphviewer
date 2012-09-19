@@ -19,7 +19,7 @@
 relies on the data prepared in smc_commons.xsl
 currently the main map is produced in a separate step and loaded from static-xml (map_file)</purpose>
 <params>
-
+main input file is expected dcr-cmd-map.xml
 </params>
 <history>
 	<change on="2011-10-27" type="created" by="vr">from complist2terms_201109.xsl (via smc_init.xsl)</change>	
@@ -28,34 +28,39 @@ currently the main map is produced in a separate step and loaded from static-xml
  
 <!--<xsl:import href="cmd_commons.xsl"/>-->
     
-<xsl:output method="xml" indent="yes" />
-	
-<xsl:include href="smc_commons.xsl"/>
+
+<xsl:import href="smc_commons.xsl"/>
+
+	<xsl:output method="html" indent="yes" />
 	
   <xsl:param name="title" select="'SMC Stats'" />
     
     <!--
  <xsl:param name="map_file" select="'../../../../SMC/output/map_full.xml'" />  
- <xsl:variable name="map" select="document($map_file)" />
+ <xsl:variable name="map" select="document($dcr-cmd-map_file)" />
     -->
     
-<xsl:template name="continue-root">
+<!--<xsl:template name="continue-root">-->
+	<xsl:template match="/">
         <xsl:call-template name="summary-overall"></xsl:call-template>
-    <xsl:call-template name="summary-terms"></xsl:call-template>
-    <xsl:call-template name="summary-cmd"></xsl:call-template>
-<!--    <xsl:call-template name="summary-concepts"></xsl:call-template>-->
+		<xsl:call-template name="summary-concepts"></xsl:call-template>
+		<xsl:call-template name="summary-terms"></xsl:call-template>	
+    	<xsl:call-template name="summary-cmd"></xsl:call-template>
+		<xsl:call-template name="ambigue-elems"></xsl:call-template>
+    
  </xsl:template>			
 	
 	
 <xsl:template name="summary-overall">
 		<table>
 		<tbody>
+			<tr><td>dcr-terms</td><td ><xsl:value-of select="document-uri($dcr-terms)"/></td></tr>
 		    <tr><td>creation date</td><td align="right"><xsl:value-of select="current-date()"/></td></tr>
-		    <tr><td>available Concepts</td><td align="right"><xsl:value-of select="count($dcr_terms//Concept)"/></td></tr>
-		    <tr><td>used Concept</td><td align="right"><xsl:value-of select="count($map//Concept)"/></td></tr>		    
+		    <tr><td>available Concepts</td><td align="right"><xsl:value-of select="count($dcr-terms//Concept)"/></td></tr>
+			<tr><td>used Concept</td><td align="right"><xsl:value-of select="count($dcr-cmd-map//Concept)"/></td></tr>		    
 		    <tr><td>blind Concepts (not in isocat)</td><td align="right"><xsl:value-of select="count(//Concept[not(Term[@set='isocat'])])"/></td></tr>
-		    <tr><td>unused Concepts</td><td align="right"><xsl:value-of select="count($dcr_terms//Concept except $dcr_terms//Concept[@id=$map//Concept/@id])"/></td></tr>
-		    <tr><td>Term</td><td align="right"><xsl:value-of select="count($map//Term)"/></td></tr>
+			<tr><td>unused Concepts</td><td align="right"><xsl:value-of select="count($dcr-terms//Concept except $dcr-terms//Concept[@id=$dcr-cmd-map//Concept/@id])"/></td></tr>
+			<tr><td>Term</td><td align="right"><xsl:value-of select="count($dcr-cmd-map//Term)"/></td></tr>
 			<!--
 		    <tr><td>profileDescription</td><td align="right"><xsl:value-of select="count(//profileDescription)"/></td></tr>			
 			<tr><td>componentDescription</td><td align="right"><xsl:value-of select="count(//componentDescription)"/></td></tr>			
@@ -85,8 +90,9 @@ currently the main map is produced in a separate step and loaded from static-xml
 
 <xsl:template name="summary-terms">
     <table>
-        <tbody>
-           <xsl:for-each-group select="$map//Term" group-by="concat(@set,@type)">
+    	<caption>Term types</caption>
+        <tbody>        	
+           <xsl:for-each-group select="$dcr-cmd-map//Term" group-by="concat(@set,@type)">
                <tr><td><xsl:value-of select="concat(@set,'-', @type)"></xsl:value-of></td><td align="right"><xsl:value-of select="count(current-group())"/></td></tr>       
            </xsl:for-each-group>            
         </tbody>
@@ -94,10 +100,13 @@ currently the main map is produced in a separate step and loaded from static-xml
 </xsl:template>
 
 <xsl:template name="summary-concepts">
+	
     <table>
+    	<caption>Data Categories Sets</caption>
         <tbody>
-            <xsl:for-each select="$map//Concept[not(Term[@set='isocat'])]" >
-                <tr><td><xsl:value-of select="@id"></xsl:value-of></td>
+            <xsl:for-each select="$dcr-terms//Termset" >
+                <tr><td><xsl:value-of select="@set"></xsl:value-of></td>
+                	<td align="right"><xsl:value-of select="count(Concept)"></xsl:value-of></td>
                     </tr>       
             </xsl:for-each>            
         </tbody>
@@ -106,12 +115,45 @@ currently the main map is produced in a separate step and loaded from static-xml
 
     
 <xsl:template name="summary-cmd">
+	<xsl:variable name="count_elems" select="count($cmd-terms//Term[@type='CMD_Element'])" ></xsl:variable>
+	<xsl:variable name="count_distinct_datcats" select="count(distinct-values($cmd-terms//Term[@type='CMD_Element']/@datcat[not(.='')]))" ></xsl:variable>
+	<xsl:variable name="count_distinct_components" select="count(distinct-values($cmd-terms//Term[@type='CMD_Component'][not(@parent='')]/@id))" ></xsl:variable>
+	<xsl:variable name="count_standalone_components" select="count(distinct-values($cmd-terms//Term[@type='CMD_Component'][not(@parent='')]/@id[not(contains(.,'#'))]))" ></xsl:variable>
+	<xsl:variable name="count_distinct_elems" select="count(distinct-values($cmd-terms//Term[@type='CMD_Element']/@id))" ></xsl:variable>
+	<xsl:variable name="count_components_datcat" select="count(distinct-values($cmd-terms//Term[@type='CMD_Component'][@datcat[not(.='')]]/@id))" ></xsl:variable>	
 	
 	<table>
-		<caption>Profiles |<xsl:value-of select="count($cmd_terms//Termset)" />|</caption>
+		<tbody>
+			<tr><td>distinct components</td><td align="right"><xsl:value-of select="$count_distinct_components"/></td></tr>
+			<tr><td>distinct standalone components</td><td align="right"><xsl:value-of select="$count_standalone_components"/></td></tr>
+			<tr><td>distinct elements</td><td align="right"><xsl:value-of select="$count_distinct_elems"/></td></tr>	
+			<tr><td>elements with datcats </td><td align="right"><xsl:value-of select="format-number(count($cmd-terms//Term[@type='CMD_Element'][not(@datcat='')]) div $count_elems, '0.00 %')"/></td></tr>
+			<tr><td>components with datcats</td><td align="right"><xsl:value-of select="$count_components_datcat"/></td></tr>
+		</tbody>
+	</table>
+	
+	<xsl:variable name="cmd-overall">				
+		<tr><td>Overall</td>									
+			<td align="right">
+				<xsl:value-of select="$count_distinct_components"/>/
+				<xsl:value-of select="count($cmd-terms//Term[@type='CMD_Component'])"/>
+			</td>
+			<td align="right">		<xsl:value-of select="$count_distinct_elems"/>/
+				<xsl:value-of select="$count_elems"/></td>
+			<td align="right"><xsl:value-of select="$count_distinct_datcats"/></td>
+			<td align="right"><xsl:value-of select="count($cmd-terms//Term[@type='CMD_Element']/@datcat[not(.='')])"/></td>
+			<td align="right"><xsl:value-of select="count($cmd-terms//Term[@type='CMD_Element'][@datcat=''])"/></td>			
+			<td align="right"><xsl:value-of select="format-number(count($cmd-terms//Term[@type='CMD_Element'][@datcat='']) div $count_elems, '0.00 %')"/></td>
+		</tr>		
+	</xsl:variable>
+	
+	
+	<table>
+		<caption>Profiles |<xsl:value-of select="count($cmd-terms//Termset)" />|</caption>
 	    <thead><tr><th>name</th><th>|comp|</th><th>|elems|</th><th colspan="2">|distinct datcat|</th><th colspan="2">|elems w/o datcat|</th></tr></thead>
 		<tbody>		
-		    <xsl:for-each select="$cmd_terms//Termset" >		          
+			<xsl:copy-of select="$cmd-overall" />
+		    <xsl:for-each select="$cmd-terms//Termset" >		          
 					<xsl:sort select="name" order="ascending"/>
 		        <xsl:variable name="count_elems" select="count(./Term[@type='CMD_Element'])" ></xsl:variable>
 		        <xsl:variable name="count_distinct_datcats" select="count(distinct-values(./Term[@type='CMD_Element']/@datcat[not(.='')]))" ></xsl:variable>
@@ -128,7 +170,45 @@ currently the main map is produced in a separate step and loaded from static-xml
 		</tbody>
 	</table>
 
+	<table>
+		<caption>Components with DatCats</caption>
+		<thead><tr><th>comp-name</th><th colspan="3">datcat</th><th>count</th><th>profiles</th></tr></thead>
+		<tbody>			
+			<xsl:for-each-group select="$cmd-terms//Term[@type='CMD_Component'][@datcat[not(.='')]]" group-by="@id">				
+					<xsl:sort select="parent::Termset/@name" />				
+				<tr>					
+<!--					<td><xsl:value-of select="@id"/></td>-->
+					<td><xsl:value-of select="@name"/></td>
+					<td><xsl:value-of select="my:shortURL(@datcat)"/></td>
+					<td><xsl:value-of select="$dcr-terms//Concept[@id=current()/@datcat]/Term[@type='mnemonic']" /></td>
+					<td><xsl:value-of select="$dcr-terms//Concept[@id=current()/@datcat]/@datcat-type" /></td>					
+					<td><xsl:value-of select="count(current-group())"/></td>
+					<td><xsl:value-of select="count(current-group()/parent::Termset)"/> (<xsl:value-of select="parent::Termset/@name"/>)</td>
+				</tr>
+			</xsl:for-each-group>
+		</tbody>
+	</table>
 </xsl:template>
+	
+<xsl:template name="ambigue-elems">	
+	<table>
+		<caption>Ambigue elements</caption>
+		<thead><tr><th>comp-name</th><th colspan="3">datcat</th><th>count</th><th>profiles</th></tr></thead>
+		<tbody>			
+			<xsl:for-each-group select="$cmd-terms//Term" group-by="lower-case(@name)">				
+<!--				<xsl:sort select="lower-case(@name)" />				-->
+				<xsl:sort select="count(distinct-values(current-group()/@datcat))" order="descending" data-type="number"></xsl:sort>
+				<tr>					
+					<!--					<td><xsl:value-of select="@id"/></td>-->
+					<td><xsl:value-of select="@name"/></td>
+					<td><xsl:value-of select="count(distinct-values(current-group()/@datcat))"/></td>					
+					<td><xsl:value-of select="count(distinct-values(current-group()/@id))"/></td>
+				</tr>
+			</xsl:for-each-group>
+		</tbody>
+	</table>
+</xsl:template>
+	
 	<!--
 <xsl:template name="list-terms">
 	
