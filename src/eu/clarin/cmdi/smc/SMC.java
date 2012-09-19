@@ -50,13 +50,14 @@ public class SMC {
 			
 		SMC smc = new SMC();
 
-		//smc.init();		
+		
+		smc.init();		
 		
 		//InputStream is = smc.listTerms("isocat");
-		InputStream is = smc.map("nome do projecto");
-		String output_path = Utils.getConfig("cache.dir") +  "test_res_map.xml" ;		
-		File f = Utils.write2File(output_path, is);
-		log.debug("result stored in: " + f.getAbsolutePath());
+		//InputStream is = smc.map("nome do projecto");
+		//String output_path = Utils.getConfig("cache.dir") +  "test_res_map.xml" ;		
+		//File f = Utils.write2File(output_path, is);
+		//log.debug("result stored in: " + f.getAbsolutePath());
 
 	}
 
@@ -78,7 +79,23 @@ public class SMC {
  * transform and store as local xml in cache.dir  
  */
 	public void init () {
+		
+		
+//		init_step ("cmd-profiles-raw");
+//		don't do this! it is too big
+		//init_step ("cmd-resolved");
+		//init_step ("cmd-terms");
+		init_step ("cmd-terms-nested");
+		//init_step ("dcr-terms");
+		//init_step ("isocat-languages");
+		//init_step ("termsets");
+		// init_step ("dcr-cmd-map");
+		//init_step ("rr-relations");
+		//init_step ("rr-terms");
+
+	}
 		 
+	public void init_step (String data_key) {	
 		InputStream is =null;
 		is = Utils.load2Stream(Utils.getConfig("termsets.config.file"),this.getClass().getClassLoader());
 		//is = Utils.load2Stream(config.getString("termsets.config.file"));
@@ -90,8 +107,10 @@ public class SMC {
 		// set URL as srcFile (for MDTransformer to pass to xsl-scripts)
 		// TODO: WHY??
 		//transformer.setSrcFile(Utils.getConfig("termsets.config.file"));
-	//	addParam("data_key", "dcr-cmd-map");
-		addParam("data_key", "cmd-terms");
+		addParam("data_key", data_key);
+		//we want to refill the cache:
+		//addParam("cache", "skip");
+		//addParam("data_key", "cmd-terms");
 
 		// this is necessary for the transformer (in MDUTILS-library) to search for the resources (config and xsls) in the correct context)
 		//transformer.configure(Utils.getConfig(), this.getClass().getClassLoader());
@@ -107,7 +126,7 @@ public class SMC {
 			String output_path = Utils.getConfig("cache.dir") +  getParam("data_key") + ".xml" ;		
 			//String output_path = config.getString("cache.dir") +  getParam("data_key") + ".xml" ;
 			File f = Utils.write2File(output_path, resultStream);
-			log.debug("SMC.init(): result stored in: " + f.getAbsolutePath());
+			log.debug("SMC.init(" + getParam("data_key") + "): result stored in: " + f.getAbsolutePath());
 
 		} catch (IOException e1) {
 			log.debug(Utils.errorMessage(e1));
