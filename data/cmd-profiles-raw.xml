@@ -9,6 +9,7 @@
       <userId>8</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1297242111880</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -20,7 +21,8 @@
       <userId>4</userId>
       <domainName>computational_linguistics</domainName>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1288172614014</ns2:href>
-      <showInEditor>true</showInEditor>
+      <commentsCount>0</commentsCount>
+      <showInEditor>false</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
       <id>clarin.eu:cr1:p_1288172614021</id>
@@ -31,7 +33,8 @@
       <userId>4</userId>
       <domainName>computational_linguistics</domainName>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1288172614021</ns2:href>
-      <showInEditor>true</showInEditor>
+      <commentsCount>0</commentsCount>
+      <showInEditor>false</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
       <id>clarin.eu:cr1:p_1288172614020</id>
@@ -42,7 +45,8 @@
       <userId>4</userId>
       <domainName>computational_linguistics</domainName>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1288172614020</ns2:href>
-      <showInEditor>true</showInEditor>
+      <commentsCount>0</commentsCount>
+      <showInEditor>false</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
       <id>clarin.eu:cr1:p_1288172614017</id>
@@ -53,7 +57,8 @@
       <userId>4</userId>
       <domainName>computational_linguistics</domainName>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1288172614017</ns2:href>
-      <showInEditor>true</showInEditor>
+      <commentsCount>0</commentsCount>
+      <showInEditor>false</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
       <id>clarin.eu:cr1:p_1288172614019</id>
@@ -64,6 +69,20 @@
       <userId>4</userId>
       <domainName>computational_linguistics</domainName>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1288172614019</ns2:href>
+      <commentsCount>0</commentsCount>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1324638957718</id>
+      <description>This is a derived web-service profile from the core model which describes the web-services at BAS. It uses extended components Service, ParameterGroup and Parameter from the core model (with different group name BASWebServices).</description>
+      <name>BASWebService</name>
+      <registrationDate>2012-02-23T07:32:10+00:00</registrationDate>
+      <creatorName>Florian Schiel</creatorName>
+      <userId>58</userId>
+      <domainName>phonetics</domainName>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1324638957718</ns2:href>
+      <groupName>CLARIN-D</groupName>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -75,6 +94,7 @@
       <userId>5</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685223</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -86,43 +106,34 @@
       <userId>5</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685225</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
-      <id>clarin.eu:cr1:p_1316422391224</id>
+      <id>clarin.eu:cr1:p_1320657629667</id>
       <description>A profile that contains all information about a CLARIN center. To be stored in the center registry.</description>
       <name>CenterProfile</name>
-      <registrationDate>2011-09-22T09:49:24+00:00</registrationDate>
-      <creatorName>Dieter Van Uytvanck</creatorName>
-      <userId>4</userId>
-      <domainName>Other</domainName>
-      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1316422391224</ns2:href>
-      <groupName>CLARIN-D</groupName>
-      <showInEditor>true</showInEditor>
-   </profileDescription>
-   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
-      <id>clarin.eu:cr1:p_1311927752332</id>
-      <description>This is a core model which can be used as a basis for web service registry specific models. In principal this profile shouldn't be instantiated, instead new profiles can be created which extend the structure build by the components in this profile. Valid instantiations of these extensions allow validation of the core elements against the schema of this profile. If you have any questions please feel free to contact Menzo.Windhouwer AT mpi.nl.</description>
-      <name>CLARINWebService</name>
-      <registrationDate>2011-08-08T14:31:40+00:00</registrationDate>
+      <registrationDate>2011-12-15T09:42:55+00:00</registrationDate>
       <creatorName>mwindhouwer</creatorName>
       <userId>36</userId>
-      <domainName/>
-      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1311927752332</ns2:href>
-      <groupName>CLARIN core WS descr (tentative)</groupName>
+      <domainName>Other</domainName>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1320657629667</ns2:href>
+      <groupName>CLARIN Center Registry (version 1.1)</groupName>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
       <id>clarin.eu:cr1:p_1311927752335</id>
       <description>This is a core model which can be used as a basis for web service registry specific models. In principle this profile shouldn't be instantiated, instead new profiles can be created which extend the structure built by the components in this profile. Valid instantiations of these extensions allow validation of the core elements against the schema of this profile. More detailed information, including facilities to validate compliance with this core model, can be found at: http://www.isocat.org/clarin/ws/cmd-core/</description>
       <name>CLARINWebService</name>
-      <registrationDate>2011-11-16T16:09:37+00:00</registrationDate>
+      <registrationDate>2011-12-19T09:16:37+00:00</registrationDate>
       <creatorName>mwindhouwer</creatorName>
       <userId>36</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1311927752335</ns2:href>
-      <groupName>CLARIN core WS descr - version 1.0</groupName>
-      <showInEditor>true</showInEditor>
+      <groupName>CLARIN core WS descr - version 1.0.1</groupName>
+      <commentsCount>0</commentsCount>
+      <showInEditor>false</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
       <id>clarin.eu:cr1:p_1271859438175</id>
@@ -132,6 +143,7 @@
       <creatorName>Patrick Duin</creatorName>
       <userId>2</userId>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438175</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -143,6 +155,7 @@
       <userId>16</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1284723009187</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -153,6 +166,7 @@
       <creatorName>Patrick Duin</creatorName>
       <userId>2</userId>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438218</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -163,16 +177,20 @@
       <creatorName>Patrick Duin</creatorName>
       <userId>2</userId>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438217</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
-      <id>clarin.eu:cr1:p_1271859438236</id>
-      <description>OLAC metadata</description>
-      <name>component-olac</name>
-      <registrationDate>2010-04-21T14:19:48+00:00</registrationDate>
-      <creatorName>Patrick Duin</creatorName>
-      <userId>2</userId>
-      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438236</ns2:href>
+      <id>clarin.eu:cr1:p_1320657629642</id>
+      <description>This is the profile for a component following the Corpus Component (see component description for more details)</description>
+      <name>CorpusProfile</name>
+      <registrationDate>2012-03-29T06:50:38+00:00</registrationDate>
+      <creatorName>Torsten Grigull</creatorName>
+      <userId>41</userId>
+      <domainName>text_and_corpus_linguistics</domainName>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1320657629642</ns2:href>
+      <groupName>informatik.uni-leipzig.de</groupName>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -184,6 +202,7 @@
       <userId>5</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685227</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -195,6 +214,7 @@
       <userId>4</userId>
       <domainName>Other</domainName>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1288172614023</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -206,6 +226,7 @@
       <userId>5</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685229</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -217,6 +238,7 @@
       <userId>5</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685255</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -228,6 +250,7 @@
       <userId>5</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685233</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -239,6 +262,7 @@
       <userId>5</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685235</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -250,6 +274,7 @@
       <userId>5</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685257</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -261,6 +286,7 @@
       <userId>27</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1290431694629</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -272,6 +298,7 @@
       <userId>4</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1290431694484</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -283,6 +310,7 @@
       <userId>5</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685249</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -294,6 +322,7 @@
       <userId>5</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685239</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -305,6 +334,7 @@
       <userId>5</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685259</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -316,6 +346,7 @@
       <userId>10</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1274880881885</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -326,6 +357,7 @@
       <creatorName>Patrick Duin</creatorName>
       <userId>2</userId>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438204</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -336,6 +368,7 @@
       <creatorName>Laura van Eerten</creatorName>
       <userId>19</userId>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1272022528363</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -347,6 +380,7 @@
       <userId>5</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685243</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -358,17 +392,33 @@
       <userId>4</userId>
       <domainName>linguistics_and_literature</domainName>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1289827960126</ns2:href>
+      <commentsCount>0</commentsCount>
+      <showInEditor>false</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1324638957739</id>
+      <description>General purpose metadata description of a collection of media files (= recordings) and annotation files and optional documentation</description>
+      <name>media-corpus-profile</name>
+      <registrationDate>2012-02-23T10:15:35+00:00</registrationDate>
+      <creatorName>Florian Schiel</creatorName>
+      <userId>58</userId>
+      <domainName>phonetics</domainName>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1324638957739</ns2:href>
+      <groupName>CLARIN-D</groupName>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
-      <id>clarin.eu:cr1:p_1284723009188</id>
-      <description>OLAC metadata (with ConceptLinks to dublincore added)</description>
-      <name>olac</name>
-      <registrationDate>2010-10-17T10:12:42+00:00</registrationDate>
-      <creatorName>Matej Durco</creatorName>
-      <userId>16</userId>
-      <domainName/>
-      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1284723009188</ns2:href>
+      <id>clarin.eu:cr1:p_1324638957647</id>
+      <description>General profile for a media session</description>
+      <name>media-session-profile</name>
+      <registrationDate>2012-02-23T10:16:18+00:00</registrationDate>
+      <creatorName>Florian Schiel</creatorName>
+      <userId>58</userId>
+      <domainName>phonetics</domainName>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1324638957647</ns2:href>
+      <groupName>CLARIN-D</groupName>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -380,6 +430,20 @@
       <userId>4</userId>
       <domainName>Other</domainName>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1288172614026</ns2:href>
+      <commentsCount>0</commentsCount>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1289569235503</id>
+      <description>Oral History Interview</description>
+      <name>OralHistoryInterview</name>
+      <registrationDate>2012-04-10T12:35:16+00:00</registrationDate>
+      <creatorName>Eric Sanders</creatorName>
+      <userId>8</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1289569235503</ns2:href>
+      <groupName/>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -391,6 +455,7 @@
       <userId>5</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685251</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -402,17 +467,8 @@
       <userId>4</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1290431694584</ns2:href>
-      <showInEditor>true</showInEditor>
-   </profileDescription>
-   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
-      <id>clarin.eu:cr1:p_1271859438174</id>
-      <description>The Service Component describes a service and its capabilities. The Service component for this proposal currently only covers the technical metadata required to support the process of profile matching and will need to be extended with descriptive components, like documentation, organizational information, contact etc intended for human end users.</description>
-      <name>service</name>
-      <registrationDate>2010-04-21T14:18:25+00:00</registrationDate>
-      <creatorName>Patrick Duin</creatorName>
-      <userId>2</userId>
-      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438174</ns2:href>
-      <showInEditor>true</showInEditor>
+      <commentsCount>0</commentsCount>
+      <showInEditor>false</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
       <id>clarin.eu:cr1:p_1295178776924</id>
@@ -423,16 +479,31 @@
       <userId>4</userId>
       <domainName>Other</domainName>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1295178776924</ns2:href>
-      <showInEditor>true</showInEditor>
+      <commentsCount>0</commentsCount>
+      <showInEditor>false</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
       <id>clarin.eu:cr1:p_1271859438165</id>
       <description>Clarin-NL profiles</description>
       <name>SessionProfile</name>
       <registrationDate>2010-04-21T14:18:10+00:00</registrationDate>
-      <creatorName>Patrick Duin</creatorName>
+      <creatorName>Griet Depoorter (INL)</creatorName>
       <userId>2</userId>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438165</ns2:href>
+      <commentsCount>0</commentsCount>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1328259700943</id>
+      <description>Profile for the SoNaR corpus</description>
+      <name>SoNaRcorpus</name>
+      <registrationDate>2012-02-13T15:27:39+00:00</registrationDate>
+      <creatorName>Eric Sanders</creatorName>
+      <userId>8</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1328259700943</ns2:href>
+      <groupName/>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -444,6 +515,7 @@
       <userId>5</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685245</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -451,9 +523,10 @@
       <description>Clarin-NL profiles</description>
       <name>SpeechCorpusProfile</name>
       <registrationDate>2010-04-21T14:18:10+00:00</registrationDate>
-      <creatorName>Patrick Duin</creatorName>
+      <creatorName>Griet Depoorter (INL)</creatorName>
       <userId>2</userId>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438166</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -461,9 +534,10 @@
       <description>Clarin-NL profiles</description>
       <name>SpeechCorpusProfile_Autonomata_speaker</name>
       <registrationDate>2010-04-21T14:18:10+00:00</registrationDate>
-      <creatorName>Patrick Duin</creatorName>
+      <creatorName>Griet Depoorter (INL)</creatorName>
       <userId>2</userId>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438161</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -476,18 +550,7 @@ encoding fileDesc and profileDesc components, leaving out encodingDesc and revis
       <userId>16</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1282306194508</ns2:href>
-      <showInEditor>true</showInEditor>
-   </profileDescription>
-   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
-      <id>clarin.eu:cr1:p_1271859438237</id>
-      <description>A component for the textDesc element in the TEI P5 header element. Please note
-            that because of the freedom provided by the TEI this module will generate compatible
-            descriptions, but not each existing TEI textDesc element will necessarily comply to it.</description>
-      <name>tei-textDesc</name>
-      <registrationDate>2010-04-21T14:19:50+00:00</registrationDate>
-      <creatorName>Patrick Duin</creatorName>
-      <userId>2</userId>
-      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438237</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -495,9 +558,10 @@ encoding fileDesc and profileDesc components, leaving out encodingDesc and revis
       <description>Clarin-NL profiles</description>
       <name>TextCorpusProfile</name>
       <registrationDate>2010-04-21T14:18:10+00:00</registrationDate>
-      <creatorName>Patrick Duin</creatorName>
+      <creatorName>Griet Depoorter (INL)</creatorName>
       <userId>2</userId>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438164</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -505,9 +569,10 @@ encoding fileDesc and profileDesc components, leaving out encodingDesc and revis
       <description>Clarin-NL profiles</description>
       <name>TextProfile</name>
       <registrationDate>2010-04-21T14:18:10+00:00</registrationDate>
-      <creatorName>Patrick Duin</creatorName>
+      <creatorName>Griet Depoorter (INL)</creatorName>
       <userId>2</userId>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1271859438162</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -520,6 +585,7 @@ http://titus.uni-frankfurt.de</description>
       <userId>11</userId>
       <domainName>historical_linguistics</domainName>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1282306194485</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -531,6 +597,20 @@ http://titus.uni-frankfurt.de</description>
       <userId>18</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1297242111879</ns2:href>
+      <commentsCount>0</commentsCount>
+      <showInEditor>true</showInEditor>
+   </profileDescription>
+   <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
+      <id>clarin.eu:cr1:p_1311927752306</id>
+      <description>Description of a tool and/or service(s)&#xD;(adapted from the AnnotationTool profile)</description>
+      <name>ToolService</name>
+      <registrationDate>2011-12-21T13:56:51+00:00</registrationDate>
+      <creatorName>mwindhouwer</creatorName>
+      <userId>36</userId>
+      <domainName/>
+      <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1311927752306</ns2:href>
+      <groupName>CLARIN-NL Tool/Service descr - version 1.0</groupName>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -542,6 +622,7 @@ http://titus.uni-frankfurt.de</description>
       <userId>5</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685253</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
    <profileDescription xmlns:ns2="http://www.w3.org/1999/xlink">
@@ -553,6 +634,7 @@ http://titus.uni-frankfurt.de</description>
       <userId>5</userId>
       <domainName/>
       <ns2:href>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1280305685247</ns2:href>
+      <commentsCount>0</commentsCount>
       <showInEditor>true</showInEditor>
    </profileDescription>
 </profileDescriptions>

@@ -182,11 +182,6 @@
          <name>AnnotationTool</name>
       </Termset>
       <Termset>
-         <key>avatech-recognizer</key>
-         <id>clarin.eu:cr1:p_1271859438224</id>
-         <name>avatech-recognizer</name>
-      </Termset>
-      <Termset>
          <key>BamdesLexicalResource</key>
          <id>clarin.eu:cr1:p_1288172614014</id>
          <name>BamdesLexicalResource</name>
@@ -212,6 +207,11 @@
          <name>BamdesWrittenCorpus</name>
       </Termset>
       <Termset>
+         <key>BASWebService</key>
+         <id>clarin.eu:cr1:p_1324638957718</id>
+         <name>BASWebService</name>
+      </Termset>
+      <Termset>
          <key>Bedevaartbank</key>
          <id>clarin.eu:cr1:p_1280305685223</id>
          <name>Bedevaartbank</name>
@@ -222,18 +222,13 @@
          <name>Boedelbank</name>
       </Termset>
       <Termset>
-         <key>BookProfile</key>
-         <id>clarin.eu:cr1:p_1295178776901</id>
-         <name>BookProfile</name>
-      </Termset>
-      <Termset>
          <key>CenterProfile</key>
-         <id>clarin.eu:cr1:p_1316422391224</id>
+         <id>clarin.eu:cr1:p_1320657629667</id>
          <name>CenterProfile</name>
       </Termset>
       <Termset>
          <key>CLARINWebService</key>
-         <id>clarin.eu:cr1:p_1311927752332</id>
+         <id>clarin.eu:cr1:p_1311927752335</id>
          <name>CLARINWebService</name>
       </Termset>
       <Termset>
@@ -257,9 +252,9 @@
          <name>component-dc-terms-modular</name>
       </Termset>
       <Termset>
-         <key>component-olac</key>
-         <id>clarin.eu:cr1:p_1271859438236</id>
-         <name>component-olac</name>
+         <key>CorpusProfile</key>
+         <id>clarin.eu:cr1:p_1320657629642</id>
+         <name>CorpusProfile</name>
       </Termset>
       <Termset>
          <key>DBNL</key>
@@ -267,14 +262,9 @@
          <name>DBNL</name>
       </Termset>
       <Termset>
-         <key>OLAC-DcmiTerms</key>
+         <key>DcmiTerms</key>
          <id>clarin.eu:cr1:p_1288172614023</id>
-         <name>OLAC-DcmiTerms</name>
-      </Termset>
-      <Termset>
-         <key>Demo_Karel_Vandas</key>
-         <id>clarin.eu:cr1:p_1295178776911</id>
-         <name>Demo_Karel_Vandas</name>
+         <name>DcmiTerms</name>
       </Termset>
       <Termset>
          <key>DIDDD</key>
@@ -327,16 +317,6 @@
          <name>GTRP_sub_location</name>
       </Termset>
       <Termset>
-         <key>HETest</key>
-         <id>clarin.eu:cr1:p_1274880881842</id>
-         <name>HETest</name>
-      </Termset>
-      <Termset>
-         <key>HETest</key>
-         <id>clarin.eu:cr1:p_1274880881843</id>
-         <name>HETest</name>
-      </Termset>
-      <Termset>
          <key>imdi-corpus</key>
          <id>clarin.eu:cr1:p_1274880881885</id>
          <name>imdi-corpus</name>
@@ -362,14 +342,24 @@
          <name>LrtInventoryResource</name>
       </Termset>
       <Termset>
-         <key>olac</key>
-         <id>clarin.eu:cr1:p_1284723009188</id>
-         <name>olac</name>
+         <key>media-corpus-profile</key>
+         <id>clarin.eu:cr1:p_1324638957739</id>
+         <name>media-corpus-profile</name>
+      </Termset>
+      <Termset>
+         <key>media-session-profile</key>
+         <id>clarin.eu:cr1:p_1324638957647</id>
+         <name>media-session-profile</name>
       </Termset>
       <Termset>
          <key>OLAC-DcmiTerms</key>
          <id>clarin.eu:cr1:p_1288172614026</id>
          <name>OLAC-DcmiTerms</name>
+      </Termset>
+      <Termset>
+         <key>OralHistoryInterview</key>
+         <id>clarin.eu:cr1:p_1289569235503</id>
+         <name>OralHistoryInterview</name>
       </Termset>
       <Termset>
          <key>PLAND</key>
@@ -382,21 +372,6 @@
          <name>RECOGNIZER</name>
       </Termset>
       <Termset>
-         <key>service</key>
-         <id>clarin.eu:cr1:p_1271859438174</id>
-         <name>service</name>
-      </Termset>
-      <Termset>
-         <key>serviceDescription</key>
-         <id>clarin.eu:cr1:p_1288172614049</id>
-         <name>serviceDescription</name>
-      </Termset>
-      <Termset>
-         <key>serviceDescription</key>
-         <id>clarin.eu:cr1:p_1295178776920</id>
-         <name>serviceDescription</name>
-      </Termset>
-      <Termset>
          <key>serviceDescription</key>
          <id>clarin.eu:cr1:p_1295178776924</id>
          <name>serviceDescription</name>
@@ -405,6 +380,11 @@
          <key>SessionProfile</key>
          <id>clarin.eu:cr1:p_1271859438165</id>
          <name>SessionProfile</name>
+      </Termset>
+      <Termset>
+         <key>SoNaRcorpus</key>
+         <id>clarin.eu:cr1:p_1328259700943</id>
+         <name>SoNaRcorpus</name>
       </Termset>
       <Termset>
          <key>Soundbites</key>
@@ -427,11 +407,6 @@
          <name>teiHeader</name>
       </Termset>
       <Termset>
-         <key>tei-textDesc</key>
-         <id>clarin.eu:cr1:p_1271859438237</id>
-         <name>tei-textDesc</name>
-      </Termset>
-      <Termset>
          <key>TextCorpusProfile</key>
          <id>clarin.eu:cr1:p_1271859438164</id>
          <name>TextCorpusProfile</name>
@@ -443,16 +418,6 @@
       </Termset>
       <Termset>
          <key>TITUS_metadata</key>
-         <id>clarin.eu:cr1:p_1274880881941</id>
-         <name>TITUS_metadata</name>
-      </Termset>
-      <Termset>
-         <key>TITUS_metadata</key>
-         <id>clarin.eu:cr1:p_1282306194483</id>
-         <name>TITUS_metadata</name>
-      </Termset>
-      <Termset>
-         <key>TITUS_metadata</key>
          <id>clarin.eu:cr1:p_1282306194485</id>
          <name>TITUS_metadata</name>
       </Termset>
@@ -460,6 +425,11 @@
          <key>Tool</key>
          <id>clarin.eu:cr1:p_1297242111879</id>
          <name>Tool</name>
+      </Termset>
+      <Termset>
+         <key>ToolService</key>
+         <id>clarin.eu:cr1:p_1311927752306</id>
+         <name>ToolService</name>
       </Termset>
       <Termset>
          <key>Voornamenbank</key>

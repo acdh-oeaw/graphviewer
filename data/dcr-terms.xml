@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Termsets xmlns:my="myFunctions" type="dcr">
-   <Termset set="isocat">
+<Termsets type="dcr">
+   <Termset xmlns:dcif="http://www.isocat.org/ns/dcif" set="isocat" name="ISOcat"
+            url="http://www.isocat.org/datcat/">
       <Concept type="datcat" id="http://www.isocat.org/datcat/DC-3817">
          <Term set="isocat" type="mnemonic">Cross_reference</Term>
          <Term set="isocat" type="id">DC-3817</Term>
@@ -9655,9 +9656,11 @@ NOTE Term excerption involves identifying concepts (3.2.1) and their designation
          <info xml:lang="de">Angabe des Alters der jüngsten Person, die an einer Forschungsstudie teilgenommen hat, insbesondere im Bereich der Psychologie oder Linguistik.</info>
       </Concept>
    </Termset>
-   <Termset set="dce">
+   <Termset xmlns:dcif="http://www.isocat.org/ns/dcif" set="dce" name="dublincore elements"
+            url="http://purl.org/dc/elements/1.1/">
       <Concept type="datcat" id="http://purl.org/dc/elements/1.1/">
          <Term set="dce" type="label"/>
+         <info>To comment on this schema, please contact dcmifb@dublincore.org.</info>
       </Concept>
       <Concept type="datcat" id="http://purl.org/dc/elements/1.1/title">
          <Term set="dce" type="label">Title</Term>
@@ -9720,7 +9723,8 @@ NOTE Term excerption involves identifying concepts (3.2.1) and their designation
          <info xml:lang="en-US">Information about rights held in and over the resource.</info>
       </Concept>
    </Termset>
-   <Termset set="dct">
+   <Termset xmlns:dcif="http://www.isocat.org/ns/dcif" set="dct" name="dublincore terms"
+            url="http://purl.org/dc/terms/">
       <Concept type="datcat" id="http://purl.org/dc/terms/">
          <Term set="dct" type="label"/>
       </Concept>

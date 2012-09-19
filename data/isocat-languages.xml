@@ -1,40 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<languages xmlns:isocat="http://www.isocat.org/" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-    <language direction="rtl" isocat:id="35" name="Arabic" search="simple" tag="ar"/>
-    <language direction="ltr" isocat:id="15" name="Bulgarian" search="simple" tag="bg"/>
-    <language direction="ltr" isocat:id="34" name="Catalan" search="simple" tag="ca"/>
-    <language direction="ltr" isocat:id="36" name="Chinese" search="simple" tag="zh"/>
-    <language direction="ltr" isocat:id="16" name="Croatian" search="simple" tag="hr"/>
-    <language direction="ltr" isocat:id="6" name="Czech" search="simple" tag="cs"/>
-    <language direction="ltr" isocat:id="17" name="Danish" search="danish" tag="da"/>
-    <language direction="ltr" isocat:id="5" name="Dutch" search="dutch" tag="nl"/>
-    <language direction="ltr" isocat:id="1" name="English" search="english" tag="en" tags="eng"/>
-    <language direction="ltr" isocat:id="7" name="Estonian" search="simple" tag="et"/>
-    <language direction="ltr" isocat:id="8" name="Finnish" search="finnish" tag="fi"/>
-    <language direction="ltr" isocat:id="2" name="French" search="dutch" tag="fr"/>
-    <language direction="ltr" isocat:id="4" name="German" search="english" tag="de"/>
-    <language direction="ltr" isocat:id="18" name="Greek" search="simple" tag="el"/>
-    <language direction="ltr" isocat:id="21" name="Hebrew" search="simple" tag="he"/>
-    <language direction="ltr" isocat:id="9" name="Hungarian" search="hungarian" tag="hu"/>
-    <language direction="ltr" isocat:id="19" name="Icelandic" search="simple" tag="is"/>
-    <language direction="ltr" isocat:id="20" name="Irish" search="simple" tag="ga"/>
-    <language direction="ltr" isocat:id="10" name="Italian" search="italian" tag="it"/>
-    <language direction="ltr" isocat:id="3" name="Japanese" search="simple" tag="ja"/>
-    <language direction="ltr" isocat:id="11" name="Korean" search="simple" tag="ko"/>
-    <language direction="ltr" isocat:id="22" name="Latvian" search="simple" tag="lv"/>
-    <language direction="ltr" isocat:id="23" name="Lithuanian" search="simple" tag="lt"/>
-    <language direction="ltr" isocat:id="24" name="Luxembourgish" search="simple" tag="lb"/>
-    <language direction="ltr" isocat:id="25" name="Maltese" search="simple" tag="mt"/>
-    <language direction="ltr" isocat:id="26" name="Norwegian" search="norwegian" tag="no"/>
-    <language direction="ltr" isocat:id="27" name="Polish" search="simple" tag="pl"/>
-    <language direction="ltr" isocat:id="28" name="Portuguese" search="portuguese" tag="pt"/>
-    <language direction="ltr" isocat:id="12" name="Romanian" search="romanian" tag="ro"/>
-    <language direction="ltr" isocat:id="13" name="Russian" search="russian" tag="ru"/>
-    <language direction="ltr" isocat:id="29" name="Serbian" search="simple" tag="sr"/>
-    <language direction="ltr" isocat:id="33" name="Slovak" search="simple" tag="sk"/>
-    <language direction="ltr" isocat:id="30" name="Slovene" search="simple" tag="sl"/>
-    <language direction="ltr" isocat:id="31" name="Spanish" search="spanish" tag="es"/>
-    <language direction="ltr" isocat:id="14" name="Swedish" search="swedish" tag="sv"/>
-    <language direction="ltr" isocat:id="32" name="Turkish" search="turkish" tag="tr"/>
-    <language direction="ltr" isocat:id="37" name="Welsh" search="simple" tag="cy" tags="cym"/>
+<languages xmlns:isocat="http://www.isocat.org/"
+           xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+   <language direction="rtl" isocat:id="35" name="Arabic" search="simple" tag="ar"/>
+   <language direction="ltr" isocat:id="15" name="Bulgarian" search="simple" tag="bg"/>
+   <language direction="ltr" isocat:id="34" name="Catalan" search="simple" tag="ca"/>
+   <language direction="ltr" isocat:id="36" name="Chinese" search="simple" tag="zh"/>
+   <language direction="ltr" isocat:id="16" name="Croatian" search="simple" tag="hr"/>
+   <language direction="ltr" isocat:id="6" name="Czech" search="simple" tag="cs"/>
+   <language direction="ltr" isocat:id="17" name="Danish" search="danish" tag="da"/>
+   <language direction="ltr" isocat:id="5" name="Dutch" search="dutch" tag="nl"/>
+   <language direction="ltr" isocat:id="1" name="English" search="english" tag="en"
+             tags="eng"/>
+   <language direction="ltr" isocat:id="7" name="Estonian" search="simple" tag="et"/>
+   <language direction="ltr" isocat:id="8" name="Finnish" search="finnish" tag="fi"/>
+   <language direction="ltr" isocat:id="2" name="French" search="dutch" tag="fr"/>
+   <language direction="ltr" isocat:id="4" name="German" search="english" tag="de"/>
+   <language direction="ltr" isocat:id="18" name="Greek" search="simple" tag="el"/>
+   <language direction="ltr" isocat:id="21" name="Hebrew" search="simple" tag="he"/>
+   <language direction="ltr" isocat:id="9" name="Hungarian" search="hungarian" tag="hu"/>
+   <language direction="ltr" isocat:id="19" name="Icelandic" search="simple" tag="is"/>
+   <language direction="ltr" isocat:id="20" name="Irish" search="simple" tag="ga"/>
+   <language direction="ltr" isocat:id="10" name="Italian" search="italian" tag="it"/>
+   <language direction="ltr" isocat:id="3" name="Japanese" search="simple" tag="ja"/>
+   <language direction="ltr" isocat:id="11" name="Korean" search="simple" tag="ko"/>
+   <language direction="ltr" isocat:id="22" name="Latvian" search="simple" tag="lv"/>
+   <language direction="ltr" isocat:id="23" name="Lithuanian" search="simple" tag="lt"/>
+   <language direction="ltr" isocat:id="24" name="Luxembourgish" search="simple" tag="lb"/>
+   <language direction="ltr" isocat:id="25" name="Maltese" search="simple" tag="mt"/>
+   <language direction="ltr" isocat:id="26" name="Norwegian" search="norwegian" tag="no"/>
+   <language direction="ltr" isocat:id="27" name="Polish" search="simple" tag="pl"/>
+   <language direction="ltr" isocat:id="28" name="Portuguese" search="portuguese" tag="pt"/>
+   <language direction="ltr" isocat:id="12" name="Romanian" search="romanian" tag="ro"/>
+   <language direction="ltr" isocat:id="13" name="Russian" search="russian" tag="ru"/>
+   <language direction="ltr" isocat:id="29" name="Serbian" search="simple" tag="sr"/>
+   <language direction="ltr" isocat:id="33" name="Slovak" search="simple" tag="sk"/>
+   <language direction="ltr" isocat:id="30" name="Slovene" search="simple" tag="sl"/>
+   <language direction="ltr" isocat:id="31" name="Spanish" search="spanish" tag="es"/>
+   <language direction="ltr" isocat:id="14" name="Swedish" search="swedish" tag="sv"/>
+   <language direction="ltr" isocat:id="32" name="Turkish" search="turkish" tag="tr"/>
+   <language direction="ltr" isocat:id="37" name="Welsh" search="simple" tag="cy" tags="cym"/>
 </languages>
