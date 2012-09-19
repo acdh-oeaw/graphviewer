@@ -12,6 +12,8 @@
   	xmlns:dcif="http://www.isocat.org/ns/dcif"
   	exclude-result-prefixes="xs my"
 	>
+<xsl:import href="smc_commons.xsl"/>
+	
 	<xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet">
 		<xd:desc>
 			<xd:p>generate a SKOS-version for a datcat-profile mapping from internal format (Termset/Concept/Term)</xd:p>
@@ -22,7 +24,7 @@
 		</xd:desc>
 	</xd:doc>
 
-<xsl:import href="smc_commons.xsl"/>
+
 
 	<xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
 		<xd:desc>

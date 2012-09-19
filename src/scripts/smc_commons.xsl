@@ -6,6 +6,7 @@
     <xsl:include href="smc_functions.xsl"/>
     <xsl:include href="cmd_includes.xsl"/>    
     <xsl:include href="dcr_rdf2terms.xsl"/>
+    <xsl:include href="dcr_dcif2terms.xsl"/>
     
     <!-- use either input (precedence) or the config-file as the termsets configuration -->
     <xsl:variable name="termsets_config">
@@ -25,7 +26,11 @@
     
 <!-- intermediate datasets bound into variables,to prevent calling the function every time -->
    <xsl:variable name="dcr-terms" select="my:getData('dcr-terms')" />
+    <xsl:variable name="rr-relations" select="my:getData('rr-relations')" />
+    <!-- rr-relations expanded with terms-->
+    <xsl:variable name="rr-terms" select="my:getData('rr-terms')" />
    <xsl:variable name="cmd-terms" select="my:getData('cmd-terms')" />
+    <xsl:variable name="cmd-terms-nested" select="my:getData('cmd-terms-nested')" />
    <xsl:variable name="dcr-cmd-map" select="my:getData('dcr-cmd-map')" />
    <xsl:variable name="isocat-languages" select="my:getData('isocat-languages')" />
     
@@ -40,14 +45,14 @@
         
         <xsl:variable name="cached_data_file" select="concat($cache_dir, $key, '.xml')"></xsl:variable>
         <xsl:message>
-            cache: <xsl:value-of select="$cache" />
+            cache: <xsl:value-of select="$cache" /> -
             <xsl:value-of select="$cached_data_file" />: <xsl:value-of select="doc-available($cached_data_file)" />
         </xsl:message>
         <xsl:choose>
             <xsl:when test="doc-available($cached_data_file) and $cache='use'">
                 <xsl:message>reading in: <xsl:value-of select="$cached_data_file" />                    
                 </xsl:message>
-                <xsl:copy-of select="document($cached_data_file)"></xsl:copy-of>
+                <xsl:copy-of select="doc($cached_data_file)"></xsl:copy-of>
             </xsl:when>
             <xsl:when test="$key='cmd-profiles-raw'">
                 <xsl:copy-of select="document(my:config('cmd-profiles','url'))" />                
@@ -56,11 +61,23 @@
                 <xsl:apply-templates select="my:getData('cmd-profiles-raw')" mode="include" />                
             </xsl:when>
             <xsl:when test="$key='cmd-terms'">
-                <xsl:copy-of select="my:profiles2termsets(my:getData('cmd-resolved')//profileDescription)" />
+                <xsl:copy-of select="my:profiles2termsets(my:getData('cmd-resolved')//profileDescription,false())" />
             </xsl:when>
+            <xsl:when test="$key='cmd-terms-nested'">
+                <xsl:copy-of select="my:profiles2termsets(my:getData('cmd-resolved')//profileDescription,true())" />
+            </xsl:when>
+            <xsl:when test="$key='cmd-terms-nested-minimal'">
+                <xsl:apply-templates select="$cmd-terms-nested" mode="min-context"></xsl:apply-templates>
+            </xsl:when>            
             <xsl:when test="$key='dcr-terms'">
                 <xsl:call-template name="load-dcr" />								
             </xsl:when>
+            <xsl:when test="$key='rr-relations'">
+                <xsl:call-template name="load-rr-relations" />								
+            </xsl:when>
+            <xsl:when test="$key='rr-terms'">
+                <xsl:call-template name="rr-terms" />								
+            </xsl:when>            
             <xsl:when test="$key='termsets'">
                 <xsl:call-template name="termsets" />								
             </xsl:when>
@@ -93,18 +110,20 @@
           <xsl:for-each select="$termsets_config//*[type='dcr']" >
               <xsl:variable name="dcr_termset" select="document(url)" />            
                   <xsl:apply-templates select="$dcr_termset" mode="dcr" >
+                      <xsl:with-param name="config-node" select="."></xsl:with-param>
                       <xsl:with-param name="set" select="key"></xsl:with-param>
                   </xsl:apply-templates>              
           </xsl:for-each>
         </Termsets>
     </xsl:template>
 
+        
 <!-- invert the profiles-termsets + match with data from DCRs = create map datcat -> cmd-elements[] -->	
 <xsl:template name="dcr-cmd-map">
     <Termset type="dcr-cmd-map" >	
         <xsl:for-each-group select="$cmd-terms//Term[not(@datcat='')]" group-by="@datcat">
             <Concept id="{@datcat}" type="datcat">
-                <xsl:copy-of select="$dcr-terms//Concept[@id=current()/@datcat]/Term" />                
+                <xsl:copy-of select="$dcr-terms//Concept[@id=current()/@datcat]/Term" exclude-result-prefixes="my" />                
                 <xsl:for-each select="current-group()">
                     <xsl:variable name="parent_profile" select="ancestor::Termset[@type='CMD_Profile']/@id" />
                     <Term set="cmd" type="full-path" schema="{$parent_profile}" id="{@id}"><xsl:value-of select="@path" /></Term>
@@ -153,10 +172,46 @@ TODO: missing: isocat@langs, RR-sets -->
     </Termsets>
 </xsl:template>
 
+<!-- load relation sets from the configuration and transform into Termset/Relation/Concepet
+        (uses mode=rr-templates in dcr_rdf2terms.xsl)       -->
+    <xsl:template name="load-rr-relations">
+        <Termsets type="rr">
+            <xsl:for-each select="$termsets_config//*[type='rr']" >
+                <xsl:variable name="rr_termset" select="document(url)" />            
+                <xsl:apply-templates select="$rr_termset" mode="rr" >
+                    <xsl:with-param name="set" select="key"></xsl:with-param>
+                </xsl:apply-templates>              
+            </xsl:for-each>
+        </Termsets>
+    </xsl:template>
+
+<!-- take the rr-relations and expand them with data from dcr-cmd-terms, 
+    to get rr-expanded terms      -->
+    <xsl:template name="rr-terms">        
+            <xsl:apply-templates select="$rr-relations" mode="rr-expand" ></xsl:apply-templates>              
+    </xsl:template>
+    
+    <xsl:template match="*" mode="rr-expand">
+        <xsl:copy>
+            <xsl:copy-of select="@*" />
+            <xsl:apply-templates mode="rr-expand"></xsl:apply-templates>
+        </xsl:copy>
+    </xsl:template>
+    <!-- expand rr-concepts-->
+    <xsl:template match="Concept" mode="rr-expand">
+        <xsl:variable name="concept-id" select="@id" />                
+        <xsl:copy>
+            <xsl:copy-of select="@*" />            
+            <xsl:copy-of select="$dcr-cmd-map//Concept[@id=$concept-id]/Term" />            
+        </xsl:copy>        
+    </xsl:template>
+    
 <!-- return a property of a Termset from the configuration. -->    
     <xsl:function name="my:config">
         <xsl:param name="key"></xsl:param>
         <xsl:param name="property"></xsl:param>
         <xsl:value-of select="$termsets_config//*[key=$key]/*[name()=$property]"></xsl:value-of>
     </xsl:function>
+    
+    
 </xsl:stylesheet>

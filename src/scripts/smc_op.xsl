@@ -14,6 +14,7 @@
   <xsl:param name="operation">list</xsl:param> <!-- list | map --> 
  <xsl:param name="context">*</xsl:param>
  <xsl:param name="term"></xsl:param>
+ <xsl:param name="relset"></xsl:param>
  <!--<xsl:param name="lang">pt</xsl:param>-->
     
     
@@ -21,7 +22,20 @@
      <xsl:choose>   
      		<xsl:when test="$operation='map'">
      		    <Terms>
-                 <xsl:variable name="matching_concepts" select="$dcr-cmd-map//Concept[Term=$term]"></xsl:variable>
+                 <xsl:variable name="matching_concepts" >
+                     <xsl:choose>
+                         <xsl:when test="$relset=''">
+                             <xsl:copy-of select="$dcr-cmd-map//Concept[Term/lower-case(text())=lower-case($term)]" />
+                         </xsl:when>
+                         <xsl:otherwise>
+                             <xsl:variable name="matching-concept" select="$dcr-cmd-map//Concept[Term/lower-case(text())=lower-case($term)]" />
+                             <!-- this returns both, the original concept and the expanded/related one --> 
+                             <xsl:variable name="related-concepts" select="$rr-relations//Termset[@set='rr-cmdi']//Concept[@id=$matching-concept/@id]/parent::Relation/Concept" />
+                             <xsl:copy-of select="$dcr-cmd-map//Concept[@id = $related-concepts/@id]" />
+                         </xsl:otherwise>
+                     </xsl:choose>
+                     
+                 </xsl:variable>
 	             <xsl:for-each select="$matching_concepts//Term[@set='cmd']">
 	                 <xsl:copy-of select="." />                  
 	             </xsl:for-each>

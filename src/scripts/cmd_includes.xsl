@@ -54,7 +54,7 @@
     
     	<!--  <xsl:variable name="resolved_uri" select="concat($root_uri, '/', id)" />-->
     	<!--<xsl:variable name="resolved_uri" select="concat($cmd_profiles_uri , '/', my:extractID(id))" />-->
-        <xsl:variable name="resolved_uri" select="concat($cmd_profiles_uri , id)" />
+        <xsl:variable name="resolved_uri" select="concat($cmd_profiles_uri , id, '/xml')" />
     	
         <xsl:message>PROFILE: document-uri:<xsl:value-of select="document-uri(/)" /></xsl:message>
         <xsl:message>resolved_uri:<xsl:value-of select="$resolved_uri" /></xsl:message>
