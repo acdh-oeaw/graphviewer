@@ -13,6 +13,8 @@
     
     <!-- use, skip, refresh (refresh not working yet) -->
     <xsl:param name="cache" select="'use'" /> 
+    <xsl:param name="lang" select="'en'" />
+    <xsl:param name="default_lang" select="'en'" />
 <!--    <xsl:param name="cache_dir" select="'file:/C:/Users/m/3lingua/clarin/CMDI/SMC/cache/'" />-->
     <xsl:variable name="cache_dir" select="'file:/C:/Users/m/3lingua/clarin/CMDI/_repo2/SMC/data/'" />    
 </xsl:stylesheet>
