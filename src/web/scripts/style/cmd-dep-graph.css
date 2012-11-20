@@ -1,0 +1,49 @@
+
+div#infovis-wrapper {border: 1px solid grey; margin: 20px; padding: 5px; height:450px; width:70%;}
+ #infovis {height: 90%; width: 100%;}
+ 
+ #index-container { width:20%; float:right;}
+ 
+.block {
+    border: 1px solid #999;
+    background-color: rgba(180,180,240,0.6);    
+}
+.detail{
+  display: none;
+}
+
+.highlight {
+    font-weight: bold;
+    background-color: red;    
+}
+
+.detaildivs-wrapper {
+float:right;
+}
+
+path.link {
+  fill: none;
+  stroke: #666;
+  stroke-width: 1.5px;
+}
+
+
+circle {
+  fill: #99c;
+  stroke: #66a;
+  stroke-width: 1px;
+}
+
+circle.profile {
+  fill: #66a;
+  stroke: #339;
+}
+text {
+  font: 10px sans-serif;
+/* pointer-events: none; */
+}
+text.shadow {
+  stroke: #fff;
+  stroke-width: 3px;
+  stroke-opacity: .8;
+}    
