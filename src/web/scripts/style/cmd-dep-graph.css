@@ -18,7 +18,7 @@
     background-color: red;    
 }
 
-.slider {width: 80px;  display:inline-block; font-size: 70%;  margin: 6px 12px 0 2px;}
+.widget-slider {width: 80px;  display:inline-block; font-size: 70%;  margin: 6px 12px 0 2px;}
 
 .detaildivs-wrapper {
 float:right;
@@ -26,7 +26,7 @@ float:right;
 
 path.link {
   fill: none;
-  stroke: #666;
+  stroke: #999;
   stroke-width: 1.5px;
 }
 

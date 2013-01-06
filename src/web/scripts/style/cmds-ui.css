@@ -7,7 +7,7 @@
 #main {margin-left:260px; /* max-width: .. */}
 #query-input { padding: 6px;  /* max-width: 600px; */ }
 #repositories {margin: 6px 0px; }
-#notify {display:none; /* max-width: 400px; position: relative; overflow: auto; height: 40px; */}
+#notify { max-width: 400px; position: relative; overflow: auto; height: 40px; /* display:none;  */}
 #user {text-align: right;}
 #welcome {max-width: 600px; padding: 10px;}
 
