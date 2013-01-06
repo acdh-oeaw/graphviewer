@@ -40,6 +40,7 @@ $(function(){
 		// loadData();
 		
 		initGraph();
+		loadDetailInfo ();
 		
 		////////////// CREATE  UI-LAYOUT
 		createBlock('base','');

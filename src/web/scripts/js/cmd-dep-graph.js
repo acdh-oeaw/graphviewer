@@ -6,6 +6,7 @@ var data_all = null; // global holder for all (input) data
 var nodes_sel = null; // global holder for selected data (selected nodes)
 var data_show = null; // global holder for data to show  closure over data_sel 
 var nest = {}; 
+var detail_data = null; // global holder for detail-data (in html)  
  
 var graph_container_selector = '#infovis';
 var navi_container_selector = '#navigate';
@@ -14,13 +15,21 @@ var index_container = null;
 
 var input_prefix = "input-";
 var select_rect_min_size = 5;
+var min_circle = 4;
 var comp_reg_url = "http://catalog.clarin.eu/ds/ComponentRegistry/?item=";     
 /*var source_file = "../scripts/cmd-dep-graph-d3_all_svg.json"*/
-var source_file = "file:/C:/Users/m/3/clarin/_repo/SMC/data2/cmd-dep-graph.d3.js"
+var source_file = "file:/C:/Users/m/3/clarin/_repo/SMC/output/cmd-dep-graph.d3.js"
+var detail_file = "file:/C:/Users/m/3/clarin/_repo/SMC/output/smc_stats_detail.html"
 
-
-var opts = {"depth-before": {"value":2, "min":0, "max":10}, "depth-after":{"value":2, "min":0, "max":10}, 
-            "link-distance": {"value":30, "min":10, "max":200 }, "charge":{"value":400, "min":10, "max":1000 }};
+var opts = {"depth-before": {"value":2, "min":0, "max":10, "widget":"slider"}, 
+            "depth-after":{"value":1, "min":0, "max":10, "widget":"slider"}, 
+            "link-distance": {"value":30, "min":10, "max":200, "widget":"slider" }, 
+            "charge":{"value":400, "min":10, "max":1000, "widget":"slider" },
+            "node-weight": {"value":"usage", "values":["1","usage"], "widget":"selectone" },
+            "curve": {"value":"straight", "values":["straight","arc"], "widget":"selectone" },
+            "layout": {"value":"dot", "values":["dot","force"], "widget":"selectone" },
+            
+            };
 
 /** for faster/simpler neighborhood lookup
 from: http://stackoverflow.com/questions/8739072/highlight-selected-node-its-links-and-its-children-in-a-d3-js-force-directed-g
@@ -30,6 +39,29 @@ var neighbours_in = {};
 var links_in = {};
 var neighbours_out = {};
 var links_out = {};
+
+/** loads from separate file detail info about individual nodes (in html) 
+later used in renderDetail() 
+invoked during the (jquery-)initalization */
+
+function loadDetailInfo () {
+     
+  $('#detail-info-holder').load(detail_file)
+  
+  /* $.get(detail_file, function(data) {
+    detail_data = data;  
+    notify('Detail data loaded');
+  
+}); */
+}
+
+function getDetailInfo(type, id) {
+    notify("getDetailInfo: #" + type + "s-" + id );
+    var d = $('#detail-info-holder').find("#" + type + "s-" + id );
+    // notify(d);
+    return d.html();
+}
+
 
 /**  gets the data for the graph and calls rendering of the lists 
  * @name initGraph
@@ -166,8 +198,8 @@ function renderGraph (data, target_container=graph_container) {
             .size([w, h])
             .linkDistance(opt("link-distance"))
             .charge(opt("charge") * -1)
-            .on("tick", tick)
-           .start();
+            .on("tick", tick) 
+            .start();
                   
          // remove old render:
           d3.select(graph_container_selector).selectAll("svg").remove();
@@ -191,20 +223,27 @@ function renderGraph (data, target_container=graph_container) {
         
         var path = svg.append("svg:g").selectAll("path")
             .data(force.links())
-            
-          .enter().append("svg:path")
+            .enter().append("svg:path")
             .attr("class", function(d) { return "link uses"; })
             .attr("marker-end", function(d) { return "url(#uses)"; });
-        
+/*            .style("stroke-width", function(d) { return Math.sqrt(d.value); });*/
+
+            
+            
         var circle = svg.append("svg:g")
              .selectAll("circle")
             .data(force.nodes())
             .enter().append("svg:circle")
-            .attr("r", 6)
+/*            .attr("r", 6)*/
+            .attr("r", function(d) { if (opt("node-weight")=="1"){ return min_circle }
+                                        else {return (Math.sqrt(d.count)>min_circle ? Math.sqrt(d.count) * 2 : min_circle); } })
             .attr("x", function(d) {return d.init_x;})
             .attr("y", function(d) {return d.init_y;})
             .call(force.drag); 
        
+         circle.append("title")
+            .text(function(d) { return d.name; });
+        
        svg.selectAll("circle")
             .attr("class", function(d) { return "type-" + d.type.toLowerCase()})
             .classed("selected", function(d) { return d.selected; })
@@ -232,48 +271,90 @@ function renderGraph (data, target_container=graph_container) {
             .attr("x", 8)
             .attr("y", ".31em")
             .text(function(d) { return d.name; });
-           
-        // Use elliptical arc path segments to doubly-encode directionality.
+
+  
+  /*
+  force.start();
+        force.tick();
+        force.stop();
         
-        function tick(e) {
-          var k = e.alpha;
+        force.on("tick",tick);
+       force.start();    
+           var n = 100;
+           console.log("start ticking");
+for (var i = 0; i < n; ++i) force.tick();
+force.stop();
+*/
+        /*    
+          data.links.forEach(function(d, i) {
+            d.source.x -= d.source.init_x;
+            d.target.x += d.target.init_x;
+          });
+*/
+
+   function statick(e) {
+      
+      data.nodes.forEach(function(d,i) {
+        d.x = d.init_x;
+        d.y = d.init_y;
+      });
+      
+      transform();
+   }
+
+   function tick(e) {
           
-          path.attr("d", function(d) {
+   var k =  e.alpha;
+          if (opt("layout")=='dot') {
+          var link_distance_int = parseInt(opt("link-distance"));
+          data.links.forEach(function(d, i) {
+            d.source.x = (d.source.init_x / 150 * link_distance_int) ;
+            d.target.x = (d.target.init_x / 150 * link_distance_int);
+/*            d.source.x = (d.source.level * link_distance_int) + link_distance_int;
+            d.target.x = (d.target.level * link_distance_int) + link_distance_int;*/
+            /*d.source.x = d.source.level * 2 * opt("link-distance") + 50;
+            d.target.x = d.target.level * 2 * opt("link-distance") + 50;*/
+          });
+          }
+         
+         /*d.source.y = d.source.init_y - d.source.y * k;
+           d.target.y = d.target.init_y + d.target.y * k;*/
               /*d.source.x -= k * d.target.sum_level ;
              d.target.x += k *  d.source.sum_level ;*/
              /* d.source.y = d.source.init_y ;
              d.target.y = d.target.init_y;*/
               //d.source.x -= d.source.level * 0.2 ;
               //d.target.x += d.target.level * 0.2;
-        //    console.log ("k: " + k + "; source.x:" + d.source.x + "; target.x:" + d.target.x);
-            var dx = d.target.x - d.source.x,
-                dy = d.target.y - d.source.y,
-                dr = Math.sqrt(dx * dx + dy * dy);
-    
-            return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
-            
-            
-                        
-          });
-        
-          circle.attr("transform", function(d) {
-            return "translate(" + d.x + "," + d.y + ")";
-          });
-        
-          textgroup.attr("transform", function(d) {
-            return "translate(" + d.x + "," + d.y + ")";
-          });
-          
-          /*
-              circle.attr("cx", function(d) { return d.x; })
-                    .attr("cy", function(d) { return d.y; });
-            
-                path.attr("x1", function(d) { return d.source.x; })
-                    .attr("y1", function(d) { return d.source.y; })
-                    .attr("x2", function(d) { return d.target.x; })
-                    .attr("y2", function(d) { return d.target.y; });*/
-        }
+         
+               transform();
+   }
 
+
+    function transform () { 
+         
+       path.attr("d", function(d) {
+             // links as elliptical arc path segments
+            if (opt("curve")=="arc") 
+            {   var dx = d.target.x - d.source.x,
+                    dy = d.target.y - d.source.y,
+                    dr = Math.sqrt(dx * dx + dy * dy);
+                return "M" + d.source.x + "," + d.source.y + "A" + dr + "," + dr + " 0 0,1 " + d.target.x + "," + d.target.y;
+            } else { 
+            // or straight
+                return "M" + d.source.x + "," + d.source.y + "L" + d.target.x + "," + d.target.y;
+            }  
+       });
+         
+         circle.attr("cx", function(d) {return d.x;})
+                .attr("cy", function(d) {return d.y;});
+      /* circle.attr("transform", function(d) {
+            return "translate(" + d.x + "," + d.y + ")";
+       });*/
+        
+       textgroup.attr("transform", function(d) {
+            return "translate(" + d.x + "," + d.y + ")";
+       });
+    }
         
         // Highlight selected nodes using the quadtree.
         svg.on("mousedown", function() {
@@ -338,15 +419,22 @@ function renderDetail (nodes) {
                     .attr("class", "node-item")
                     .attr("id", function (d) { return "n-" + d.name });
                item_li.append("span")
-                      .text(function (d) { return d.name})
+                      .text(function (d) { return d.type + ": " + d.name})
                       .on("click", function(d) { d.selected= d.selected ? 0 : 1 ; updateSelected() });
          var item_detail = item_li.append("div")
-                      .append("a")
+                            .classed("node-detail", 1);
+         
+             item_detail.append("a")
                       .attr("href",function (d) { if (d.type.toLowerCase()=='datcat') return d.id 
                                                         else return comp_reg_url + d.id })
                       .text(function (d) { return d.id });
-                        //.classed("detail", 1);
-                        
+            item_detail.append("div").html(
+                          function (d) { var detail_info_div = getDetailInfo(d.type.toLowerCase(), d.key);
+                                            if (detail_info_div) {return detail_info_div } else
+                                                { return  "<div>No detail</div>"; }
+                          });
+                            
+                         
   // handleUIBlock($(".cmds-ui-block"));    
 }
 
@@ -536,42 +624,31 @@ function setOpt(input_object) {
 
 function fillOpts(trg_container) {
 
-
   for ( var key in opts ) {
     if ($('#' + input_prefix + key).length) {
         $('#' + input_prefix + key).value = opts[key].value;   
      } else if (trg_container)  {
         var new_input_label = "<label>" + key + "</label>";
-        var new_input = $("<input />");
-        new_input.attr("id", input_prefix + key)
-                 .val(opts[key].value)
-                 .attr("type", "text")
-                 .attr("size", 3);
-                 
-         var new_slider = $("<div class='slider'></div>");
-         new_slider.attr("id", "slider-" + key);
-         new_slider.slider( opts[key]);
-         // set both-ways references between the input-field and its slider - necessary for updating 
-         new_slider.data("related-input-field",new_input);
-         new_input.data("related-slider",new_slider);
+        var new_input;
+        
+       if (opts[key].widget == "slider") {
+            [new_input,new_widget] = genSlider(key, opts[key].values);
+         } else if (opts[key].widget =="selectone") {
+            [new_input,new_widget] = genCombo(key, opts[key].values);
+              
+            
+        //     $(new_input).autocomplete({"source":opts[key].values});
+         }
          
-/* hook changing  options + redrawing the graph, when values in navigation changed */ 
-         new_slider.bind( "slidechange", function(event, ui) {
-          //   console.log(ui.value);
-             $(this).data("related-input-field").val(ui.value);
-             // update the opts-object, but based on the (updated) value of the related input-field
-             setOpt($(this).data("related-input-field"));
-             
-              renderGraph();
-           });
-
-        new_input.change(function () {
+    /* hook changing  options + redrawing the graph, when values in navigation changed */
+         new_input.change(function () {
                setOpt(this);
-               $(this).data("related-slider").slider("option", "value", $(this).val());
+               var related_widget = $(this).data("related-widget");
+           if ( $(related_widget).hasClass("widget-slider")) {$(related_widget).slider("option", "value", $(this).val()); }
                renderGraph(); 
             });
                
-        $(trg_container).append(new_input_label, new_input, new_slider);
+        $(trg_container).append(new_input_label, new_input, new_widget);
         
      }
    }
@@ -589,6 +666,45 @@ function fillOpts(trg_container) {
 */     
 }
 
+/** generating my own comboboxes, because very annoying trying to use some of existing jquery plugins (easyui.combo, combobox, jquery-ui.autocomplete) */ 
+function genCombo (key, data) {
+    
+    var select = $("<select id='widget-" + key + "' />")
+        select.attr("id", input_prefix + key)
+    data.forEach(function(v) { $(select).append("<option value='" + v +"' >" + v + "</option>") });
+    return [select, null];
+}
+
+function genSlider (key, data) {
+
+    var new_input = $("<input />");
+            new_input.attr("id", input_prefix + key)
+                 .val(opts[key].value)
+/*                 .attr("type", "text")*/
+                 .attr("size", 3);
+      
+    var new_widget = $("<div class='widget-" + opts[key].widget + "'></div>");
+        new_widget.attr("id", "widget-" + key);
+        new_widget.slider( opts[key]);
+            
+        // set both-ways references between the input-field and its slider - necessary for updating 
+        new_widget.data("related-input-field",new_input);
+        new_input.data("related-widget",new_widget);
+     
+//           console.log("widget:" + opts[key].widget);
+        
+        new_widget.bind( "slidechange", function(event, ui) {
+            //   console.log(ui.value);
+               $(this).data("related-input-field").val(ui.value);
+               // update the opts-object, but based on the (updated) value of the related input-field
+                setOpt($(this).data("related-input-field"));
+               renderGraph();
+         });
+         
+   return [new_input,new_widget]; 
+} 
+
+
 function notify (msg) {
-  d3.select("#notify").html(msg);
+  $("#notify").append(msg);
 }
