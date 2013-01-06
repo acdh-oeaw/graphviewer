@@ -1,0 +1,90 @@
+/* 
+
+dot -osmc_processing.png -Tpng smc_processing.dot
+
+*/
+digraph smc_processing {
+  label="SMC processing";
+	rankdir=TB;
+	size="10,11";		
+	ranksep=0.25;
+	nodesep=0.18;
+
+	/* graph [compound=true,
+		mclimit=4,		
+		remincross=true,
+		nodesep = 0.1;	
+	size="12,12";		
+	];
+	*/
+
+/*
+node [shape=none];
+context;
+term; */
+
+node [shape=box];
+dcr_terms;
+cmd_terms_nested;
+dcr_cmd_map;
+cmd_dep_graph_xml;
+cmd_dep_graph_dot;
+cmd_dep_graph_dot_svg;
+cmd_dep_graph_json;
+dcr_terms_skos_rdf;
+openskos_smc;
+
+
+node [shape=ellipse];
+	ant;
+	mdrepo;
+	gen_mdrepo_stats [color=red,style=dashed, fontcolor=red];
+	d3;
+	dot;
+	smc_init;
+	cmd_dep_graph_xsl;
+	graph_dot_xsl;
+	graph_json_xsl;
+	dcr_smc2skos_xsl;
+	smc_stats_xsl;	
+	openskos_upload;
+
+node [shape=trapezium];
+smc_stats_html;
+browser_html;
+mdrepo_stats_html [color=red,style=dashed, fontcolor=red];
+
+	subgraph order {
+	rank=same;
+	
+		dot;
+		mdrepo_stats_html;
+	
+	}
+
+/* context -> list;
+term -> map; */
+
+
+ant -> smc_init -> cmd_terms_nested;
+smc_init -> dcr_cmd_map;
+smc_init -> dcr_terms;
+cmd_terms_nested -> cmd_dep_graph_xsl -> cmd_dep_graph_xml;
+
+cmd_dep_graph_xml -> graph_dot_xsl -> cmd_dep_graph_dot  -> dot -> cmd_dep_graph_dot_svg; 
+
+cmd_dep_graph_xml -> graph_json_xsl -> cmd_dep_graph_json; 
+cmd_dep_graph_dot_svg -> graph_json_xsl [label="doc"];
+
+d3 -> browser_html [dir=back, label=uses];
+cmd_dep_graph_json -> browser_html [dir=back, style=dashed, label=calls];
+smc_stats_html -> browser_html [dir=back, style=dashed, label=calls, color=red];
+mdrepo -> mdrepo_stats_html;
+ant -> gen_mdrepo_stats ->  mdrepo_stats_html [color=red,style=dashed];
+mdrepo_stats_html -> browser_html [dir=back, style=dashed, label="calls (TODO)", color=red];
+
+
+dcr_cmd_map -> smc_stats_xsl -> smc_stats_html; 
+dcr_terms -> dcr_smc2skos_xsl -> dcr_terms_skos_rdf -> openskos_upload -> openskos_smc;
+
+}
