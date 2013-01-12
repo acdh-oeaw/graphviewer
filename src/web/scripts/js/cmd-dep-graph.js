@@ -1,5 +1,6 @@
 
 
+var item_li = null;
 
 var svg  = null; // main svg-element
 var data_all = null; // global holder for all (input) data
@@ -8,8 +9,13 @@ var data_show = null; // global holder for data to show  closure over data_sel
 var nest = {}; 
 var detail_data = null; // global holder for detail-data (in html)  
  
+
+var index_container_selector = "#index-container";
 var graph_container_selector = '#infovis';
 var navi_container_selector = '#navigate';
+var detail_container_selector = "#detail-container";
+var detail_info_holder_selector =  '#detail-info-holder';
+
 var graph_container = null;
 var index_container = null; 
 
@@ -22,12 +28,12 @@ var source_file = "file:/C:/Users/m/3/clarin/_repo/SMC/output/cmd-dep-graph.d3.j
 var detail_file = "file:/C:/Users/m/3/clarin/_repo/SMC/output/smc_stats_detail.html"
 
 var opts = {"depth-before": {"value":2, "min":0, "max":10, "widget":"slider"}, 
-            "depth-after":{"value":1, "min":0, "max":10, "widget":"slider"}, 
+            "depth-after":{"value":2, "min":0, "max":10, "widget":"slider"}, 
             "link-distance": {"value":30, "min":10, "max":200, "widget":"slider" }, 
             "charge":{"value":400, "min":10, "max":1000, "widget":"slider" },
-            "node-weight": {"value":"usage", "values":["1","usage"], "widget":"selectone" },
+            "node-weight": {"value":"1", "values":["1","usage"], "widget":"selectone" },
             "curve": {"value":"straight", "values":["straight","arc"], "widget":"selectone" },
-            "layout": {"value":"dot", "values":["dot","force"], "widget":"selectone" },
+            "layout": {"value":"horizontal-tree", "values":["vertical-tree", "horizontal-tree", "weak-tree","force","dot"], "widget":"selectone" },
             
             };
 
@@ -46,7 +52,10 @@ invoked during the (jquery-)initalization */
 
 function loadDetailInfo () {
      
-  $('#detail-info-holder').load(detail_file)
+  $(detail_info_holder_selector).load(detail_file,function(data) {
+     $(detail_container_selector).html(getDetailInfo("summary", "overall"));
+  });
+  
   
   /* $.get(detail_file, function(data) {
     detail_data = data;  
@@ -56,8 +65,8 @@ function loadDetailInfo () {
 }
 
 function getDetailInfo(type, id) {
-    notify("getDetailInfo: #" + type + "s-" + id );
-    var d = $('#detail-info-holder').find("#" + type + "s-" + id );
+    notify("getDetailInfo: #" + type + "-" + id );
+    var d = $(detail_info_holder_selector).find("#" + type + "-" + id );
     // notify(d);
     return d.html();
 }
@@ -125,52 +134,93 @@ function getDetailInfo(type, id) {
                                                  }
                                            });
 
-                    renderIndex(data_all.nodes);
+                    renderIndex_default();
                     //renderGraph(data_all, graph_container);
                 });        
 }
 
+/* there was a strange problem with overloading */
+function renderIndex_default () {
+    renderIndex (data_all.nodes, index_container_selector) 
+}
 
 /** generate the index lists
     @param nodes - accepts an array of nodes (like in data.nodes)
 */  
-function renderIndex (nodes) {
+function renderIndex (nodes, target_container_selector) {
+
     nest = d3.nest()
     .key(function(d) { return d.type; })
     .sortValues(function(a, b) { return d3.ascending(a.name, b.name); })
     .entries(nodes);
   
-    index_container = d3.select("#index-container");
-        index_container.selectAll("div").remove();
-      var group_divs = index_container.selectAll("div").data(nest)
+    target_container = d3.select(target_container_selector);
+        target_container.selectAll("div").remove();
+        
+        // rendering extra-information about the displayed data only in detail-index
+        if (target_container_selector != index_container_selector) {
+           target_container.append("span")
+                .text("show nodes: " + data_show.nodes.length + "; "
+                        + "show links: " + data_show.links.length);
+           }
+           
+        var group_divs = target_container.selectAll("div").data(nest)
                         .enter().append("div")
                         .attr("id", function (d) { return "detail-" + d.key })
                         .classed("cmds-ui-block init-show", 1);
                         
       var group_headers = group_divs.append("div").classed("header", 1)
-                        .text(function (d) { return d.key});
+                        .text(function (d) { return d.key + " |" + d.values.length + "|"});
                         
-      var item_li = group_divs.append("div").classed("content",1)
-                    .append("ul").selectAll(".node-item")        
+      var list =  group_divs.append("div").classed("content",1)
+                    .append("ul");
+      var item_li = list.selectAll(".node-item")        
                     .data(function(d) { return d.values; })
                     .enter().append("li")
                     .attr("class", "node-item")
-                        .attr("id", function (d) { return "n-" + d.name })
-                        .text(function (d) { return d.name})
-                        .classed("highlight", function (d) { return d.selected })
-                        .on("click", function(d) { d.selected= d.selected ? 0 : 1 ; updateSelected() });
-                        //.classed("detail", 1);
+                    .text(function (d) { return d.name})
+                    .on("click", function(d) { d.selected= d.selected ? 0 : 1 ; updateSelected() });
+          
+                    
+            /* slightly different behaviour for the main-index and rendering of the selected nodes in the detail-view */
+          //  console.log("target_container:" + target_container_selector);
+            if (target_container_selector == index_container_selector) {
+                index_container = target_container;
+                item_li.attr("id", function (d) { return "n-" + d.name });
+                item_li.classed("highlight", function (d) { return d.selected });
+                
+              } else {
+                 var item_detail = item_li.append("div")
+                            .classed("node-detail", 1);
+                            
+                        item_detail.text(function (d) { return "links_in: " +  dataShowCount(d.key, "links_in") +  "; links_out: " +  dataShowCount(d.key, "links_out") ;
+                                                       })
+                                .append("a")
+                      .attr("href",function (d) { if (d.type.toLowerCase()=='datcat') return d.id 
+                                                        else return comp_reg_url + d.id })
+                      .text(function (d) { return d.id });
+            item_detail.append("div").html(
+                          function (d) { var detail_info_div = getDetailInfo(d.type.toLowerCase(), d.key);
+                                            if (detail_info_div) {return detail_info_div } else
+                                                { return  "<div>No detail</div>"; }
+                          });
+                            
+         
                         
-  handleUIBlock($(".cmds-ui-block"));    
+              }
+                        //.classed("detail", 1);
+                        //console.log($(target_container_selector).find(".cmds-ui-block"));
+   handleUIBlock($(target_container_selector).find(".cmds-ui-block"));
+  
 }
 
 function filterIndex (search_string){
     var filtered_index_nodes = data_all.nodes.filter(function(d, i) { 
-        console.log(d.name.indexOf(search_string));
-        return d.name.indexOf(search_string) > -1; 
+     //   console.log(d.name.indexOf(search_string));
+        return d.name.toLowerCase().indexOf(search_string) > -1; 
     });
     console.log(filtered_index_nodes);
-    renderIndex(filtered_index_nodes);
+    renderIndex(filtered_index_nodes, index_container_selector);
 }
 
 
@@ -189,18 +239,23 @@ function renderGraph (data, target_container=graph_container) {
      } else {
        $(target_container).text("");
      }
-    var w = $(target_container).width(),
-        h = $(target_container).height();
+   
+  
+   var w = $(target_container).width(),
+        h = $(target_container).height(); 
+     
+  
         // console.log (w + '-' + h);
      var force = d3.layout.force()
             .nodes(data.nodes)
             .links(data.links)
             .size([w, h])
+        //   .gravity(0)
             .linkDistance(opt("link-distance"))
             .charge(opt("charge") * -1)
             .on("tick", tick) 
             .start();
-                  
+    console.log ("gravity: " + force.gravity() );              
          // remove old render:
           d3.select(graph_container_selector).selectAll("svg").remove();
       // console.log(force.size())               
@@ -237,8 +292,8 @@ function renderGraph (data, target_container=graph_container) {
 /*            .attr("r", 6)*/
             .attr("r", function(d) { if (opt("node-weight")=="1"){ return min_circle }
                                         else {return (Math.sqrt(d.count)>min_circle ? Math.sqrt(d.count) * 2 : min_circle); } })
-            .attr("x", function(d) {return d.init_x;})
-            .attr("y", function(d) {return d.init_y;})
+          /*  .attr("x", function(d) {return d.x;})
+            .attr("y", function(d) {return d.y;})*/
             .call(force.drag); 
        
          circle.append("title")
@@ -248,6 +303,7 @@ function renderGraph (data, target_container=graph_container) {
             .attr("class", function(d) { return "type-" + d.type.toLowerCase()})
             .classed("selected", function(d) { return d.selected; })
           .on("click", function(d) {d.selected= d.selected ? 0 : 1; updateSelected() });
+          .on("mouseover", function(d) {console.log(this)});
         
           
         var textgroup = svg.append("svg:g").selectAll("g")
@@ -272,7 +328,8 @@ function renderGraph (data, target_container=graph_container) {
             .attr("y", ".31em")
             .text(function(d) { return d.name; });
 
-  
+
+
   /*
   force.start();
         force.tick();
@@ -303,20 +360,55 @@ force.stop();
    }
 
    function tick(e) {
-          
-   var k =  e.alpha;
+    var link_distance = parseInt(opt("link-distance"));      
+   var k =  10 * e.alpha;
           if (opt("layout")=='dot') {
-          var link_distance_int = parseInt(opt("link-distance"));
-          data.links.forEach(function(d, i) {
-            d.source.x = (d.source.init_x / 150 * link_distance_int) ;
-            d.target.x = (d.target.init_x / 150 * link_distance_int);
-/*            d.source.x = (d.source.level * link_distance_int) + link_distance_int;
-            d.target.x = (d.target.level * link_distance_int) + link_distance_int;*/
-            /*d.source.x = d.source.level * 2 * opt("link-distance") + 50;
-            d.target.x = d.target.level * 2 * opt("link-distance") + 50;*/
-          });
-          }
-         
+            var link_distance_int = parseInt(opt("link-distance"));
+            data.links.forEach(function(d, i) {
+              d.source.x = (d.source.init_x / 150 * link_distance_int) ;
+              d.target.x = (d.target.init_x / 150 * link_distance_int);
+              //d.target.y  += (d.target.init_y / 300 ) * k;
+  /*            d.source.x = (d.source.level * link_distance_int) + link_distance_int;
+              d.target.x = (d.target.level * link_distance_int) + link_distance_int;*/
+              /*d.source.x = d.source.level * 2 * opt("link-distance") + 50;
+              d.target.x = d.target.level * 2 * opt("link-distance") + 50;*/
+            });
+          } else if (opt("layout")=='weak-tree') {
+              data.links.forEach(function(d, i) {
+              d.source.x -= k;
+                d.target.x += k;
+                
+                //d.source.x -= k * d.source.level / (dataShowCount(d.source.key, "links_out") + 0.1);  // 0.1 to prevent div/0
+                //d.target.x += k * d.target.level / (dataShowCount(d.target.key, "links_in") + 0.1);
+                });
+          } else if (opt("layout")=='vertical-tree') {
+                   var ky= 1.4 * e.alpha, kx = .4 * e.alpha;
+                   data.links.forEach(function(d, i) {
+                     if (d.source.level==0) { d.source.y = 20 };
+                     d.target.x += (d.source.x - d.target.x)  * kx;
+                     d.target.y += (d.source.y - d.target.y + link_distance) * ky;
+                    });
+           } else if (opt("layout")=='horizontal-tree') {
+                   var kx= 1.4 * e.alpha, ky = .4 * e.alpha;
+                   data.links.forEach(function(d, i) {
+                       if (d.source.level==0) { d.source.x = 20 };
+                       d.target.y += (d.source.y - d.target.y)  * ky;
+                       d.target.x += (d.source.x - d.target.x + link_distance  ) * kx;
+                  });
+            }
+      
+           /*  parent foci 
+                  var kx = 1.2 * e.alpha;
+    data.links.forEach(function(d, i) {
+      d.target.x += (d.target.level * link_distance  - d.target.x) * kx;
+      });*/
+      
+      /*  obsoleted:
+      /*data.links.forEach(function(d, i) {
+                d.source.x -= (k * d.source.init_x  / (200 * Math.sqrt(d.source.count)) );
+                d.target.x += (k * d.target.init_x / (50 * Math.sqrt(d.target.count)) );
+                });*/
+          
          /*d.source.y = d.source.init_y - d.source.y * k;
            d.target.y = d.target.init_y + d.target.y * k;*/
               /*d.source.x -= k * d.target.sum_level ;
@@ -326,8 +418,8 @@ force.stop();
               //d.source.x -= d.source.level * 0.2 ;
               //d.target.x += d.target.level * 0.2;
          
-               transform();
-   }
+       transform();
+   } // end  tick()
 
 
     function transform () { 
@@ -395,6 +487,11 @@ force.stop();
     @param nodes
 */  
 function renderDetail (nodes) {
+    
+    renderIndex (nodes, detail_container_selector); 
+}
+
+function renderDetail_old (nodes) {
     /*
     nest = d3.nest()
     .key(function(d) { return d.group; })
@@ -462,12 +559,14 @@ function updateSelected () {
     renderGraph();
     renderDetail(nodes_sel);
     
-    index_container.selectAll("li").classed("highlight", function (d) { return d.selected });    
+ //   index_container.selectAll("li").classed("highlight", function (d) { return d.selected });    
 }
 
 
 
-/**  generates the subset of data to display (based on selected nodes + options) */
+/**  generates the subset of data to display (based on selected nodes + options) 
+fills global variable: data_show ! 
+*/
 function dataToShow (nodes) {
      data_show = {};
      data_show.nodes = nodes;
@@ -483,7 +582,10 @@ function dataToShow (nodes) {
 /*         deduplicate nodes and edges */
      data_show.nodes = unique_nodes(nodes.concat(data_show_collect.nodes));
      data_show.links = unique_links(data_show_collect.links);
-             
+     
+     // extend the object, with some lookup hashes on neighbourhood 
+     hashes = gen_neighbours(data_show.links);
+     data_show = $.extend(data_show, hashes); 
 /* data_show.nodes.forEach; data_all.links;
 .filter(function(e) {*/
 /*                console.log ("DEBUG: links.filter::" + (nodes_sel.indexOf(e.target) > -1 ) )*/
@@ -494,7 +596,51 @@ function dataToShow (nodes) {
      return data_show;
     }
 
+/** generate lookup hashes for neighbours;
+*/
+function gen_neighbours(links) {
 
+    var neighbours = {"links_index": {}, 
+                      "nodes_in": {}, "nodes_out": {},
+                      "links_in": {}, "links_out": {}};
+    
+        links.forEach(function(d) { 
+                            src_key = d.source.key;
+                            trg_key = d.target.key;
+                         // generate lookup hashes for neighbours;
+                            neighbours.links_index[src_key + "," + trg_key] = d;
+                            if (d.source) { 
+                                    if (! neighbours.nodes_in[trg_key]) { 
+                                        neighbours.nodes_in[trg_key] = [d.source];
+                                        neighbours.links_in[trg_key] = [d];
+                                     }  else {
+                                        neighbours.nodes_in[trg_key].push(d.source);
+                                        neighbours.links_in[trg_key].push(d);
+                                     }
+                             }
+                            if (d.target) { 
+                                    if (! neighbours.nodes_out[src_key]) { 
+                                        neighbours.nodes_out[src_key] = [d.target];
+                                        neighbours.links_out[src_key] = [d];
+                                    } else { 
+                                        neighbours.nodes_out[src_key].push(d.target);
+                                        neighbours.links_out[src_key].push(d) ;
+                                    }
+                             }
+                       });
+                       
+return neighbours;
+
+}
+
+function dataShowCount(n_key, info_type) { 
+
+    if (data_show[info_type][n_key]) {
+        return data_show[info_type][n_key].length;
+       } else {
+        return 0
+       }
+}
 /** returns appropriate link
 */
 function neighboring(a, b) {
@@ -635,7 +781,8 @@ function fillOpts(trg_container) {
             [new_input,new_widget] = genSlider(key, opts[key].values);
          } else if (opts[key].widget =="selectone") {
             [new_input,new_widget] = genCombo(key, opts[key].values);
-              
+            // set initial value
+            $(new_input).val(opts[key].value);
             
         //     $(new_input).autocomplete({"source":opts[key].values});
          }
