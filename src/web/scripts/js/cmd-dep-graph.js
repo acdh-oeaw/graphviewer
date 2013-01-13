@@ -5,7 +5,7 @@ var item_li = null;
 var svg  = null; // main svg-element
 var data_all = null; // global holder for all (input) data
 var nodes_sel = null; // global holder for selected data (selected nodes)
-var data_show = null; // global holder for data to show  closure over data_sel 
+var data_show = null; // global holder for data to show  closure over nodes_sel 
 var nest = {}; 
 var detail_data = null; // global holder for detail-data (in html)  
  
@@ -29,47 +29,14 @@ var detail_file = "file:/C:/Users/m/3/clarin/_repo/SMC/output/smc_stats_detail.h
 
 var opts = {"depth-before": {"value":2, "min":0, "max":10, "widget":"slider"}, 
             "depth-after":{"value":2, "min":0, "max":10, "widget":"slider"}, 
-            "link-distance": {"value":30, "min":10, "max":200, "widget":"slider" }, 
+            "link-distance": {"value":80, "min":10, "max":200, "widget":"slider" }, 
             "charge":{"value":400, "min":10, "max":1000, "widget":"slider" },
             "node-weight": {"value":"1", "values":["1","usage"], "widget":"selectone" },
             "curve": {"value":"straight", "values":["straight","arc"], "widget":"selectone" },
             "layout": {"value":"horizontal-tree", "values":["vertical-tree", "horizontal-tree", "weak-tree","force","dot"], "widget":"selectone" },
-            
+            "labels": {"value":"hide", "values":["show","hide"], "widget":"selectone" },                         
             };
 
-/** for faster/simpler neighborhood lookup
-from: http://stackoverflow.com/questions/8739072/highlight-selected-node-its-links-and-its-children-in-a-d3-js-force-directed-g
-*/
-var linkedByIndex = {};
-var neighbours_in = {};
-var links_in = {};
-var neighbours_out = {};
-var links_out = {};
-
-/** loads from separate file detail info about individual nodes (in html) 
-later used in renderDetail() 
-invoked during the (jquery-)initalization */
-
-function loadDetailInfo () {
-     
-  $(detail_info_holder_selector).load(detail_file,function(data) {
-     $(detail_container_selector).html(getDetailInfo("summary", "overall"));
-  });
-  
-  
-  /* $.get(detail_file, function(data) {
-    detail_data = data;  
-    notify('Detail data loaded');
-  
-}); */
-}
-
-function getDetailInfo(type, id) {
-    notify("getDetailInfo: #" + type + "-" + id );
-    var d = $(detail_info_holder_selector).find("#" + type + "-" + id );
-    // notify(d);
-    return d.html();
-}
 
 
 /**  gets the data for the graph and calls rendering of the lists 
@@ -112,42 +79,39 @@ function getDetailInfo(type, id) {
                                                 d.target.index = trg_ix;
                                                 src_key = d.source.key;
                                                 trg_key = d.target.key;
-                                             // generate lookup hashes for neighbours;
-                                                linkedByIndex[src_key + "," + trg_key] = d;
-                                                if (d.source) { 
-                                                        if (! neighbours_in[trg_key]) { 
-                                                            neighbours_in[trg_key] = [d.source];
-                                                            links_in[trg_key] = [d];
-                                                         }  else {
-                                                            neighbours_in[trg_key].push(d.source);
-                                                            links_in[trg_key].push(d);
-                                                         }
-                                                 }
-                                                if (d.target) { 
-                                                        if (! neighbours_out[src_key]) { 
-                                                            neighbours_out[src_key] = [d.target];
-                                                            links_out[src_key] = [d];
-                                                        } else { 
-                                                            neighbours_out[src_key].push(d.target);
-                                                            links_out[src_key].push(d) ;
-                                                        }
-                                                 }
-                                           });
-
-                    renderIndex_default();
-                    //renderGraph(data_all, graph_container);
+                                             });
+                // generate lookup hashes for neighbours;                                             
+                 add_lookups(data_all);
+                 
+                 // should be delivered by the data directly
+                   data_all.nodes.forEach(function(d,i) {
+                       d.x = d.init_x;
+                       d.y = d.init_y;
+                     });
+    
+              renderIndex();
+    
                 });        
 }
 
-/* there was a strange problem with overloading */
-function renderIndex_default () {
-    renderIndex (data_all.nodes, index_container_selector) 
+/** put grouped list of nodes into the target container*/
+function renderIndex () {
+    renderNodeList (data_all.nodes, index_container_selector) 
 }
 
-/** generate the index lists
+
+/** generate the detail lists
+    @param nodes
+*/  
+function renderDetail (nodes) {    
+    renderNodeList (nodes, detail_container_selector); 
+}
+
+
+/** generate a grouped (by type) list of nodes
     @param nodes - accepts an array of nodes (like in data.nodes)
 */  
-function renderIndex (nodes, target_container_selector) {
+function renderNodeList (nodes, target_container_selector) {
 
     nest = d3.nest()
     .key(function(d) { return d.type; })
@@ -157,12 +121,7 @@ function renderIndex (nodes, target_container_selector) {
     target_container = d3.select(target_container_selector);
         target_container.selectAll("div").remove();
         
-        // rendering extra-information about the displayed data only in detail-index
-        if (target_container_selector != index_container_selector) {
-           target_container.append("span")
-                .text("show nodes: " + data_show.nodes.length + "; "
-                        + "show links: " + data_show.links.length);
-           }
+       
            
         var group_divs = target_container.selectAll("div").data(nest)
                         .enter().append("div")
@@ -191,25 +150,24 @@ function renderIndex (nodes, target_container_selector) {
                 
               } else {
                  var item_detail = item_li.append("div")
-                            .classed("node-detail", 1);
+                                          .classed("node-detail", 1);
                             
-                        item_detail.text(function (d) { return "links_in: " +  dataShowCount(d.key, "links_in") +  "; links_out: " +  dataShowCount(d.key, "links_out") ;
-                                                       })
-                                .append("a")
-                      .attr("href",function (d) { if (d.type.toLowerCase()=='datcat') return d.id 
+                 item_detail.append("a")
+                            .attr("href",function (d) { if (d.type.toLowerCase()=='datcat') return d.id 
                                                         else return comp_reg_url + d.id })
-                      .text(function (d) { return d.id });
-            item_detail.append("div").html(
-                          function (d) { var detail_info_div = getDetailInfo(d.type.toLowerCase(), d.key);
-                                            if (detail_info_div) {return detail_info_div } else
-                                                { return  "<div>No detail</div>"; }
+                            .text(function (d) { return d.id });
+                 item_detail.append("div").html(
+                                 function (d) { 
+                                    var detail_info_div = getDetailInfo(d.type.toLowerCase(), d.key);
+                                    if (detail_info_div) {
+                                        return detail_info_div 
+                                    } else { 
+                                        return  "<div>No detail</div>"; 
+                                    }
                           });
-                            
-         
-                        
+                           
               }
-                        //.classed("detail", 1);
-                        //console.log($(target_container_selector).find(".cmds-ui-block"));
+                        
    handleUIBlock($(target_container_selector).find(".cmds-ui-block"));
   
 }
@@ -219,8 +177,8 @@ function filterIndex (search_string){
      //   console.log(d.name.indexOf(search_string));
         return d.name.toLowerCase().indexOf(search_string) > -1; 
     });
-    console.log(filtered_index_nodes);
-    renderIndex(filtered_index_nodes, index_container_selector);
+    
+   renderIndex(filtered_index_nodes, index_container_selector);
 }
 
 
@@ -239,7 +197,13 @@ function renderGraph (data, target_container=graph_container) {
      } else {
        $(target_container).text("");
      }
-   
+  
+  // information about the displayed data 
+        notify("show nodes: " + data_show.nodes.length + "; "
+                        + "show links: " + data_show.links.length);
+        
+  
+  
   
    var w = $(target_container).width(),
         h = $(target_container).height(); 
@@ -250,15 +214,16 @@ function renderGraph (data, target_container=graph_container) {
             .nodes(data.nodes)
             .links(data.links)
             .size([w, h])
-        //   .gravity(0)
-            .linkDistance(opt("link-distance"))
-            .charge(opt("charge") * -1)
+           // .gravity(0.3)
+            .linkDistance(parseInt(opt("link-distance")))
+            .charge(parseInt(opt("charge")) * -1)
             .on("tick", tick) 
             .start();
-    console.log ("gravity: " + force.gravity() );              
-         // remove old render:
+//    console.log ("gravity: " + force.gravity() );              
+  
+       // remove old render:
           d3.select(graph_container_selector).selectAll("svg").remove();
-      // console.log(force.size())               
+                 
         svg = d3.select(graph_container_selector).append("svg:svg")
             .attr("width", w)        .attr("height", h);
         
@@ -279,7 +244,10 @@ function renderGraph (data, target_container=graph_container) {
         var path = svg.append("svg:g").selectAll("path")
             .data(force.links())
             .enter().append("svg:path")
-            .attr("class", function(d) { return "link uses"; })
+/*            .attr("class", function(d) { return "link uses"; })*/
+            .classed("link", 1)
+            .classed("uses", 1)
+            .classed("highlight", function(d) { d.highlight } )
             .attr("marker-end", function(d) { return "url(#uses)"; });
 /*            .style("stroke-width", function(d) { return Math.sqrt(d.value); });*/
 
@@ -302,10 +270,10 @@ function renderGraph (data, target_container=graph_container) {
        svg.selectAll("circle")
             .attr("class", function(d) { return "type-" + d.type.toLowerCase()})
             .classed("selected", function(d) { return d.selected; })
-          .on("click", function(d) {d.selected= d.selected ? 0 : 1; updateSelected() });
-          .on("mouseover", function(d) {console.log(this)});
+          .on("click", function(d) {d.selected= d.selected ? 0 : 1; updateSelected() })
+          .on("mouseover", highlight("in")).on("mouseout", highlight("out"));
         
-          
+      /*    
         var textgroup = svg.append("svg:g").selectAll("g")
             .data(data.nodes)
           .enter().append("svg:g")
@@ -327,73 +295,35 @@ function renderGraph (data, target_container=graph_container) {
             .attr("x", 8)
             .attr("y", ".31em")
             .text(function(d) { return d.name; });
-
-
-
-  /*
-  force.start();
-        force.tick();
-        force.stop();
-        
-        force.on("tick",tick);
-       force.start();    
-           var n = 100;
-           console.log("start ticking");
-for (var i = 0; i < n; ++i) force.tick();
-force.stop();
 */
-        /*    
-          data.links.forEach(function(d, i) {
-            d.source.x -= d.source.init_x;
-            d.target.x += d.target.init_x;
-          });
-*/
-
-   function statick(e) {
-      
-      data.nodes.forEach(function(d,i) {
-        d.x = d.init_x;
-        d.y = d.init_y;
-      });
-      
-      transform();
-   }
 
    function tick(e) {
-    var link_distance = parseInt(opt("link-distance"));      
-   var k =  10 * e.alpha;
+    var link_distance_int = parseInt(opt("link-distance"));      
+    var k =  10 * e.alpha;
           if (opt("layout")=='dot') {
-            var link_distance_int = parseInt(opt("link-distance"));
             data.links.forEach(function(d, i) {
               d.source.x = (d.source.init_x / 150 * link_distance_int) ;
               d.target.x = (d.target.init_x / 150 * link_distance_int);
-              //d.target.y  += (d.target.init_y / 300 ) * k;
-  /*            d.source.x = (d.source.level * link_distance_int) + link_distance_int;
-              d.target.x = (d.target.level * link_distance_int) + link_distance_int;*/
-              /*d.source.x = d.source.level * 2 * opt("link-distance") + 50;
-              d.target.x = d.target.level * 2 * opt("link-distance") + 50;*/
+            
             });
           } else if (opt("layout")=='weak-tree') {
               data.links.forEach(function(d, i) {
               d.source.x -= k;
                 d.target.x += k;
-                
-                //d.source.x -= k * d.source.level / (dataShowCount(d.source.key, "links_out") + 0.1);  // 0.1 to prevent div/0
-                //d.target.x += k * d.target.level / (dataShowCount(d.target.key, "links_in") + 0.1);
                 });
           } else if (opt("layout")=='vertical-tree') {
                    var ky= 1.4 * e.alpha, kx = .4 * e.alpha;
                    data.links.forEach(function(d, i) {
                      if (d.source.level==0) { d.source.y = 20 };
                      d.target.x += (d.source.x - d.target.x)  * kx;
-                     d.target.y += (d.source.y - d.target.y + link_distance) * ky;
+                     d.target.y += (d.source.y - d.target.y + link_distance_int) * ky;
                     });
            } else if (opt("layout")=='horizontal-tree') {
                    var kx= 1.4 * e.alpha, ky = .4 * e.alpha;
                    data.links.forEach(function(d, i) {
                        if (d.source.level==0) { d.source.x = 20 };
                        d.target.y += (d.source.y - d.target.y)  * ky;
-                       d.target.x += (d.source.x - d.target.x + link_distance  ) * kx;
+                       d.target.x += (d.source.x - d.target.x + link_distance_int  ) * kx;
                   });
             }
       
@@ -403,20 +333,6 @@ force.stop();
       d.target.x += (d.target.level * link_distance  - d.target.x) * kx;
       });*/
       
-      /*  obsoleted:
-      /*data.links.forEach(function(d, i) {
-                d.source.x -= (k * d.source.init_x  / (200 * Math.sqrt(d.source.count)) );
-                d.target.x += (k * d.target.init_x / (50 * Math.sqrt(d.target.count)) );
-                });*/
-          
-         /*d.source.y = d.source.init_y - d.source.y * k;
-           d.target.y = d.target.init_y + d.target.y * k;*/
-              /*d.source.x -= k * d.target.sum_level ;
-             d.target.x += k *  d.source.sum_level ;*/
-             /* d.source.y = d.source.init_y ;
-             d.target.y = d.target.init_y;*/
-              //d.source.x -= d.source.level * 0.2 ;
-              //d.target.x += d.target.level * 0.2;
          
        transform();
    } // end  tick()
@@ -443,9 +359,9 @@ force.stop();
             return "translate(" + d.x + "," + d.y + ")";
        });*/
         
-       textgroup.attr("transform", function(d) {
+  /*     textgroup.attr("transform", function(d) {
             return "translate(" + d.x + "," + d.y + ")";
-       });
+       });*/
     }
         
         // Highlight selected nodes using the quadtree.
@@ -483,59 +399,24 @@ force.stop();
 }  // end renderGraph
 
 
-/** generate the detail lists
-    @param nodes
-*/  
-function renderDetail (nodes) {
-    
-    renderIndex (nodes, detail_container_selector); 
+/** loads detail info about individual nodes (in html) from separate file  
+later used in renderDetail() 
+invoked during the (jquery-)initalization */
+function loadDetailInfo () {
+     
+  $(detail_info_holder_selector).load(detail_file,function(data) {
+     $(detail_container_selector).html(getDetailInfo("summary", "overall"));
+  });
 }
 
-function renderDetail_old (nodes) {
-    /*
-    nest = d3.nest()
-    .key(function(d) { return d.group; })
-    .sortValues(function(a, b) { return d3.ascending(a.name, b.name); })
-    .entries(nodes);
-  */
-    detail_container = d3.select("#detail-container");
-      detail_container.selectAll("div").remove();
-      /*
-      var group_divs = detail_container.selectAll("div").data(nest)
-                        .enter().append("div")
-                        .attr("id", function (d) { return "detail-" + d.key })
-                        .classed("cmds-ui-block init-show", 1);
-                        
-      var group_headers = group_divs.append("div").classed("header", 1)
-                        .text(function (d) { return d.key});
-        */                
-      var item_li = detail_container.append("div")
-                    .append("ul").selectAll(".node-item")        
-                    .data(nodes)
-                    .enter().append("li")
-                    .attr("class", "node-item")
-                    .attr("id", function (d) { return "n-" + d.name });
-               item_li.append("span")
-                      .text(function (d) { return d.type + ": " + d.name})
-                      .on("click", function(d) { d.selected= d.selected ? 0 : 1 ; updateSelected() });
-         var item_detail = item_li.append("div")
-                            .classed("node-detail", 1);
-         
-             item_detail.append("a")
-                      .attr("href",function (d) { if (d.type.toLowerCase()=='datcat') return d.id 
-                                                        else return comp_reg_url + d.id })
-                      .text(function (d) { return d.id });
-            item_detail.append("div").html(
-                          function (d) { var detail_info_div = getDetailInfo(d.type.toLowerCase(), d.key);
-                                            if (detail_info_div) {return detail_info_div } else
-                                                { return  "<div>No detail</div>"; }
-                          });
-                            
-                         
-  // handleUIBlock($(".cmds-ui-block"));    
+function getDetailInfo(type, id) {
+    //notify("getDetailInfo: #" + type + "-" + id );
+    var d = $(detail_info_holder_selector).find("#" + type + "-" + id );
+    // notify(d);
+    return d.html();
 }
 
-        
+
 /**  select the nodes within the specified rectangle. */
 function selectNodes(nodes, x0, y0, x3, y3) {
     
@@ -563,6 +444,31 @@ function updateSelected () {
 }
 
 
+// Returns an event handler for fading a given chord group.
+function highlight() {
+  return function(d, i) {
+    // console.log ("fade:" + d.key);
+    var connected_subgraph_in = neighboursWithLinks(data_show, d,'in', -1);
+    var connected_subgraph_out = neighboursWithLinks(data_show, d,'out', -1);
+    var connected_subgraph = {"nodes": [], "links": []};
+        connected_subgraph.nodes = connected_subgraph.nodes.concat(connected_subgraph_in.nodes).concat(connected_subgraph_out.nodes);
+        connected_subgraph.links = connected_subgraph.links.concat(connected_subgraph_in.links).concat(connected_subgraph_out.links);
+       add_lookups(connected_subgraph);                 
+    svg.selectAll("path.link")
+/*        .filter( d.source.index != i && d.target.index != i; })*/
+/*      .transition()*/
+        .classed("highlight", function(p) { return connected_subgraph.links_index[p.source.key + ',' + p.target.key] })
+        .classed("fade", function(p) { return !(connected_subgraph.links_index[p.source.key + ',' + p.target.key]) });
+    
+    svg.selectAll("circle")
+/*        .filter( d.source.index != i && d.target.index != i; })*/
+/*      .transition()*/
+        .classed("highlight", function(d) { return connected_subgraph.nodes_in[d.key]  || connected_subgraph.nodes_out[d.key]  })
+        .classed("fade", function(d) { return !(connected_subgraph.nodes_in[d.key] || connected_subgraph.nodes_out[d.key])   });
+        
+  };
+}
+
 
 /**  generates the subset of data to display (based on selected nodes + options) 
 fills global variable: data_show ! 
@@ -573,8 +479,8 @@ function dataToShow (nodes) {
         var data_show_collect = {nodes:[],links:[]};
         
         nodes.forEach(function(n) {
-                        var data_add_in = neighboursWithLinks(n,'in', opt("depth-before"));
-                        var data_add_out = neighboursWithLinks(n,'out', opt("depth-after"));
+                        var data_add_in = neighboursWithLinks(data_all, n,'in', opt("depth-before"));
+                        var data_add_out = neighboursWithLinks(data_all, n,'out', opt("depth-after"));
                         data_show_collect.nodes = data_show_collect.nodes.concat(data_add_in.nodes).concat(data_add_out.nodes);
                         data_show_collect.links = data_show_collect.links.concat(data_add_in.links).concat(data_add_out.links);
                     });
@@ -583,23 +489,19 @@ function dataToShow (nodes) {
      data_show.nodes = unique_nodes(nodes.concat(data_show_collect.nodes));
      data_show.links = unique_links(data_show_collect.links);
      
-     // extend the object, with some lookup hashes on neighbourhood 
-     hashes = gen_neighbours(data_show.links);
-     data_show = $.extend(data_show, hashes); 
-/* data_show.nodes.forEach; data_all.links;
-.filter(function(e) {*/
-/*                console.log ("DEBUG: links.filter::" + (nodes_sel.indexOf(e.target) > -1 ) )*/
-/*               return (data_show.nodes.indexOf(data_all.nodes[e.target]) > -1 || data_show.nodes.indexOf(data_all.nodes[e.source]) > -1)    */
-/*            return (data_show.nodes.indexOf(data_all.nodes[e.s]) > -1 || data_show.nodes.indexOf(e.target) > -1)
-         });*/
-      
+     // extend the object, with some lookup hashes on neighbourhood
+     add_lookups(data_show);
+  
      return data_show;
     }
 
 /** generate lookup hashes for neighbours;
+    for faster/simpler neighborhood lookup
+from: http://stackoverflow.com/questions/8739072/highlight-selected-node-its-links-and-its-children-in-a-d3-js-force-directed-g
 */
-function gen_neighbours(links) {
+function add_lookups(data) {
 
+    var links = data.links;
     var neighbours = {"links_index": {}, 
                       "nodes_in": {}, "nodes_out": {},
                       "links_in": {}, "links_out": {}};
@@ -629,10 +531,14 @@ function gen_neighbours(links) {
                              }
                        });
                        
-return neighbours;
-
+    data = $.extend(data, neighbours);
+    return data; 
 }
 
+
+
+/*                        item_detail.text(function (d) { return "links_in: " +  dataShowCount(d.key, "links_in") +  "; links_out: " +  dataShowCount(d.key, "links_out") ;
+                                                       })*/
 function dataShowCount(n_key, info_type) { 
 
     if (data_show[info_type][n_key]) {
@@ -641,49 +547,38 @@ function dataShowCount(n_key, info_type) {
         return 0
        }
 }
+
 /** returns appropriate link
 */
 function neighboring(a, b) {
   return linkedByIndex[a.index + "," + b.index];
 }
 
-/** access function to retrieve the neigbours from the hashes
-especially handles the (necessarily?) empty elements (undefined),
-as not every position is filled 
-(perhaps other key, than index would be less confusing)
-*/
-function neighbours (n, dir, depth=1) {
-        var n_in = neighbours_in[n.key] ? neighbours_in[n.key] : [] ;
-        var n_out = neighbours_out[n.key] ? neighbours_out[n.key] : [] ;
-        var result_n;
-        if (dir == 'in' ) { result_n = n_in; }
-                   else if (dir == 'out' ) { result_n = n_out; }
-                   else { result_n = n_out.concat(n_in); }
-        var n_nextlevel = [];
-        if (depth > 1) { 
-         result_n.forEach (function(n) 
-                     { var n_neighbours = neighbours(n, dir, depth - 1);
-                     n_nextlevel = n_nextlevel.concat(n_neighbours); }
-                            )
-         }
-        return result_n.concat(n_nextlevel);
-        
-}
 
 function neighboursWithLinks (n, dir, depth=1) {
-        var n_in = neighbours_in[n.key] ? neighbours_in[n.key] : [] ;
-        var n_out = neighbours_out[n.key] ? neighbours_out[n.key] : [] ;
-        var l_in = links_in[n.key] ? links_in[n.key] : [] ;
-        var l_out = links_out[n.key] ? links_out[n.key] : [] ;
+ return neighboursWithLinks (data_all, n, dir, depth);
+}
+/** access function to retrieve the neighbours from the hashes
+@param dir in|out|any  - but "any" branches in unexpected ways (because it goes in and out on every level = it takes all the children of the parent) 
+@param depth 0-n - go depth-levels; negative depth := no depth restriction = go to the end of the paths;
+@returns a sub-graph
+*/
+function neighboursWithLinks (data, n, dir, depth=1) {
+    if (depth==0) { return {nodes:[], links:[]};}
+
+        var n_in = data.nodes_in[n.key] ? data.nodes_in[n.key] : [] ;
+        var n_out = data.nodes_out[n.key] ? data.nodes_out[n.key] : [] ;
+        var l_in = data.links_in[n.key] ? data.links_in[n.key] : [] ;
+        var l_out = data.links_out[n.key] ? data.links_out[n.key] : [] ;
         
         var result_n = {nodes:[], links:[]};
         if (dir == 'in' ) { result_n.nodes = n_in; result_n.links = l_in; }
                    else if (dir == 'out' ) { result_n.nodes = n_out; result_n.links = l_out; }
                    else { result_n.nodes = n_out.concat(n_in); result_n.links = l_out.concat(l_in);  }
         var n_nextlevel = {nodes:[], links:[]};
-        if (depth > 1) { 
+        if (depth > 0 || depth < 0) { 
          result_n.nodes.forEach (function(n) 
-                     { var n_neighbours = neighboursWithLinks(n, dir, depth - 1);
+                     { var n_neighbours = neighboursWithLinks(data, n, dir, depth - 1);
                      n_nextlevel.nodes = n_nextlevel.nodes.concat(n_neighbours.nodes); 
                      n_nextlevel.links = n_nextlevel.links.concat(n_neighbours.links);
                      })
@@ -693,20 +588,6 @@ function neighboursWithLinks (n, dir, depth=1) {
         
         return result_n;
         
-}
-
-function neighbour_links (nodes, dir) {
-    var l_result = []
-    
-        nodes.forEach (function(n) { 
-               var l_in = links_in[n.key] ? links_in[n.key] : [] ;
-               var l_out = links_out[n.key] ? links_out[n.key] : [] ;
-               if (dir == 'in' ) { l_result = l_result.concat(l_in); }
-               else if (dir == 'out' ) { l_result = l_result.concat(l_out); }
-               else { l_result = l_result.concat(l_out.concat(l_in)); } 
-            } );       
- 
-    return l_result;
 }
 
 /** deduplicates based on index-property */
@@ -722,7 +603,6 @@ function unique_nodes(nodes)
     }
     return result;
 }
-
 
 /** deduplicates links (based on source-target-index
 based on: http://stackoverflow.com/questions/1890203/unique-for-arrays-in-javascript
@@ -800,17 +680,7 @@ function fillOpts(trg_container) {
      }
    }
    
-   
-  /*   
-     d3.select(trg_container).selectAll("input").data(opts[)
-            .enter().append("input")
-            .attr("id", "k")
-            .attr("type", "text")
-            .attr("value", "val")
-//            .attr("value", function (d) { return d } )
-         ;
-        
-*/     
+    
 }
 
 /** generating my own comboboxes, because very annoying trying to use some of existing jquery plugins (easyui.combo, combobox, jquery-ui.autocomplete) */ 
