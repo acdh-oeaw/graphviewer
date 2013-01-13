@@ -2,7 +2,7 @@
 /*div#infovis-wrapper {border: 1px solid grey; margin: 20px; padding: 5px; height:450px; width:70%;}*/
  #infovis {height: 90%; width: 100%;}
  
- #index-container { overflow: auto;}
+ #index-container, #detail-container { overflow: auto;}
  
 .block {
     border: 1px solid #999;
@@ -15,7 +15,7 @@
 .highlight,
 .selected {
     font-weight: bold;
-    background-color: red;    
+    background: #f66;    
 }
 
 .widget-slider {width: 80px;  display:inline-block; font-size: 70%;  margin: 6px 12px 0 2px;}
@@ -27,7 +27,24 @@ float:right;
 path.link {
   fill: none;
   stroke: #999;
-  stroke-width: 1.5px;
+}
+
+path.link.highlight {
+    stroke: #f66;
+    stroke-width: 1.5px;
+}
+
+path.link.fade {
+    stroke-opacity: 0.2;
+}
+
+circle.highlight {
+    stroke: #f66;
+    stroke-width: 1.5px;
+}
+
+circle.fade {
+    opacity: 0.2;
 }
 
 
