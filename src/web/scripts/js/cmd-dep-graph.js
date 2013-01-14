@@ -10,15 +10,6 @@ var nest = {};
 var detail_data = null; // global holder for detail-data (in html)  
  
 
-var index_container_selector = "#index-container";
-var graph_container_selector = '#infovis';
-var navi_container_selector = '#navigate';
-var detail_container_selector = "#detail-container";
-var detail_info_holder_selector =  '#detail-info-holder';
-
-var graph_container = null;
-var index_container = null; 
-
 var input_prefix = "input-";
 var select_rect_min_size = 5;
 var min_circle = 4;
@@ -38,36 +29,18 @@ var opts = {"depth-before": {"value":2, "min":0, "max":10, "widget":"slider"},
             };
 
 
-
 /**  gets the data for the graph and calls rendering of the lists 
  * @name initGraph
  * @function
  */
  function initGraph ()
     {
-    graph_container = $(graph_container_selector);
-    
-    fillOpts(navi_container_selector);
-    
-    $('#infovis-wrapper').resizable( {
-                   start: function(event, ui) {
-                            graph_container.hide();
-                        },
-                   stop: function(event, ui) {
-                            graph_container.show();
-                            renderGraph();
-                       }
-                }
-                );
-
-    
-    $("#navigate .slider").slider();
     
      // load data
      d3.json(source_file , 
                 function(json) {        
                     // return if data missing
-                    if (json==null) { notify("source data missing: " + source_file ); return null}            
+                    if (json==null) { notifyUser("source data missing: " + source_file ); return null}            
                     data_all = json;
                     data_all.links.forEach(function(d) { 
                                         //resolve numeric index to node references
@@ -119,14 +92,12 @@ function renderNodeList (nodes, target_container_selector) {
     .entries(nodes);
   
     target_container = d3.select(target_container_selector);
-        target_container.selectAll("div").remove();
+        target_container.selectAll("div.node-detail").remove();
         
-       
-           
-        var group_divs = target_container.selectAll("div").data(nest)
+        var group_divs = target_container.selectAll("div.node-detail").data(nest)
                         .enter().append("div")
                         .attr("id", function (d) { return "detail-" + d.key })
-                        .classed("cmds-ui-block init-show", 1);
+                        .classed("node-detail cmds-ui-block init-show", 1);
                         
       var group_headers = group_divs.append("div").classed("header", 1)
                         .text(function (d) { return d.key + " |" + d.values.length + "|"});
@@ -168,7 +139,7 @@ function renderNodeList (nodes, target_container_selector) {
                            
               }
                         
-   handleUIBlock($(target_container_selector).find(".cmds-ui-block"));
+   handleUIBlock($(target_container_selector).find(".node-detail.cmds-ui-block"));
   
 }
 
@@ -199,7 +170,7 @@ function renderGraph (data, target_container=graph_container) {
      }
   
   // information about the displayed data 
-        notify("show nodes: " + data_show.nodes.length + "; "
+        notifyUser("show nodes: " + data_show.nodes.length + "; "
                         + "show links: " + data_show.links.length);
         
   
@@ -252,51 +223,49 @@ function renderGraph (data, target_container=graph_container) {
 /*            .style("stroke-width", function(d) { return Math.sqrt(d.value); });*/
 
             
-            
-        var circle = svg.append("svg:g")
-             .selectAll("circle")
-            .data(force.nodes())
-            .enter().append("svg:circle")
+         var gnodes = svg.append("svg:g")
+                      .selectAll("g.node")
+                      .data(force.nodes())
+                      .enter().append("g")
+                      .attr("class", function(d) { return "type-" + d.type.toLowerCase()})
+                      .classed("selected", function(d) { return d.selected; })
+                      .on("click", function(d) {d.selected= d.selected ? 0 : 1; updateSelected() })
+                      .on("mouseover", highlight("in")).on("mouseout", highlight("out"))
+                      .call(force.drag);
+                
+            gnodes.append("svg:circle")
 /*            .attr("r", 6)*/
             .attr("r", function(d) { if (opt("node-weight")=="1"){ return min_circle }
-                                        else {return (Math.sqrt(d.count)>min_circle ? Math.sqrt(d.count) * 2 : min_circle); } })
-          /*  .attr("x", function(d) {return d.x;})
-            .attr("y", function(d) {return d.y;})*/
-            .call(force.drag); 
-       
-         circle.append("title")
-            .text(function(d) { return d.name; });
-        
+                                        else {return (Math.sqrt(d.count)>min_circle ? Math.sqrt(d.count) * 2 : min_circle); } })    
+            
+            gnodes.append("title")
+                  .text(function(d) { return d.name; });
+                  
+      
+         
+        /*
        svg.selectAll("circle")
             .attr("class", function(d) { return "type-" + d.type.toLowerCase()})
             .classed("selected", function(d) { return d.selected; })
           .on("click", function(d) {d.selected= d.selected ? 0 : 1; updateSelected() })
           .on("mouseover", highlight("in")).on("mouseout", highlight("out"));
+        */
         
-      /*    
-        var textgroup = svg.append("svg:g").selectAll("g")
-            .data(data.nodes)
-          .enter().append("svg:g")
-          .attr("class", function(d) { return "type-" + d.type.toLowerCase()})
-          .on("click", function(d) {d.selected= d.selected ? 0 : 1; updateSelected() });
-        
-        
-         textgroup.attr("data-key", function (d) { return d.name } );
-         
         // A copy of the text with a thick white stroke for legibility.
-        textgroup.append("svg:text")
-            .attr("x", 8)
-            .attr("y", ".31em")
-            .attr("class", "shadow")
-            
-            .text(function(d) { return d.name; });
+        if (opt("labels") =='show') {
+           gnodes.append("svg:text")
+                 .attr("x", 8)
+                 .attr("y", ".31em")
+                 .attr("class", "shadow")
+                 .text(function(d) { return d.name; });
+           gnodes.append("svg:text")
+                 .attr("x", 8)
+                 .attr("y", ".31em")
+                 .text(function(d) { return d.name; });
+        }
         
-        textgroup.append("svg:text")
-            .attr("x", 8)
-            .attr("y", ".31em")
-            .text(function(d) { return d.name; });
-*/
-
+  
+  
    function tick(e) {
     var link_distance_int = parseInt(opt("link-distance"));      
     var k =  10 * e.alpha;
@@ -353,11 +322,11 @@ function renderGraph (data, target_container=graph_container) {
             }  
        });
          
-         circle.attr("cx", function(d) {return d.x;})
-                .attr("cy", function(d) {return d.y;});
-      /* circle.attr("transform", function(d) {
+         /*circle.attr("cx", function(d) {return d.x;})
+                .attr("cy", function(d) {return d.y;});*/
+       gnodes.attr("transform", function(d) {
             return "translate(" + d.x + "," + d.y + ")";
-       });*/
+       });
         
   /*     textgroup.attr("transform", function(d) {
             return "translate(" + d.x + "," + d.y + ")";
@@ -405,8 +374,15 @@ invoked during the (jquery-)initalization */
 function loadDetailInfo () {
      
   $(detail_info_holder_selector).load(detail_file,function(data) {
-     $(detail_container_selector).html(getDetailInfo("summary", "overall"));
+     $(detail_container_selector).html(
+     '<div id="detail-summary-overall" class="cmds-ui-block init-show" ><div class="header">Overview</div><div class="content">'
+     + getDetailInfo("summary", "overall") + '</div></div>');
+     
+     handleUIBlock($(detail_container_selector).find(".cmds-ui-block"));
+     
   });
+  
+  
 }
 
 function getDetailInfo(type, id) {
@@ -444,7 +420,7 @@ function updateSelected () {
 }
 
 
-// Returns an event handler for fading a given chord group.
+// Returns an event handler for highlighting the path of selected (mouseover) node.
 function highlight() {
   return function(d, i) {
     // console.log ("fade:" + d.key);
@@ -620,108 +596,4 @@ function unique_links(links)
         }
     }
     return result;
-}
-
-/**
-gets an option, checking with the values in the navigation-UI
-*/
-function opt(key) {
-
-    if ($('#' + input_prefix + key) && (opts[key].value != $('#' + input_prefix + key).val())) {
-        opts[key].value = $('#' + input_prefix + key).val();    
-     } else if (opts[key].value)  {
-        return opts[key].value
-     } else if (opts[key])  {
-        return opts[key]
-     } else {
-        return ""
-     }
-}
-
-function setOpt(input_object) {
-
-    var id = $(input_object).attr("id");
-    var val = $(input_object).val();
-    key = id.substring(id.indexOf(input_prefix) + input_prefix.length)
-    opts[key].value = val;
-    return opts[key].value;
-}
-
-
-function fillOpts(trg_container) {
-
-  for ( var key in opts ) {
-    if ($('#' + input_prefix + key).length) {
-        $('#' + input_prefix + key).value = opts[key].value;   
-     } else if (trg_container)  {
-        var new_input_label = "<label>" + key + "</label>";
-        var new_input;
-        
-       if (opts[key].widget == "slider") {
-            [new_input,new_widget] = genSlider(key, opts[key].values);
-         } else if (opts[key].widget =="selectone") {
-            [new_input,new_widget] = genCombo(key, opts[key].values);
-            // set initial value
-            $(new_input).val(opts[key].value);
-            
-        //     $(new_input).autocomplete({"source":opts[key].values});
-         }
-         
-    /* hook changing  options + redrawing the graph, when values in navigation changed */
-         new_input.change(function () {
-               setOpt(this);
-               var related_widget = $(this).data("related-widget");
-           if ( $(related_widget).hasClass("widget-slider")) {$(related_widget).slider("option", "value", $(this).val()); }
-               renderGraph(); 
-            });
-               
-        $(trg_container).append(new_input_label, new_input, new_widget);
-        
-     }
-   }
-   
-    
-}
-
-/** generating my own comboboxes, because very annoying trying to use some of existing jquery plugins (easyui.combo, combobox, jquery-ui.autocomplete) */ 
-function genCombo (key, data) {
-    
-    var select = $("<select id='widget-" + key + "' />")
-        select.attr("id", input_prefix + key)
-    data.forEach(function(v) { $(select).append("<option value='" + v +"' >" + v + "</option>") });
-    return [select, null];
-}
-
-function genSlider (key, data) {
-
-    var new_input = $("<input />");
-            new_input.attr("id", input_prefix + key)
-                 .val(opts[key].value)
-/*                 .attr("type", "text")*/
-                 .attr("size", 3);
-      
-    var new_widget = $("<div class='widget-" + opts[key].widget + "'></div>");
-        new_widget.attr("id", "widget-" + key);
-        new_widget.slider( opts[key]);
-            
-        // set both-ways references between the input-field and its slider - necessary for updating 
-        new_widget.data("related-input-field",new_input);
-        new_input.data("related-widget",new_widget);
-     
-//           console.log("widget:" + opts[key].widget);
-        
-        new_widget.bind( "slidechange", function(event, ui) {
-            //   console.log(ui.value);
-               $(this).data("related-input-field").val(ui.value);
-               // update the opts-object, but based on the (updated) value of the related input-field
-                setOpt($(this).data("related-input-field"));
-               renderGraph();
-         });
-         
-   return [new_input,new_widget]; 
-} 
-
-
-function notify (msg) {
-  $("#notify").append(msg);
 }
