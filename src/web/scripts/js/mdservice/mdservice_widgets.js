@@ -69,6 +69,13 @@ var notifyset = { notifymessages: [],
 		$('#' + mid).remove();
 	}	
 };
+
+
+function addToNotifylist (x) {	
+	$("#notifylist").prepend(x);	
+}
+
+
 ////////////////////////////////////////////////////////////////////////
 
 /**
