@@ -1,9 +1,13 @@
 
 /*div#infovis-wrapper {border: 1px solid grey; margin: 20px; padding: 5px; height:450px; width:70%;}*/
- #infovis {height: 90%; width: 100%;}
+ #infovis {height: 95%; width: 100%; overflow: auto;}
  
  #index-container, #detail-container, #navigate { overflow: auto;}
  
+ #navigate { line-height: 2.5em;}
+ #navigate select { margin-right: 0.5em; }
+ #navigate label {padding: 0px 2px;}
+ a.type-link { padding: 2px 4px;}
  
 .block {
     border: 1px solid #999;
@@ -13,17 +17,13 @@
   display: none;
 }
 
+.hide { display:none;}
+
 .highlight,
 .selected {
     font-weight: bold;
     background: #f66;    
 }
-
-.highlight circle,
-.selected circle {
-    fill: #f66;    
-}
-
 
 .widget-slider {width: 80px;  display:inline-block; font-size: 70%;  margin: 6px 12px 0 2px;}
 
@@ -50,19 +50,19 @@ circle.highlight {
     stroke-width: 1.5px;
 }
 
-circle.fade {
+.fade circle, circle.fade {
     opacity: 0.2;
 }
 
 
-circle {
-  fill: #99c;
+.type-element circle {
+  fill: #99f;
   stroke: #66a;
   stroke-width: 1px;
 }
 
 
-circle.type-profile {
+.type-profile circle {
   fill: #66a;
   stroke: #339;
 }
@@ -72,11 +72,26 @@ circle.type-profile {
   font-weight: bold;
 }
 
+.type-component circle {
+  fill: #ddf;
+  stroke: #99c;
+}
 
-circle.type-datcat {
+.type-datcat circle {
   fill: #6a6;
   stroke: #393;
 }
+
+.type-datcat text{
+  font-style: italic;
+}
+
+
+.highlight circle,
+.selected circle {
+    fill: #f66;    
+}
+
 
 
 circle.selected {
