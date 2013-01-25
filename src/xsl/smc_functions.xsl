@@ -279,5 +279,11 @@
 		<xsl:value-of select="if ($matching_termset/url_prefix and $matching_termset/url_prefix!='' and $url!='') then replace($url, $matching_termset[1]/url_prefix, concat(string-join($matching_termset/key,','),':')) else $url" />		
 	</xsl:function>	
 	
+
+<!-- taken from cmd2graph.xsl -->
+	<xsl:function name="my:normalize">
+		<xsl:param name="value" />		
+		<xsl:value-of select="translate($value,'*/-.'',$@={}:[]()#>&lt; ','XZ__')" />		
+	</xsl:function>
 	
 </xsl:stylesheet>
