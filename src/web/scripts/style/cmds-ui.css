@@ -2,19 +2,22 @@
 /*********************/
 /* basic page layout */ 
 #header { height: 70px; }
-#top-menu {position: absolute; right: 20px; top: 10px; }
+/* #top-menu {position: absolute; left:450px; top: 40px;}*/
+ #top-menu {padding-left:18px;}
+ #top-menu a {padding: 2px 4px;}
 #left-menu {float: left; width:250px; height:500px; overflow:auto;}
 #main {margin-left:260px; /* max-width: .. */}
 #query-input { padding: 6px;  /* max-width: 600px; */ }
 #repositories {margin: 6px 0px; }
-#notify { max-width: 400px; position: relative; overflow: auto; height: 40px; /* display:none;  */}
+#notify { max-width: 500px; position: absolute; right: 20px; top:10px; overflow: auto; height: 40px; /* display:none;  */}
 #user {text-align: right;}
 #welcome {max-width: 600px; padding: 10px;}
 
 /* ******************** */
 /* look and feel, fonts */
 body, table { font-size: 12px; font-family: Helvetica,Tahoma,Arial,Verdana,sans-serif;}
-#site-name { font-family: Helvetica, Tahoma, Verdana, sans-serif; font-size: 24px; color: #014172; /* #040288 #666699; */ display:inline; padding-left: 20px; position:absolute; top:24px}
+#site-name { font-family: Helvetica, Tahoma, Verdana, sans-serif; font-size: 24px; color: #014172; /* #040288 #666699; */ display:inline; padding-left: 20px; position:absolute; top:16px}
+
 #welcome h3 { color: #014172;}
 
 .note { font-size: 0.9em; color: #9999aa; }
@@ -50,7 +53,7 @@ tr.detailselection {background-color: #E6E9F0;}
 
 table.show { border: 1px solid #A6C9E2; }
 table.show, table.show table, table.show td {	border: 1px solid #A6C9E2;	border-collapse: collapse; vertical-align: top; }
-table.show th { font-style: italic; font-weight: normal; font-size: 0.9em; padding: 0px; }
+table.show th { font-style: italic; font-weight: normal; font-size: 0.9em; padding: 0px 2px; }
 /* terms-tree table */
 .terms-tree .treecol {padding-left: 1.5em;}
 
@@ -75,7 +78,8 @@ table.show th { font-style: italic; font-weight: normal; font-size: 0.9em; paddi
 .cmds-ui-block { margin: 2px; text-align: left; overflow: auto;}
 
 .cmds-elem-plus .detail,
-.ui-context-dialog { display:none; overflow: auto; position:absolute;  border 1px solid #A6C9E2; background-color: #fafaff;}/* z-index:1; }*/
+td.number .detail,
+.ui-context-dialog { display:none; overflow: auto; position:absolute;  text-align:left; border: 1px solid #A6C9E2; background-color: #fafaff;}/* z-index:1; }*/
 /* .cmds-elem-plus .detail { display: none; border: 1px solid #A6C9E2;} */
 
 .cmds-elem-prop {}
@@ -141,13 +145,16 @@ different render (cmds-navi-header.paging-input too small) */
 
 /* documentation */
 .title, h1, h2, h3 { color: #014172;}
-h1 {font-size: 1.6em; margin: 30px 0 10px 30px;}
+.section h1 { font-size: 1.4em; margin: 1em 0 0.5em 0; }
+.section h2 {font-size: 1.2em; font-weight:bold; margin: 1em 0 0.5em 0; }
+.section h3 {font-size: 1.1em; font-style:italic; margin: 1em 0 0.5em 0; } 
+h1, h1.title {font-size: 1.6em; margin: 30px 0 10px 30px;}
 h2 {font-size: 1.4em; margin: 1em 0 0.4em 0;}
 h3 {font-size: 1.2em; margin: 0.8em 0 0.4em 0;}	 
 .title {font-size: 1.2em; font-weight: bold; margin: 0.4em 0 0 0.2em;}
 dt { padding: 1em 0 0.2em 1.5em; font-weight: bold;}
 dd { padding-left: 2.5em; display:block; -moz-margin-start: 0px;}
-.info {max-width: 600px; margin:30px;}
+.document, .info {max-width: 600px; margin:30px;}
 .info p { margin: 0.4em 0; }
 .info div { padding: 0.4em 0;}
 .info li { padding: 0.2em 0 0.2em 8px;}  
