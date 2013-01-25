@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+
+
+<!-- ====================================================================== 
+     Date:     2011-10     
+     Project:  SMC
+     (based on Bruce Phillips: Coding_Actions_Struts2_Ant)
+     ====================================================================== -->
+
+
+	
+<project name="SMC init" default="init" basedir=".">
+	
+    <description>
+           targets for initializing the SMC-module - i.e. fetching the source data
+    </description>
+	
+  
+	
+	<property name="cache.dir" value="data2" />
+	<property name="out.dir" value="output" />
+	<property name="smc.config" value="src/smc_config.xml" />
+	<property name="xsl.dir" value="src/xsl/" />
+	
+	
+	<property name="scripts.dir" location="C:\Users\m\3\7utils"/>
+ 
+ <import file="${scripts.dir}\build.xml" />   
+
+<target name="gen-build-info" >
+	<ant antfile="${scripts.dir}\build.xml" target="gen-build-info">
+		<property name="in.dir" location="" />
+		<property name="other.build" value="build_init"/>
+		<property name="out.dir" location="docs"/>
+	</ant>
+</target>
+
+
+	<target name="gen-docs" >
+		<ant antfile="${scripts.dir}\build_docs.xml" target="gen-jsdoc">
+			<!-- src/web/scripts/js/cmd-dep-graph.js   -->
+			<property name="src.dir" location="src/web/scripts/js/cmd-dep-graph.js" />
+			<property name="docs.dir" location="docs/jsdocs/"/>
+		</ant>		
+	</target>
+		
+		
+	<target name="gen-userdocs" >
+		<ant antfile="${scripts.dir}\build_docs.xml" target="rst2html">
+			<!-- src/web/scripts/js/cmd-dep-graph.js   -->
+			<property name="src.file" location="docs/userdocs.rst" />
+			<property name="out.file" location="docs/userdocs.html/"/>
+			<property name="stylesheet" value="scripts/css/cmds-ui.css"/>
+		</ant>		
+	</target>
+		
+
+	<target name="init-data" description="run sequentially the initialization steps">
+		<mkdir dir="${cache.dir}" />
+		
+		<property name="init-sequence" value="cmd-profiles-raw,cmd-terms,cmd-terms-nested,dcr-terms,isocat-languages,termsets,dcr-cmd-map,rr-relations,rr-terms" ></property>
+<!--		<property name="init-sequence" value="cmd-profiles-raw,cmd-terms" ></property>-->
+		<foreach list="${init-sequence}" target="init-step" param="dataset.key" />
+	</target>
+	
+<!--	//		init_step ("cmd-profiles-raw");
+	//		don't do this! it is too big
+	//init_step ("cmd-resolved");
+	//init_step ("cmd-terms");
+	init_step ("cmd-terms-nested");
+	//init_step ("dcr-terms");
+	//init_step ("isocat-languages");
+	//init_step ("termsets");
+	// init_step ("dcr-cmd-map");
+	//init_step ("rr-relations");
+	//init_step ("rr-terms");
+	-->
+	<target name="init-step" description="one initialization steps - parametrized with dataset.key">
+				
+		<echo message="generating: ${dataset.key}" />
+		<saxon-xslt style="${xsl.dir}smc_init.xsl" in="${smc.config}"
+			out="${cache.dir}/${dataset.key}.xml" >
+			<param name="data_key" expression="${dataset.key}"/>			
+			<param name="cache" expression="use"/>			
+			<param name="cache_dir" expression="../../${cache.dir}"/>
+			<!-- <sysproperty key="ANT_OPTS"
+                 value="-Xmx512m" 
+     />-->
+		</saxon-xslt>						
+		
+	</target>
+
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+
+	<target name="gen-out" description="generate various views on the data" 
+		depends="init-out,smc-stats,smc-stats2,gen-cmd-dep-graph" >
+		
+	</target>
+		
+	<target name="init-out" description="clean and refill the output directory "
+		depends="gen-userdocs">
+			<delete dir="${out.dir}" />
+			<copy todir="${out.dir}">
+			<fileset dir="src/web" />
+			<fileset file="docs/userdocs.html" />
+			<fileset file="docs/graph_legend.svg" />
+		</copy>
+	</target>
+		
+	<target name="smc-stats" description="generate statistics - old - obsoleting by smc-stats2">
+		
+		<saxon-xslt style="${xsl.dir}smc_stats.xsl" in="${cache.dir}/dcr-cmd-map.xml"
+			out="${out.dir}/smc_stats.html" force="true">						
+			<param name="cache" expression="use"/>			
+			<param name="format" expression="htmlpage"/>
+			<param name="cache_dir" expression="../../${cache.dir}"/>
+		</saxon-xslt>						
+		
+	</target>
+	
+	<target name="smc-stats2" description="generate statistics (via dataset-xml)">
+		
+		<saxon-xslt style="${xsl.dir}smc2stats_datasets.xsl" in="${cache.dir}/dcr-cmd-map.xml"
+			out="${out.dir}/smc_stats_dataset.xml" force="true">						
+			<param name="cache" expression="use"/>			
+			<param name="cache_dir" expression="../../${cache.dir}"/>
+		</saxon-xslt>						
+		
+		<property name="amc.xsl.dir" value="C:/Users/m/3/corpus_shell/_repo/corpus_shell/xsl/amc" />
+		<saxon-xslt style="${amc.xsl.dir}/dataset2html.xsl" in="${out.dir}/smc_stats_dataset.xml"
+			out="${out.dir}/smc_stats_detail.html" force="true">						
+			<param name="format" expression="html"/>
+			<param name="mode" expression="dataseries-table"/>
+		</saxon-xslt>						
+		
+		
+		<saxon-xslt style="${amc.xsl.dir}/dataset2html.xsl" in="${out.dir}/smc_stats_dataset.xml"
+			out="${out.dir}/smc_stats.html" force="true">						
+			<param name="format" expression="htmlpage"/>
+			<param name="mode" expression=""/>
+		</saxon-xslt>						
+		
+	</target>
+	
+	<target name="gen-cmd-dep-graph" description="generate graph of component dependencies (dot/svg/json)" 		
+		depends="gen-cmd-dep-graph-dot,gen-cmd-dep-graph-json" 
+		/>		
+		
+		<target name="gen-cmd-dep-graph-xml" description="generate graph of component dependencies (internal xml-format)" 		>		
+			<saxon-xslt style="${xsl.dir}cmd2graph.xsl" in="${cache.dir}/cmd-terms-nested.xml"
+				out="${out.dir}/cmd-dep-graph.xml" >
+			</saxon-xslt>						
+		</target>
+		
+		<target name="gen-cmd-dep-graph-dot" description="generate dot-graph of component dependencies (dot/svg)" 
+			depends="gen-cmd-dep-graph-xml"		>		
+				
+					<saxon-xslt style="${xsl.dir}graph2dot.xsl" in="${out.dir}/cmd-dep-graph.xml"
+						out="${out.dir}/cmd-dep-graph.dot" >
+					</saxon-xslt>						
+				
+				<exec executable="dot">			    				
+					<arg value="${out.dir}/cmd-dep-graph.dot" />
+					<arg value="-o${out.dir}/cmd-dep-graph.svg"/>
+					<arg value="-Tsvg"/>
+				</exec>    		
+		</target>
+		
+	<target name="gen-cmd-dep-graph-json" description="generate dot-graph of component dependencies (json-d3)" 
+			depends="gen-cmd-dep-graph-xml"		>		
+		
+			<saxon-xslt style="${xsl.dir}graph2json-d3.xsl" in="${out.dir}/cmd-dep-graph.xml"
+				out="${out.dir}/cmd-dep-graph.d3.js" force="true">
+			</saxon-xslt>						
+			
+	</target>			
+	
+	
+	<!--
+	OBSOLETED by: gen-cmd-dep-graph-json <- gen-cmd-dep-graph-xml 
+	
+	<target name="gen-cmd-dep-graph-json-d3" description="generate graph of component dependencies (json/d3)" 		
+		>		
+		<saxon-xslt style="${xsl.dir}cmd2graph-json-d3.xsl" in="${cache.dir}/cmd-terms-nested.xml"
+			out="${out.dir}/scripts/cmd-dep-graph-d3.json" force="true" >
+			<param name="profiles" expression="teiHeader" />
+		</saxon-xslt>						
+	
+	</target>			
+-->
+</project>
+

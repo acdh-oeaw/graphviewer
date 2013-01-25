@@ -23,18 +23,21 @@ node [shape=none];
 context;
 term; */
 
+/* data elements */
 node [shape=box];
 dcr_terms;
+cmd_terms;
 cmd_terms_nested;
 dcr_cmd_map;
 cmd_dep_graph_xml;
 cmd_dep_graph_dot;
 cmd_dep_graph_dot_svg;
 cmd_dep_graph_json;
+smc_dataset_xml;
 dcr_terms_skos_rdf;
-openskos_smc;
 
 
+/* processing, code  */
 node [shape=ellipse];
 	ant;
 	mdrepo;
@@ -48,18 +51,24 @@ node [shape=ellipse];
 	dcr_smc2skos_xsl;
 	smc_stats_xsl;	
 	openskos_upload;
+	smc2dataset_xsl;
+	dataset2table_xsl;
 
-node [shape=trapezium];
+/* user "interfaces"  - human readable output */ 
+node [shape=box, peripheries=2];
 smc_stats_html;
 browser_html;
 mdrepo_stats_html [color=red,style=dashed, fontcolor=red];
+smc_stats_detail_html;
+openskos_smc;
+
 
 	subgraph order {
 	rank=same;
-	
-		dot;
+	dot;
+		smc_stats_html;
 		mdrepo_stats_html;
-	
+		smc_stats_detail_html;
 	}
 
 /* context -> list;
@@ -69,6 +78,7 @@ term -> map; */
 ant -> smc_init -> cmd_terms_nested;
 smc_init -> dcr_cmd_map;
 smc_init -> dcr_terms;
+smc_init -> cmd_terms;
 cmd_terms_nested -> cmd_dep_graph_xsl -> cmd_dep_graph_xml;
 
 cmd_dep_graph_xml -> graph_dot_xsl -> cmd_dep_graph_dot  -> dot -> cmd_dep_graph_dot_svg; 
@@ -78,13 +88,20 @@ cmd_dep_graph_dot_svg -> graph_json_xsl [label="doc"];
 
 d3 -> browser_html [dir=back, label=uses];
 cmd_dep_graph_json -> browser_html [dir=back, style=dashed, label=calls];
-smc_stats_html -> browser_html [dir=back, style=dashed, label=calls, color=red];
+smc_stats_detail_html -> browser_html [dir=back, style=dashed, label=calls];
 mdrepo -> mdrepo_stats_html;
 ant -> gen_mdrepo_stats ->  mdrepo_stats_html [color=red,style=dashed];
 mdrepo_stats_html -> browser_html [dir=back, style=dashed, label="calls (TODO)", color=red];
 
 
 dcr_cmd_map -> smc_stats_xsl -> smc_stats_html; 
+cmd_terms -> smc_stats_xsl;
+dcr_cmd_map -> smc2dataset_xsl -> smc_dataset_xml -> dataset2table_xsl -> smc_stats_detail_html;
+cmd_terms -> smc2dataset_xsl;
+
+dataset2table_xsl -> smc_stats_html [label="(TODO)", color=red];
+
 dcr_terms -> dcr_smc2skos_xsl -> dcr_terms_skos_rdf -> openskos_upload -> openskos_smc;
+
 
 }
