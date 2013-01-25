@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="../src/web/scripts/style/cmd-dep-graph.css" type="text/css"?>
+<?xml-stylesheet href="scripts/style/cmd-dep-graph.css" type="text/css"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100px" height="70px">    
+    <g class="node type-profile" transform="translate(15,5)">
+        <circle r="4"  />
+        <title>Profile</title>
+        <text x="8" y="4" class="shadow">Profile</text>
+        <text x="8" y="4" >Profile</text>
+    </g>
+    <g class="node type-component" transform="translate(15,20)">
+        <circle r="4"  />
+        <title>Component</title>
+        <text x="8" y="4" class="shadow">Component</text>
+        <text x="8" y="4" >Component</text>
+    </g>
+    <g class="node type-element" transform="translate(15,35)">
+        <circle r="4"  />
+        <title>Element</title>
+        <text x="8" y="4" class="shadow">Element</text>
+        <text x="8" y="4" >Element</text>
+    </g>
+    <g class="node type-datcat" transform="translate(15,50)">
+        <circle r="4"  />
+        <title>Data Category</title>
+        <text x="8" y="4" class="shadow">Data Category</text>
+        <text x="8" y="4" >Data Category</text>
+    </g>
+    
+    <g class="node selected type-element" transform="translate(15,65)">
+        <circle r="4"  />
+        <title>selected node</title>
+        <text x="8" y="4" class="shadow">selected node</text>
+        <text x="8" y="4" >selected node</text>
+    </g>
+</svg>
