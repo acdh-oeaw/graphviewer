@@ -53,9 +53,11 @@ $(function(){
 		*/
 		//////////// LOAD DATA
 		// loadData();
-		
+	
+    	
 		initGraph();
 		loadDetailInfo ();
+		
 	
         addFunctionality();
    
@@ -78,9 +80,12 @@ function addFunctionality(){
 	       filterIndex ($(this).val());
 	});
 	
-    fillOpts(navi_container_selector);
-    
+    /*fillOpts(navi_container_selector);
     $("#navigate .slider").slider();
+    */
+     $("#navigate").QueryInput({params: opts,
+            onValueChanged: renderGraph
+            });
     
     $('#infovis-wrapper').resizable( {
                    start: function(event, ui) {
@@ -93,7 +98,19 @@ function addFunctionality(){
                 }
                 );
 
+    $('#input-link').live("mousedown", function(event) {
+    console.log(this);
+                $(this).attr("target", "_blank");
+                    $(this).attr("href", generateLink());
+                   });
     
+    $('#input-download').live("mousedown", genDownload);
+    
+ $(".detail-caller").live("click", function(event) {
+                //console.log(this);
+                event.preventDefault();
+                $(this).parent().find('.detail').toggle();
+              });
+              
 
-	
 }

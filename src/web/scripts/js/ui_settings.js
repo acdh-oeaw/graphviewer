@@ -88,7 +88,7 @@ var layoutBaseSettings = {
 		    size:					"auto"
 		  ,	west__size:				140 
 		  ,	east__size:				280 
-		//,	north__size:			200
+		,	north__size:			60
 		  ,	spacing_open:			4//8 // ALL panes
 		//,	spacing_closed:			12//12 // ALL panes
 		//,	north__spacing_open:	0
