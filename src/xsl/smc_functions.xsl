@@ -13,6 +13,17 @@
 	<xsl:variable name="all-terms-nested" select="doc('file:/C:/Users/m/3lingua/clarin/CMDI/_repo2/SMC/data/cmd-terms-nested.xml')" />
 	<xsl:key name="term-name" match="//Term" use="@name"></xsl:key>
 -->
+
+	<xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+		<xd:desc>
+			<xd:p><xd:b>Created on:</xd:b> May 15, 2013</xd:p>
+			<xd:p><xd:b>Author:</xd:b> m</xd:p>
+			<xd:p>This is used when resolving the cache-path. This way it is always interpreted relative to the primary source document.
+				Otherwise the cache-path was interpreted inconsistently in the doc()-function vs. xsl:result-document@href </xd:p>
+		</xd:desc>
+	</xd:doc>
+	<xsl:variable name="base-uri" select="base-uri()" />
+	
  <!--
  @param profiles - list of <profileDescription> 
  -->
@@ -23,7 +34,7 @@
 		<Termsets count="{count($profiles)}">
 		<xsl:for-each select="$profiles" >
 			<xsl:variable name="profile_id" select="id"></xsl:variable>
-			<Termset name="{name}"  id="{$profile_id}" type="CMD_Profile">
+			<Termset name="{(name,CMD_ComponentSpec/Header/Name)[1]}"  id="{$profile_id}" type="CMD_Profile">
 				
 					<!-- flattening the structure! -->
 				<xsl:choose>
@@ -285,5 +296,17 @@
 		<xsl:param name="value" />		
 		<xsl:value-of select="translate($value,'*/-.'',$@={}:[]()#>&lt; ','XZ__')" />		
 	</xsl:function>
+	
+	
+	<!-- resolve cache path relative to the primary input-document -->
+	<xsl:function name="my:cachePath">
+		<xsl:param name="key" />		
+		<xsl:param name="id" />
+		
+		<xsl:value-of select="concat(resolve-uri($cache_dir,$base-uri), if (ends-with($cache_dir,'/') or ends-with($cache_dir,'\')) then '' else '/',
+		$key, if ($id!='') then concat('/', my:normalize($id)) else '', '.xml')" />		
+	</xsl:function>
+	
+	
 	
 </xsl:stylesheet>
