@@ -41,7 +41,8 @@
    <xd:p></xd:p>
   </xd:desc>
  </xd:doc>
-<xsl:output method="xml" indent="yes" exclude-result-prefixes="#all" />
+<xsl:output method="xml" indent="yes" exclude-result-prefixes="#all" name="xml"/>
+
 
 
  <xd:doc>
@@ -50,8 +51,22 @@
   </xd:desc>
  </xd:doc>
 <xsl:template match="/" >
-<xsl:message>cache dir: <xsl:value-of select="$cache_dir"></xsl:value-of></xsl:message> 
- <xsl:copy-of select="my:getData($data_key,$cache)" exclude-result-prefixes="my"></xsl:copy-of>
+<xsl:message>cache dir: <xsl:value-of select="$cache_dir"></xsl:value-of></xsl:message>
+ <xsl:message>document-uri: <xsl:value-of select="document-uri(/)"></xsl:value-of></xsl:message>
+ <xsl:message>base-uri: <xsl:value-of select="base-uri()"></xsl:value-of></xsl:message>
+ <xsl:message>resolved-cache: <xsl:value-of select="resolve-uri($cache_dir,$base-uri)"></xsl:value-of></xsl:message>
+<!--  <xsl:copy-of select="my:getData($data_key,$id, $cache)" exclude-result-prefixes="my"></xsl:copy-of>-->
+
+<xsl:choose>
+ <xsl:when test="$data_key = 'load-profiles'">
+  <xsl:call-template name="load-profiles"></xsl:call-template>
+ </xsl:when>
+ <xsl:otherwise> 
+  <xsl:call-template name="getData">
+  </xsl:call-template>
+ </xsl:otherwise>
+</xsl:choose> 
+ 
 </xsl:template>			
 	 
 
