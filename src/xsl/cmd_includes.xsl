@@ -49,20 +49,27 @@
         </xsl:for-each>
     </xsl:template>
     
-
-    <xsl:template match="componentDescription[id] | profileDescription[id]" mode="include">
+<!--    <xsl:template match="componentDescription[id] | profileDescription[id]" mode="include">-->
+    <xsl:template match="profileDescription[id]" mode="include">
     
     	<!--  <xsl:variable name="resolved_uri" select="concat($root_uri, '/', id)" />-->
     	<!--<xsl:variable name="resolved_uri" select="concat($cmd_profiles_uri , '/', my:extractID(id))" />-->
+        <!--
         <xsl:variable name="resolved_uri" select="concat($cmd_profiles_uri , id, '/xml')" />
     	
         <xsl:message>PROFILE: document-uri:<xsl:value-of select="document-uri(/)" /></xsl:message>
         <xsl:message>resolved_uri:<xsl:value-of select="$resolved_uri" /></xsl:message>
-        
+        -->
                 
         <xsl:copy>        	
-        	<xsl:apply-templates mode="include" />
-        	<xsl:apply-templates select="document($resolved_uri)" mode="include" />
+            <xsl:apply-templates mode="include" />
+            <xsl:copy-of select="my:getData('profiles', id, $cache)"></xsl:copy-of>
+        	<!--<xsl:call-template name="getData">
+        	    <xsl:with-param name="key" select="'profile'"></xsl:with-param>
+        	    <xsl:with-param name="id" select="id"></xsl:with-param>
+        	</xsl:call-template>-->
+            <!-- <xsl:apply-templates mode="include" />
+        	<xsl:apply-templates select="document($resolved_uri)" mode="include" /> -->
         	<!-- <xsl:copy-of select="document($resolved_uri)" /> -->
        		<!-- <xsl:copy-of select="document(id, $root_uri)" />  -->
         </xsl:copy>
