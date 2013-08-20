@@ -118,15 +118,20 @@ $.fn.QueryInput = function (options)
         return input;
     }
     
-    /** accept a function reference from opts (.onmousedown)
-    if not specified, generate a link based on the settings
+    /** 
+    generate a link to current state  based on the settings
+   PLANNED?: accept a function reference from opts (.onmousedown)
     */
     function genLink(key, param_settings) {
          
         var a = $("<a>" + key + "</a>");
         a.attr("href", generateLink());
        
-       return a;
+            $(a).mousedown(function(e) {
+                    $(this).attr("target", "_blank");
+                    $(this).attr("href", generateLink());
+             });
+        return a;
     }
     
     function genSubmit(key, param_settings) {
