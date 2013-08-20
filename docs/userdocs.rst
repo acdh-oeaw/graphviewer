@@ -14,11 +14,13 @@ be interpreted (Broeder et al., 2010).
 Thus, every profile can be expressed as a tree, with the profile component as the root node, the used components as intermediate nodes
 and elements or data categories as leaf nodes, parent-child relationship being defined by the inclusion (``componentA -includes-> componentB``) or referencing (``elementA -refersTo-> datcat1``).The reuse of components in multiple profiles and especially also the referencing of the same data categories in multiple CMD elements leads to a blending of the individual profile trees into a graph (acyclic directed, but not necessarily connected).
 
-SMC Browser visualizes this graph structure in an interactive fashion.
+SMC Browser visualizes this graph structure in an interactive fashion. You can have a look at the `examples`_ for inspiration.
 
-It is implemented on top of wonderful js-library d3_, more technical documentation follows soon.
+It is implemented on top of wonderful js-library d3_, the code checked in `clarin-svn`_ (and needs refactoring). More technical documentation follows soon.
 
 .. _d3: https://github.com/mbostock/d3
+.. _clarin-svn: https://svn.clarin.eu/SMC/trunk/SMC
+.. _examples: examples.html
 
 
 Data
@@ -31,6 +33,15 @@ When inspecting the numbers, it is important to be aware of the occurrence expan
 So in an example, a component C has 2 subcomponents and is reused within one profile by two other components A and B, the resulting profile
 will consist of (at least) 8 components (``[A, B, A/C, B/C, A/C/C1, A/C/C2, B/C/C1, B/C/C2]``), although only 5 distinct components are used.
 The same goes for elements in reused components. In most cases it is indicated in the label, if the number reflect distinct items, or all (expanded) occurrences.
+
+(Some of the) numbers in the statistics lead to a list of corresponding terms. 
+E.g. in the summary for a profile, clicking on the components-number lists all the components of given profile alphabetically.
+Currently there are such lists for:
+
+  * ``profile -> components`` 
+  * ``profile -> elements``
+  * ``profile -> data categories``
+  * ``data category -> profiles``
 
 .. _Component Registry: http://catalog.clarin.eu/ds/ComponentRegistry/#
 .. _ISOcat: http://www.isocat.org
@@ -105,13 +116,21 @@ select area in graph
 unselect in detail pane
   clicking on an item in the detail pane unselects it
 
+select in statistics 
+	as mentioned in `Data`_ (some) numbers in the statistics reveal a list of corresponding terms.
+	Clicking on these terms in the statistics page leads to the browser, with given term as selected node (and default settings)
+	
+select in statistics in the detail pane
+  the numbers from statistics page are shown also in the detail pane for selected nodes.
+  Here, clicking on a term from these lists adds it to the graph, as a selected node.
+  
 mouseover 
   on mouse over a node, all connected nodes to given node (and connecting links) within the visible sub-graph are highlighted 
   and all other nodes and links are faded 
 
 drag a node
   click and hold on a node, one can move the node around, however usually the layout is stronger 
-  and puts the node back to its original position
+  and puts the node back to its original position. Not so with the freeze-layout, that freezes all the nodes and lets you move them around freely
 
 Options
 -------
@@ -130,6 +149,11 @@ link-distance
 charge
 	the higher the charge, the more the nodes tend to drift apart
 	
+friction
+  factor for "cooling down" the layout, lower numbers (50-70) stabilize the graph more quickly, 
+  but it may be too early, with higher numbers (95-100) the layout has more time/freedom to arrange,
+  but may get jittery
+  
 node-size
   N = all nodes have given diameter N;
   
@@ -145,8 +169,8 @@ curve
   straight or arc (better visibility)
   
 layout
-  There are a few layouting algorithms provided, 
-  for different data displayed other algorithm may be more appropriate:
+  There are a few layouting algorithms provided. They are all not optimal in any way, but most of the time, they deliver quite good results.
+  For different data displayed other algorithm may be more appropriate:
   
   force
     undirected layout, trying to spread the nodes in the pane optimally, equally in all directions
@@ -154,7 +178,8 @@ layout
   vertical-tree
     top-down layout respect the direction of the edges, children are always below the parents
   horizontal-tree
-    left-right layout respect the direction of the edges, children are always right to the parents
+    left-right layout respect the direction of the edges, children are always right to the parents 
+    (at least they should be, currently, in certain configurations, the layout does not get the orientation for some links right)
   weak-tree
     a layout that "tends" towards left to right arrangement, but not strictly so (experimental)	  	   
   dot
@@ -191,13 +216,6 @@ because this would require `server-side processing`_. (However this is a planned
 .. _javascript trick: https://groups.google.com/forum/?fromgroups=#!topic/d3-js/aQSWnEDFxIc
 .. _server-side processing: http://d3export.cancan.cshl.edu/
   
-  
-Examples
-========
-
-`DCMI terms`_
-
-.. _DCMI terms: ?link-distance=24&charge=107&layout=force&selected=clarin_eucr1p_1288172614023,clarin_eucr1p_1288172614026&
  
 Issues
 ======
@@ -219,6 +237,7 @@ Substantial issues:
 
 * Add information from **RelationRegistry** (relations between DatCats)
 * Blend in instance data from **MDRepository** (allow search on MDRepository)
+* graph operations (intersect, difference of subrgraphs)
 
 Smaller enhancements of the user interface:
 
@@ -228,7 +247,6 @@ Smaller enhancements of the user interface:
 * full HTML-rendering of a node (Profile, Component)
 * backlinking from detail (e.g. view all the profiles a data category is used in by clicking on the number ('used in profiles')
 * store/export SVG/PDF/PNG-renderings of the graphs
-* add layout ``freeze`` static layout, were individual nodes can be moved around freely
 * add edge-weight: scale based on usage, i.e. how often appears the relation in the complete dataset
   i.e. often reused combinations of components/elements will be nearer
-	
+* allow to blend in further (private) CMD-profiles dynamically
