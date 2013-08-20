@@ -22,7 +22,7 @@ handle all rdf DCRs (currently isocat, dublincore elements and terms)
 </history>
 -->
 
-<xsl:output method="xml" indent="yes" > </xsl:output>
+<!--<xsl:output method="xml" indent="yes" > </xsl:output>-->
 
 <!--	<xsl:param name="isocat_prefix" select="'http://www.isocat.org/datcat/'"></xsl:param>-->
 
