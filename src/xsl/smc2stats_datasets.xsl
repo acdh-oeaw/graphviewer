@@ -3,8 +3,9 @@
   version="2.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
-  
-  exclude-result-prefixes="xs"
+  xmlns:ds="http://aac.ac.at/corpus_shell/dataset"
+  xmlns:my="myFunctions"   
+  exclude-result-prefixes="xs my"
   
 >
 <!-- 
@@ -24,7 +25,7 @@ main input file is expected dcr-cmd-map.xml
 
 <xsl:import href="smc_commons.xsl"/>
 
-	<xsl:output method="html" indent="yes" />
+	<xsl:output method="xml" indent="yes" />
 	
   <xsl:param name="title" select="'SMC Stats'" />
     
@@ -41,6 +42,7 @@ main input file is expected dcr-cmd-map.xml
 	<xsl:variable name="count_components_datcat" select="count(distinct-values($cmd-terms//Term[@type='CMD_Component'][@datcat[not(.='')]]/@id))" ></xsl:variable>	
 
 	<xsl:variable name="all_profiles" select="$cmd-terms//Termset" />
+	<xsl:variable name="all_datcats" select="$dcr-terms//Concept" />
  
 <!--<xsl:template name="continue-root">-->	
 	<xsl:template match="/">
@@ -49,6 +51,7 @@ main input file is expected dcr-cmd-map.xml
 			<xsl:call-template name="summary-profiles"></xsl:call-template>
 			<xsl:call-template name="summary-components"></xsl:call-template>
 			<xsl:call-template name="summary-datcats"></xsl:call-template>
+			<xsl:call-template name="ambigue-terms"></xsl:call-template>
 		</multiresult>
 <!--		<xsl:call-template name="summary-concepts"></xsl:call-template>
 		<xsl:call-template name="summary-terms"></xsl:call-template>	
@@ -60,49 +63,47 @@ main input file is expected dcr-cmd-map.xml
 	
 <xsl:template name="summary-overall">
 		
-	<dataset key="summary" label="Summary">
-		<labels>
-			<label key="creation-date">created</label>
-			<label key="count-terms">all Terms</label>
-			<label key="profiles">Profiles</label>
-			<label key="components">Components</label>
-			<label key="distinct-components">distinct Components</label>
-			<label key="elements">Elements</label>
-			<label key="distinct-elements">distinct Elements</label>
+	<ds:dataset key="summary" label="Summary">
+		<ds:labels>
+			<ds:label key="creation-date">created</ds:label>
+			<ds:label key="profiles">Profiles</ds:label>
+			<ds:label key="components">Components</ds:label>
+			<ds:label key="distinct-components">distinct Components</ds:label>
+			<ds:label key="elements">Elements</ds:label>
+			<ds:label key="distinct-elements">distinct Elements</ds:label>
 			
-			<label key="distinct-datcats">distinct DatCats</label>
-			<label key="elems-with-datcats">Elements with DatCats</label>
-			<label key="elems-without-datcats">Elements without DatCats</label>
-			<label key="elems-without-datcats-ratio" >ratio of elements without DatCats</label>
-			<label key="available-concepts">available Concepts</label>
-			<label key="used-concepts">used Concept</label>
-			<label key="blind-concepts">blind Concepts (not in public ISOcat)</label>
-			<label key="unused-concepts">unused Concepts</label>			
-		</labels>
-		<dataseries key="overall" label="Overall">
-			<value key="creation-date"><xsl:value-of select="current-date()"/></value>
-			<value key="count-terms" ><xsl:value-of select="count($dcr-cmd-map//Term)"/></value>
-			<value key="profiles"><xsl:value-of select="count($cmd-terms//Termset)"/></value>
-			<value key="components"><xsl:value-of select="count($cmd-terms//Term[@type='CMD_Component'])"/></value>
-			<value key="distinct-components"><xsl:value-of select="$count_distinct_components"/></value>
-			<value key="elements"><xsl:value-of select="$count_elems"/></value>
-			<value key="distinct-elements"><xsl:value-of select="$count_distinct_elems"/></value>
-			<value key="elems-with-datcats"><xsl:value-of select="count(distinct-values($cmd-terms//Term[@type='CMD_Element'][@datcat[not(.='')]]/@id))"/></value>
-			<value key="elems-without-datcats"><xsl:value-of select="count(distinct-values($cmd-terms//Term[@type='CMD_Element'][@datcat='']/@id))"/></value>
+			<ds:label key="distinct-datcats">distinct DatCats</ds:label>
+			<ds:label key="elems-with-datcats">Elements with DatCats</ds:label>
+			<ds:label key="elems-without-datcats">Elements without DatCats</ds:label>
+			<ds:label key="elems-without-datcats-ratio" >ratio of elements without DatCats</ds:label>
+			<ds:label key="available-concepts">available Concepts</ds:label>
+			<ds:label key="used-concepts">used Concept</ds:label>
+			<ds:label key="blind-concepts">blind Concepts (not in public ISOcat)</ds:label>
+			<ds:label key="unused-concepts">Concepts not used in CMD</ds:label>			
+		</ds:labels>
+		<ds:dataseries key="overall" label="Overall">
+			<ds:value key="creation-date"><xsl:value-of select="current-date()"/></ds:value>
+			<ds:value key="profiles"><xsl:value-of select="count($cmd-terms//Termset)"/></ds:value>
+			<ds:value key="components"><xsl:value-of select="count($cmd-terms//Term[@type='CMD_Component'])"/></ds:value>
+			<ds:value key="distinct-components"><xsl:value-of select="$count_distinct_components"/></ds:value>
+			<ds:value key="elements"><xsl:value-of select="$count_elems"/></ds:value>
+			<ds:value key="distinct-elements"><xsl:value-of select="$count_distinct_elems"/></ds:value>
+			<ds:value key="elems-with-datcats"><xsl:value-of select="count(distinct-values($cmd-terms//Term[@type='CMD_Element'][@datcat[not(.='')]]/@id))"/></ds:value>
+			<ds:value key="elems-without-datcats"><xsl:value-of select="count(distinct-values($cmd-terms//Term[@type='CMD_Element'][@datcat='']/@id))"/></ds:value>
 			<!--<xsl:variable name="elems-without-datcats-ratio" select="count($cmd-terms//Term[@type='CMD_Element'][@datcat='']) div $count_elems"></xsl:variable>
-			<value key="elems-without-datcats-ratio" formatted="{format-number($elems-without-datcats-ratio, '0.00 %')}">
-				<xsl:value-of select="$elems-without-datcats-ratio"/></value>-->
+			<ds:value key="elems-without-datcats-ratio" formatted="{format-number($elems-without-datcats-ratio, '0.00 %')}">
+				<xsl:value-of select="$elems-without-datcats-ratio"/></ds:value>-->
 			<xsl:variable name="elems-distinct-without-datcats-ratio" select="count(distinct-values($cmd-terms//Term[@type='CMD_Element'][@datcat='']/@id)) div $count_distinct_elems"></xsl:variable>
-			<value key="elems-without-datcats-ratio" formatted="{format-number($elems-distinct-without-datcats-ratio, '0.00 %')}">
-				<xsl:value-of select="$elems-distinct-without-datcats-ratio"/></value>
-			<value key="distinct-datcats"><xsl:value-of select="$count_distinct_datcats"/></value>
-			<value key="used-concepts"><xsl:value-of select="count($dcr-cmd-map//Concept)"/></value>
-			<value key="blind-concepts"><xsl:value-of select="count(//Concept[not(Term[@set='isocat'])])"/></value>
-			<value key="available-concepts"><xsl:value-of select="count($dcr-terms//Concept)"/></value>
-			<value key="unused-concepts"><xsl:value-of select="count($dcr-terms//Concept except $dcr-terms//Concept[@id=$dcr-cmd-map//Concept/@id])"/></value>
-		</dataseries>	
+			<ds:value key="elems-without-datcats-ratio" formatted="{format-number($elems-distinct-without-datcats-ratio, '0.00 %')}">
+				<xsl:value-of select="$elems-distinct-without-datcats-ratio"/></ds:value>
+			<ds:value key="distinct-datcats"><xsl:value-of select="$count_distinct_datcats"/></ds:value>
+			<ds:value key="used-concepts"><xsl:value-of select="count($dcr-cmd-map//Concept)"/></ds:value>
+			<ds:value key="blind-concepts"><xsl:value-of select="count(//Concept[not(Term[@set='isocat'])])"/></ds:value>
+			<ds:value key="available-concepts"><xsl:value-of select="count($dcr-terms//Concept)"/></ds:value>
+			<ds:value key="unused-concepts"><xsl:value-of select="count($dcr-terms//Concept except $dcr-terms//Concept[@id=$dcr-cmd-map//Concept/@id])"/></ds:value>
+		</ds:dataseries>	
 		
-	</dataset>
+	</ds:dataset>
 			<!--
 		    <tr><td>profileDescription</td><td align="right"><xsl:value-of select="count(//profileDescription)"/></td></tr>			
 			<tr><td>componentDescription</td><td align="right"><xsl:value-of select="count(//componentDescription)"/></td></tr>			
@@ -139,67 +140,72 @@ main input file is expected dcr-cmd-map.xml
      </table>
 </xsl:template>
 
-<xsl:template name="summary-concepts">
-	
-    <table>
-    	<caption>Data Categories Sets</caption>
-        <tbody>
-            <xsl:for-each select="$dcr-terms//Termset" >
-                <tr><td><xsl:value-of select="@set"></xsl:value-of></td>
-                	<td align="right"><xsl:value-of select="count(Concept)"></xsl:value-of></td>
-                    </tr>       
-            </xsl:for-each>            
-        </tbody>
-    </table>
-</xsl:template>
-
 	
 <xsl:template name="summary-profiles">
 	
-	<dataset key="profile" label="Profiles" count="{count($cmd-terms//Termset)}">
-		<labels>
-			<label key="components"></label>
-			<label key="elements"></label>
-			<label key="distinct-datcats"></label>
-			<label key="elems-with-datcats"></label>
-			<label key="elems-without-datcats"></label>
-			<label key="elems-without-datcats-ratio" >ratio of elements without DatCats</label>
-		</labels>
+	<ds:dataset key="profile" label="Profiles" count="{count($cmd-terms//Termset)}">
+		<ds:labels>
+			<ds:label key="components">Components</ds:label>
+			<ds:label key="distinct-components">distinct Components</ds:label>
+			<ds:label key="elements">Elements</ds:label>
+			<ds:label key="distinct-elements">distinct Elements</ds:label>
+			<ds:label key="distinct-datcats"></ds:label>
+			<ds:label key="elems-with-datcats"></ds:label>
+			<ds:label key="elems-without-datcats"></ds:label>
+			<ds:label key="elems-without-datcats-ratio" >ratio of elements without DatCats</ds:label>
+		</ds:labels>
 				
 	    <xsl:for-each select="$cmd-terms//Termset" >		          
 			<xsl:sort select="@name" order="ascending"/>
+	    	<xsl:variable name="profile_id" select="xs:string(@id)" ></xsl:variable>
 	        <xsl:variable name="count_elems" select="count(./Term[@type='CMD_Element'])" ></xsl:variable>
 	        <xsl:variable name="count_distinct_datcats" select="count(distinct-values(./Term[@type='CMD_Element']/@datcat[not(.='')]))" ></xsl:variable>
 					
-	    	<dataseries key="{@id}" label="{@name}" >
-<!--		    	<value key="distinct-components"><xsl:value-of select="$count_distinct_components"/></value>-->
-		    	<value key="components"><xsl:value-of select="count(./Term[@type='CMD_Component'])"/></value>
-<!--		    	<value key="distinct-elements"><xsl:value-of select="$count_distinct_elems"/></value>-->
-		    	<value key="elements"><xsl:value-of select="$count_elems"/></value>
-		    	<value key="distinct-datcats"><xsl:value-of select="$count_distinct_datcats"/></value>
-		    	<value key="elems-with-datcats"><xsl:value-of select="count(./Term[@type='CMD_Element']/@datcat[not(.='')])"/></value>
-		    	<value key="elems-without-datcats"><xsl:value-of select="count(./Term[@type='CMD_Element'][@datcat=''])"/></value>
-		    	<xsl:variable name="elems-without-datcats-ratio" select="count(./Term[@type='CMD_Element'][@datcat='']) div $count_elems"></xsl:variable>
-		    	<value key="elems-without-datcats-ratio" formatted="{format-number($elems-without-datcats-ratio, '0.00 %')}">
-	    		<xsl:value-of select="$elems-without-datcats-ratio"/></value>
-	    	</dataseries>
+	    	<ds:dataseries key="{@id}" label="{@name}" >
+<!--		    	<ds:value key="distinct-components"><xsl:value-of select="$count_distinct_components"/></ds:value>-->
+	    		<xsl:call-template name="list">
+	    			<xsl:with-param name="key">components</xsl:with-param>
+<!--	    			 exclude the profile as component-->
+	    			<xsl:with-param name="data" select="./Term[@type='CMD_Component'][not(xs:string(@id)=$profile_id)]"></xsl:with-param>
+	    		</xsl:call-template>
+<!--		    	<ds:value key="components"><xsl:value-of select="count(./Term[@type='CMD_Component'])"/></ds:value>-->
+	    		<ds:value key="distinct-components"><xsl:value-of select="count(distinct-values(.//Term[@type='CMD_Component'][not(@parent='')]/@id))" /></ds:value>
+	    		<xsl:call-template name="list">
+	    			<xsl:with-param name="key">elements</xsl:with-param>
+	    			<xsl:with-param name="data" select="./Term[@type='CMD_Element']"></xsl:with-param>
+	    		</xsl:call-template>
+	    		<ds:value key="distinct-elements"><xsl:value-of select="count(distinct-values(.//Term[@type='CMD_Element'][not(@parent='')]/@id))" /></ds:value>
+<!--		    	<ds:value key="elements"><xsl:value-of select="$count_elems"/></ds:value>-->
+	    		<xsl:call-template name="list">
+	    			<xsl:with-param name="key">distinct-datcats</xsl:with-param>
+	    			<xsl:with-param name="type">datcat</xsl:with-param>
+	    			<xsl:with-param name="data" select="distinct-values(./Term[@type='CMD_Element']/@datcat[not(.='')])"></xsl:with-param>
+	    		</xsl:call-template>
+	    		
+<!--	    		<ds:value key=""><xsl:value-of select="$count_distinct_datcats"/></ds:value>-->
+	    		<ds:value key="elems-with-datcats"><xsl:value-of select="count(./Term[@type='CMD_Element']/@datcat[not(.='')])"/></ds:value>
+	    		<ds:value key="elems-without-datcats"><xsl:value-of select="count(./Term[@type='CMD_Element'][@datcat=''])"/></ds:value>
+		    	<xsl:variable name="elems-without-datcats-ratio" select="if($count_elems &gt; 0) then count(./Term[@type='CMD_Element'][@datcat='']) div $count_elems else 0"></xsl:variable>
+	    		<ds:value key="elems-without-datcats-ratio" formatted="{format-number($elems-without-datcats-ratio, '0.00 %')}">
+	    		<xsl:value-of select="$elems-without-datcats-ratio"/></ds:value>
+	    	</ds:dataseries>
 		</xsl:for-each>
-	</dataset>
+	</ds:dataset>
 </xsl:template>
 
 <xsl:template name="summary-components">
 		
-	<dataset key="component" label="Components" count="{count($cmd-terms//Term[@type='CMD_Component'])}">
-			<labels>
-				<label key="used">used in total</label>
-				<label key="profiles">used in Profiles</label>
-				<label key="components">has Components</label>
-				<label key="distinct-elems">has Elements</label>
-				<label key="elems-with-datcats">Elements with DatCats</label>
-				<label key="distinct-datcats">uses DatCats</label>
-				<label key="elems-without-datcats">Elements without DatCats</label>
-				<label key="elems-without-datcats-ratio" >ratio of elements without DatCats</label>
-			</labels>
+	<ds:dataset key="component" label="Components" count="{count($cmd-terms//Term[@type='CMD_Component'])}">
+			<ds:labels>
+				<ds:label key="used">used in total</ds:label>
+				<ds:label key="profiles">used in Profiles</ds:label>
+				<ds:label key="components">has Components</ds:label>
+				<ds:label key="distinct-elems">has Elements</ds:label>
+				<ds:label key="elems-with-datcats">Elements with DatCats</ds:label>
+				<ds:label key="distinct-datcats">uses DatCats</ds:label>
+				<ds:label key="elems-without-datcats">Elements without DatCats</ds:label>
+				<ds:label key="elems-without-datcats-ratio" >ratio of elements without DatCats</ds:label>
+			</ds:labels>
 			
 		<xsl:for-each-group select="$cmd-terms-nested//Term[@type='CMD_Component']" group-by="@id">		          
 				<xsl:sort select="@name" order="ascending"/>
@@ -209,34 +215,34 @@ main input file is expected dcr-cmd-map.xml
 <!--			<xsl:variable name="count_distinct_elem_datcats" select="count(distinct-values(current-group()//Term[@type='CMD_Element']/@datcat[not(.='')]))" ></xsl:variable>-->
 						<xsl:variable name="count_distinct_datcats" select="count(distinct-values(current-group()//Term/@datcat[not(.='')]))" ></xsl:variable>
 				
-				<dataseries key="{@id}" label="{@name}" >
-					<!--		    	<value key="distinct-components"><xsl:value-of select="$count_distinct_components"/></value>-->
-					<value key="used"><xsl:value-of select="$count_usage"/></value>
-					<value key="profiles"><xsl:value-of select="$count_using_profiles"/></value>
-					<value key="components"><xsl:value-of select="count(distinct-values(current-group()//Term[@type='CMD_Component']/@id))"/></value>
-					<!--		    	<value key="distinct-elements"><xsl:value-of select="$count_distinct_elems"/></value>-->
-					<value key="distinct-elems"><xsl:value-of select="$count_distinct_elems"/></value>
-					<value key="elems-with-datcats"><xsl:value-of select="count(distinct-values(current-group()//Term[@type='CMD_Element'][@datcat[not(.='')]]/@id))"/></value>
-					<value key="distinct-datcats"><xsl:value-of select="$count_distinct_datcats"/></value>
+				<ds:dataseries key="{@id}" label="{@name}" >
+					<!--		    	<ds:value key="distinct-components"><xsl:value-of select="$count_distinct_components"/></ds:value>-->
+					<ds:value key="used"><xsl:value-of select="$count_usage"/></ds:value>
+					<ds:value key="profiles"><xsl:value-of select="$count_using_profiles"/></ds:value>
+					<ds:value key="components"><xsl:value-of select="count(distinct-values(current-group()//Term[@type='CMD_Component']/@id))"/></ds:value>
+					<!--		    	<ds:value key="distinct-elements"><xsl:value-of select="$count_distinct_elems"/></ds:value>-->
+					<ds:value key="distinct-elems"><xsl:value-of select="$count_distinct_elems"/></ds:value>
+					<ds:value key="elems-with-datcats"><xsl:value-of select="count(distinct-values(current-group()//Term[@type='CMD_Element'][@datcat[not(.='')]]/@id))"/></ds:value>
+					<ds:value key="distinct-datcats"><xsl:value-of select="$count_distinct_datcats"/></ds:value>
 					<xsl:variable name="elems-without-datcats" select="count(distinct-values(current-group()//Term[@type='CMD_Element'][@datcat='']/@id))" />
-					<value key="elems-without-datcats"><xsl:value-of select="$elems-without-datcats"/></value>
+					<ds:value key="elems-without-datcats"><xsl:value-of select="$elems-without-datcats"/></ds:value>
 					<xsl:variable name="elems-without-datcats-ratio" select="if ($count_distinct_elems &gt; 0) then $elems-without-datcats div $count_distinct_elems else 0"></xsl:variable>
-					<value key="elems-without-datcats-ratio" formatted="{format-number($elems-without-datcats-ratio, '0.00 %')}">
-						<xsl:value-of select="$elems-without-datcats-ratio"/></value>
-				</dataseries>
+					<ds:value key="elems-without-datcats-ratio" formatted="{format-number($elems-without-datcats-ratio, '0.00 %')}">
+						<xsl:value-of select="$elems-without-datcats-ratio"/></ds:value>
+				</ds:dataseries>
 			</xsl:for-each-group>
-		</dataset>
+		</ds:dataset>
 	</xsl:template>
 	
 
 <xsl:template name="summary-datcats">
 	
-	<dataset key="datcat" label="Data Categories" count="{count($dcr-cmd-map//Concept)}">
-		<labels>
-			<label key="def">Definition</label>
-			<label key="used-in-profiles">used in Profiles</label>
-			<label key="referenced-by-elements">referenced by Elements</label>
-		</labels>
+	<ds:dataset key="datcat" label="Data Categories" count="{count($dcr-cmd-map//Concept)}">
+		<ds:labels>
+			<ds:label key="def">Definition</ds:label>
+			<ds:label key="used-in-profiles">used in Profiles</ds:label>
+			<ds:label key="referenced-by-elements">referenced by Elements</ds:label>
+		</ds:labels>
 		
 		
 		<!--<Term set="cmd" type="full-path" schema="clarin.eu:cr1:p_1297242111880"
@@ -248,22 +254,20 @@ main input file is expected dcr-cmd-map.xml
 			<xsl:variable name="count_elems" select="count(Term[@type='full-path'])" ></xsl:variable>
 			<xsl:variable name="profiles" select="distinct-values(Term[@type='full-path']/@schema)" ></xsl:variable>
 			
-			<dataseries key="{@id}" label="{Term[@type='label'][1]}" >
-				<!--		    	<value key="distinct-components"><xsl:value-of select="$count_distinct_components"/></value>-->
+			<ds:dataseries key="{@id}" label="{Term[@type='label'][1]}" >
+				<!--		    	<ds:value key="distinct-components"><xsl:value-of select="$count_distinct_components"/></ds:value>-->
 				
-				<value key="def"><xsl:value-of select="$def"/></value>
-				<value key="used-in-profiles" abs="{count($profiles)}" >
-					<list>
-						<xsl:for-each select="$profiles" >
-							<xsl:variable name="profile-name" select="$all_profiles[@id=current()]/@name"></xsl:variable>
-							<li><a href="#{.}" ><xsl:value-of select="$profile-name" /></a></li>
-						</xsl:for-each>
-					</list>
-				</value>
-				<value key="referenced-by-elements"><xsl:value-of select="$count_elems"/></value>
-			</dataseries>
+				<ds:value key="def"><xsl:value-of select="$def"/></ds:value>
+				<xsl:call-template name="list">
+					<xsl:with-param name="key" >used-in-profiles</xsl:with-param>
+					<xsl:with-param name="type" >profile</xsl:with-param>
+					<xsl:with-param name="data" select="$profiles" />
+				</xsl:call-template>
+				
+				<ds:value key="referenced-by-elements"><xsl:value-of select="$count_elems"/></ds:value>
+			</ds:dataseries>
 		</xsl:for-each>
-	</dataset>
+	</ds:dataset>
 	<!--
 		<table>
 			
@@ -339,25 +343,112 @@ main input file is expected dcr-cmd-map.xml
 	</table>-->
 
 	
-<xsl:template name="ambigue-elems">	
-	<table>
-		<caption>Ambigue elements</caption>
-		<thead><tr><th>comp-name</th><th colspan="3">datcat</th><th>count</th><th>profiles</th></tr></thead>
-		<tbody>			
-			<xsl:for-each-group select="$cmd-terms//Term" group-by="lower-case(@name)">				
-<!--				<xsl:sort select="lower-case(@name)" />				-->
+<xsl:template name="ambigue-terms">	
+	<ds:dataset key="ambigue-terms" label="Ambigue terms" >
+		<ds:label key="term">Term</ds:label>
+		<ds:label key="usage">usage</ds:label>
+		<ds:label key="datcat">distinct DatCats</ds:label>
+		<ds:label key="profiles">used in Profiles</ds:label>
+			<xsl:for-each-group select="$cmd-terms//Term" group-by="lower-case(@name)">
+				<!--				<xsl:sort select="lower-case(@name)" />				-->
 				<xsl:sort select="count(distinct-values(current-group()/@datcat))" order="descending" data-type="number"></xsl:sort>
+				<xsl:if test="count(distinct-values(current-group()/@id)) &gt; 1"  >
+					<ds:dataseries key="{@name}" label="{@name}">
+<!--						<ds:value key="term"><xsl:value-of select="@name"></xsl:value-of></ds:value>-->
+						<xsl:call-template name="list">
+								<xsl:with-param name="key">usage</xsl:with-param>
+								<xsl:with-param name="data" select="distinct-values(current-group()/xs:string(@id))"></xsl:with-param>
+						</xsl:call-template>
+						<xsl:call-template name="list">
+							<xsl:with-param name="key">datcat</xsl:with-param>
+							<xsl:with-param name="type">datcat</xsl:with-param>
+							<xsl:with-param name="data" select="distinct-values(current-group()/xs:string(@datcat))"></xsl:with-param>
+						</xsl:call-template>
+						<xsl:call-template name="list">
+							<xsl:with-param name="key">profiles</xsl:with-param>
+							<xsl:with-param name="type">profile</xsl:with-param>
+							<xsl:with-param name="data" select="distinct-values(current-group()/ancestor::Termset/@id)"></xsl:with-param>
+						</xsl:call-template>
+					</ds:dataseries>
+				</xsl:if>
+				
+				<!--
 				<tr>					
-					<!--					<td><xsl:value-of select="@id"/></td>-->
+					<!-\-					<td><xsl:value-of select="@id"/></td>-\->
 					<td><xsl:value-of select="@name"/></td>
 					<td><xsl:value-of select="count(distinct-values(current-group()/@datcat))"/></td>					
 					<td><xsl:value-of select="count(distinct-values(current-group()/@id))"/></td>
-				</tr>
+				</tr>-->
 			</xsl:for-each-group>
-		</tbody>
-	</table>
+	</ds:dataset>
 </xsl:template>
 	
+	
+<xsl:template name="list" >
+<xsl:param name="key" ></xsl:param>	
+<xsl:param name="type" ></xsl:param>
+<xsl:param name="data" ></xsl:param>
+	
+	<xsl:variable name="processed_data">
+		<xsl:choose>
+			<xsl:when test="$data[1] instance of element(li)">
+				<xsl:copy-of select="$data" />
+			</xsl:when>
+			<xsl:when test="$data[1] instance of element()">
+				<xsl:for-each select="$data">
+					<ds:li key="{(@id,@path,@name)[1]}" title="{(@path,@id,@key,@name)[1]}"><xsl:value-of select="(@name,@label,@key, @path, @id)[1]"></xsl:value-of></ds:li>
+				</xsl:for-each>
+			</xsl:when>
+			<!--
+				<xsl:for-each select="$data">
+					<li key="{.}"><xsl:value-of select="."></xsl:value-of></li>
+				</xsl:for-each>
+			</xsl:when>
+			<xsl:when test="$data[1] instance of xs:untypedAtomic">
+				<li key="data"><xsl:value-of select="$data"></xsl:value-of></li>
+				<xsl:for-each select="$data/node()">
+					<li key="{.}"><xsl:value-of select="."></xsl:value-of></li>
+				</xsl:for-each>
+			</xsl:when>
+			<xsl:when test="$data[1] instance of attribute()">
+				<xsl:for-each select="$data">
+					<li key="{xs:string(.)}"><xsl:value-of select="xs:string(.)"></xsl:value-of></li>
+				</xsl:for-each>
+			</xsl:when>-->
+			<xsl:otherwise>
+				<xsl:for-each select="$data">
+					
+					<xsl:variable name="label" >
+						<xsl:choose>
+							<xsl:when test=".=''">_EMPTY_</xsl:when>
+							<xsl:when test="$type='profile'">
+								<xsl:value-of select="$all_profiles[@id=xs:string(current())]/@name" ></xsl:value-of>		
+							</xsl:when>
+							<xsl:when test="$type='datcat'">
+								<xsl:value-of select="$all_datcats[@id=xs:string(current())]/Term[@type='label'][1]/text()" ></xsl:value-of>		
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="xs:string(.)"></xsl:value-of>
+							</xsl:otherwise>
+						</xsl:choose>
+					</xsl:variable>
+						
+					<ds:li key="{xs:string(.)}"><xsl:value-of select="($label, my:shortURL(xs:string(.)))[.!=''][1]"></xsl:value-of></ds:li>
+				</xsl:for-each>	
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:variable>
+	<ds:value key="{$key}" abs="{count($processed_data/*)}" >
+		<ds:list>
+			<xsl:for-each select="$processed_data/*" >
+				<xsl:sort select="lower-case(.)" ></xsl:sort>
+				<!--<xsl:variable name="profile-name" select="$all_profiles[@id=current()]/@name"></xsl:variable>-->
+<!--				<li><a href="#{.}" ><xsl:value-of select="$profile-name" /></a></li>-->
+					<xsl:copy-of select="."></xsl:copy-of>
+			</xsl:for-each>
+		</ds:list>
+	</ds:value>
+</xsl:template>
 	<!--
 <xsl:template name="list-terms">
 	
