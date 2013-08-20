@@ -55,8 +55,12 @@ $(function(){
 		// loadData();
 	
     	
-		initGraph();
+  // loading userdocs as welcome info
+  $(graph_container).load(userdocs_file + " div.document");
+  
 		loadDetailInfo ();
+		
+		initGraph();
 		
 	
         addFunctionality();
@@ -87,7 +91,7 @@ function addFunctionality(){
             onValueChanged: renderGraph
             });
     
-    $('#infovis-wrapper').resizable( {
+  /*  $('#infovis-wrapper').resizable( {
                    start: function(event, ui) {
                             graph_container.hide();
                         },
@@ -96,14 +100,14 @@ function addFunctionality(){
                             renderGraph();
                        }
                 }
-                );
+                );*/
 
-    $('#input-link').live("mousedown", function(event) {
+    /*$('#input-link').live("mousedown", function(event) {
     console.log(this);
                 $(this).attr("target", "_blank");
                     $(this).attr("href", generateLink());
                    });
-    
+    */
     $('#input-download').live("mousedown", genDownload);
     
  $(".detail-caller").live("click", function(event) {
@@ -111,6 +115,23 @@ function addFunctionality(){
                 event.preventDefault();
                 $(this).parent().find('.detail').toggle();
               });
-              
+
+ $(".node-item .detail a").live("click", function(event) {
+                event.preventDefault();                
+                key = $(this).attr("data-key");
+                console.log(key);
+                selectNodeByKey([key]);
+                
+              });
+
+
+$("a.scan").live("click", function(event) {
+                console.log(this);
+                event.preventDefault();
+                url = $(this).attr("href");
+                $(this).parent().find('.node-detail').html("loading");
+                $(this).parent().find('.node-detail').load(url + " div.content");
+              });
+
 
 }
