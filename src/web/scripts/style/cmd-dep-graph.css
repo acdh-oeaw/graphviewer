@@ -55,6 +55,19 @@ circle.highlight {
 }
 
 
+
+.type-collection circle {
+
+  fill: #ffa;
+
+  stroke: #aa9;
+
+  stroke-width: 2px;
+
+}
+
+
+
 .type-element circle {
   fill: #99f;
   stroke: #66a;
