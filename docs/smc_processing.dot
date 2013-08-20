@@ -35,6 +35,10 @@ cmd_dep_graph_dot_svg;
 cmd_dep_graph_json;
 smc_dataset_xml;
 dcr_terms_skos_rdf;
+mdrepo_structure;
+mdrepo_graph;
+mdrepo_graph_json;
+
 
 
 /* processing, code  */
@@ -45,8 +49,10 @@ node [shape=ellipse];
 	d3;
 	dot;
 	smc_init;
+	gen_mdrepo_graph;
 	cmd_dep_graph_xsl;
 	graph_dot_xsl;
+	terms2graph_xsl;
 	graph_json_xsl;
 	dcr_smc2skos_xsl;
 	smc_stats_xsl;	
@@ -89,17 +95,19 @@ cmd_dep_graph_dot_svg -> graph_json_xsl [label="doc"];
 d3 -> browser_html [dir=back, label=uses];
 cmd_dep_graph_json -> browser_html [dir=back, style=dashed, label=calls];
 smc_stats_detail_html -> browser_html [dir=back, style=dashed, label=calls];
-mdrepo -> mdrepo_stats_html;
+mdrepo -> gen_mdrepo_stats;
 ant -> gen_mdrepo_stats ->  mdrepo_stats_html [color=red,style=dashed];
-mdrepo_stats_html -> browser_html [dir=back, style=dashed, label="calls (TODO)", color=red];
+mdrepo_stats_html -> browser_html [dir=back, style=dashed, label="calls"];
+mdrepo -> gen_mdrepo_graph -> mdrepo_structure -> terms2graph_xsl -> mdrepo_graph -> graph_json_xsl -> mdrepo_graph_json;
 
-
+/* obsoleted 
 dcr_cmd_map -> smc_stats_xsl -> smc_stats_html; 
 cmd_terms -> smc_stats_xsl;
+*/
 dcr_cmd_map -> smc2dataset_xsl -> smc_dataset_xml -> dataset2table_xsl -> smc_stats_detail_html;
 cmd_terms -> smc2dataset_xsl;
 
-dataset2table_xsl -> smc_stats_html [label="(TODO)", color=red];
+dataset2table_xsl -> smc_stats_html;
 
 dcr_terms -> dcr_smc2skos_xsl -> dcr_terms_skos_rdf -> openskos_upload -> openskos_smc;
 
