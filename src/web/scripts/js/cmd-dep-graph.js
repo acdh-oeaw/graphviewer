@@ -13,27 +13,41 @@ var detail_data = null; // global holder for detail-data (in html)
 
 var input_prefix = "input-";
 var select_rect_min_size = 5;
+var first_level_margin = 20;
 var min_circle = 4;
-var comp_reg_url = "http://catalog.clarin.eu/ds/ComponentRegistry/?item=";     
+var max_circle = 50;
+var comp_reg_url = "http://catalog.clarin.eu/ds/ComponentRegistry/?item=";
+var mdrepo_url_search = "http://localhost:8680/exist/apps/cr-xq/mdrepo/index.html?operation=searchRetrieve&x-context=&query=";
+/*http://localhost:8680/exist/apps/cr-xq/mdrepo/fcs?operation=scan&scanClause=cmd:CountryName&x-context=&x-format=htmlpage*/
+var mdrepo_url_scan = "http://localhost:8680/exist/apps/cr-xq/mdrepo/fcs?operation=scan&x-context=&x-format=htmlpage&sort=size&scanClause=";
 /*var source_file = "../scripts/cmd-dep-graph-d3_all_svg.json"*/
 /*var source_file = "file:/C:/Users/m/3/clarin/_repo/SMC/output/cmd-dep-graph.d3.js"
 var detail_file = "file:/C:/Users/m/3/clarin/_repo/SMC/output/smc_stats_detail.html"
 */
-var source_file = "/smc/cmd-dep-graph.d3.js";
-var detail_file = "/smc/smc_stats_detail.html";
-var userdocs_file = "/smc/userdocs.html";
- 
+/*
+var source_file = "/smc/_structure-graph.json";
+var source_file = "cmd-dep-graph.d3.js";
+var detail_file = "smc_stats_detail.html";
+var userdocs_file = "userdocs.html";
+*/
+var source_file = "/smc/cmd-dep-graph_profiles-datcats.json";
+/*var source_file = "/smc/cmd-dep-graph.d3.js";*/
+var detail_file = "smc_stats_detail.html";
+var userdocs_file = "userdocs.html";
+
 var opts = {"depth-before": {"value":2, "min":0, "max":10, "widget":"slider"}, 
             "depth-after":{"value":2, "min":0, "max":10, "widget":"slider"}, 
             "link-distance": {"value":120, "min":10, "max":300, "widget":"slider" }, 
             "charge":{"value":250, "min":10, "max":1000, "widget":"slider" },
+            "friction":{"value":75, "min":1, "max":100, "widget":"slider" },
             "node-size": {"value":"4", "values":["1","4","8","16","usage"], "widget":"selectone" },
-            "labels": {"value":"hide", "values":["show","hide"], "widget":"selectone" },                         
+            "labels": {"value":"show", "values":["show","hide"], "widget":"selectone" },                         
             "curve": {"value":"straight", "values":["straight","arc"], "widget":"selectone" },
            "layout": {"value":"horizontal-tree", "values":["vertical-tree", "horizontal-tree", "weak-tree","force","dot", "freeze"], "widget":"selectone" },
             "selected": {"widget":"hidden" },
             "link": {"widget":"link", "label":""},
-            "download": {"widget":"link", "label":""}
+            "download": {"widget":"link", "label":""},
+            "add_profile": {"widget":"link", "label":"Add profile", "widget":""}
             };
 
 
@@ -72,11 +86,24 @@ function opt(key) {
                 // generate lookup hashes for neighbours;                                             
                  add_lookups(data_all);
                  
+                 // get min/max on some properties
                  var init_x_arr = [];
                     data_all.nodes.forEach(function(d,i){init_x_arr.push(d.init_x);})
-                            
                  data_all.init_x_min = d3.min(init_x_arr);
                  data_all.init_x_max = d3.max(init_x_arr);
+
+                 var init_level = [];
+                    data_all.nodes.forEach(function(d,i){init_level.push(+d.level);})
+                    data_all.level_min = d3.min(init_level);
+                
+                 var init_count = [];
+                    data_all.nodes.forEach(function(d,i){init_count.push(+d.count);})
+                 
+                 data_all.count_max = d3.max(init_count);
+                 data_all.node_size_ratio = Math.sqrt(data_all.count_max) / max_circle;
+
+                notifyUser("count max: " + data_all.count_max + "; "
+                        + "node_size_ratio: " + data_all.node_size_ratio);
                  
                  // should be delivered by the data directly
                    data_all.nodes.forEach(function(d,i) {
@@ -86,7 +113,8 @@ function opt(key) {
 
                   // get selected nodes (if any) from param
                   selected_ids = opt("selected").split(",");
-                  var selected_match = 0;
+                  selectNodeByKey(selected_ids);
+                  /*var selected_match = 0;
                     for (var i = 0; i < selected_ids.length; i++)
                     {  if (data_all.nodes_index[selected_ids[i]]) {
                              data_all.nodes_index[selected_ids[i]].selected = 1;
@@ -95,7 +123,7 @@ function opt(key) {
                     }    
                   // if something was selected, update and render Graph and Detail
                   if (selected_match) { updateSelected();}
-                    
+                  */  
               renderIndex();
     
                 
@@ -147,7 +175,7 @@ function renderNodeList (nodes, target_container_selector) {
                     .enter().append("li")
                     .attr("class", "node-item");
                item_li.append("span")
-                    .text(function (d) { return d.name})
+                    .text(function (d) { return d.name + ' |' + d.count + '|' })
                     .on("click", function(d) { d.selected= d.selected ? 0 : 1 ; updateSelected() });
           
                     
@@ -161,14 +189,29 @@ function renderNodeList (nodes, target_container_selector) {
                 
                 
               } else {
-                 var item_detail = item_li.append("div")
-                                          .classed("node-detail", 1);
+                 var item_detail = item_li.append("div");
+                                        /*  .classed("node-detail", 1);*/
                             
                  item_detail.append("a")
                             .attr("href",function (d) { if (d.type.toLowerCase()=='datcat') return d.id 
                                                         else return comp_reg_url + d.id })
                             .text(function (d) { return d.id });
-                 item_detail.append("div").html(
+                
+                profile_item_detail = item_detail.filter(function(d, i) { return d.type.toLowerCase()=='profile' }); 
+                profile_item_detail.append("a")
+                            .attr("target",'_blank')
+                            .attr("href",function (d) { return 'profiles/' + d.key + '.html' })
+                            .text(' html-view ');
+                
+/*                profile_item_detail.append("a")*/
+                item_detail.append("a")
+                            .classed("scan", function (d) {  return !(d.type=='Profile') } )
+                            .attr("target",'_blank')
+                            .attr("href",function (d) { if (d.type=='Profile') { return mdrepo_url_search +  'cmd.profile=%22' + d.id + '%22'; }
+                                                          else { return mdrepo_url_scan +  'cmd:' +  d.name; }   }  )
+                            .text(' mdrepo-view ');
+                
+                 item_detail_detail = item_detail.append("div").html(
                                  function (d) { 
                                     var detail_info_div = getDetailInfo(d.type.toLowerCase(), d.key);
                                     if (detail_info_div) {
@@ -177,6 +220,8 @@ function renderNodeList (nodes, target_container_selector) {
                                         return  "<div>No detail</div>"; 
                                     }
                           });
+                          
+                 item_detail_detail.classed("node-detail", 1);
                            
               }
                         
@@ -228,7 +273,7 @@ function renderGraph (data, target_container) {
             .links(data.links)
             .size([w, h])
             //.gravity(0.3)
-            .friction(0.7)
+            .friction(parseInt(opt("friction")) / 100 )
             .linkDistance(parseInt(opt("link-distance")))
             .charge(parseInt(opt("charge")) * -1)
             .on("tick", tick)
@@ -280,7 +325,7 @@ function renderGraph (data, target_container) {
                       .attr("class", function(d) { return "node type-" + d.type.toLowerCase()})
                       .classed("selected", function(d) { return d.selected; })
                       .call(force.drag);
-          
+                      
           // dragging of all selected nodes on freeze layout
           // this does not work yet
           /*if (opt("layout")=="freeze") {
@@ -318,12 +363,16 @@ function renderGraph (data, target_container) {
 /*            .attr("r", 6)*/
                     .on("click", function(d) {d.selected= d.selected ? 0 : 1; updateSelected() })
                       .on("mouseover", highlight()).on("mouseout", unhighlight())
-            .attr("r", function(d) { if (opt("node-size")=="usage") {return (Math.sqrt(d.count)>min_circle ? Math.sqrt(d.count) * 2 : min_circle); }
+            .attr("r", function(d) { if (opt("node-size")=="usage") 
+                                        {return (Math.sqrt(d.count)<=min_circle) ?  min_circle  : Math.sqrt(d.count) / data_all.node_size_ratio;                                        
+                                        }
                                         else { return node_size_int; }
                                     })    
             
             gnodes.append("title")
-                  .text(function(d) { return d.name; });
+                .text(function (d) { return d.name + ' |' + d.count + '|' })
+/*                  .text(function(d) { return d.name; });*/
+                  
                   
       
          
@@ -375,14 +424,14 @@ function renderGraph (data, target_container) {
           } else if (opt("layout")=='vertical-tree') {
                    var ky= 1.4 * e.alpha, kx = .4 * e.alpha;
                    data.links.forEach(function(d, i) {
-                     if (d.source.level==0) { d.source.y = 20 };
+                     if (d.source.level==data_all.level_min) { d.source.y = first_level_margin };
                    //  d.target.x += (d.source.x - d.target.x)  * kx;
                      d.target.y += (d.source.y - d.target.y + link_distance_int) * ky;
                     });
            } else if (opt("layout")=='horizontal-tree') {
                    var kx= 1.4 * e.alpha, ky = .4 * e.alpha;
                    data.links.forEach(function(d, i) {
-                       if (d.source.level==0) { d.source.x = 20 };
+                       if (d.source.level==data_all.level_min) { d.source.x = first_level_margin };
                        //d.target.y += (d.source.y - d.target.y)  * ky;
                        d.target.x += (d.source.x - d.target.x + link_distance_int  ) * kx;
                   });
@@ -465,16 +514,16 @@ invoked during the (jquery-)initalization */
 function loadDetailInfo () {
      
   $(detail_info_holder_selector).load(detail_file,function(data) {
-     $(detail_container_selector).html(
+     $(detail_container_selector).find("h3").after(
      '<div id="detail-summary-overall" class="cmds-ui-block init-show" ><div class="header">Overview</div><div class="content">'
      + getDetailInfo("summary", "overall") + '</div></div>');
      
      handleUIBlock($(detail_container_selector).find(".cmds-ui-block"));
      
+     // only render detail for initially selected nodes, after the detail info has been loaded 
+     if (nodes_sel) { renderDetail(nodes_sel) };
+     
   });
-  
-  // loading userdocs as welcome info
-  $(graph_container).load(userdocs_file + " div.document");
   
   // loading css to store in extra variable, for later use = injecting into exported SVG 
   $.get("scripts/style/cmd-dep-graph.css", function(data) {
@@ -504,13 +553,14 @@ function genDownload (event) {
     var svg_w = svg.attr("width");
     var svg_h = svg.attr("height");
     var bounds = graphBounds();
-    var margin = 20;
+    var margin = 30;
     var link_dist = parseInt(opt("link-distance"));
     
     var x, y, w, h;
     x = Math.floor(bounds["x-min"]) - margin 
     y = Math.floor(bounds["y-min"]) - margin
-    w = (bounds["width"] > svg_w) ? bounds["width"] + 2 * margin + link_dist : svg_w;  
+    // add extra space to the right, because of the possible labels 
+    w = (bounds["width"] > svg_w) ? bounds["width"] + 2 * margin + link_dist : svg_w + link_dist;  
     h = (bounds["height"] > svg_h) ? bounds["height"] + 2 * margin : svg_h;
        
     var viewBox = x + " " + y + " " + w + " " + h;
@@ -556,6 +606,19 @@ function selectNodes(nodes, x0, y0, x3, y3) {
   return points;
 }
 
+function selectNodeByKey(nodes_keys) {
+
+    // get selected nodes (if any) from param
+      var selected_match = 0;
+        for (var i = 0; i < nodes_keys.length; i++)
+        {  if (data_all.nodes_index[nodes_keys[i]]) {
+                 data_all.nodes_index[nodes_keys[i]].selected = 1;
+                 selected_match ++;
+           }
+        }    
+      // if something was selected, update and render Graph and Detail
+      if (selected_match) { updateSelected();}
+}
 
 function updateSelected () {
 
@@ -573,9 +636,6 @@ if (opt("layout")!='freeze') {
     
     renderGraph();
     
-    // this is to early! the  graph is not positioned yet: 
-    //genDownload();
- 
  // just need to highlight the selected nodes
     d3.select(index_container_selector).selectAll("li").classed("highlight", function (d) { return d.selected });
  //   renderIndex(); - this would be unnecessary and too expensive   
