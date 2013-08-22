@@ -1,0 +1,23 @@
+# This is a template property-file for SMC.
+# Values stated here as comments are the defaults, set in the build file itself.
+# Copy the file to build_init.props and adapt parameters to your needs. 
+# They will override the defaults.
+ 
+# see README about needed dependencies
+
+#  needed for auxiliary util-build files: build_defs and build_docs
+#  TODO: where to get!  
+#scripts.dir=.
+
+#  where the collected data gets stored
+#cache.dir=data
+
+#  where the web-application gets generated into  
+#out.dir=output
+
+#  main configuration file setting the paths to source services
+#smc.config=src/smc_config.xml
+
+#  needed for dataset 2 htmltable transformation in smc-stats
+#  available under: https://github.com/vronk/corpus_shell/tree/master/xsl
+#dataset.xsl.dir=src/xsl/dataset

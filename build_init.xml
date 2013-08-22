@@ -3,62 +3,42 @@
 
 <!-- ====================================================================== 
      Date:     2011-10     
-     Project:  SMC
-     (based on Bruce Phillips: Coding_Actions_Struts2_Ant)
+     Project:  SMC     
      ====================================================================== -->
-
-
 	
 <project name="SMC init" default="init" basedir=".">
 	
     <description>
-           targets for initializing the SMC-module - i.e. fetching the source data
+           targets for 
+           a) initializing the SMC-module, i.e. fetching the source data (init-data)
+           b) generating the output data (graph and statistics) (gen-out)
+           c) and for generating documentation for the code (gen-docs) 
     </description>
+
+	<property file="build_init.props"></property>
 	
-  
-	
-	<property name="cache.dir" value="data2" />
-	<property name="out.dir" value="output" />
+	<property name="scripts.dir" value="." />
+	<property name="cache.dir" value="data" />
+	<property name="out.dir" value="output" />	
+	<property name="docs.dir" value="docs" />
 	<property name="smc.config" value="src/smc_config.xml" />
 	<property name="xsl.dir" value="src/xsl/" />
-	
-	
-	<property name="scripts.dir" location="C:\Users\m\3\7utils"/>
+	<property name="dataset.xsl.dir" value="src/xsl/dataset" />
  
- <import file="${scripts.dir}\build.xml" />   
-
-<target name="gen-build-info" >
-	<ant antfile="${scripts.dir}\build.xml" target="gen-build-info">
-		<property name="in.dir" location="" />
-		<property name="other.build" value="build_init"/>
-		<property name="out.dir" location="docs"/>
-	</ant>
-</target>
+ 
+	<import file="${scripts.dir}\build_defs.xml" />
 
 
-	<target name="gen-docs" >
-		<ant antfile="${scripts.dir}\build_docs.xml" target="gen-jsdoc">
-			<!-- src/web/scripts/js/cmd-dep-graph.js   -->
-			<property name="src.dir" location="src/web/scripts/js/cmd-dep-graph.js" />
-			<property name="docs.dir" location="docs/jsdocs/"/>
-		</ant>		
-	</target>
-		
-		
-	<target name="gen-userdocs" >
-		<ant antfile="${scripts.dir}\build_docs.xml" target="rst2html">
-			<!-- src/web/scripts/js/cmd-dep-graph.js   -->
-			<property name="src.file" location="docs/userdocs.rst" />
-			<property name="out.file" location="docs/userdocs.html/"/>
-			<property name="stylesheet" value="scripts/css/cmds-ui.css"/>
-		</ant>		
-	</target>
-		
+	<target name="check" description="just for debugging, to check the acutal values of properties">
+		<echoproperties regex=".*\.dir"></echoproperties>
+<!--		<echoproperties srcfile="${scripts.dir}\build_defs.props" /> -->
+		<echo message="${saxon-libs.dir}" />
+	</target>	
 
 	<target name="init-data" description="run sequentially the initialization steps">
 		<mkdir dir="${cache.dir}" />
 		
-		<property name="init-sequence" value="cmd-profiles-raw,cmd-terms,cmd-terms-nested,dcr-terms,isocat-languages,termsets,dcr-cmd-map,rr-relations,rr-terms" ></property>
+		<property name="init-sequence" value="cmd-profiles-raw,load-profiles,cmd-terms,cmd-terms-nested,dcr-terms,isocat-languages,termsets,dcr-cmd-map,rr-relations,rr-terms" ></property>
 <!--		<property name="init-sequence" value="cmd-profiles-raw,cmd-terms" ></property>-->
 		<foreach list="${init-sequence}" target="init-step" param="dataset.key" />
 	</target>
@@ -76,24 +56,31 @@
 	//init_step ("rr-terms");
 	-->
 	<target name="init-step" description="one initialization steps - parametrized with dataset.key">
-				
+<!--	 not used			
+		<property name="cache.dir.resolved" location="${cache.dir}" ></property>
+		<propertyregex property="cache.uri" input="${cache.dir.resolved}" regexp="\\" 			
+			replace="/"			defaultvalue="${cache.dir}"  override="true"/>
+-->		
 		<echo message="generating: ${dataset.key}" />
-		<saxon-xslt style="${xsl.dir}smc_init.xsl" in="${smc.config}"
+		<xslt style="${xsl.dir}smc_init.xsl" in="${smc.config}"
 			out="${cache.dir}/${dataset.key}.xml" >
 			<param name="data_key" expression="${dataset.key}"/>			
 			<param name="cache" expression="use"/>			
-			<param name="cache_dir" expression="../../${cache.dir}"/>
+			<!-- cache.dir is used relative to the main-input document (which is src/smc_config.xml) -->
+			<param name="cache_dir" expression="../${cache.dir}"/>
 			<!-- <sysproperty key="ANT_OPTS"
                  value="-Xmx512m" 
      />-->
-		</saxon-xslt>						
+			<factory name="net.sf.saxon.TransformerFactoryImpl"/>
+			<classpath refid="saxon-lib" />
+		</xslt>						
 		
 	</target>
 
 	<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
 
 	<target name="gen-out" description="generate various views on the data" 
-		depends="init-out,smc-stats,smc-stats2,gen-cmd-dep-graph" >
+		depends="init-out,smc-stats,gen-smc-graph,render-profiles" >
 		
 	</target>
 		
@@ -103,90 +90,174 @@
 			<copy todir="${out.dir}">
 			<fileset dir="src/web" />
 			<fileset file="docs/userdocs.html" />
+			<fileset file="docs/examples.html" />
 			<fileset file="docs/graph_legend.svg" />
 		</copy>
+		<copy todir="${out.dir}/examples">
+			<fileset dir="docs/examples" />
+		</copy>
 	</target>
+	
+	<target name="render-profiles" description="generate html-views for profiles, expects loaded profiles"
+			>
 		
-	<target name="smc-stats" description="generate statistics - old - obsoleting by smc-stats2">
-		
-		<saxon-xslt style="${xsl.dir}smc_stats.xsl" in="${cache.dir}/dcr-cmd-map.xml"
-			out="${out.dir}/smc_stats.html" force="true">						
-			<param name="cache" expression="use"/>			
+		<!--<saxon-xslt style="${xsl.dir}comp2view.xsl" basedir="${cache.dir}/profiles"
+			destdir="${out.dir}/profiles" force="true">
 			<param name="format" expression="htmlpage"/>
-			<param name="cache_dir" expression="../../${cache.dir}"/>
-		</saxon-xslt>						
+		</saxon-xslt>-->	
+		
+		<xslt
+			style="${xsl.dir}comp2view.xsl" basedir="${cache.dir}/profiles" includes="*.xml"
+			destdir="${out.dir}/profiles" extension=".html"
+			processor="trax" force="true">
+			<!-- with force="true"  and no includes an error comes:
+			     [xslt] : Fatal Error! Cannot write more than one result document to the sam
+e URI, or write to a URI that has been read: file:/C:/Users/m/3/clarin/_repo/SMC
+/output_20130126/profiles/clarin_eucr1p_1271859438161.html
+     [xslt] Failed to process null
+			-->
+			<factory name="net.sf.saxon.TransformerFactoryImpl"/>
+			<classpath refid="saxon-lib" />
+			
+			<param name="scripts_url" expression="../scripts"/>
+			<param name="format" expression="htmlpage"/>
+		</xslt>  
 		
 	</target>
 	
-	<target name="smc-stats2" description="generate statistics (via dataset-xml)">
+	<target name="smc-stats" description="generate statistics (via dataset-xml)">
 		
 		<saxon-xslt style="${xsl.dir}smc2stats_datasets.xsl" in="${cache.dir}/dcr-cmd-map.xml"
 			out="${out.dir}/smc_stats_dataset.xml" force="true">						
 			<param name="cache" expression="use"/>			
-			<param name="cache_dir" expression="../../${cache.dir}"/>
+			<param name="cache_dir" expression="../${cache.dir}"/>
 		</saxon-xslt>						
 		
-		<property name="amc.xsl.dir" value="C:/Users/m/3/corpus_shell/_repo/corpus_shell/xsl/amc" />
-		<saxon-xslt style="${amc.xsl.dir}/dataset2html.xsl" in="${out.dir}/smc_stats_dataset.xml"
+		<saxon-xslt style="${dataset.xsl.dir}/dataset2html.xsl" in="${out.dir}/smc_stats_dataset.xml"
 			out="${out.dir}/smc_stats_detail.html" force="true">						
 			<param name="format" expression="html"/>
 			<param name="mode" expression="dataseries-table"/>
 		</saxon-xslt>						
 		
 		
-		<saxon-xslt style="${amc.xsl.dir}/dataset2html.xsl" in="${out.dir}/smc_stats_dataset.xml"
+		<saxon-xslt style="${dataset.xsl.dir}/dataset2html.xsl" in="${out.dir}/smc_stats_dataset.xml"
 			out="${out.dir}/smc_stats.html" force="true">						
 			<param name="format" expression="htmlpage"/>
+			<param name="scripts_url" expression="scripts"/>
 			<param name="mode" expression=""/>
 		</saxon-xslt>						
 		
 	</target>
 	
-	<target name="gen-cmd-dep-graph" description="generate graph of component dependencies (dot/svg/json)" 		
-		depends="gen-cmd-dep-graph-dot,gen-cmd-dep-graph-json" 
+	<target name="gen-smc-graph" description="generate graph of component dependencies and concept links (dot/svg/json)" 		
+		depends="gen-smc-graph-dot,gen-smc-graph-json" 
 		/>		
 		
-		<target name="gen-cmd-dep-graph-xml" description="generate graph of component dependencies (internal xml-format)" 		>		
-			<saxon-xslt style="${xsl.dir}cmd2graph.xsl" in="${cache.dir}/cmd-terms-nested.xml"
-				out="${out.dir}/cmd-dep-graph.xml" >
+		<target name="gen-smc-graph-xml" description="generate graph of component dependencies (internal xml-format)" 		>		
+			<saxon-xslt style="${xsl.dir}terms2graph.xsl" in="${cache.dir}/cmd-terms-nested.xml"
+				out="${out.dir}/smc-graph.xml" >
+			</saxon-xslt>						
+		</target>
+
+		<target name="gen-mdrepo-graph-xml" description="generate graph of mdrepo-stats (internal xml-format)" 		>		
+			<saxon-xslt style="${xsl.dir}terms2graph.xsl" in="${cache.dir}/mdrepo-stats.xml"
+				out="${out.dir}/mdrepo-graph.xml" force="true" >
 			</saxon-xslt>						
 		</target>
 		
-		<target name="gen-cmd-dep-graph-dot" description="generate dot-graph of component dependencies (dot/svg)" 
-			depends="gen-cmd-dep-graph-xml"		>		
+		<target name="gen-smc-graph-dot" description="generate dot-graph of component dependencies (dot/svg)" 
+			depends="gen-smc-graph-xml"		>		
 				
-					<saxon-xslt style="${xsl.dir}graph2dot.xsl" in="${out.dir}/cmd-dep-graph.xml"
-						out="${out.dir}/cmd-dep-graph.dot" >
+					<saxon-xslt style="${xsl.dir}graph2dot.xsl" in="${out.dir}/smc-graph.xml"
+						out="${out.dir}/smc-graph.dot" >
 					</saxon-xslt>						
 				
 				<exec executable="dot">			    				
-					<arg value="${out.dir}/cmd-dep-graph.dot" />
-					<arg value="-o${out.dir}/cmd-dep-graph.svg"/>
+					<arg value="${out.dir}/smc-graph.dot" />
+					<arg value="-o${out.dir}/smc-graph.svg"/>
 					<arg value="-Tsvg"/>
 				</exec>    		
 		</target>
 		
-	<target name="gen-cmd-dep-graph-json" description="generate dot-graph of component dependencies (json-d3)" 
-			depends="gen-cmd-dep-graph-xml"		>		
+	<target name="gen-smc-graph-json" description="generate dot-graph of component dependencies (json-d3)" 
+			depends="gen-smc-graph-xml"		>		
 		
-			<saxon-xslt style="${xsl.dir}graph2json-d3.xsl" in="${out.dir}/cmd-dep-graph.xml"
-				out="${out.dir}/cmd-dep-graph.d3.js" force="true">
+			<saxon-xslt style="${xsl.dir}graph2json-d3.xsl" in="${out.dir}/smc-graph.xml"
+				out="${out.dir}/smc-graph.d3.js" force="true">
 			</saxon-xslt>						
 			
 	</target>			
 	
 	
-	<!--
-	OBSOLETED by: gen-cmd-dep-graph-json <- gen-cmd-dep-graph-xml 
 	
-	<target name="gen-cmd-dep-graph-json-d3" description="generate graph of component dependencies (json/d3)" 		
-		>		
-		<saxon-xslt style="${xsl.dir}cmd2graph-json-d3.xsl" in="${cache.dir}/cmd-terms-nested.xml"
-			out="${out.dir}/scripts/cmd-dep-graph-d3.json" force="true" >
-			<param name="profiles" expression="teiHeader" />
-		</saxon-xslt>						
+	<target name="gen-docs" depends="gen-build-info,gen-jsdocs,gen-xsldocs"
+	 description="generates automatic documentation for the build, js- and xsl-files">
+	</target>
 	
-	</target>			
--->
+	<target name="gen-jsdocs" >
+		<ant antfile="${scripts.dir}\build_docs.xml" target="gen-jsdoc">
+			<!-- src/web/scripts/js/smc-graph.js   -->
+			<property name="src.dir" location="src/web/scripts/js/smc-graph.js" />
+			<property name="docs.dir" location="${docs.dir}/jsdocs/"/>
+		</ant>		
+	</target>
+	
+	<target name="gen-xsldocs" >
+		<property name="out.fn" value="smc-xsl"></property>
+		<ant antfile="${scripts.dir}\build_docs.xml" target="ay-xsl">
+			<property name="in.dir" location="${xsl.dir}" />
+			<property name="file.prefix" value="../../src" />
+			<property name="title" value="smc-xsl" />
+			<property name="parts" value="imports, params, templates, functions" />
+			<property name="out.dir" location="${docs.dir}/xsltdocs"/>
+			<property name="out.fn" value="${out.fn}"/>
+			
+		</ant>
+		<ant antfile="${scripts.dir}\build_docs.xml" target="gen-dep-graph">
+			<property name="work.dir" location="${docs.dir}/xsltdocs" />
+			<!-- <property name="in.file" value="${out.fn}.xml"/> -->
+			<property name="in.file" value="${docs.dir}/xsltdocs/${out.fn}.xml"/>
+			<property name="title" value="smc-xsl-imports" />
+			<property name="parts" value="imports" />
+			<property name="out.fn" value="smc-xsl-imports"/>
+		</ant>		
+		
+		
+		<ant antfile="${scripts.dir}\build_docs.xml" target="gen-dep-graph-each">
+			<property name="in.dir" location="${xsl.dir}" />
+			<property name="parts" value="imports, params, templates, functions" />
+			<property name="work.dir" location="${docs.dir}/xsltdocs/xslts"/>			
+		</ant>
+	</target>    	
+	
+	<target name="gen-build-info" >
+		<ant antfile="${scripts.dir}\build.xml" target="gen-build-info">
+			<property name="in.dir" location="" />
+			<property name="other.build" value="build_init"/>
+			<property name="out.dir" location="docs"/>
+		</ant>
+	</target>
+	
+	
+	<target name="gen-userdocs" >
+		<ant antfile="${scripts.dir}\build_docs.xml" target="rst2html">
+			<!-- src/web/scripts/js/smc-graph.js   -->
+			<property name="src.file" location="docs/userdocs.rst" />
+			<property name="out.file" location="docs/userdocs.html/"/>
+			<property name="stylesheet" value="scripts/style/cmds-ui.css"/>
+		</ant>		
+		<ant antfile="${scripts.dir}\build_docs.xml" target="rst2html">
+			<!-- src/web/scripts/js/smc-graph.js   -->
+			<property name="src.file" location="docs/examples.rst" />
+			<property name="out.file" location="docs/examples.html/"/>
+			<property name="stylesheet" value="scripts/style/cmds-ui.css"/>
+		</ant>
+		<ant antfile="${scripts.dir}\build_docs.xml" target="rst2html">			
+			<property name="src.file" location="docs/examples2.rst" />
+			<property name="out.file" location="docs/examples2.html/"/>
+			<property name="stylesheet" value="scripts/style/cmds-ui.css"/>
+		</ant>		
+	</target>
+	
 </project>
 
