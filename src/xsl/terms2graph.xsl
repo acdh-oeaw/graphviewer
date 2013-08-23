@@ -1,38 +1,130 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:my="myFunctions" version="2.0" xml:space="default">
-<!--    <xsl:import href="graph2json-d3.xsl"/>-->
-    <xsl:output method="xml" encoding="utf-8" indent="yes"/>
-<!-- 
-<purpose>generate a graph (xml) of CMD-component reuse (based on smc:cmd-terms) 
-</purpose>
-<history>
-	<change on="2012-05-17" type="created" by="vr">based on CMDI/scripts/cmd2dot.xsl</change>
-	<change on="2012-12-05" type="created" by="vr">based on CMDI/scripts/cmd2graph-json-d3.xsl.xsl (split into cmd2graph and graph2json</change>
-</history>
-<sample>
--->
-    <xsl:variable name="title" select="'mdrepo stats'"/>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:my="myFunctions" version="2.0" xml:space="default">
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" scope="stylesheet">
+        <xd:desc>
+            <xd:p>generate a graph (xml) of CMD-component reuse (based on smc:cmd-terms)</xd:p>
+            <xd:p>also takes instance-data summary as input - tries to merge with cmd-terms data (to get the ids)</xd:p>
+    
+            <xd:p>an integrated version, that based on format-param directly produced json, had very bad performance, 
+                so the functionality is split. first step is here, generating the graph-xml, 
+                which is then used as input for graph2json-d3.xsl, or graph2dot.xsl</xd:p>
+            
+            <xd:p><xd:b>Created on:</xd:b> 2012-05-17 (based on CMDI/scripts/cmd2dot.xsl)</xd:p>
+            <xd:p><xd:b>Modified:</xd:b> 2012-12-05, 2013-06, 2013-08-21</xd:p>
+            <xd:p><xd:b>Author:</xd:b> m</xd:p>
+            
+        </xd:desc>
+    </xd:doc>
+
+    <xsl:output method="xml" encoding="utf-8"/>
+
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p></xd:p>
+        </xd:desc>
+    </xd:doc>
     <xsl:param name="profiles" select="''"/>  <!--teiHeader-->
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p></xd:p>
+        </xd:desc>
+    </xd:doc>
     <xsl:param name="format" select="'xml'"/>  <!-- xml | json-d3 ;  todo: dot, json-jit?  -->
-    <xsl:param name="rank-distance" select="50"/>
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>used as base, when resolving the auxiliary files, that get loaded with doc</xd:p>
+        </xd:desc>
+    </xd:doc>
     <xsl:param name="base-uri" select="base-uri(/)"/>
-    <xsl:param name="dcr-terms" select="doc(resolve-uri('dcr-terms.xml',$base-uri))"/>
-    <xsl:param name="rr-relations" select="doc(resolve-uri('rr-relations.xml',$base-uri))"/>
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>auxiliary data: data categories in the terms format, loaded from dcr-terms.xml</xd:p>
+        </xd:desc>
+    </xd:doc>
+    <xsl:variable name="dcr-terms" select="doc(resolve-uri('dcr-terms.xml',$base-uri))"/>
+
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+             <xd:p>generate a deep copy of the cmd-terms data - this is necessary due to a problem with Saxon 9.2.1.5 (used by exist; 9.3.0.5 seemed to work) - see enrich-mode templates </xd:p>
+        </xd:desc>
+    </xd:doc>
     <xsl:variable name="dcr-terms-copy">
         <xsl:apply-templates select="$dcr-terms" mode="copy"/>
     </xsl:variable>
-<!--        <xsl:param name="dcr-terms" select="()"/>-->
+
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p></xd:p>
+        </xd:desc>
+    </xd:doc>
+    <xsl:param name="rr-relations" select="doc(resolve-uri('rr-relations.xml',$base-uri))"/>
     
-<!--    <xsl:param name="cmd-terms-uri" select="doc(resolve-uri('cmd-terms-nested.xml',$base-uri))" />-->
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p></xd:p>
+        </xd:desc>
+    </xd:doc>
     <xsl:param name="cmd-terms-uri" select="resolve-uri('cmd-terms-nested.xml',$base-uri)"/>
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p></xd:p>
+        </xd:desc>
+    </xd:doc>
     <xsl:param name="cmd-terms" select="doc($cmd-terms-uri)"/>
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>generate a deep copy of the cmd-terms data - this is necessary due to a problem with Saxon 9.2.1.5 (used by exist; 9.3.0.5 seemed to work) - see enrich-mode templates </xd:p>
+        </xd:desc>
+    </xd:doc>
     <xsl:variable name="cmd-terms-copy">
         <xsl:apply-templates select="$cmd-terms/*" mode="copy"/>
     </xsl:variable>
     
-<!--    <xsl:param name="cmd-terms" select="()"/>-->
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>lookup term by path in cmd-terms, when enriching instance data with cmd-terms</xd:p>
+            <xd:pre><Term type="CMD_Component" name="GeneralInfo" datcat="" id="clarin.eu:cr1:c_1359626292113" elem="GeneralInfo" parent="AnnotatedCorpusProfile" path="AnnotatedCorpusProfile.GeneralInfo">
+                    <Term type="CMD_Element" name="ResourceName" datcat="http://www.isocat.org/datcat/DC-2544" id="clarin.eu:cr1:c_1359626292113#ResourceName" elem="ResourceName" parent="GeneralInfo" path="AnnotatedCorpusProfile.GeneralInfo.ResourceName"/>
+                </Term>
+            </xd:pre>
+            
+        </xd:desc>
+    </xd:doc>
     <xsl:key name="cmd-terms-path" match="Term" use="@path"/>
+
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>lookup a profile by name</xd:p>
+            <xd:pre><Termset name="AnnotatedCorpusProfile" id="clarin.eu:cr1:p_1357720977520" type="CMD_Profile" /></xd:pre>
+        </xd:desc>
+    </xd:doc>
+    <xsl:key name="cmd-termset-name" match="Termset" use="@name"/>
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>lookup a profile by id</xd:p>
+        </xd:desc>
+    </xd:doc>
+    <xsl:key name="cmd-termset-id" match="Termset" use="@id"/>
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>lookup dcr-terms (data categories) by their identifier</xd:p>
+        </xd:desc>
+    </xd:doc>
     <xsl:key name="dcr-terms" match="Concept" use="@id"/>
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>Main template</xd:p>
+            <xd:p>steps performed:</xd:p>
+            <xd:ul>
+                <xd:li>apply optional profile-filter</xd:li>
+                <xd:li>if instance data -> enrich (= merge with cmd-terms)</xd:li> 
+                <xd:li>generate nodes for profiles/components/elements, datcats (if instance data additionally collections) </xd:li>
+                <xd:li>generate edges for profiles -> components -> elements, terms -> datcats, relations (if instance data additionally collections-> profiles) </xd:li>
+                <xd:li>fold nodes and edges ($nodes -> $distinct-nodes, $edges -> $distinct-edges)</xd:li>
+                <xd:li>return full graph-xml</xd:li>
+            </xd:ul>
+        </xd:desc>
+    </xd:doc>
     <xsl:template match="/">
 <!--        <xsl:value-of select="doc-available(resolve-uri('../data/cmd-terms-nested.xml',$base-uri))"></xsl:value-of>-->
         <xsl:variable name="filtered-termsets">
@@ -64,7 +156,7 @@
 <!-\-    	    DEBUG:-<xsl:value-of select="current()/@name"/><xsl:copy-of select="$profile"></xsl:copy-of>-\->
     	-->
             <xsl:apply-templates select="$enriched-termsets//Termset[@context]" mode="nodes-collections"/>
-            <xsl:apply-templates select="$enriched-termsets//Termset" mode="nodes"/>
+            <xsl:apply-templates select="$enriched-termsets//Termset[@type='CMD_Profile']" mode="nodes"/>
             <xsl:apply-templates select="$enriched-termsets//Term" mode="nodes">
 <!--    	        <xsl:with-param name="cmd-terms" select="$profile"></xsl:with-param>-->
             </xsl:apply-templates>
@@ -89,11 +181,11 @@
 <!--	    </xsl:for-each>-->
         </xsl:variable>
         <xsl:variable name="edges">
-            <!--<xsl:apply-templates select="$enriched-termsets//Termset[@context]/Term" mode="edges-collections"/>
+            <xsl:apply-templates select="$enriched-termsets//Termset[@context]/Term" mode="edges-collections"/>
             <xsl:apply-templates select="$enriched-termsets//Term" mode="edges"/>
-            <xsl:apply-templates select="$enriched-termsets//Term" mode="edges-datcats"/>-->
-            <xsl:apply-templates select="$enriched-termsets//Term" mode="edges-profiles-datcats"/>
-            <xsl:apply-templates select="$rr-relations//Relation" mode="edges-rels"/>
+            <xsl:apply-templates select="$enriched-termsets//Term" mode="edges-datcats"/>
+<!--            <xsl:apply-templates select="$enriched-termsets//Term" mode="edges-profiles-datcats"/>-->
+<!--            <xsl:apply-templates select="$rr-relations//Relation" mode="edges-rels"/>-->
         </xsl:variable>
         <xsl:variable name="distinct-nodes">
             <xsl:for-each-group select="$nodes/*" group-by="@key">
@@ -119,46 +211,58 @@
                 </nodes>
                 <edges>
                     <xsl:copy-of select="$distinct-edges"/>
+<!--                    <debug><xsl:copy-of select="$edges"/></debug>-->
                 </edges>
             </graph>
         </xsl:variable>
-        <xsl:choose>
-            <xsl:when test="$format='json-d3'">
-                <xsl:apply-templates select="$graph"/>
-            </xsl:when>
-            <xsl:when test="$format='xml'">
-                <xsl:copy-of select="$graph"/>
-            </xsl:when>
-            <xsl:otherwise>
-            unknown format: <xsl:value-of select="$format"/>
-            </xsl:otherwise>
-        </xsl:choose>
+
+        <xsl:copy-of select="$graph"/>
+
     </xsl:template>
-    <xsl:template match="*|@*" mode="copy">
-        <xsl:copy>
-            <xsl:apply-templates select="*|@*|text()" mode="copy"/>
-        </xsl:copy>
-    </xsl:template>
-    <xsl:template match="text()" mode="copy">
-        <xsl:copy/>
-    </xsl:template>
-    
-<!--
-    <Termset name="Bedevaartbank" id="clarin.eu:cr1:p_1280305685223" type="CMD_Profile">
+
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>Generate nodes for CMD-Profile in cmd-terms</xd:p>
+            <xd:p>Termset = profiles + root component 
+                (data is inconsistent sometimes profile is the root component, sometimes a separate components (e.g. imdi-session)</xd:p>
+        </xd:desc>    
+    </xd:doc>
+    <xsl:template match="Termset" mode="nodes">
+        
+        <xsl:variable name="current_profile_key" select="my:normalize(@id)"/>
+        <node id="{@id}" key="{$current_profile_key}" name="{@name}" type="Profile" level="0" count="{@count}" path="{@path}">
+            <!--       <xsl:value-of select="$equivalent_schema_term"></xsl:value-of>-->
+        </node>
+        <!-- if root component not profile generate a separte node for it -->
+        <xsl:if test="xs:string(@id) ne Term/xs:string(@id)">
+            <xsl:for-each select="Term">
+                <node id="{@id}" key="{my:normalize(@id)}" name="{@name}" type="Component" level="1" count="{@count}" path="{@path}"/>
+            </xsl:for-each>
+        </xsl:if>
+    </xsl:template> 
+        
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>Generate nodes for CMD-Components (and CMD-Profiles in instance-data) </xd:p>
+            <xd:p>Expects Terms with @id-attribute, so instance data has to be enriched first</xd:p>
+            <xd:pre><Termset name="Bedevaartbank" id="clarin.eu:cr1:p_1280305685223" type="CMD_Profile">
         <Term type="CMD_Component" name="Bedevaartbank" datcat="" id="clarin.eu:cr1:p_1280305685223" elem="Bedevaartbank" parent="" path="Bedevaartbank"/>
         <Term type="CMD_Component" name="Database" datcat="" id="clarin.eu:cr1:c_1280305685207" elem="Database" parent="Bedevaartbank" path="Bedevaartbank.Database"/>
--->
-    <xsl:template match="Term[not(parent::Termset)][Term]" mode="nodes">
-        <xsl:param name="cmd-terms" select="$cmd-terms"/>    
-        <!--<xsl:variable name="current_comp_key" select="my:normalize(concat(@id, '_', @name))" />-->
-        <!--<xsl:variable name="equivalent-cmd-term"
-        select="$cmd-terms//Term[@path=current()/@path]/@id" />
-    -->
+            </Termset>
+            </xd:pre>
+        </xd:desc>        
+    </xd:doc>
+    <xsl:template match="Term[Term]" mode="nodes">
+    
         <xsl:variable name="current_comp_key" select="my:normalize(@id)"/>
         <xsl:variable name="type">
             <xsl:choose>
-                <xsl:when test="@parent=''">Profile</xsl:when>
-                <xsl:otherwise>Component</xsl:otherwise>
+                <xsl:when test="@type='CMD_Profile' or parent::Termset">Profile</xsl:when>
+                <xsl:when test="@type='CMD_Component'">Component</xsl:when>
+                <!-- pass special types -->
+                <xsl:otherwise>
+                    <xsl:value-of select="@type"/>
+                </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="level" select="count(ancestor::Term)"/>
@@ -166,98 +270,97 @@
             <!--       <xsl:value-of select="$equivalent_schema_term"></xsl:value-of>-->
         </node>
     </xsl:template>
-    
-    <!-- not root components = (mostly) profiles -->
+    <!--
+    <!-\- not root components = (mostly) profiles -\->
     <xsl:template match="Term[not(parent::Termset)][Term]" mode="nodes">
         <xsl:param name="cmd-terms" select="$cmd-terms"/>    
-	<!--<xsl:variable name="current_comp_key" select="my:normalize(concat(@id, '_', @name))" />-->
-    <!--<xsl:variable name="equivalent-cmd-term"
+	<!-\-<xsl:variable name="current_comp_key" select="my:normalize(concat(@id, '_', @name))" />-\->
+    <!-\-<xsl:variable name="equivalent-cmd-term"
         select="$cmd-terms//Term[@path=current()/@path]/@id" />
-    -->
+    -\->
         <xsl:variable name="current_comp_key" select="my:normalize(@id)"/>
         <xsl:variable name="type" select="'Component'">
-            <!--<xsl:choose>
+            <!-\-<xsl:choose>
                 <xsl:when test="@parent=''">Profile</xsl:when>
                 <xsl:otherwise>Component</xsl:otherwise>
-            </xsl:choose>-->
+            </xsl:choose>-\->
         </xsl:variable>
         <xsl:variable name="level" select="count(ancestor::Term)"/>
         <node id="{@id}" key="{$current_comp_key}" name="{@name}" type="{$type}" level="{$level}" count="{@count}" path="{@path}">
-<!--       <xsl:value-of select="$equivalent_schema_term"></xsl:value-of>-->
+<!-\-       <xsl:value-of select="$equivalent_schema_term"></xsl:value-of>-\->
         </node>
-    </xsl:template>
+    </xsl:template>-->
     
-    <!-- Termset = profiles + root component 
-    (data is inconsistent sometimes profile is the root component, sometimes a separate components (e.g. imdi-session)-->
-    <xsl:template match="Termset" mode="nodes">
-        <xsl:param name="cmd-terms" select="$cmd-terms"/>    
-        <!--<xsl:variable name="current_comp_key" select="my:normalize(concat(@id, '_', @name))" />-->
-        <!--<xsl:variable name="equivalent-cmd-term"
-        select="$cmd-terms//Term[@path=current()/@path]/@id" />
-    -->
-        <xsl:variable name="current_profile_key" select="my:normalize(@id)"/>
-        
-        <node id="{@id}" key="{$current_profile_key}" name="{@name}" type="Profile" level="0" count="{@count}" path="{@path}">
-            <!--       <xsl:value-of select="$equivalent_schema_term"></xsl:value-of>-->
-        </node>
-        <!-- if root component not profile generate a separte node for it -->
-        <xsl:if test="xs:string(@id) ne Term/xs:string(@id)" >
-            <xsl:for-each select="Term">            
-                <node id="{@id}" key="{my:normalize(@id)}" name="{@name}" type="Component" level="1" count="{@count}" path="{@path}" />
-            </xsl:for-each>
-        </xsl:if>
-     </xsl:template> 
-    
-    
-<!--
-    <Term type="CMD_Element" name="applicationType"
+
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>Generate nodes for CMD-Elements (leaf nodes in cmd-terms)</xd:p>
+            <xd:p>Expects Terms with @id-attribute, so instance data has to be enriched first</xd:p>
+            <xd:pre><Term type="CMD_Element" name="applicationType"
         datcat="http://www.isocat.org/datcat/DC-3786"
         id="#applicationType"
         elem="applicationType"
         parent="AnnotationTool"
         path="AnnotationTool.applicationType"/>
-    -->
-    <xsl:template match="Term[not(Term)]" mode="nodes">
-        <xsl:param name="cmd-terms" select="$cmd-terms"/>    
-        <!--<xsl:variable name="equivalent-cmd-term"
-            select="$cmd-terms//Term[@path=current()/@path]/@id" />
--->
+    </xd:pre>
+        </xd:desc>        
+    </xd:doc>
+    <xsl:template match="Term[not(Term)]" mode="nodes">        
         <xsl:variable name="current_elem_key" select="my:normalize(@id)"/>
         <xsl:variable name="level" select="count(ancestor::Term)"/>
-        <node id="{@id}" key="{$current_elem_key}" name="{@name}" type="Element" level="{$level}" count="{@count}"/>
+        <xsl:variable name="type">
+            <xsl:choose>
+                <xsl:when test="@type='CMD_Element'">Element</xsl:when>                
+                <!-- pass special types -->
+                <xsl:otherwise>
+                    <xsl:value-of select="@type"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <node id="{@id}" key="{$current_elem_key}" name="{@name}" type="{$type}" level="{$level}" count="{@count}" path="{@path}"/>
 <!--        <xsl:message><xsl:value-of select="concat(@id, '-', ancestor::Term[1]/@id)"></xsl:value-of></xsl:message>-->
     </xsl:template>
    
-   
-    <!--    process Terms (not only Elements!) once again, to get datcat-nodes -->
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>process Terms (also Components, not only Elements!) once again, to get datcat-nodes</xd:p>
+        </xd:desc>
+    </xd:doc>
     <xsl:template match="Term[@datcat][not(@datcat='')]" mode="nodes-datcats">
         <xsl:variable name="level" select="count(ancestor::Term) + 1"/>
         <xsl:variable name="datcat-id" select="@datcat"/>
         <xsl:variable name="get-mnemonic">
             <xsl:for-each select="$dcr-terms-copy">
                 <xsl:copy-of select="key('dcr-terms', $datcat-id)/Term[@type=('mnemonic','label')][1]"/>
-<!--                /Concept/Term[@type='mnemonic']-->
             </xsl:for-each>
         </xsl:variable>
         <xsl:variable name="datcat-name">
-<!--            <xsl:variable name="get-mnemonic" select="$dcr-terms//Concept[@id=current()/@datcat]/Term[@type='mnemonic']"/>-->
             <xsl:value-of select="if($get-mnemonic ne '') then $get-mnemonic else tokenize(@datcat,'/')[last()]"/>
         </xsl:variable>
-<!--        <xsl:value-of select="$get-mnemonic"/>-->
+<!--     DEBUG:get-mnemonic:<xsl:value-of select="$get-mnemonic"/>-->
         <node id="{$datcat-id}" key="{my:normalize($datcat-id)}" name="{$datcat-name}" type="DatCat" level="{$level}"/>
     </xsl:template>
+    
+    
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>Generate nodes representing collections (in instance-data)</xd:p>
+        </xd:desc>
+    </xd:doc>
     <xsl:template match="Termset[@context]" mode="nodes-collections">    
-        <!--<xsl:variable name="current_comp_key" select="my:normalize(concat(@id, '_', @name))" />-->
-        <!--<xsl:variable name="equivalent-cmd-term"
-        select="$cmd-terms//Term[@path=current()/@path]/@id" />
-    -->
+        
         <xsl:variable name="coll_key" select="my:normalize(@context)"/>
         <xsl:variable name="type" select="'Collection'"/>
         <xsl:variable name="level" select="-1"/>
-        <node id="{@context}" key="{$coll_key}" name="{translate(@context, '_', ' ')}" type="{$type}" level="{$level}" count="{sum(Term/@count)}" path="{@context}">
-            <!--       <xsl:value-of select="$equivalent_schema_term"></xsl:value-of>-->
-        </node>
+        <node id="{@context}" key="{$coll_key}" name="{translate(@context, '_', ' ')}" type="{$type}" level="{$level}" count="{sum(Term/@count)}" path="{@context}"/>
     </xsl:template>
+
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>Generate links between the profiles and the collections they appear in</xd:p>
+            <xd:pre>collection -> profile</xd:pre>
+        </xd:desc>
+    </xd:doc>
     <xsl:template match="Termset[@context]/Term" mode="edges-collections">
         
         <!-- cater for both: flat and nested input structure -->
@@ -266,89 +369,215 @@
         <edge from="{my:normalize($parent_coll)}" to="{$curr_profile_key}"/>
     </xsl:template>
     
-    <!--<Relation type="sameAs">
+    
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>generate bi-directional links for Relations between concepts</xd:p>
+            <xd:p>Sample input data:</xd:p>
+            <xd:pre><Relation type="sameAs">
         <Concept type="datcat" id="http://www.isocat.org/datcat/DC-2520" role="about"/>
         <Concept type="datcat" id="http://purl.org/dc/elements/1.1/description"/>
-    </Relation>-->
+                
+    </Relation></xd:pre>
+            <xd:pre>concept1 -> concept2, concept2 -> concept1</xd:pre>
+        </xd:desc>
+    </xd:doc>
     <xsl:template match="Relation" mode="edges-rels">
         <edge from="{my:normalize(Concept[1]/@id)}" to="{my:normalize(Concept[2]/@id)}" type="{@type}"/>
         <edge from="{my:normalize(Concept[2]/@id)}" to="{my:normalize(Concept[1]/@id)}" type="-{@type}"/>
     </xsl:template>
     
-<!--    process both Components and Elements, from the child point of view
-    i.e. find the parent -->
-<!--    [@type='CMD_Component']-->
-    <xsl:template match="Term[@parent ne '']" mode="edges">
-        
+    
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p> process both Components and Elements, from the child point of view
+                i.e. find the parent </xd:p>
+        </xd:desc>
+    </xd:doc>
+    <!--    [@type='CMD_Component'] [@parent ne '']-->
+    <xsl:template match="Term[parent::Term]" mode="edges">            
         <!-- cater for both: flat and nested input structure -->
-        <xsl:variable name="parent" select="(parent::Term[@type='CMD_Component'][1] | preceding-sibling::Term[@type='CMD_Component'][@name=current()/@parent][1])[1]"/>
+<!--        <xsl:variable name="parent" select="(parent::Term[@type='CMD_Component'][1] | preceding-sibling::Term[@type='CMD_Component'][@name=current()/@parent][1])[1]"/>-->
+<!--      not any more: just accept nested structure  -->
+        <xsl:variable name="parent" select="parent::Term[1] "/>
         <xsl:variable name="current_comp_key" select="my:normalize(@id)"/>
         <edge from="{my:normalize($parent/@id)}" to="{$current_comp_key}"/>
     </xsl:template>
     
-    <!--    process Terms (not only Elements!) once again, to get links to datcats -->
+    
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>process Terms (not only Elements!) once again, to get links to datcats </xd:p>
+        </xd:desc>
+    </xd:doc>
     <xsl:template match="Term[exists(@datcat) and not(@datcat='')]" mode="edges-datcats">
         <xsl:variable name="current_comp_key" select="my:normalize(@id)"/>
         <edge from="{$current_comp_key}" to="{my:normalize(@datcat)}"/>
     </xsl:template>
     
-    <!-- alternatively process Terms to generate direct links between Profiles and Datcats -->
+    
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>alternatively process Terms to generate direct links between Profiles and Datcats</xd:p>
+        </xd:desc>
+    </xd:doc>
     <xsl:template match="Term[exists(@datcat) and not(@datcat='')]" mode="edges-profiles-datcats">
         <xsl:variable name="current_profile_key" select="my:normalize(ancestor::Termset/@id)"/>
         <edge from="{$current_profile_key}" to="{my:normalize(@datcat)}"/>
     </xsl:template>
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        
+    </xd:doc>
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>entry template for enrich-mode</xd:p>
+        </xd:desc>
+        <xd:desc>
+            <xd:p>When enriching the instance data Termset-element represents the collection.
+                Profile is the Termset/Term element </xd:p>
+        </xd:desc>
+    </xd:doc>
     <xsl:template match="Termset" mode="enrich">
         
-        <!-- get the correct profile matching on the name of the top element -->
+        <!-- get the correct profile matching on the name of the top element 
+            is currently not used due to the bug - rather the global variable $cmd-terms-copy is consulted on every lookup -->
         <xsl:variable name="profile" select="$cmd-terms-copy//Termset[@name=current()/Term/@name]"/>
-        <!--    	    DEBUG:-<xsl:value-of select="current()/@name"/><xsl:copy-of select="$profile"></xsl:copy-of>-->
+<!--            	    DEBUG:-<xsl:value-of select="current()/@name"/><xsl:copy-of select="$profile"></xsl:copy-of>-->
         <xsl:copy>
             <xsl:copy-of select="@*"/>
             <xsl:apply-templates select="Term" mode="enrich">
-                <xsl:with-param name="cmd-terms">
-                    <xsl:apply-templates select="$profile/*" mode="copy"/>
-                </xsl:with-param>
+            <!--    <xsl:with-param name="cmd-terms">
+                    <xsl:apply-templates select="$profile" mode="copy"/>
+                </xsl:with-param>-->
             </xsl:apply-templates>
         </xsl:copy>
     </xsl:template>
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>merges the Term elements from instance-data with corresponding cmd-terms</xd:p>
+            <xd:p>There is a bug(?) in Saxon 9.2.1.5 (used in exist): "Exception: attribute node may not be created after children of containing node."
+            when the $cmd-terms nodeset is passed as a variable. The error disappears when the node is deep-copied().
+            However it is prohibitively expensive to do the copy of the context-profile on every term, 
+            thus rather the global variable $cmd-terms-copy is used.
+            WATCHME: There may be a problem with correct matching!
+            In Saxon 9.3.0.5 (Oxygen) no such error occurs.</xd:p>
+        </xd:desc>
+        <xd:param name="cmd-terms">obsoleted, because unusable due to the error</xd:param>
+    </xd:doc>
+    
     <xsl:template match="Term" mode="enrich">
-        <xsl:param name="cmd-terms" select="$cmd-terms"/>
+<!--        <xsl:param name="cmd-terms" select="$cmd-terms"/>-->
         <xsl:variable name="curr_path" select="xs:string(@path)"/>
         <xsl:variable name="equivalent-cmd-term">
             <xsl:call-template name="get-equivalent-cmd-term">
-                <xsl:with-param name="cmd-terms" select="$cmd-terms-copy"/>
-                <xsl:with-param name="path" select="xs:string(@path)"/>
+<!--                <xsl:with-param name="cmd-terms" select="$cmd-terms"/>-->
+<!--                <xsl:with-param name="cmd-terms">                    
+                    <xsl:apply-templates select="$cmd-terms" mode="copy"/>
+                </xsl:with-param>-->                
+                <xsl:with-param name="key" select="xs:string(@path)"/>
+                <xsl:with-param name="isProfile" select="exists(parent::Termset)"/>
             </xsl:call-template>
         </xsl:variable>
-        
+<!--        <xsl:message><debug><xsl:copy-of select="$equivalent-cmd-term"/></debug> </xsl:message>-->
 <!--        <xsl:variable name="current_elem_key" select="my:normalize((@id,$equivalent-cmd-term)[1])" />-->
         <!--            <xsl:attribute name="curr_path" select="$curr_path"/>-->
         <Term>
             <xsl:copy-of select="@*"/>
-            <xsl:copy-of select="$equivalent-cmd-term/*/(@type,@parent,@id,@datcat)"/>
+            <xsl:choose>
+                <xsl:when test="count($equivalent-cmd-term/*) = 1">
+                    <xsl:copy-of select="$equivalent-cmd-term/*/(@type,@parent,@id,@datcat)"/>
+                </xsl:when>
+                <xsl:when test="count($equivalent-cmd-term/*) &gt; 1">
+                    <xsl:attribute name="type" select="concat('ERROR-ambigue-', count($equivalent-cmd-term/*))"/>
+                    <xsl:copy-of select="$equivalent-cmd-term/*[1]/(@parent,@id,@datcat)"/>
+                </xsl:when>
+                <xsl:otherwise><!-- if no equivalent term find - use path as id and mark as missing -->
+                    <xsl:attribute name="id" select="xs:string(@path)"/>
+                    <xsl:attribute name="type">ERROR-cmd-term-missing</xsl:attribute>
+                </xsl:otherwise>
+            </xsl:choose>
+
             <!--          type="{$equivalent-cmd-term/*/@type}" id="{$equivalent-cmd-term/*/@id}"  <xsl:copy-of select="$equivalent-cmd-term/*/(@parent,@id)"/><xsl:copy-of select="@*"/>-->
 <!--            <xsl:value-of select="$equivalent-cmd-term" />-->
-            <xsl:apply-templates select="Term" mode="enrich"/>
+            <xsl:apply-templates select="Term" mode="enrich">
+
+            </xsl:apply-templates>
         </Term>
-<!--        <xsl:variable name="level" select="count(ancestor::Term)" />
-        <node id="{(@id,$equivalent-cmd-term)}" key="{$current_elem_key}" name="{@name}" type="Element" level="{$level}"/>
-        <!-\-        <xsl:message><xsl:value-of select="concat(@id, '-', ancestor::Term[1]/@id)"></xsl:value-of></xsl:message>-\->
--->
     </xsl:template>
+
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>helper template handling lookup of corresponding cmd-terms (lookup in post-loaded data)</xd:p>
+        </xd:desc>
+        <xd:param name="cmd-terms">data to look in</xd:param>
+        <xd:param name="key">key to look for</xd:param>
+        <xd:param name="isProfile">indicate, if we are looking for a profile</xd:param>
+    </xd:doc>
     <xsl:template name="get-equivalent-cmd-term">
-        <xsl:param name="cmd-terms" select="$cmd-terms"/>
-        <xsl:param name="path" select="xs:string(@path)"/>
-        <xsl:for-each select="$cmd-terms">
-            <xsl:copy-of select="key('cmd-terms-path',$path)"/>
-        </xsl:for-each>
+        <xsl:param name="cmd-terms" select="$cmd-terms-copy"/>
+        <xsl:param name="key" select="xs:string(@path)"/>
+        <xsl:param name="isProfile" select="false()"/>
+<!--        <xsl:message><xsl:value-of select="concat($key,'-',$isProfile)"></xsl:value-of></xsl:message>-->
+        <xsl:choose>
+            <xsl:when test="$isProfile">
+                <xsl:for-each select="$cmd-terms">
+                    <xsl:copy-of select="key('cmd-termset-name',$key)"/>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:for-each select="$cmd-terms">
+                    <xsl:copy-of select="key('cmd-terms-path',$key)"/>
+                </xsl:for-each>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
+    
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>helper-function translating ids and similar to (javascript-)safe keys, removing special characters</xd:p>
+        </xd:desc>
+        <xd:param name="value"></xd:param>
+    </xd:doc>
     <xsl:function name="my:normalize">
         <xsl:param name="value"/>
         <xsl:value-of select="translate($value,'*/-.'',$@={}:[]()#&gt;&lt; ','XZ__')"/>
     </xsl:function>
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p></xd:p>
+        </xd:desc>
+        <xd:param name="value"></xd:param>
+    </xd:doc>
     <xsl:function name="my:simplify">
         <xsl:param name="value"/>
         <xsl:value-of select="replace($value,'http://www.clarin.eu/cmd/components/','cmd:')"/>
     </xsl:function>
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p></xd:p>
+        </xd:desc>
+    </xd:doc>
     <xsl:template match="text()"/>
+    
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>copy-mode - util-template, generate a deep copy </xd:p>
+        </xd:desc>
+    </xd:doc>
+    <xsl:template match="*|@*" mode="copy">
+        <xsl:copy>
+            <xsl:apply-templates select="*|@*|text()" mode="copy"/>
+        </xsl:copy>
+    </xsl:template>
+    
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>copy-mode: copy text</xd:p>
+        </xd:desc>
+    </xd:doc>
+    <xsl:template match="text()" mode="copy">
+        <xsl:copy/>
+    </xsl:template>
+    
+    
 </xsl:stylesheet>
