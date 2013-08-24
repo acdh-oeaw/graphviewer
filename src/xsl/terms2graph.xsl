@@ -20,16 +20,25 @@
 
     <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
         <xd:desc>
-            <xd:p></xd:p>
+            <xd:p>allows to restrict the outputted graph-nodes and edges by type </xd:p>
+            <xd:p>profiles are output always</xd:p>
+            <xd:p>recognized values: collections,components,profile-groups,datcats,relations (delimited by ',')</xd:p>            
+            <xd:p>if datcats and no components - direct links between profiles and datcats are generated</xd:p>
+            <xd:p>profile-groups generates extra nodes grouping profiles by metadata (creatore, groupName, domainName)</xd:p>
         </xd:desc>
     </xd:doc>
-    <xsl:param name="profiles" select="''"/>  <!--teiHeader-->
+<!--        <xsl:param name="parts" select="'profile-groups'"/>-->
+    <xsl:param name="parts" select="'collections,profile-groups,components,datcats,relations'"/>
+    <xsl:variable name="parts-sequence" select="tokenize($parts,',')"></xsl:variable>
+    
     <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
         <xd:desc>
             <xd:p></xd:p>
         </xd:desc>
     </xd:doc>
-    <xsl:param name="format" select="'xml'"/>  <!-- xml | json-d3 ;  todo: dot, json-jit?  -->
+    <xsl:param name="profiles" select="''"/>  <!--teiHeader-->
+
+
     <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
         <xd:desc>
             <xd:p>used as base, when resolving the auxiliary files, that get loaded with doc</xd:p>
@@ -155,37 +164,43 @@
 	        <xsl:variable name="profile" select="$cmd-terms//Termset[@name=current()/@name]"></xsl:variable>
 <!-\-    	    DEBUG:-<xsl:value-of select="current()/@name"/><xsl:copy-of select="$profile"></xsl:copy-of>-\->
     	-->
-            <xsl:apply-templates select="$enriched-termsets//Termset[@context]" mode="nodes-collections"/>
+            <xsl:if test="'collections' = $parts-sequence"><xsl:apply-templates select="$enriched-termsets//Termset[@context]" mode="nodes-collections"/></xsl:if>
             <xsl:apply-templates select="$enriched-termsets//Termset[@type='CMD_Profile']" mode="nodes"/>
-            <xsl:apply-templates select="$enriched-termsets//Term" mode="nodes">
-<!--    	        <xsl:with-param name="cmd-terms" select="$profile"></xsl:with-param>-->
-            </xsl:apply-templates>
-            <xsl:apply-templates select="$enriched-termsets//Term" mode="nodes-datcats"/>
-            <xsl:for-each-group select="$rr-relations//Concept" group-by="@id">
-                <xsl:variable name="datcat-id" select="@id"/>
-                <xsl:variable name="get-mnemonic">
-                    <xsl:for-each select="$dcr-terms-copy">
-                        <xsl:copy-of select="key('dcr-terms', $datcat-id)/Term[@type=('mnemonic','label')][1]"/>
-                        <!--                /Concept/Term[@type='mnemonic']-->
-                    </xsl:for-each>
-                </xsl:variable>
-                <xsl:variable name="datcat-name">
-                    <!--            <xsl:variable name="get-mnemonic" select="$dcr-terms//Concept[@id=current()/@datcat]/Term[@type='mnemonic']"/>-->
-                    <xsl:value-of select="if($get-mnemonic ne '') then $get-mnemonic else tokenize($datcat-id,'/')[last()]"/>
-                </xsl:variable>
-                <node id="{@id}" key="{my:normalize(@id)}" name="{$datcat-name}" type="DatCat">
-                    <xsl:copy-of select="@*[not (name()=('count','type'))]"/>
-                </node>
-            </xsl:for-each-group>
+            <xsl:if test="'profile-groups' = $parts-sequence">
+                <xsl:call-template name="nodes-profile-groups"><xsl:with-param name="termsets" select="$enriched-termsets" /></xsl:call-template>                
+            </xsl:if>
+            <xsl:if test="'components' = $parts-sequence"><xsl:apply-templates select="$enriched-termsets//Term" mode="nodes" /></xsl:if>
+            <xsl:if test="'datcats' = $parts-sequence"><xsl:apply-templates select="$enriched-termsets//Term" mode="nodes-datcats"/></xsl:if>
+            <xsl:if test="'relations' = $parts-sequence">
+                <xsl:for-each-group select="$rr-relations//Concept" group-by="@id">
+                    <xsl:variable name="datcat-id" select="@id"/>
+                    <xsl:variable name="get-mnemonic">
+                        <xsl:for-each select="$dcr-terms-copy">
+                            <xsl:copy-of select="key('dcr-terms', $datcat-id)/Term[@type=('mnemonic','label')][1]"/>
+                            <!--                /Concept/Term[@type='mnemonic']-->
+                        </xsl:for-each>
+                    </xsl:variable>
+                    <xsl:variable name="datcat-name">
+                        <!--            <xsl:variable name="get-mnemonic" select="$dcr-terms//Concept[@id=current()/@datcat]/Term[@type='mnemonic']"/>-->
+                        <xsl:value-of select="if($get-mnemonic ne '') then $get-mnemonic else tokenize($datcat-id,'/')[last()]"/>
+                    </xsl:variable>
+                    <node id="{@id}" key="{my:normalize(@id)}" name="{$datcat-name}" type="DatCat">
+                        <xsl:copy-of select="@*[not (name()=('count','type'))]"/>
+                    </node>
+                </xsl:for-each-group>
+            </xsl:if>
     	        
 <!--	    </xsl:for-each>-->
         </xsl:variable>
         <xsl:variable name="edges">
-            <xsl:apply-templates select="$enriched-termsets//Termset[@context]/Term" mode="edges-collections"/>
-            <xsl:apply-templates select="$enriched-termsets//Term" mode="edges"/>
-            <xsl:apply-templates select="$enriched-termsets//Term" mode="edges-datcats"/>
-<!--            <xsl:apply-templates select="$enriched-termsets//Term" mode="edges-profiles-datcats"/>-->
-<!--            <xsl:apply-templates select="$rr-relations//Relation" mode="edges-rels"/>-->
+            <xsl:if test="'collections' = $parts-sequence"><xsl:apply-templates select="$enriched-termsets//Termset[@context]/Term" mode="edges-collections"/></xsl:if>
+            <xsl:if test="'components' = $parts-sequence"><xsl:apply-templates select="$enriched-termsets//Term" mode="edges"/></xsl:if>
+            <xsl:if test="'datcats' = $parts-sequence and 'components' = $parts-sequence" ><xsl:apply-templates select="$enriched-termsets//Term" mode="edges-datcats"/></xsl:if>
+            <xsl:if test="'datcats' = $parts-sequence and not('components' = $parts-sequence)" ><xsl:apply-templates select="$enriched-termsets//Term" mode="edges-profiles-datcats"/></xsl:if>
+            <xsl:if test="'relation' = $parts-sequence" ><xsl:apply-templates select="$rr-relations//Relation" mode="edges-rels"/></xsl:if>            
+            <xsl:if test="'profile-groups' = $parts-sequence">
+                <xsl:apply-templates select="$enriched-termsets//info/(groupName | domainName | creatorName)[. ne '']" mode="edges-profiles-groups"/>
+            </xsl:if>
         </xsl:variable>
         <xsl:variable name="distinct-nodes">
             <xsl:for-each-group select="$nodes/*" group-by="@key">
@@ -355,6 +370,19 @@
         <node id="{@context}" key="{$coll_key}" name="{translate(@context, '_', ' ')}" type="{$type}" level="{$level}" count="{sum(Term/@count)}" path="{@context}"/>
     </xsl:template>
 
+    <xsl:template name="nodes-profile-groups">
+        <xsl:param name="termsets"></xsl:param>
+        <xsl:for-each-group select="$termsets//Termset/info/(groupName | domainName | creatorName)[. ne '']" group-by=".">
+            <xsl:variable name="type" select="concat('profile-', substring-before(name(),'Name'))"/>
+            <xsl:variable name="node_key" select="my:normalize(concat($type, '_', .))"/>
+            <xsl:variable name="level" select="-1"/>
+            <xsl:variable name="count" select="count($termsets//Termset[info/*[local-name()=local-name(current())][. = current-grouping-key()]])"/>
+            
+            <node id="{$node_key}" key="{$node_key}" name="{.}" type="{$type}" level="{$level}" count="{$count}" path="{$node_key}"/>    
+        </xsl:for-each-group>
+
+    </xsl:template>
+
     <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
         <xd:desc>
             <xd:p>Generate links between the profiles and the collections they appear in</xd:p>
@@ -425,9 +453,23 @@
         <xsl:variable name="current_profile_key" select="my:normalize(ancestor::Termset/@id)"/>
         <edge from="{$current_profile_key}" to="{my:normalize(@datcat)}"/>
     </xsl:template>
+    
     <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
-        
+        <xd:desc>
+            <xd:p>Generate links between the profiles and their respective profile-groups</xd:p>
+            <xd:pre>profile-group -> profile</xd:pre>
+        </xd:desc>
     </xd:doc>
+    <xsl:template match="info/*" mode="edges-profiles-groups">
+        
+        <xsl:variable name="type" select="concat('profile-', substring-before(name(),'Name'))"/>
+        <xsl:variable name="node_key" select="my:normalize(concat($type, '_', .))"/>
+        
+        <xsl:variable name="curr_profile_key" select="ancestor::Termset[@type='CMD_Profile']/my:normalize(@id)"/>
+        <edge from="{$node_key}" to="{$curr_profile_key}"/>
+    </xsl:template>
+    
+    
     <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
         <xd:desc>
             <xd:p>entry template for enrich-mode</xd:p>
