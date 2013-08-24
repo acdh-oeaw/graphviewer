@@ -61,6 +61,9 @@
  <xsl:when test="$data_key = 'load-profiles'">
   <xsl:call-template name="load-profiles"></xsl:call-template>
  </xsl:when>
+ <xsl:when test="$data_key = 'dcr-terms'">
+  <xsl:call-template name="postload-datcats" />
+ </xsl:when>
  <xsl:otherwise> 
   <xsl:call-template name="getData">
   </xsl:call-template>

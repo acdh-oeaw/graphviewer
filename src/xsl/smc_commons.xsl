@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:my="myFunctions" exclude-result-prefixes="xs my" version="2.0">
+   
+    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all" name="xml"/>
+    
     
     <xsl:include href="smc_params.xsl"/>
     <xsl:include href="smc_functions.xsl"/>
@@ -8,7 +11,6 @@
     <xsl:include href="dcr_rdf2terms.xsl"/>
     <xsl:include href="dcr_dcif2terms.xsl"/>
    
-    <xsl:output method="xml" indent="yes" exclude-result-prefixes="#all" name="xml"/>
     
     <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
         <xd:desc>
@@ -31,6 +33,7 @@
    <xsl:variable name="cmd_profiles_uri" select="my:config('cmd-profiles','url_prefix')" />
     
 <!-- intermediate datasets bound into variables,to prevent calling the function every time -->
+    <xsl:variable name="dcr-terms-preload" select="my:getData('dcr-terms-preload')" />
    <xsl:variable name="dcr-terms" select="my:getData('dcr-terms')" />
     <xsl:variable name="rr-relations" select="my:getData('rr-relations')" />
     <!-- rr-relations expanded with terms-->
@@ -39,7 +42,9 @@
     <xsl:variable name="cmd-terms-nested" select="my:getData('cmd-terms-nested')" />
    <xsl:variable name="dcr-cmd-map" select="my:getData('dcr-cmd-map')" />
    <xsl:variable name="isocat-languages" select="my:getData('isocat-languages')" />
-    
+
+    <xsl:key name="concept-id" match="Concept" use="xs:string(@id)" /> 
+
     <!--  -->
     
     <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
@@ -62,8 +67,7 @@
         
         <xsl:message><xsl:value-of select="$cache_path" /> available <xsl:value-of select="doc-available($cache_path)" /></xsl:message>
 <!--        <xsl:message>cachePath: <xsl:value-of select="$cache_path"></xsl:value-of></xsl:message>-->
-            <xsl:if test="$cache='refresh' and not(doc-available($cache_path))">
-                     
+            <xsl:if test="contains($cache,'refresh') and not(doc-available($cache_path))">
              <xsl:result-document href="{$cache_path}" format="xml" >
                  <xsl:copy-of select="$result" />
              </xsl:result-document>
@@ -71,7 +75,8 @@
         
         
         <!-- only output to main result if cache is use (otherwise only write out to cache) -->
-        <xsl:if test="$cache='use' and not(doc-available($cache_path))">
+<!--        <xsl:if test="$cache='use' and not(doc-available($cache_path))">-->
+            <xsl:if test="contains($cache,'use')">
             <xsl:copy-of select="$result"></xsl:copy-of>
         </xsl:if>
         
@@ -98,7 +103,9 @@
         
       <xsl:variable name="cached_data_file" select="my:cachePath($key,$id)"></xsl:variable>
                 <xsl:message>cache: <xsl:value-of select="$cache" /></xsl:message>
+                <xsl:message>key: <xsl:value-of select="$key"></xsl:value-of></xsl:message>
                 <xsl:message><xsl:value-of select="$cached_data_file" /> available <xsl:value-of select="doc-available($cached_data_file)" /></xsl:message>
+      
       
         <xsl:choose>
             <xsl:when test="doc-available($cached_data_file) and $cache='use'">
@@ -107,9 +114,22 @@
                 <xsl:copy-of select="doc($cached_data_file)"></xsl:copy-of>
             </xsl:when>
             <xsl:when test="$key='cmd-profiles-raw'">
-                <xsl:copy-of select="document(my:config('cmd-profiles','url'))" />                
+                 
+                <xsl:variable name="cmd-profiles" select="document(my:config('cmd-profiles','url'))" />                
+                <!-- integrate profiles that are already used in instance data, but not public - if appropriate config entry given -->
+                <xsl:variable name="used-profiles" >
+                    <xsl:if test="my:config('used-profiles','url') ne ''" >
+                        <xsl:copy-of select="document(my:config('used-profiles','url'))" />                            
+                    </xsl:if>                   
+                </xsl:variable>
+                <profileDescriptions>
+<!--                    DEBUG:<xsl:value-of select="my:config('used-profiles','url')"></xsl:value-of>-->
+                    <xsl:copy-of select="$cmd-profiles//profileDescription"  />
+                    <xsl:copy-of select="$used-profiles//profileDescription[not(id = $cmd-profiles//profileDescription/id)]" />
+                    
+                </profileDescriptions>                
             </xsl:when>
-            <xsl:when test="$key='profiles' or $key='component'">
+            <xsl:when test="$key='profiles' or $key='datcats'">                
                 <xsl:copy-of select="my:getRawData($key, $id)" />                
             </xsl:when> 
             <xsl:when test="$key='cmd-resolved'">
@@ -124,8 +144,11 @@
             <xsl:when test="$key='cmd-terms-nested-minimal'">
                 <xsl:apply-templates select="$cmd-terms-nested" mode="min-context"></xsl:apply-templates>
             </xsl:when>            
-            <xsl:when test="$key='dcr-terms'">
+            <xsl:when test="$key='dcr-terms-preload'">
                 <xsl:call-template name="load-dcr" />								
+            </xsl:when>
+            <xsl:when test="$key='dcr-terms'">
+                <xsl:call-template name="postload-datcats" />								
             </xsl:when>
             <xsl:when test="$key='rr-relations'">
                 <xsl:call-template name="load-rr-relations" />								
@@ -153,8 +176,13 @@
       
     
     </xsl:function>
-    
-    <!-- overload method with one param and value of global cache-param as default -->    
+        
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>overload method with one param and value of global cache-param as default</xd:p>
+        </xd:desc>
+        <xd:param name="key"></xd:param>
+    </xd:doc>
     <xsl:function name="my:getData">
         <xsl:param name="key"></xsl:param>
         <xsl:copy-of select="my:getData($key,'', $cache)"></xsl:copy-of>
@@ -165,8 +193,15 @@
         <xsl:param name="id"></xsl:param>
         <xsl:copy-of select="my:getData($key,$id, $cache)"></xsl:copy-of>
     </xsl:function>
-    
-  <!-- get the raw xml for a specific piece of data (profile, component, later data category) from the source --> 
+   
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>get the raw xml for a specific piece of data (profile, component, later data category) from the source, or from the cache if already available</xd:p>
+            <xd:p>Storing to cache happens in load-profiles template</xd:p>
+        </xd:desc>
+        <xd:param name="key">currently only 'profiles'</xd:param>
+        <xd:param name="id">id for the profile</xd:param>
+    </xd:doc>
     <xsl:function name="my:getRawData">
         <xsl:param name="key"></xsl:param>
         <xsl:param name="id"></xsl:param>
@@ -182,7 +217,7 @@
         <xsl:variable name="compid" select="@ComponentId" /> 
         
         -->
-        <xsl:variable name="resolved_uri" select="if (doc-available($cached_data_file)) then $cached_data_file else concat($cmd_profiles_uri , $id, '/xml')" />
+        <xsl:variable name="resolved_uri" select="if (doc-available($cached_data_file)) then $cached_data_file else concat($cmd_profiles_uri[$key='profiles'] , $id, '/xml'[$key='profiles'], '.dcif'[$key='datcats'])" />
         
         <xsl:message><xsl:value-of select="$key" />:</xsl:message>
         <xsl:message>resolved_uri:<xsl:value-of select="$resolved_uri" /></xsl:message>
@@ -193,20 +228,111 @@
         
     </xsl:function>
     
-
-<!-- load all dcrs from the configuration and transform them into Termsets
-       (uses mode=dcr-templates in dcr_rdf2terms.xsl)       -->
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>load all dcrs from the configuration and transform them into Termsets
+                (uses mode=dcr-templates in dcr_rdf2terms.xsl)</xd:p>
+        </xd:desc>
+    </xd:doc>
     <xsl:template name="load-dcr">
         <Termsets type="dcr">
           <xsl:for-each select="$termsets_config//*[type='dcr']" >
               <xsl:variable name="dcr_termset" select="document(url)" />            
                   <xsl:apply-templates select="$dcr_termset" mode="dcr" >
-                      <xsl:with-param name="config-node" select="."></xsl:with-param>
+                      <xsl:with-param name="config-node" select="." />                                               
                       <xsl:with-param name="set" select="key"></xsl:with-param>
                   </xsl:apply-templates>              
-          </xsl:for-each>
+          </xsl:for-each>           
         </Termsets>
     </xsl:template>
+    
+    
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>load all data-categories, that are used in CMD, and are not present in the Termsets already downloaded in load-dcr</xd:p>
+        </xd:desc>
+    </xd:doc>
+    <xsl:template name="postload-datcats">
+        
+        <xsl:variable name="missing-datcats" select="distinct-values($cmd-terms//Term[not(@datcat='')][not(@datcat =$dcr-terms-preload//Concept/@id)]/@datcat)" />
+        <xsl:for-each select="$missing-datcats">
+<!--            <xsl:copy-of select="my:getRawData('datcats',.)" />-->
+                <xsl:call-template name="getData">
+                    <xsl:with-param name="key" select="'datcats'"></xsl:with-param>
+                    <!--<xsl:with-param name="id" select="my:shortURL(.)"></xsl:with-param>-->
+                    <xsl:with-param name="id" select="."></xsl:with-param>
+                    <xsl:with-param name="cache" select="'refresh'"></xsl:with-param>
+                </xsl:call-template>
+        </xsl:for-each>
+        
+        <xsl:variable name="resolved_datcats">
+        <xsl:for-each select="$missing-datcats">
+            <!--            <xsl:copy-of select="my:getRawData('datcats',.)" />-->
+            <xsl:apply-templates select="my:getData('datcats',.)" mode="dcr" >            
+                <xsl:with-param name="config-node" >
+                <item>
+                    <name>ISOcat</name>
+                    <url_prefix>http://www.isocat.org/datcat/</url_prefix>
+                </item>
+                </xsl:with-param>
+                <xsl:with-param name="set" select="'isocat'"></xsl:with-param>
+            </xsl:apply-templates>
+        </xsl:for-each>
+        </xsl:variable>
+        <!-- weave in the newly generated missing dcr-terms inton the isocat termset-->
+        
+            <Termsets type="dcr">
+                <Termset>
+                    <xsl:copy-of select="$dcr-terms-preload//Termset[xs:string(@set)='isocat']/@*"/>
+                    <xsl:copy-of select="$dcr-terms-preload//Termset[xs:string(@set)='isocat']/*" />
+                    <xsl:copy-of select="$resolved_datcats/Termset[xs:string(@set)='isocat']/*" />
+                </Termset>
+                <xsl:copy-of select="$dcr-terms-preload//Termset[xs:string(@set) ne 'isocat']" />      
+            </Termsets>
+
+<!--        <xsl:copy-of select="$raw-datcat-defs"></xsl:copy-of>-->
+        <!--    <xsl:for-each-group select="$cmd-terms//Term[not(@datcat='')]" group-by="@datcat">
+                    <xsl:variable name="curr_datcat" select="@datcat" />
+                <xsl:value-of select="$curr_datcat"></xsl:value-of>
+                #<xsl:copy-of select="$dcr-terms-preload//key('concept-id',$curr_datcat)"></xsl:copy-of>-                
+            </xsl:for-each-group>-->                
+<!--        [not(exists($dcr-terms-preload/key('concept-id',@datcat)))]-->
+<!--        </xsl:variable>-->
+<!--        <xsl:value-of select="$missing-datcats" />-->
+        <!--<xsl:for-each-group select="$cmd-terms//Term[not(@datcat='')]" group-by="@datcat">
+            <Concept id="{@datcat}" type="datcat">
+                <xsl:copy-of select="$dcr-terms//Concept[@id=current()/@datcat]/Term" exclude-result-prefixes="my" />
+                
+        -->
+<!--        <Termsets type="dcr">
+            <xsl:for-each select="$termsets_config//*[type='dcr']" >
+                <xsl:variable name="dcr_termset" select="document(url)" />            
+                <xsl:apply-templates select="$dcr_termset" mode="dcr" >
+                    <xsl:with-param name="config-node" select="."></xsl:with-param>
+                    <xsl:with-param name="set" select="key"></xsl:with-param>
+                </xsl:apply-templates>              
+            </xsl:for-each>           
+        </Termsets>
+    </xsl:template>
+
+
+    <xsl:template name="load-profiles">
+        
+        <!-\-        <xsl:variable name="profiles" select="document(my:config('cmd-profiles','url'))"></xsl:variable>-\->
+        <xsl:variable name="profiles" select="my:getData('cmd-profiles-raw')"></xsl:variable>
+        
+        <!-\- ???        <xsl:apply-templates select="$profiles" mode="include" />-\->
+        
+        <xsl:for-each select="$profiles//profileDescription[id]">
+            <xsl:call-template name="getData">
+                <xsl:with-param name="key" select="'profiles'"></xsl:with-param>
+                <xsl:with-param name="id" select="id"></xsl:with-param>
+                <xsl:with-param name="cache" select="'refresh'"></xsl:with-param>
+            </xsl:call-template>
+        </xsl:for-each>
+-->        
+    </xsl:template>
+
 
     <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
         <xd:desc>
@@ -236,6 +362,7 @@
         </xd:desc>
     </xd:doc>
 <xsl:template name="dcr-cmd-map">
+    <xsl:variable name="dcr-terms" select="my:getData('dcr-terms')" />
     <Termset type="dcr-cmd-map" >	
         <xsl:for-each-group select="$cmd-terms//Term[not(@datcat='')]" group-by="@datcat">
             <Concept id="{@datcat}" type="datcat">
