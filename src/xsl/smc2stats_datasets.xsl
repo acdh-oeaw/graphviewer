@@ -28,7 +28,29 @@ main input file is expected dcr-cmd-map.xml
 	<xsl:output method="xml" indent="yes" />
 	
   <xsl:param name="title" select="'SMC Stats'" />
-    
+
+	<!--
+		
+	        <info>
+            <id xmlns:ns2="http://www.w3.org/1999/xlink">clarin.eu:cr1:p_1357720977520</id>
+            <description xmlns:ns2="http://www.w3.org/1999/xlink">A CMDI profile for annotated text
+                corpus resources.</description>
+            <name xmlns:ns2="http://www.w3.org/1999/xlink">AnnotatedCorpusProfile</name>
+            <registrationDate xmlns:ns2="http://www.w3.org/1999/xlink"
+                >2013-01-31T11:57:12+00:00</registrationDate>
+            <creatorName xmlns:ns2="http://www.w3.org/1999/xlink">nalida</creatorName>
+            <userId xmlns:ns2="http://www.w3.org/1999/xlink">22</userId>
+            <domainName xmlns:ns2="http://www.w3.org/1999/xlink"/>
+            <ns2:href xmlns:ns2="http://www.w3.org/1999/xlink"
+                >http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/clarin.eu:cr1:p_1357720977520</ns2:href>
+            <groupName xmlns:ns2="http://www.w3.org/1999/xlink">CLARIN</groupName>
+            <commentsCount xmlns:ns2="http://www.w3.org/1999/xlink">0</commentsCount>
+            <showInEditor xmlns:ns2="http://www.w3.org/1999/xlink">true</showInEditor>
+        </info>-->
+	
+<xsl:param name="profile-info-fields" >description,registrationDate,creatorName,domainName,groupName</xsl:param>
+	<xsl:variable name="profile-info-fields-sequence" select="tokenize($profile-info-fields,',')"/>
+		
     <!--
  <xsl:param name="map_file" select="'../../../../SMC/output/map_full.xml'" />  
  <xsl:variable name="map" select="document($dcr-cmd-map_file)" />
@@ -143,8 +165,13 @@ main input file is expected dcr-cmd-map.xml
 	
 <xsl:template name="summary-profiles">
 	
+	
+	
 	<ds:dataset key="profile" label="Profiles" count="{count($cmd-terms//Termset)}">
 		<ds:labels>
+			<xsl:for-each select="$profile-info-fields-sequence">
+				<ds:label key="{.}" ><xsl:value-of select="."/></ds:label>
+			</xsl:for-each>
 			<ds:label key="components">Components</ds:label>
 			<ds:label key="distinct-components">distinct Components</ds:label>
 			<ds:label key="elements">Elements</ds:label>
@@ -153,15 +180,20 @@ main input file is expected dcr-cmd-map.xml
 			<ds:label key="elems-with-datcats"></ds:label>
 			<ds:label key="elems-without-datcats"></ds:label>
 			<ds:label key="elems-without-datcats-ratio" >ratio of elements without DatCats</ds:label>
+			
 		</ds:labels>
 				
 	    <xsl:for-each select="$cmd-terms//Termset" >		          
 			<xsl:sort select="@name" order="ascending"/>
 	    	<xsl:variable name="profile_id" select="xs:string(@id)" ></xsl:variable>
+	    	<xsl:variable name="info" select="info" ></xsl:variable>
 	        <xsl:variable name="count_elems" select="count(./Term[@type='CMD_Element'])" ></xsl:variable>
 	        <xsl:variable name="count_distinct_datcats" select="count(distinct-values(./Term[@type='CMD_Element']/@datcat[not(.='')]))" ></xsl:variable>
 					
 	    	<ds:dataseries key="{@id}" label="{@name}" >
+	    		<xsl:for-each select="$profile-info-fields-sequence">
+	    			<ds:value key="{.}" ><xsl:value-of select="$info/*[local-name()=current()]" /></ds:value>
+	    		</xsl:for-each>
 <!--		    	<ds:value key="distinct-components"><xsl:value-of select="$count_distinct_components"/></ds:value>-->
 	    		<xsl:call-template name="list">
 	    			<xsl:with-param name="key">components</xsl:with-param>
@@ -188,6 +220,7 @@ main input file is expected dcr-cmd-map.xml
 		    	<xsl:variable name="elems-without-datcats-ratio" select="if($count_elems &gt; 0) then count(./Term[@type='CMD_Element'][@datcat='']) div $count_elems else 0"></xsl:variable>
 	    		<ds:value key="elems-without-datcats-ratio" formatted="{format-number($elems-without-datcats-ratio, '0.00 %')}">
 	    		<xsl:value-of select="$elems-without-datcats-ratio"/></ds:value>
+	    	
 	    	</ds:dataseries>
 		</xsl:for-each>
 	</ds:dataset>
