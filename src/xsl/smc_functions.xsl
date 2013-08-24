@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema"
- xmlns:my="myFunctions">
+	xmlns:ns2="http://www.w3.org/1999/xlink"
+ xmlns:my="myFunctions" exclude-result-prefixes="ns2">
 
 <!-- 
 <purpose>functions for SMC</purpose>
@@ -24,9 +25,15 @@
 	</xd:doc>
 	<xsl:variable name="base-uri" select="base-uri()" />
 	
- <!--
- @param profiles - list of <profileDescription> 
- -->
+	
+	<xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+		<xd:desc>
+			<xd:p>translates profileDescriptions into Termsets</xd:p>
+		</xd:desc>
+		<xd:param name="profiles">sequence of <profileDescription /></xd:param>
+		<xd:param name="nested">boolean flag, if true the nested structure will be preserved in the resulting data (Termset/Term/Term...), 
+		if false it will be just two levels: Termset/Term</xd:param>
+	</xd:doc>
 	<xsl:function name="my:profiles2termsets" >
 		<xsl:param name="profiles"/>
 		<xsl:param name="nested"/>
@@ -35,7 +42,7 @@
 		<xsl:for-each select="$profiles" >
 			<xsl:variable name="profile_id" select="id"></xsl:variable>
 			<Termset name="{(name,CMD_ComponentSpec/Header/Name)[1]}"  id="{$profile_id}" type="CMD_Profile">
-				
+				<info><xsl:copy-of select="*[local-name() ne 'CMD_ComponentSpec']"></xsl:copy-of></info>
 					<!-- flattening the structure! -->
 				<xsl:choose>
 					<xsl:when test="$nested">
