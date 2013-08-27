@@ -30,7 +30,7 @@ var source_file = "cmd-dep-graph.d3.js";
 var detail_file = "smc_stats_detail.html";
 var userdocs_file = "userdocs.html";
 */
-var source_file = "/smc/cmd-dep-graph_profiles-datcats.json";
+var source_file = "/smc/smc-graph.d3";
 /*var source_file = "/smc/cmd-dep-graph.d3.js";*/
 var detail_file = "smc_stats_detail.html";
 var userdocs_file = "userdocs.html";
