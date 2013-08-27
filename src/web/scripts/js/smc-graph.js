@@ -30,12 +30,22 @@ var source_file = "cmd-dep-graph.d3.js";
 var detail_file = "smc_stats_detail.html";
 var userdocs_file = "userdocs.html";
 */
-var source_file = "/smc/smc-graph.d3";
+//now graph-param is used
+//var source_file = "/smc/smc-graph.d3";
 /*var source_file = "/smc/cmd-dep-graph.d3.js";*/
 var detail_file = "smc_stats_detail.html";
 var userdocs_file = "userdocs.html";
 
-var opts = {"depth-before": {"value":2, "min":0, "max":10, "widget":"slider"}, 
+var opts = {"graph": {"value":"/smc/data/smc-graph-basic.js", 
+                    "values":[{value: "/smc/data/smc-graph-basic.js", label:"SMC graph basic"},
+                              {value: "/smc/data/smc-graph-all.js", label:"SMC graph all"},                              
+                              {value: "/smc/data/smc-graph-profiles-datcats.js", label:"only profiles + datcats"},
+                              {value: "/smc/data/smc-graph-groups-profiles-datcats-rr", label:"profile groups + profiles + datcats + relations"}
+                              /*,
+                              {value: "/smc/data/smc-graph-mdrepo-stats.js", label:"instance data"}*/
+                              
+                             ], "widget":"selectone" },
+            "depth-before": {"value":2, "min":0, "max":10, "widget":"slider"}, 
             "depth-after":{"value":2, "min":0, "max":10, "widget":"slider"}, 
             "link-distance": {"value":120, "min":10, "max":300, "widget":"slider" }, 
             "charge":{"value":250, "min":10, "max":1000, "widget":"slider" },
@@ -63,14 +73,14 @@ function opt(key) {
  * @name initGraph
  * @function
  */
- function initGraph ()
+ function initGraph (graph_source)
     {
 
      // load data
-     d3.json(source_file , 
+     d3.json(graph_source, 
                 function(json) {        
                     // return if data missing
-                    if (json==null) { notifyUser("source data missing: " + source_file ); return null}            
+                    if (json==null) { notifyUser("source data missing: " + graph_source ); return null}            
                     data_all = json;
                     data_all.links.forEach(function(d) { 
                                         //resolve numeric index to node references
@@ -162,8 +172,10 @@ function renderNodeList (nodes, target_container_selector) {
         
         var group_divs = target_container.selectAll("div.node-detail").data(nest)
                         .enter().append("div")
-                        .attr("id", function (d) { return "detail-" + d.key })
-                        .classed("node-detail cmds-ui-block init-show", 1);
+                       .attr("id", function (d) { return "detail-" + d.key })                        
+                        .classed("node-detail cmds-ui-block", 1)
+                        // collapse groups in index, but expand right away in detail view
+                        .classed("init-show", (target_container_selector != index_container_selector)); 
                         
       var group_headers = group_divs.append("div").classed("header", 1)
                         .text(function (d) { return d.key + " |" + d.values.length + "|"});
@@ -183,7 +195,8 @@ function renderNodeList (nodes, target_container_selector) {
           //  console.log("target_container:" + target_container_selector);
             if (target_container_selector == index_container_selector) {
                 index_container = target_container;
-                item_li.attr("id", function (d) { return "n-" + d.name });
+                item_li.attr("id", function (d) { return "n-" + d.name })
+                        .attr("title", function(d) { return  d.id });
                 item_li.classed("highlight", function (d) { return d.selected });
 /*                item_li.classed("highlight", liveSelected);*/
                 
@@ -243,9 +256,17 @@ function filterIndex (search_string){
 function renderGraph (data, target_container) {
 // setting defaults 
 // for now, ignore the params, as they are always the same
+    
     //data = typeof data !== 'undefined' ? data : dataToShow(nodes_sel);
+    
+    if ($(this).is('#input-graph')) {        
+        console.log("graph-source changed! reinitializing graph");
+        initGraph(data);
+    }
+    
     data = dataToShow(nodes_sel);
-    target_container = graph_container ;
+  
+      target_container = graph_container ;
     
     if (data == null) { 
        $(target_container).text("no data to show"); 
@@ -526,7 +547,7 @@ function loadDetailInfo () {
   });
   
   // loading css to store in extra variable, for later use = injecting into exported SVG 
-  $.get("scripts/style/cmd-dep-graph.css", function(data) {
+  $.get("scripts/style/smc-graph.css", function(data) {
  //  console.log(data)
     css = data
   });
