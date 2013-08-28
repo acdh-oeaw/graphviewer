@@ -57,7 +57,8 @@ main input file is expected dcr-cmd-map.xml
     -->
  
 	<xsl:variable name="count_elems" select="count($cmd-terms//Term[@type='CMD_Element'])" ></xsl:variable>
-	<xsl:variable name="count_distinct_datcats" select="count(distinct-values($cmd-terms//Term[@type='CMD_Element']/@datcat[not(.='')]))" ></xsl:variable>
+	<xsl:variable name="count_distinct_datcats" select="count(distinct-values($cmd-terms//Term/@datcat[not(.='')]))" ></xsl:variable> <!--[@type='CMD_Element']-->
+	
 	<xsl:variable name="count_distinct_components" select="count(distinct-values($cmd-terms//Term[@type='CMD_Component'][not(@parent='')]/@id))" ></xsl:variable>
 	<xsl:variable name="count_standalone_components" select="count(distinct-values($cmd-terms//Term[@type='CMD_Component'][not(@parent='')]/@id[not(contains(.,'#'))]))" ></xsl:variable>
 	<xsl:variable name="count_distinct_elems" select="count(distinct-values($cmd-terms//Term[@type='CMD_Element']/@id))" ></xsl:variable>
@@ -94,14 +95,14 @@ main input file is expected dcr-cmd-map.xml
 			<ds:label key="elements">Elements</ds:label>
 			<ds:label key="distinct-elements">distinct Elements</ds:label>
 			
-			<ds:label key="distinct-datcats">distinct DatCats</ds:label>
 			<ds:label key="elems-with-datcats">Elements with DatCats</ds:label>
 			<ds:label key="elems-without-datcats">Elements without DatCats</ds:label>
-			<ds:label key="elems-without-datcats-ratio" >ratio of elements without DatCats</ds:label>
-			<ds:label key="available-concepts">available Concepts</ds:label>
+			<ds:label key="elems-without-datcats-ratio" >ratio of elements without DatCats</ds:label>			
+<!--			<ds:label key="distinct-datcats">distinct used Data Categories</ds:label>-->			
 			<ds:label key="used-concepts">used Concept</ds:label>
-			<ds:label key="blind-concepts">blind Concepts (not in public ISOcat)</ds:label>
-			<ds:label key="unused-concepts">Concepts not used in CMD</ds:label>			
+			<ds:label key="available-concepts">available Concepts (in Metadata profile or used in CMD)</ds:label>
+			<!--<ds:label key="blind-concepts">blind Concepts (not in public ISOcat)</ds:label>
+			<ds:label key="unused-concepts">Concepts not used in CMD</ds:label>-->			
 		</ds:labels>
 		<ds:dataseries key="overall" label="Overall">
 			<ds:value key="creation-date"><xsl:value-of select="current-date()"/></ds:value>
@@ -118,11 +119,11 @@ main input file is expected dcr-cmd-map.xml
 			<xsl:variable name="elems-distinct-without-datcats-ratio" select="count(distinct-values($cmd-terms//Term[@type='CMD_Element'][@datcat='']/@id)) div $count_distinct_elems"></xsl:variable>
 			<ds:value key="elems-without-datcats-ratio" formatted="{format-number($elems-distinct-without-datcats-ratio, '0.00 %')}">
 				<xsl:value-of select="$elems-distinct-without-datcats-ratio"/></ds:value>
-			<ds:value key="distinct-datcats"><xsl:value-of select="$count_distinct_datcats"/></ds:value>
+<!--			<ds:value key="distinct-datcats"><xsl:value-of select="$count_distinct_datcats"/></ds:value>-->
 			<ds:value key="used-concepts"><xsl:value-of select="count($dcr-cmd-map//Concept)"/></ds:value>
-			<ds:value key="blind-concepts"><xsl:value-of select="count(//Concept[not(Term[@set='isocat'])])"/></ds:value>
+<!--			<ds:value key="blind-concepts"><xsl:value-of select="count(//Concept[not(Term[@set='isocat'])])"/></ds:value>-->
 			<ds:value key="available-concepts"><xsl:value-of select="count($dcr-terms//Concept)"/></ds:value>
-			<ds:value key="unused-concepts"><xsl:value-of select="count($dcr-terms//Concept except $dcr-terms//Concept[@id=$dcr-cmd-map//Concept/@id])"/></ds:value>
+<!--			<ds:value key="unused-concepts"><xsl:value-of select="count($dcr-terms//Concept except $dcr-terms//Concept[@id=$dcr-cmd-map//Concept/@id])"/></ds:value>-->
 		</ds:dataseries>	
 		
 	</ds:dataset>
