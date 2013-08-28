@@ -110,8 +110,11 @@
 			</xsl:otherwise>
 		</xsl:choose>							
 	</xsl:variable>
-		
-	<Term  type="{$type}" name="{@name}" datcat="{@ConceptLink}" id="{$id}"  elem="{@name}"
+
+	<!-- hack to normalize isocat-uris --> 
+		<xsl:variable name="datcat" select="if (starts-with(normalize-space(@ConceptLink),'http://www.isocat.org/rest/dc/')) then 
+			concat('http://www.isocat.org/datcat/DC-', substring-after(@ConceptLink,'http://www.isocat.org/rest/dc/')) else normalize-space(@ConceptLink)" />
+	<Term  type="{$type}" name="{@name}" datcat="{$datcat}" id="{$id}"  elem="{@name}"
 		parent="{ancestor::CMD_Component[1]/@name}" path="{$context}"
 		>
 		<!--  <xsl:copy-of select="." /> -->
@@ -292,8 +295,8 @@
 		<xsl:variable name="matching_termset"  select="if($url!='') then $termsets_config/Termsets/*[url_prefix][not(url_prefix='')][starts-with($url,url_prefix)] else ()" />
 		<!-- <xsl:variable name="matchinge_termset"  select="if($url!='') then if ($terms_setup/Termsets/Termset[@url_prefix][starts-with($url,@url_prefix)]) then $terms_setup/Termsets/Termset[@url_prefix][starts-with($url,@url_prefix)][1] 
 			else if $terms_setup/Termsets/Termset[@url][starts-with($url,@url)] then $terms_setup/Termsets/Termset[@url][starts-with($url,@url)][1] else ()" /> -->  
-		<xsl:message>shortURL: <xsl:value-of select="$matching_termset/url_prefix" />:: <xsl:value-of select="$url" />
-		</xsl:message>  		
+		<!--<xsl:message>shortURL: <xsl:value-of select="$matching_termset/url_prefix" />:: <xsl:value-of select="$url" />
+		</xsl:message>-->  		
 		<xsl:value-of select="if ($matching_termset/url_prefix and $matching_termset/url_prefix!='' and $url!='') then replace($url, $matching_termset[1]/url_prefix, concat(string-join($matching_termset/key,','),':')) else $url" />		
 	</xsl:function>	
 	
