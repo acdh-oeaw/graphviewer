@@ -197,14 +197,14 @@
             <xsl:if test="'components' = $parts-sequence"><xsl:apply-templates select="$enriched-termsets//Term" mode="edges"/></xsl:if>
             <xsl:if test="'datcats' = $parts-sequence and 'components' = $parts-sequence" ><xsl:apply-templates select="$enriched-termsets//Term" mode="edges-datcats"/></xsl:if>
             <xsl:if test="'datcats' = $parts-sequence and not('components' = $parts-sequence)" ><xsl:apply-templates select="$enriched-termsets//Term" mode="edges-profiles-datcats"/></xsl:if>
-            <xsl:if test="'relation' = $parts-sequence" ><xsl:apply-templates select="$rr-relations//Relation" mode="edges-rels"/></xsl:if>            
+            <xsl:if test="'relations' = $parts-sequence" ><xsl:apply-templates select="$rr-relations//Relation" mode="edges-rels"/></xsl:if>            
             <xsl:if test="'profile-groups' = $parts-sequence">
                 <xsl:apply-templates select="$enriched-termsets//info/(groupName | domainName | creatorName)[. ne '']" mode="edges-profiles-groups"/>
             </xsl:if>
         </xsl:variable>
         <xsl:variable name="distinct-nodes">
             <xsl:for-each-group select="$nodes/*" group-by="@key">
-                <node position="{position()}" count="{(sum(current-group()/@count[number(.)=number(.)]), count(current-group()))[1]}" avg_level="{avg(current-group()/@level)}" sum_level="{sum(current-group()/@level)}">
+                <node position="{position()}" count="{(sum(current-group()/@count[. ne ''][number(.)=number(.)])[.>0], count(current-group()))[1]}" avg_level="{avg(current-group()/@level)}" sum_level="{sum(current-group()/@level)}">
                     <xsl:copy-of select="@*[not (name()='count')]"/>
                 </node>
             </xsl:for-each-group>
@@ -223,6 +223,7 @@
                     
 <!--                                                            <xsl:copy-of select="$dcr-terms-copy"/>-->
                     <xsl:copy-of select="$distinct-nodes"/>
+<!--       DEBUG: <xsl:copy-of select="$nodes"/>-->
                 </nodes>
                 <edges>
                     <xsl:copy-of select="$distinct-edges"/>
@@ -258,7 +259,7 @@
         
     <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
         <xd:desc>
-            <xd:p>Generate nodes for CMD-Components (and CMD-Profiles in instance-data) </xd:p>
+            <xd:p>Generate nodes for CMD-Components and CMD-Elements (and CMD-Profiles in instance-data) </xd:p>
             <xd:p>Expects Terms with @id-attribute, so instance data has to be enriched first</xd:p>
             <xd:pre><Termset name="Bedevaartbank" id="clarin.eu:cr1:p_1280305685223" type="CMD_Profile">
         <Term type="CMD_Component" name="Bedevaartbank" datcat="" id="clarin.eu:cr1:p_1280305685223" elem="Bedevaartbank" parent="" path="Bedevaartbank"/>
@@ -267,13 +268,14 @@
             </xd:pre>
         </xd:desc>        
     </xd:doc>
-    <xsl:template match="Term[Term]" mode="nodes">
+    <xsl:template match="Term" mode="nodes">
     
-        <xsl:variable name="current_comp_key" select="my:normalize(@id)"/>
+        <xsl:variable name="current_term_key" select="my:normalize(@id)"/>
         <xsl:variable name="type">
             <xsl:choose>
-                <xsl:when test="@type='CMD_Profile' or parent::Termset">Profile</xsl:when>
+                <xsl:when test="@type='CMD_Profile' or parent::Termset[@context]">Profile</xsl:when>
                 <xsl:when test="@type='CMD_Component'">Component</xsl:when>
+                <xsl:when test="@type='CMD_Element'">Element</xsl:when>
                 <!-- pass special types -->
                 <xsl:otherwise>
                     <xsl:value-of select="@type"/>
@@ -281,7 +283,7 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="level" select="count(ancestor::Term)"/>
-        <node id="{@id}" key="{$current_comp_key}" name="{@name}" type="{$type}" level="{$level}" count="{@count}" path="{@path}">
+        <node id="{@id}" key="{$current_term_key}" name="{@name}" type="{$type}" level="{$level}" count="{@count}" path="{@path}">
             <!--       <xsl:value-of select="$equivalent_schema_term"></xsl:value-of>-->
         </node>
     </xsl:template>
@@ -309,7 +311,9 @@
 
     <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
         <xd:desc>
+            <xd:p>OBSOLETING in favor of more general template for all Term</xd:p>
             <xd:p>Generate nodes for CMD-Elements (leaf nodes in cmd-terms)</xd:p>
+            <xd:p>However, in the data there is also CMD_ComponentsGenerate nodes for CMD-Elements (leaf nodes in cmd-terms)</xd:p>
             <xd:p>Expects Terms with @id-attribute, so instance data has to be enriched first</xd:p>
             <xd:pre><Term type="CMD_Element" name="applicationType"
         datcat="http://www.isocat.org/datcat/DC-3786"
@@ -320,21 +324,23 @@
     </xd:pre>
         </xd:desc>        
     </xd:doc>
-    <xsl:template match="Term[not(Term)]" mode="nodes">        
+    <!--<xsl:template match="Term[not(Term)]" mode="nodes">        
         <xsl:variable name="current_elem_key" select="my:normalize(@id)"/>
         <xsl:variable name="level" select="count(ancestor::Term)"/>
         <xsl:variable name="type">
             <xsl:choose>
-                <xsl:when test="@type='CMD_Element'">Element</xsl:when>                
-                <!-- pass special types -->
+                <xsl:when test="@type='CMD_Element'">Element</xsl:when>
+                
+                <xsl:when test="@type='CMD_Component'">Component</xsl:when>                
+                <!-\- pass special types -\->
                 <xsl:otherwise>
                     <xsl:value-of select="@type"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
         <node id="{@id}" key="{$current_elem_key}" name="{@name}" type="{$type}" level="{$level}" count="{@count}" path="{@path}"/>
-<!--        <xsl:message><xsl:value-of select="concat(@id, '-', ancestor::Term[1]/@id)"></xsl:value-of></xsl:message>-->
-    </xsl:template>
+<!-\-        <xsl:message><xsl:value-of select="concat(@id, '-', ancestor::Term[1]/@id)"></xsl:value-of></xsl:message>-\->
+    </xsl:template>-->
    
     <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
         <xd:desc>
@@ -352,8 +358,9 @@
         <xsl:variable name="datcat-name">
             <xsl:value-of select="if($get-mnemonic ne '') then $get-mnemonic else tokenize(@datcat,'/')[last()]"/>
         </xsl:variable>
-<!--     DEBUG:get-mnemonic:<xsl:value-of select="$get-mnemonic"/>-->
-        <node id="{$datcat-id}" key="{my:normalize($datcat-id)}" name="{$datcat-name}" type="DatCat" level="{$level}"/>
+<!--     DEBUG:get-mnemonic:<xsl:value-of select=""/>-->
+        <node id="{$datcat-id}" key="{my:normalize($datcat-id)}" name="{$datcat-name}" type="DatCat" level="{$level}"
+            mnemonic="{$get-mnemonic}" ref_term_id="{@id}"/>
     </xsl:template>
     
     
