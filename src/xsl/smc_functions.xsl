@@ -223,7 +223,10 @@
 				<xsl:when test="count($ambi_terms) &gt; 1" >
 					<xsl:variable name="ambi_terms_parent" select="$ambi_terms/*[@name=$term/@name]" />
 					<xsl:variable name="term1" select="." />
-					<xsl:message>Term:<xsl:value-of select="$term1/@path" />|ambi: <xsl:value-of select="count($ambi_terms)" />|</xsl:message>
+					
+					<xsl:call-template name="message">
+						<xsl:with-param name="message">Term:<xsl:value-of select="$term1/@path" />|ambi: <xsl:value-of select="count($ambi_terms)" />|</xsl:with-param>							
+					</xsl:call-template>
 					<xsl:variable name="minimal_contexts" >
 						<xsl:for-each select="$ambi_terms/*[not(@path=$term1/@path)]" > 
 							<!--						[position() &gt; current()/position()]" >			-->
@@ -316,7 +319,15 @@
 		<xsl:value-of select="concat(resolve-uri($cache_dir,$base-uri), if (ends-with($cache_dir,'/') or ends-with($cache_dir,'\')) then '' else '/',
 		$key, if ($id!='') then concat('/', my:normalize($id)) else '', '.xml')" />		
 	</xsl:function>
-	
+
+
+	<xsl:template name="message">
+		<xsl:param name="message" select="'verbose'"/>
+			<xsl:if test="$debug_mode eq 'verbose'" >
+				<xsl:message><xsl:value-of select="$message"></xsl:value-of></xsl:message>
+			</xsl:if>
+		
+	</xsl:template>
 	
 	
 </xsl:stylesheet>

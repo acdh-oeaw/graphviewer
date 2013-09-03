@@ -44,7 +44,7 @@
     </xd:doc>
     <xsl:param name="filter" select="'only-private'" />
     
-    <xsl:template match="/" >
+    <xsl:template match="/sru:scanResponse" >
         
         <xsl:choose>
             <xsl:when test="$filter='only-private'">

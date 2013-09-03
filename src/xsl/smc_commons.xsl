@@ -10,7 +10,7 @@
     <xsl:include href="cmd_includes.xsl"/>    
     <xsl:include href="dcr_rdf2terms.xsl"/>
     <xsl:include href="dcr_dcif2terms.xsl"/>
-   
+    <xsl:include href="sru-scan2profile-list.xsl"/>   
     
     <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
         <xd:desc>
@@ -65,12 +65,29 @@
         <!--<xsl:message>document-uri1: <xsl:value-of select="document-uri(/)"></xsl:value-of></xsl:message>-->
         <xsl:variable name="result" select="my:getData($key,$id,$cache)"></xsl:variable>
         
-        <xsl:message><xsl:value-of select="$cache_path" /> available <xsl:value-of select="doc-available($cache_path)" /></xsl:message>
+        <xsl:call-template name="message">
+            <xsl:with-param name="message">getData cache_path: <xsl:value-of select="$cache_path" /> available <xsl:value-of select="doc-available($cache_path)" /></xsl:with-param>							
+        </xsl:call-template>
+        <xsl:call-template name="message">
+            <xsl:with-param name="message">getData exists result: <xsl:value-of select="exists($result/*)" /></xsl:with-param>							
+        </xsl:call-template>
+        
 <!--        <xsl:message>cachePath: <xsl:value-of select="$cache_path"></xsl:value-of></xsl:message>-->
-            <xsl:if test="contains($cache,'refresh') and not(doc-available($cache_path))">
+            <xsl:if test="contains($cache,'refresh') and not(doc-available($cache_path)) and exists($result/*)">
+                 
+                <xsl:call-template name="message">
+                    <xsl:with-param name="message">getData writing to: <xsl:value-of select="$cache_path"></xsl:value-of></xsl:with-param>							
+                </xsl:call-template>
+                
              <xsl:result-document href="{$cache_path}" format="xml" >
                  <xsl:copy-of select="$result" />
              </xsl:result-document>
+            </xsl:if>
+            <xsl:if test="not(exists($result/*))">
+                <xsl:call-template name="message">
+                    <xsl:with-param name="message">WARNING: no data for <xsl:value-of select="$cache_path" /></xsl:with-param>							
+                </xsl:call-template>
+                
             </xsl:if>
         
         
@@ -102,9 +119,15 @@
        <xsl:param name="cache"></xsl:param>
         
       <xsl:variable name="cached_data_file" select="my:cachePath($key,$id)"></xsl:variable>
-                <xsl:message>cache: <xsl:value-of select="$cache" /></xsl:message>
-                <xsl:message>key: <xsl:value-of select="$key"></xsl:value-of></xsl:message>
-                <xsl:message><xsl:value-of select="$cached_data_file" /> available <xsl:value-of select="doc-available($cached_data_file)" /></xsl:message>
+      <xsl:call-template name="message">
+     <xsl:with-param name="message">my:getDatA() cache:            <xsl:value-of select="$cache" /></xsl:with-param></xsl:call-template>
+
+      <xsl:call-template name="message">
+        <xsl:with-param name="message">my:getDatA() key:              <xsl:value-of select="$key"></xsl:value-of></xsl:with-param>
+       </xsl:call-template>
+      <xsl:call-template name="message">
+        <xsl:with-param name="message">my:getDatA() cached_data_file: <xsl:value-of select="$cached_data_file" /> available <xsl:value-of select="doc-available($cached_data_file)" /></xsl:with-param>
+       </xsl:call-template>
       
       
         <xsl:choose>
@@ -117,17 +140,26 @@
                  
                 <xsl:variable name="cmd-profiles" select="document(my:config('cmd-profiles','url'))" />                
                 <!-- integrate profiles that are already used in instance data, but not public - if appropriate config entry given -->
-                <xsl:variable name="used-profiles" >
-                    <xsl:if test="my:config('used-profiles','url') ne ''" >
-                        <xsl:copy-of select="document(my:config('used-profiles','url'))" />                            
-                    </xsl:if>                   
-                </xsl:variable>
+                <xsl:variable name="used-profiles" select="my:getData('used-profiles')" />                    
                 <profileDescriptions>
 <!--                    DEBUG:<xsl:value-of select="my:config('used-profiles','url')"></xsl:value-of>-->
                     <xsl:copy-of select="$cmd-profiles//profileDescription"  />
                     <xsl:copy-of select="$used-profiles//profileDescription[not(id = $cmd-profiles//profileDescription/id)]" />
                     
                 </profileDescriptions>                
+            </xsl:when>
+            <xsl:when test="$key='used-profiles' ">                
+                <xsl:if test="my:config('used-profiles','url') ne ''" >                    
+                    <xsl:variable name="scan-cmd.profile" select="doc(my:config('used-profiles','url'))" />
+<!--                    <xsl:call-template name="message">
+        <xsl:with-param name="message">DEBUG: count scan-cmd-profiles: <xsl:value-of select="count($scan-cmd.profile/*)" /></xsl:with-param>
+       </xsl:call-template>-->
+                    <xsl:apply-templates select="$scan-cmd.profile/*" />
+                    <!--<xsl:variable name="used-profiles">
+                        <xsl:apply-templates select="$scan-cmd.profile/*" />
+                    </xsl:variable>
+                    <xsl:copy-of select="$used-profiles"></xsl:copy-of>-->
+                </xsl:if>
             </xsl:when>
             <xsl:when test="$key='profiles' or $key='datcats'">                
                 <xsl:copy-of select="my:getRawData($key, $id)" />                
@@ -219,8 +251,12 @@
         -->
         <xsl:variable name="resolved_uri" select="if (doc-available($cached_data_file)) then $cached_data_file else concat($cmd_profiles_uri[$key='profiles'] , $id, '/xml'[$key='profiles'], '.dcif'[$key='datcats'])" />
         
-        <xsl:message><xsl:value-of select="$key" />:</xsl:message>
-        <xsl:message>resolved_uri:<xsl:value-of select="$resolved_uri" /></xsl:message>
+        <xsl:call-template name="message">
+        <xsl:with-param name="message">my:getRawData() <xsl:value-of select="$key" />: <xsl:value-of select="$id" /></xsl:with-param>
+       </xsl:call-template>
+        <xsl:call-template name="message">
+        <xsl:with-param name="message">my:getRawData() resolved_uri:<xsl:value-of select="$resolved_uri" /></xsl:with-param>
+       </xsl:call-template>
         <xsl:if test="doc-available($resolved_uri)">
             <xsl:copy-of select="doc($resolved_uri)" />
                 <!--            <xsl:apply-templates select="document($resolved_uri)" mode="include" />-->

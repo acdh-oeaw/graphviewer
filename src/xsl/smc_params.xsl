@@ -18,4 +18,5 @@
     <xsl:param name="default_lang" select="'en'" />
 <!--    <xsl:param name="cache_dir" select="'file:/C:/Users/m/3lingua/clarin/CMDI/SMC/cache/'" />-->
     <xsl:param name="cache_dir" select="'file:/C:/Users/m/3/clarin/_repo/SMC/data/'" />    
+    <xsl:param name="debug_mode" select="'verbose'" />
 </xsl:stylesheet>
