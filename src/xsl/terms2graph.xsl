@@ -9,6 +9,15 @@
                 so the functionality is split. first step is here, generating the graph-xml, 
                 which is then used as input for graph2json-d3.xsl, or graph2dot.xsl</xd:p>
             
+            <xd:p>needs following auxiliary documents (under the base-uri):
+                <xd:ul>
+                    <xd:li>cmd-terms.xml</xd:li>
+                    <xd:li>cmd-terms-nested.xml</xd:li>
+                    <xd:li>dcr-terms.xml</xd:li>
+                    <xd:li>dcr-cmd-map.xml</xd:li>
+                    <xd:li>rr-relations.xml</xd:li>                    
+                </xd:ul>
+            </xd:p>
             <xd:p><xd:b>Created on:</xd:b> 2012-05-17 (based on CMDI/scripts/cmd2dot.xsl)</xd:p>
             <xd:p><xd:b>Modified:</xd:b> 2012-12-05, 2013-06, 2013-08-21</xd:p>
             <xd:p><xd:b>Author:</xd:b> m</xd:p>
@@ -374,7 +383,8 @@
         <xsl:variable name="coll_key" select="my:normalize(@context)"/>
         <xsl:variable name="type" select="'Collection'"/>
         <xsl:variable name="level" select="-1"/>
-        <node id="{@context}" key="{$coll_key}" name="{translate(@context, '_', ' ')}" type="{$type}" level="{$level}" count="{sum(Term/@count)}" path="{@context}"/>
+        <xsl:variable name="count" select="if (exists(@count)) then number(@count) else sum(Term/@count)"></xsl:variable>
+        <node id="{@context}" key="{$coll_key}" name="{translate(@context, '_', ' ')}" type="{$type}" level="{$level}" count="{$count}" path="{@context}"/>
     </xsl:template>
 
     <xsl:template name="nodes-profile-groups">
