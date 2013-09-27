@@ -15,9 +15,10 @@ var input_prefix = "input-";
 var select_rect_min_size = 5;
 var first_level_margin = 20;
 var min_circle = 4;
-var max_circle = 50;
+var max_circle = 80;
 
 var show_count = 1;
+var show_arrows = 0; 
 
 var comp_reg_url = "http://catalog.clarin.eu/ds/ComponentRegistry/?item=";
 var mdrepo_url_search = "http://localhost:8680/exist/apps/cr-xq/mdrepo/index.html?operation=searchRetrieve&x-context=&query=";
@@ -39,11 +40,13 @@ var userdocs_file = "userdocs.html";
 var detail_file = "smc_stats_detail.html";
 var userdocs_file = "userdocs.html";
 
-var opts = {"graph": {"value":"/smc/data/smc-graph-basic.js", 
+var opts = {"graph": {"value":"/smc/data/profiles.js", 
                     "values":[{value: "/smc/data/smc-graph-basic.js", label:"SMC graph basic"},
                               {value: "/smc/data/smc-graph-all.js", label:"SMC graph all"},                              
                               {value: "/smc/data/smc-graph-profiles-datcats.js", label:"only profiles + datcats"},
-                              {value: "/smc/data/smc-graph-groups-profiles-datcats-rr.js", label:"profiles+datcats+groups+rr"}
+                              {value: "/smc/data/smc-graph-groups-profiles-datcats-rr.js", label:"profiles+datcats+groups+rr"},
+                              {value: "/smc/data/profiles.js", label:"just profiles"}                              
+                              
                               /*,
                               {value: "/smc/data/smc-graph-mdrepo-stats.js", label:"instance data"}*/
                               
@@ -53,10 +56,10 @@ var opts = {"graph": {"value":"/smc/data/smc-graph-basic.js",
             "link-distance": {"value":120, "min":10, "max":300, "widget":"slider" }, 
             "charge":{"value":250, "min":10, "max":1000, "widget":"slider" },
             "friction":{"value":75, "min":1, "max":100, "widget":"slider" },
-            "node-size": {"value":"4", "values":["1","4","8","16","usage"], "widget":"selectone" },
+            "node-size": {"value":"count", "values":["1","4","8","16","count"], "widget":"selectone" },
             "labels": {"value":"show", "values":["show","hide"], "widget":"selectone" },                         
             "curve": {"value":"straight", "values":["straight","arc"], "widget":"selectone" },
-           "layout": {"value":"horizontal-tree", "values":["vertical-tree", "horizontal-tree", "weak-tree","force","dot", "freeze"], "widget":"selectone" },
+           "layout": {"value":"force", "values":["vertical-tree", "horizontal-tree", "weak-tree","force","dot", "freeze"], "widget":"selectone" },
             "selected": {"widget":"hidden" },
             "link": {"widget":"link", "label":""},
             "download": {"widget":"link", "label":""},
@@ -288,8 +291,8 @@ function renderGraph (data, target_container) {
        $(target_container).text("");
      }
   
-  // compute the maximum number, but only if it will be needed (i.e. node-size=usage)
-    if (opt("node-size")=="usage") {
+  // compute the maximum number, but only if it will be needed (i.e. node-size=count)
+    if (opt("node-size")=="count") {
         var init_count = [];
             data.nodes.forEach(function(d,i){init_count.push(+d.count);})
             data.count_max = d3.max(init_count);
@@ -310,17 +313,23 @@ function renderGraph (data, target_container) {
      
      var ratio = w / (data_all.init_x_max - data_all.init_x_min); 
     var node_size_int = parseInt(opt("node-size"));
-
+ var link_distance = parseInt(opt("link-distance"))
+ 
         // console.log (w + '-' + h);
      var force = d3.layout.force()
             .nodes(data.nodes)
             .links(data.links)
             .size([w, h])
-            //.gravity(0.3)
+
             .friction(parseInt(opt("friction")) / 100 )
             .linkDistance(parseInt(opt("link-distance")))
+            .gravity(0.5)
+            /* Profiles:           
+            
+            .linkDistance(function(d){return link_distance / (d.weight * d.value) })
+            .linkStrength(function(d){return d.weight})*/
             //.charge(parseInt(opt("charge")) * -1)
-            .charge(function(d) { if (opt("node-size")=="usage")
+            .charge(function(d) { if (opt("node-size")=="count")
                             {var node_charge = (Math.sqrt(d.count)<=min_circle) ?  min_circle  : Math.sqrt(d.count) / data.node_size_ratio;
                             //console.log (node_charge + ':' + d.count);
                             return node_charge * -1 * parseInt(opt("charge"));
@@ -345,6 +354,7 @@ function renderGraph (data, target_container) {
             .attr("width", w)        .attr("height", h);
         
         // Per-type markers, as they don't inherit styles.
+      if (show_arrows)  {
         svg.append("svg:defs").selectAll("marker")
           .data(["uses"])
           .enter().append("svg:marker")
@@ -357,6 +367,7 @@ function renderGraph (data, target_container) {
             .attr("orient", "auto")
           .append("svg:path")
             .attr("d", "M0,-3L10,0L0,3");
+       }
         
         var path = svg.append("svg:g").selectAll("path")
             .data(force.links())
@@ -365,9 +376,11 @@ function renderGraph (data, target_container) {
             .classed("link", 1)
             .classed("uses", 1)
             .classed("highlight", function(d) { d.highlight } )
-            .attr("marker-end", function(d) { return "url(#uses)"; });
-/*            .style("stroke-width", function(d) { return Math.sqrt(d.value); });*/
+            .attr("marker-end", function(d) { return "url(#uses)"; })
+            .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+/*             .style("stroke-width", function(d) { return d.value });*/
 
+           path.append("title").text(function(d){ return d.value });
             
          var gnodes = svg.append("svg:g")
                       .selectAll("g.node")
@@ -414,7 +427,7 @@ function renderGraph (data, target_container) {
 /*            .attr("r", 6)*/
                     .on("click", function(d) {d.selected= d.selected ? 0 : 1; updateSelected() })
                       .on("mouseover", highlight()).on("mouseout", unhighlight())
-            .attr("r", function(d) { if (opt("node-size")=="usage") 
+            .attr("r", function(d) { if (opt("node-size")=="count") 
                                         {return (Math.sqrt(d.count)<=min_circle) ?  min_circle  : Math.sqrt(d.count) / data.node_size_ratio;                                        
                                         }
                                         else { return node_size_int; }
