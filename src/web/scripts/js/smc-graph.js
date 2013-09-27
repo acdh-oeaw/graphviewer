@@ -16,6 +16,9 @@ var select_rect_min_size = 5;
 var first_level_margin = 20;
 var min_circle = 4;
 var max_circle = 50;
+
+var show_count = 1;
+
 var comp_reg_url = "http://catalog.clarin.eu/ds/ComponentRegistry/?item=";
 var mdrepo_url_search = "http://localhost:8680/exist/apps/cr-xq/mdrepo/index.html?operation=searchRetrieve&x-context=&query=";
 /*http://localhost:8680/exist/apps/cr-xq/mdrepo/fcs?operation=scan&scanClause=cmd:CountryName&x-context=&x-format=htmlpage*/
@@ -40,7 +43,7 @@ var opts = {"graph": {"value":"/smc/data/smc-graph-basic.js",
                     "values":[{value: "/smc/data/smc-graph-basic.js", label:"SMC graph basic"},
                               {value: "/smc/data/smc-graph-all.js", label:"SMC graph all"},                              
                               {value: "/smc/data/smc-graph-profiles-datcats.js", label:"only profiles + datcats"},
-                              {value: "/smc/data/smc-graph-groups-profiles-datcats-rr", label:"profile groups + profiles + datcats + relations"}
+                              {value: "/smc/data/smc-graph-groups-profiles-datcats-rr.js", label:"profiles+datcats+groups+rr"}
                               /*,
                               {value: "/smc/data/smc-graph-mdrepo-stats.js", label:"instance data"}*/
                               
@@ -187,7 +190,8 @@ function renderNodeList (nodes, target_container_selector) {
                     .enter().append("li")
                     .attr("class", "node-item");
                item_li.append("span")
-                    .text(function (d) { return d.name + ' |' + d.count + '|' })
+/*                     .text(function (d) { return d.name})*/
+                    .text(renderItemText)
                     .on("click", function(d) { d.selected= d.selected ? 0 : 1 ; updateSelected() });
           
                     
@@ -217,12 +221,12 @@ function renderNodeList (nodes, target_container_selector) {
                             .text(' html-view ');
                 
 /*                profile_item_detail.append("a")*/
-                item_detail.append("a")
+/*                item_detail.append("a")
                             .classed("scan", function (d) {  return !(d.type=='Profile') } )
                             .attr("target",'_blank')
                             .attr("href",function (d) { if (d.type=='Profile') { return mdrepo_url_search +  'cmd.profile=%22' + d.id + '%22'; }
                                                           else { return mdrepo_url_scan +  'cmd:' +  d.name; }   }  )
-                            .text(' mdrepo-view ');
+                            .text(' mdrepo-view ');*/
                 
                  item_detail_detail = item_detail.append("div").html(
                                  function (d) { 
@@ -241,6 +245,15 @@ function renderNodeList (nodes, target_container_selector) {
    handleUIBlock($(target_container_selector).find(".node-detail.cmds-ui-block"));
   
 }
+
+function renderItemText(d) { 
+    if (show_count) {
+        return d.name + ' |' + d.count + '|'; 
+      }
+    else {
+        return d.name;
+        }
+ }
 
 function filterIndex (search_string){
     var filtered_index_nodes = data_all.nodes.filter(function(d, i) { 
@@ -275,9 +288,19 @@ function renderGraph (data, target_container) {
        $(target_container).text("");
      }
   
+  // compute the maximum number, but only if it will be needed (i.e. node-size=usage)
+    if (opt("node-size")=="usage") {
+        var init_count = [];
+            data.nodes.forEach(function(d,i){init_count.push(+d.count);})
+            data.count_max = d3.max(init_count);
+            data.node_size_ratio = Math.sqrt(data.count_max) / max_circle;
+        }
+
   // information about the displayed data 
         notifyUser("show nodes: " + data_show.nodes.length + "; "
-                        + "show links: " + data_show.links.length);
+                        + "show links: " + data_show.links.length + "; " 
+                        + "max count:" + data.count_max + "; " 
+                        + "node_size_ration:" + data.node_size_ratio);
         
   
   
@@ -296,7 +319,14 @@ function renderGraph (data, target_container) {
             //.gravity(0.3)
             .friction(parseInt(opt("friction")) / 100 )
             .linkDistance(parseInt(opt("link-distance")))
-            .charge(parseInt(opt("charge")) * -1)
+            //.charge(parseInt(opt("charge")) * -1)
+            .charge(function(d) { if (opt("node-size")=="usage")
+                            {var node_charge = (Math.sqrt(d.count)<=min_circle) ?  min_circle  : Math.sqrt(d.count) / data.node_size_ratio;
+                            //console.log (node_charge + ':' + d.count);
+                            return node_charge * -1 * parseInt(opt("charge"));
+                                }
+                              //{ return -d.count * parseInt(opt("charge"));  }
+                            else { return parseInt(opt("charge")) * -1} })
             .on("tick", tick)
             .start();
         if (opt("layout")=='freeze') {
@@ -385,14 +415,14 @@ function renderGraph (data, target_container) {
                     .on("click", function(d) {d.selected= d.selected ? 0 : 1; updateSelected() })
                       .on("mouseover", highlight()).on("mouseout", unhighlight())
             .attr("r", function(d) { if (opt("node-size")=="usage") 
-                                        {return (Math.sqrt(d.count)<=min_circle) ?  min_circle  : Math.sqrt(d.count) / data_all.node_size_ratio;                                        
+                                        {return (Math.sqrt(d.count)<=min_circle) ?  min_circle  : Math.sqrt(d.count) / data.node_size_ratio;                                        
                                         }
                                         else { return node_size_int; }
                                     })    
             
             gnodes.append("title")
-                .text(function (d) { return d.name + ' |' + d.count + '|' })
-/*                  .text(function(d) { return d.name; });*/
+/*                .text(function (d) { return d.name + ' |' + d.count + '|' })*/
+                  .text(renderItemText);
                   
                   
       
