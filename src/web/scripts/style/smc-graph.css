@@ -34,6 +34,7 @@ float:right;
 path.link {
   fill: none;
   stroke: #999;
+  stroke-opacity: 0.8;
 }
 
 path.link.highlight {
@@ -43,6 +44,10 @@ path.link.highlight {
 
 path.link.fade {
     stroke-opacity: 0.2;
+}
+
+circle {
+   opacity: 0.8;
 }
 
 circle.highlight {
