@@ -56,6 +56,7 @@ var opts = {"graph": {"value":"/smc/data/profiles.js",
             "link-distance": {"value":120, "min":10, "max":300, "widget":"slider" }, 
             "charge":{"value":250, "min":10, "max":1000, "widget":"slider" },
             "friction":{"value":75, "min":1, "max":100, "widget":"slider" },
+            "gravity":{"value":20, "min":1, "max":100, "widget":"slider" },
             "node-size": {"value":"count", "values":["1","4","8","16","count"], "widget":"selectone" },
             "labels": {"value":"show", "values":["show","hide"], "widget":"selectone" },                         
             "curve": {"value":"straight", "values":["straight","arc"], "widget":"selectone" },
@@ -261,7 +262,7 @@ function renderItemText(d) {
 function filterIndex (search_string){
     var filtered_index_nodes = data_all.nodes.filter(function(d, i) { 
      //   console.log(d.name.indexOf(search_string));
-        return d.name.toLowerCase().indexOf(search_string) > -1; 
+        return d.name.toLowerCase().indexOf(search_string.toLowerCase()) > -1; 
     });
     
    renderIndex(filtered_index_nodes, index_container_selector);
@@ -322,22 +323,33 @@ function renderGraph (data, target_container) {
             .size([w, h])
 
             .friction(parseInt(opt("friction")) / 100 )
-            .linkDistance(parseInt(opt("link-distance")))
-            .gravity(0.5)
-            /* Profiles:           
+            
+            .gravity(parseInt(opt("gravity")) / 100 )
+            
+/*            .linkDistance(parseInt(opt("link-distance")))*/
             
             .linkDistance(function(d){return link_distance / (d.weight * d.value) })
+            /* Profiles:           
+            
+            
             .linkStrength(function(d){return d.weight})*/
             //.charge(parseInt(opt("charge")) * -1)
-            .charge(function(d) { if (opt("node-size")=="count")
+          
+          if (parseInt(opt("charge"))==0) {
+            force.charge(0);
+          } else {
+            force.charge(function(d) { if (opt("node-size")=="count")
                             {var node_charge = (Math.sqrt(d.count)<=min_circle) ?  min_circle  : Math.sqrt(d.count) / data.node_size_ratio;
                             //console.log (node_charge + ':' + d.count);
                             return node_charge * -1 * parseInt(opt("charge"));
                                 }
                               //{ return -d.count * parseInt(opt("charge"));  }
                             else { return parseInt(opt("charge")) * -1} })
-            .on("tick", tick)
+          }
+         
+         force.on("tick", tick)
             .start();
+        
         if (opt("layout")=='freeze') {
                data.nodes.forEach(function(d) { d.fixed=true });     
         } else {
