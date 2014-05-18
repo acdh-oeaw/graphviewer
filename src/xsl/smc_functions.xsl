@@ -193,9 +193,8 @@
 	
 <!--  computing minimal unique path/index -->
 <xsl:template match="Term" mode="min-context" >
-		<xsl:param name="all-terms" select="$cmd-terms-nested" />
-		<xsl:param name="term" select="." />
-		
+		<xsl:param name="all-terms" />
+		<xsl:param name="term" select="." />		
 		
 		<!--<xsl:variable name="termset_id" select="if (exists(ancestor::Termset/@id)) then ancestor::Termset/@id else ancestor::Termset/@name" />-->
 	<xsl:variable name="termset_name" select="ancestor::Termset/@name" />

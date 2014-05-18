@@ -31,19 +31,9 @@
 <!--    needed in cmd_includes.xsl --> 
    <xsl:variable name="cmd_components_uri" select="my:config('cmd-components','url')" />
    <xsl:variable name="cmd_profiles_uri" select="my:config('cmd-profiles','url_prefix')" />
-    
-<!-- intermediate datasets bound into variables,to prevent calling the function every time -->
-    <xsl:variable name="dcr-terms-preload" select="my:getData('dcr-terms-preload')" />
-   <xsl:variable name="dcr-terms" select="my:getData('dcr-terms')" />
-    <xsl:variable name="rr-relations" select="my:getData('rr-relations')" />
-    <!-- rr-relations expanded with terms-->
-    <xsl:variable name="rr-terms" select="my:getData('rr-terms')" />
-   <xsl:variable name="cmd-terms" select="my:getData('cmd-terms')" />
-    <xsl:variable name="cmd-terms-nested" select="my:getData('cmd-terms-nested')" />
-   <xsl:variable name="dcr-cmd-map" select="my:getData('dcr-cmd-map')" />
-   <xsl:variable name="isocat-languages" select="my:getData('isocat-languages')" />
 
-    <xsl:key name="concept-id" match="Concept" use="xs:string(@id)" /> 
+
+   <xsl:key name="concept-id" match="Concept" use="xs:string(@id)" /> 
 
     <!--  -->
     
@@ -80,14 +70,16 @@
                 </xsl:call-template>
                 
              <xsl:result-document href="{$cache_path}" format="xml" >
-                 <xsl:copy-of select="$result" />
+                 <xsl:sequence select="$result" />
              </xsl:result-document>
             </xsl:if>
-            <xsl:if test="not(exists($result/*))">
+        <xsl:if test="not(doc-available($cache_path)) and not(exists($result/*))">
                 <xsl:call-template name="message">
                     <xsl:with-param name="message">WARNING: no data for <xsl:value-of select="$cache_path" /></xsl:with-param>							
                 </xsl:call-template>
-                
+                <xsl:result-document href="{$cache_path}" format="xml" >
+                    <diagnostics>no data for <xsl:value-of select="$id" /></diagnostics>
+                </xsl:result-document>
             </xsl:if>
         
         
@@ -162,7 +154,7 @@
                 </xsl:if>
             </xsl:when>
             <xsl:when test="$key='profiles' or $key='datcats'">                
-                <xsl:copy-of select="my:getRawData($key, $id)" />                
+                <xsl:sequence select="my:getRawData($key, $id)" />                
             </xsl:when> 
             <xsl:when test="$key='cmd-resolved'">
                 <xsl:apply-templates select="my:getData('cmd-profiles-raw')" mode="include" />                
@@ -174,7 +166,10 @@
                 <xsl:copy-of select="my:profiles2termsets(my:getData('cmd-resolved')//profileDescription,true())" />
             </xsl:when>
             <xsl:when test="$key='cmd-terms-nested-minimal'">
-                <xsl:apply-templates select="$cmd-terms-nested" mode="min-context"></xsl:apply-templates>
+                <xsl:variable name="cmd-terms-nested" select="my:getData('cmd-terms-nested')" />
+                <xsl:apply-templates select="$cmd-terms-nested" mode="min-context">
+                    <xsl:with-param name="all-terms" tunnel="yes" select="$cmd-terms-nested" />
+                </xsl:apply-templates>
             </xsl:when>            
             <xsl:when test="$key='dcr-terms-preload'">
                 <xsl:call-template name="load-dcr" />								
@@ -231,7 +226,7 @@
             <xd:p>get the raw xml for a specific piece of data (profile, component, later data category) from the source, or from the cache if already available</xd:p>
             <xd:p>Storing to cache happens in load-profiles template</xd:p>
         </xd:desc>
-        <xd:param name="key">currently only 'profiles'</xd:param>
+        <xd:param name="key">'profiles', 'datcats'</xd:param>
         <xd:param name="id">id for the profile</xd:param>
     </xd:doc>
     <xsl:function name="my:getRawData">
@@ -258,7 +253,7 @@
         <xsl:with-param name="message">my:getRawData() resolved_uri:<xsl:value-of select="$resolved_uri" /></xsl:with-param>
        </xsl:call-template>
         <xsl:if test="doc-available($resolved_uri)">
-            <xsl:copy-of select="doc($resolved_uri)" />
+            <xsl:sequence select="doc($resolved_uri)" />
                 <!--            <xsl:apply-templates select="document($resolved_uri)" mode="include" />-->
         </xsl:if>
         
@@ -289,8 +284,8 @@
         </xd:desc>
     </xd:doc>
     <xsl:template name="postload-datcats">
-        
-        <xsl:variable name="missing-datcats" select="distinct-values($cmd-terms//Term[not(@datcat='')][not(@datcat =$dcr-terms-preload//Concept/@id)]/@datcat)" />
+        <xsl:variable name="dcr-terms-preload" select="my:getData('dcr-terms-preload')" />
+        <xsl:variable name="missing-datcats" select="distinct-values(my:getData('cmd-terms')//Term[not(@datcat='')][not(@datcat =$dcr-terms-preload//Concept/@id)]/@datcat)" />
         <xsl:for-each select="$missing-datcats">
 <!--            <xsl:copy-of select="my:getRawData('datcats',.)" />-->
                 <xsl:call-template name="getData">
@@ -399,6 +394,8 @@
     </xd:doc>
 <xsl:template name="dcr-cmd-map">
     <xsl:variable name="dcr-terms" select="my:getData('dcr-terms')" />
+    <xsl:variable name="cmd-terms" select="my:getData('cmd-terms')" />
+    
     <Termset type="dcr-cmd-map" >	
         <xsl:for-each-group select="$cmd-terms//Term[not(@datcat='')]" group-by="@datcat">
             <Concept id="{@datcat}" type="datcat">
@@ -419,7 +416,9 @@
             <xd:p>TODO: missing: isocat@langs, RR-sets</xd:p>
         </xd:desc>
     </xd:doc>
-<xsl:template name="termsets">    
+<xsl:template name="termsets">
+    <xsl:variable name="isocat-languages" select="my:getData('isocat-languages')" />
+    <xsl:variable name="cmd-terms" select="my:getData('cmd-terms')" />    
     <Termsets type="list">
         <!-- add dcr-termsets directly from config -->
         <xsl:for-each select="$termsets_config//*[type='dcr'][not(key='isocat')]" >
@@ -478,7 +477,9 @@
                 to get rr-expanded terms</xd:p>
         </xd:desc>
     </xd:doc>
-    <xsl:template name="rr-terms">        
+    
+    <xsl:template name="rr-terms">
+            <xsl:variable name="rr-relations" select="my:getData('rr-relations')" />        
             <xsl:apply-templates select="$rr-relations" mode="rr-expand" ></xsl:apply-templates>              
     </xsl:template>
     
@@ -494,8 +495,9 @@
             <xd:p>expand rr-concepts</xd:p>
         </xd:desc>
     </xd:doc>
-    <xsl:template match="Concept" mode="rr-expand">
-        <xsl:variable name="concept-id" select="@id" />                
+    <xsl:template match="Concept" mode="rr-expand">        
+        <xsl:variable name="concept-id" select="@id" />
+        <xsl:variable name="dcr-cmd-map" select="my:getData('dcr-cmd-map')" />
         <xsl:copy>
             <xsl:copy-of select="@*" />            
             <xsl:copy-of select="$dcr-cmd-map//Concept[@id=$concept-id]/Term" />            
