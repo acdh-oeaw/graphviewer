@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SMC docs" default="gen-docs" basedir=".">
+    
+    <description>
+        targets for generating documentation for the code (gen-docs) 
+    </description>
+    
+    <property file="build_docs.props"></property>
+    
+    <property name="scripts.dir" value="." />
+    <property name="out.dir" value="output" />	
+    <property name="out.data.dir" value="${out.dir}/data" />
+    <property name="docs.dir" value="docs" />
+    <property name="smc.config" value="src/smc_config.xml" />
+    <property name="xsl.dir" value="src/xsl/" />
+    <property name="dataset.xsl.dir" value="src/xsl/dataset" />
+    
+    
+    <import file="${scripts.dir}\build_defs.xml" />
+    
+
+<target name="gen-docs" depends="gen-build-info,gen-jsdocs,gen-xsldocs"
+    description="generates automatic documentation for the build, js- and xsl-files">
+</target>
+
+<target name="gen-jsdocs" >
+    <ant antfile="${scripts.dir}\build_docs.xml" target="gen-jsdoc">
+        <!-- src/web/scripts/js/smc-graph.js   -->
+        <property name="src.dir" location="src/web/scripts/js/smc-graph.js" />
+        <property name="docs.dir" location="${docs.dir}/jsdocs/"/>
+    </ant>		
+</target>
+
+<target name="gen-xsldocs" >
+    <property name="out.fn" value="smc-xsl"></property>
+    <ant antfile="${scripts.dir}\build_docs.xml" target="ay-xsl">
+        <property name="in.dir" location="${xsl.dir}" />
+        <property name="file.prefix" value="../../src" />
+        <property name="title" value="smc-xsl" />
+        <property name="parts" value="imports, params, templates, functions" />
+        <property name="out.dir" location="${docs.dir}/xsltdocs"/>
+        <property name="out.fn" value="${out.fn}"/>
+        
+    </ant>
+    <ant antfile="${scripts.dir}\build_docs.xml" target="gen-dep-graph">
+        <property name="work.dir" location="${docs.dir}/xsltdocs" />
+        <!-- <property name="in.file" value="${out.fn}.xml"/> -->
+        <property name="in.file" value="${docs.dir}/xsltdocs/${out.fn}.xml"/>
+        <property name="title" value="smc-xsl-imports" />
+        <property name="parts" value="imports" />
+        <property name="out.fn" value="smc-xsl-imports"/>
+    </ant>		
+    
+    
+    <ant antfile="${scripts.dir}\build_docs.xml" target="gen-dep-graph-each">
+        <property name="in.dir" location="${xsl.dir}" />
+        <property name="parts" value="imports, params, templates, functions" />
+        <property name="work.dir" location="${docs.dir}/xsltdocs/xslts"/>			
+    </ant>
+</target>    	
+
+<target name="gen-build-info" >
+    <ant antfile="${scripts.dir}\build.xml" target="gen-build-info">
+        <property name="in.dir" location="" />
+        <property name="other.build" value="build_init"/>
+        <property name="out.dir" location="docs"/>
+    </ant>
+</target>
+
+<target name="gen-userdocs" >
+    
+    <foreach target="render-rst-doc" param="rst.file" >
+        <path>
+            <fileset dir="${docs.dir}"  includes="*.rst" />
+        </path>
+    </foreach>
+</target>
+
+    <target name="render-rst-doc" description="transform rst-doc to html">
+    <basename property="rst.filename" file="${rst.file}"
+        suffix=".rst"/>
+    <echo message="${rst.file}" />
+    <ant antfile="${scripts.dir}\build_docs.xml" target="rst2html">
+        <property name="src.file" location="${rst.file}" />
+        <property name="out.file" location="${docs.dir}/${rst.filename}.html"/>
+        <property name="stylesheet" value="../scripts/style/cmds-ui.css"/>
+    </ant>
+</target>
+    
+    
+    <target name="gen-graphs" >
+        
+        <foreach target="gen-dot-graph" param="dot.file" >
+            <path>
+<!--                <fileset dir="${docs.dir}"  includes="*.dot" />-->
+                <fileset dir="${docs.dir}"  includes="smc_processing.dot" />                
+            </path>
+        </foreach>
+    </target>
+    
+<target name="gen-dot-graph" >
+    <basename property="dot.filename" file="${dot.file}"
+        suffix=".dot"/>
+    <echo message="${dot.file}" />
+    <exec executable="dot">			    				
+        <arg value="${dot.file}" />
+        <arg value="-o${docs.dir}/${dot.filename}.png"/>
+        <arg value="-Tpng"/>
+    </exec>
+</target>
+</project>

@@ -16,7 +16,8 @@
 	
 	<property file="build.properties"/>
     
-  <import file="build_init.xml" />   
+  <import file="build_init.xml" />
+  <import file="build_docs.xml"/>
 	
 	<!-- ==================== Clean Target ==================================== -->
 
