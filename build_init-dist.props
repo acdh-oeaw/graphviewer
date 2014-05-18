@@ -21,3 +21,6 @@
 #  needed for dataset 2 htmltable transformation in smc-stats
 #  available under: https://github.com/vronk/corpus_shell/tree/master/xsl
 #dataset.xsl.dir=src/xsl/dataset
+
+#  threshold for the similarity quotient (matched_datcats : profile_terms), when linking profiles 
+#similarity.threshold=0.5
