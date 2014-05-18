@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="defs" basedir=".">
+    <description>
+        just taskdefs
+    </description>
+
+  <property name="scripts.dir" location="."/>
+
+   <dirname property="basedir.defs" file="${ant.file.defs}"/>
+  <property file="${basedir.defs}/build_defs.props"/>
+
+
+    <target name="check" description="just for debugging, to check the actual values of properties">
+        <echoproperties regex=".*\.dir"></echoproperties>
+        <!--		<echoproperties srcfile="${scripts.dir}\build_defs.props" /> -->
+        <echo message="${saxon-libs.dir}" />
+    </target>
+
+
+ 		<!-- <taskdef name="xinclude" classname="org.znerd.xincludetask.XIncludeTask" />   -->
+ 		<taskdef name="xinclude2" classname="gr.abiss.xcluder.XercesXcluder" />
+ 
+ 		<target name="xinclude" description="expand a xinclude-file" >
+    	<xinclude in="${in.file}" out="${out.file}" />
+    </target>
+    
+    <!-- not recommended to use AntTransform:
+    http://stackoverflow.com/questions/919692/how-to-execute-xslt-2-0-with-ant
+    move away from it
+    -->
+    <taskdef name="saxon-xslt" 
+	         classname="net.sf.saxon.ant.AntTransform" 
+	         classpath="${saxon-libs.dir}/saxon9-ant.jar;${saxon-libs.dir}/saxon9.jar"/> 
+	         <!-- classpath="C:/apps/java/saxonb9-1-0-2j/saxon9-ant.jar;C:/apps/java/saxonb9-1-0-2j/saxon9.jar"/> -->
+	         
+	  <path id="saxon-lib" >
+	  	<pathelement path="${saxon-libs.dir}/saxon9-ant.jar"  />
+	    <pathelement path="${saxon-libs.dir}/saxon9.jar" />
+	  </path> 
+
+		<target name="saxon-xslt" >
+    	<saxon-xslt in="${in.file}" 
+    						style="${style}"
+    						out="${out.file}" force="true"/>
+    </target>
+ 
+ 	<target name="xslt" >
+    	<xslt in="${in.file}" 
+    						style="${style}"
+    						out="${out.file}" 
+    						force="true"/>
+    </target>
+ 
+ 
+ 		<property name="fop.home" value="lib/fop" />
+<!--
+<taskdef name="fop" 
+         classname="org.apache.fop.tools.anttasks.Fop">
+  <classpath>
+    <fileset dir="${fop.home}/lib">
+      <include name="*.jar"/>
+    </fileset>
+    <fileset dir="${fop.home}/build">
+      <include name="fop.jar"/>
+      <include name="fop-hyph.jar" />
+    </fileset>
+  </classpath>
+</taskdef>
+ -->
+
+
+    <!--
+      <taskdef name="ant2svg"
+        classname="org.apache.tools.ant.taskdefs.optional.ant2svg.Ant2SvgTask" >        
+    </taskdef>
+-->
+    
+</project>
+
+ 

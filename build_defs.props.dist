@@ -1,0 +1,6 @@
+
+#  path to saxon-libs
+saxon-libs.dir=lib/saxon
+
+# path to fop base dir
+fop.home=lib/fop
