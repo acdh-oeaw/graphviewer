@@ -6,27 +6,29 @@
      Project:  SMC     
      ====================================================================== -->
 	
-<project name="SMC init" default="init" basedir=".">
+<project name="smc-init" default="init" basedir=".">
 	
     <description>
            targets for 
-           a) initializing the SMC-module, i.e. fetching the source data (init-data)
-           b) generating the output data (graph and statistics) (gen-out)
-           c) and for generating documentation for the code (gen-docs) 
+           a) initializing the SMC-module, i.e. fetching the source data = init-data
+           b) generating the output data (graph and statistics)  = gen-out            
     </description>
 
 	<property file="build_init.props"></property>
 	
+	<dirname property="basedir.smc-init" file="${ant.file.smc-init}"/>
+	
 	<property name="scripts.dir" value="." />
 	<property name="cache.dir" value="data" />
 	<property name="out.dir" value="output" />	
+	<property name="out.data.dir" value="${out.dir}/data" />
 	<property name="docs.dir" value="docs" />
 	<property name="smc.config" value="src/smc_config.xml" />
-	<property name="xsl.dir" value="src/xsl/" />
+	<property name="xsl.dir" value="${basedir.smc-init}/src/xsl/" />
 	<property name="dataset.xsl.dir" value="src/xsl/dataset" />
  
  
-	<import file="${scripts.dir}\build_defs.xml" />
+	<import file="${scripts.dir}/build_defs.xml" />
 
 
 	<target name="check" description="just for debugging, to check the acutal values of properties">
@@ -62,12 +64,28 @@
 			replace="/"			defaultvalue="${cache.dir}"  override="true"/>
 -->		
 		<echo message="generating: ${dataset.key}" />
+		
+		
+		<!-- delete the old dataset if cache.mode=refresh
+			there were problems when using <xslt force="true" > 
+		-->
+		<condition property="refresh">
+			<contains string="${cache.mode}" substring="refresh" />
+		</condition>		
+		<antcall target="clean-dataset" >
+			<param name="dataset.file" value="${cache.dir}/${dataset.key}.xml" /> 
+		</antcall>
+		
 		<xslt style="${xsl.dir}smc_init.xsl" in="${smc.config}"
 			out="${cache.dir}/${dataset.key}.xml" >
-			<param name="data_key" expression="${dataset.key}"/>			
-			<param name="cache" expression="use"/>			
+			<param name="data_key" expression="${dataset.key}"/>
+						
+<!--			<param name="cache" expression="${cache.mode}"/>		
+			cache.mode=refresh makes problems, so enforcing refresh by deleting given dataset (see above) -->
+			<param name="cache" expression="use"/>
 			<!-- cache.dir is used relative to the main-input document (which is src/smc_config.xml) -->
 			<param name="cache_dir" expression="../${cache.dir}"/>
+			<param name="debug_mode" expression="${debug.mode}"/>
 			<!-- <sysproperty key="ANT_OPTS"
                  value="-Xmx512m" 
      />-->
@@ -77,8 +95,29 @@
 		
 	</target>
 
-	<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+	<target name="clean-dataset" if="${refresh}" >
+		<delete file="${dataset.file}"  />
+		
+	</target>
+		
+	<target name="get-mdrepo-struct" >				
+	
+		<get src="${mdrepo.url}/smc?operation=gen-mappings&amp;x-mode=${mode}"		
+			 dest="${cache.dir}/scan-cmd_profile.xml" />
+		
+		<!--<xslt style="${xsl.dir}sru-scan2profile-list.xsl" in="${cache.dir}/scan-cmd_profile.xml"
+			out="${cache.dir}/used-profiles.xml" force="true">
+		</xslt>-->
+		
+		<get src="${mdrepo.url}/smc?operation=gen-mappings&amp;x-mode=${mode}"		
+			dest="${cache.dir}/scan-cmd_profile.xml" />
+		
+<!--		http://localhost:8680/exist/rest/db/mdrepo-data/_indexes/_structure.xml
+		http://localhost:8680/exist/apps/cr-xq/mdrepo/smc/smc.xql?operation=get-graph&x-format=json-->
+		
+	</target>
 
+	
 	<target name="gen-out" description="generate various views on the data" 
 		depends="init-out,smc-stats,gen-smc-graph,render-profiles" >
 		
@@ -88,14 +127,18 @@
 		depends="gen-userdocs">
 			<delete dir="${out.dir}" />
 			<copy todir="${out.dir}">
-			<fileset dir="src/web" />
-			<fileset file="docs/userdocs.html" />
-			<fileset file="docs/examples.html" />
-			<fileset file="docs/graph_legend.svg" />
+				<fileset dir="src/web" />
+				<!--<fileset file="docs/userdocs.html" />
+				<fileset file="docs/examples.html" />-->			   
+			</copy>
+		<copy todir="${out.dir}/docs">
+			<fileset dir="${docs.dir}" includes="*.html" />
+			<fileset file="docs/graph_legend.svg" />		
 		</copy>
-		<copy todir="${out.dir}/examples">
-			<fileset dir="docs/examples" />
+		<copy todir="${out.dir}/docs/examples">
+			<fileset dir="docs/examples" />		
 		</copy>
+
 	</target>
 	
 	<target name="render-profiles" description="generate html-views for profiles, expects loaded profiles"
@@ -143,7 +186,7 @@ e URI, or write to a URI that has been read: file:/C:/Users/m/3/clarin/_repo/SMC
 		<saxon-xslt style="${dataset.xsl.dir}/dataset2html.xsl" in="${out.dir}/smc_stats_dataset.xml"
 			out="${out.dir}/smc_stats.html" force="true">						
 			<param name="format" expression="htmlpage"/>
-			<param name="scripts_url" expression="scripts"/>
+			<param name="scripts_url" expression="scripts/"/>
 			<param name="mode" expression=""/>
 		</saxon-xslt>						
 		
@@ -154,110 +197,63 @@ e URI, or write to a URI that has been read: file:/C:/Users/m/3/clarin/_repo/SMC
 		/>		
 		
 		<target name="gen-smc-graph-xml" description="generate graph of component dependencies (internal xml-format)" 		>		
+						<saxon-xslt style="${xsl.dir}terms2graph.xsl" in="${cache.dir}/cmd-terms-nested.xml"
+				out="${out.data.dir}/smc-graph-basic.xml" >
+				<param name="parts" expression="components,datcats"/>
+			</saxon-xslt>
 			<saxon-xslt style="${xsl.dir}terms2graph.xsl" in="${cache.dir}/cmd-terms-nested.xml"
-				out="${out.dir}/smc-graph.xml" >
-			</saxon-xslt>						
+				out="${out.data.dir}/smc-graph-all.xml" >
+				<param name="parts" expression="profile-groups,components,datcats,relations"/>
+			</saxon-xslt>
+			<saxon-xslt style="${xsl.dir}terms2graph.xsl" in="${cache.dir}/cmd-terms-nested.xml"
+				out="${out.data.dir}/smc-graph-profiles-datcats.xml" >
+				<param name="parts" expression="datcats"/>
+			</saxon-xslt>
+			<saxon-xslt style="${xsl.dir}terms2graph.xsl" in="${cache.dir}/cmd-terms-nested.xml"
+				out="${out.data.dir}/smc-graph-groups-profiles-datcats-rr.xml" >
+				<param name="parts" expression="profile-groups,datcats,relations"/>
+			</saxon-xslt>
+			<saxon-xslt style="${xsl.dir}terms2graph.xsl" in="${cache.dir}/cmd-terms-nested.xml"
+				out="${out.data.dir}/smc-graph-profiles-similarity.xml" >
+				<param name="parts" expression="''"/>
+				<param name="match_threshold" expression="${similarity.threshold}"/>
+				
+			</saxon-xslt>
 		</target>
 
 		<target name="gen-mdrepo-graph-xml" description="generate graph of mdrepo-stats (internal xml-format)" 		>		
-			<saxon-xslt style="${xsl.dir}terms2graph.xsl" in="${cache.dir}/mdrepo-stats.xml"
-				out="${out.dir}/mdrepo-graph.xml" force="true" >
+			<saxon-xslt style="${xsl.dir}terms2graph.xsl" in="${mdrepo-stats.path}"
+				out="${out.data.dir}/${mdrepo-stats-graph}.xml" force="true" >
+				
 			</saxon-xslt>						
 		</target>
 		
 		<target name="gen-smc-graph-dot" description="generate dot-graph of component dependencies (dot/svg)" 
 			depends="gen-smc-graph-xml"		>		
 				
-					<saxon-xslt style="${xsl.dir}graph2dot.xsl" in="${out.dir}/smc-graph.xml"
-						out="${out.dir}/smc-graph.dot" >
+			<saxon-xslt style="${xsl.dir}graph2dot.xsl" in="${out.data.dir}/smc-graph-all.xml"
+				out="${out.data.dir}/smc-graph.dot" >
 					</saxon-xslt>						
 				
 				<exec executable="dot">			    				
-					<arg value="${out.dir}/smc-graph.dot" />
-					<arg value="-o${out.dir}/smc-graph.svg"/>
+					<arg value="${out.data.dir}/smc-graph.dot" />
+					<arg value="-o${out.data.dir}/smc-graph.svg"/>
 					<arg value="-Tsvg"/>
 				</exec>    		
 		</target>
 		
-	<target name="gen-smc-graph-json" description="generate dot-graph of component dependencies (json-d3)" 
-			depends="gen-smc-graph-xml"		>		
-		
-			<saxon-xslt style="${xsl.dir}graph2json-d3.xsl" in="${out.dir}/smc-graph.xml"
-				out="${out.dir}/smc-graph.d3.js" force="true">
-			</saxon-xslt>						
+	<target name="gen-smc-graph-json" description="generate dot-graph of component dependencies (json-d3)" > 
+<!--			depends="gen-smc-graph-xml"		>		-->
+<!--			<saxon-xslt style="${xsl.dir}graph2json-d3.xsl" in="/smc-graph.xml"
+				out="${out.data.dir}/smc-graph.d3.js" force="true" /></saxon-xslt>-->
+			<saxon-xslt style="${xsl.dir}graph2json-d3.xsl"
+				basedir="${out.data.dir}" includes="*.xml" destdir="${out.data.dir}" extension=".js"
+				force="true" />
 			
 	</target>			
 	
-	
-	
-	<target name="gen-docs" depends="gen-build-info,gen-jsdocs,gen-xsldocs"
-	 description="generates automatic documentation for the build, js- and xsl-files">
-	</target>
-	
-	<target name="gen-jsdocs" >
-		<ant antfile="${scripts.dir}\build_docs.xml" target="gen-jsdoc">
-			<!-- src/web/scripts/js/smc-graph.js   -->
-			<property name="src.dir" location="src/web/scripts/js/smc-graph.js" />
-			<property name="docs.dir" location="${docs.dir}/jsdocs/"/>
-		</ant>		
-	</target>
-	
-	<target name="gen-xsldocs" >
-		<property name="out.fn" value="smc-xsl"></property>
-		<ant antfile="${scripts.dir}\build_docs.xml" target="ay-xsl">
-			<property name="in.dir" location="${xsl.dir}" />
-			<property name="file.prefix" value="../../src" />
-			<property name="title" value="smc-xsl" />
-			<property name="parts" value="imports, params, templates, functions" />
-			<property name="out.dir" location="${docs.dir}/xsltdocs"/>
-			<property name="out.fn" value="${out.fn}"/>
-			
-		</ant>
-		<ant antfile="${scripts.dir}\build_docs.xml" target="gen-dep-graph">
-			<property name="work.dir" location="${docs.dir}/xsltdocs" />
-			<!-- <property name="in.file" value="${out.fn}.xml"/> -->
-			<property name="in.file" value="${docs.dir}/xsltdocs/${out.fn}.xml"/>
-			<property name="title" value="smc-xsl-imports" />
-			<property name="parts" value="imports" />
-			<property name="out.fn" value="smc-xsl-imports"/>
-		</ant>		
-		
-		
-		<ant antfile="${scripts.dir}\build_docs.xml" target="gen-dep-graph-each">
-			<property name="in.dir" location="${xsl.dir}" />
-			<property name="parts" value="imports, params, templates, functions" />
-			<property name="work.dir" location="${docs.dir}/xsltdocs/xslts"/>			
-		</ant>
-	</target>    	
-	
-	<target name="gen-build-info" >
-		<ant antfile="${scripts.dir}\build.xml" target="gen-build-info">
-			<property name="in.dir" location="" />
-			<property name="other.build" value="build_init"/>
-			<property name="out.dir" location="docs"/>
-		</ant>
-	</target>
-	
-	
-	<target name="gen-userdocs" >
-		<ant antfile="${scripts.dir}\build_docs.xml" target="rst2html">
-			<!-- src/web/scripts/js/smc-graph.js   -->
-			<property name="src.file" location="docs/userdocs.rst" />
-			<property name="out.file" location="docs/userdocs.html/"/>
-			<property name="stylesheet" value="scripts/style/cmds-ui.css"/>
-		</ant>		
-		<ant antfile="${scripts.dir}\build_docs.xml" target="rst2html">
-			<!-- src/web/scripts/js/smc-graph.js   -->
-			<property name="src.file" location="docs/examples.rst" />
-			<property name="out.file" location="docs/examples.html/"/>
-			<property name="stylesheet" value="scripts/style/cmds-ui.css"/>
-		</ant>
-		<ant antfile="${scripts.dir}\build_docs.xml" target="rst2html">			
-			<property name="src.file" location="docs/examples2.rst" />
-			<property name="out.file" location="docs/examples2.html/"/>
-			<property name="stylesheet" value="scripts/style/cmds-ui.css"/>
-		</ant>		
-	</target>
+
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
 	
 </project>
 
