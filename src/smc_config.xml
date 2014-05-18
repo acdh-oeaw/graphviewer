@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Termsets>
 	<item>
-      <type>cmd</type> 
+	   <type>cmd</type> 
       <key>cmd-profiles</key> 
-      <name>ComponentRegistry profiles</name>       
+      <name>ComponentRegistry profiles</name>
+<!--	   <url>file:/C:/Users/m/3/clarin/_repo/SMC/data_mdrepo/cmd-profiles-raw.xml</url>-->
       <url>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/</url> 
 	   <url_prefix>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/</url_prefix>
 	   <!-- <xsl:param name="cmdprofiles_uri" select="'http://localhost:8080/MDService2/compprofile/'" /> -->	   
+      <format>cmd</format> 
+   </item>
+   <item>
+      <type>cmd</type> 
+      <key>used-profiles</key> 
+      <name>Profiles used in instance data (mdrepo)</name>
+<!--      <url>file:/C:/Users/m/3/clarin/_repo/SMC/data_mdrepo/used-profiles.xml</url>       -->
+<!--      http://localhost:8680/exist/apps/cr-xq/mdrepo/fcs-->
+      <url>http://clarin.oeaw.ac.at/mdrepo/fcs?operation=scan&amp;scanClause=cmd.profile&amp;x-context=&amp;x-format=xml&amp;maximumTerms=0&amp;sort=size&amp;x-mode=</url>
+      <url_prefix>http://catalog.clarin.eu/ds/ComponentRegistry/rest/registry/profiles/</url_prefix>
+      <!-- <xsl:param name="cmdprofiles_uri" select="'http://localhost:8080/MDService2/compprofile/'" /> -->	   
       <format>cmd</format> 
    </item>
    <item>
@@ -22,11 +34,17 @@
       <type>dcr</type> 
       <key>isocat</key> 
       <name>ISOcat</name> 
-     <url>http://www.isocat.org/rest/profile/5.rdf</url> 
+<!--           <url>http://www.isocat.org/rest/profile/5.dcif</url> -->
+<!--     <url>http://www.isocat.org/rest/profile/5.rdf</url> -->
+<!--      <url>file:/C:/Users/m/3lingua/clarin/CMDI/DCR-RR/isocat_profile_5_dcif.xml</url>-->
 <!--       <url>file:/C:/Users/m/3lingua/clarin/CMDI/SMC/cache/isocat_profile5.rdf.xml</url> -->
+             <url>file:/C:/Users/m/3/clarin/_repo/SMC/data/5.dcif</url>
+      
+
 <!--      www.isocat.org/rest/info/languages.xml-->
       <url_prefix>http://www.isocat.org/datcat/</url_prefix> 
-      <format>rdf</format> 
+<!--      <url_prefix>http://www.isocat.org/rest/dc/</url_prefix>-->
+      <format>dcif</format> 
    </item>
    <item>
       <!-- no "standard" type, because this is for special handling of isocat -->
@@ -37,14 +55,19 @@
       <url_prefix></url_prefix> 
       <format>rdf</format> 
    </item>
-   <item>
+   <!--
+      temporarily disabled
+      because suddenly unclear how to get to the rdf version of the set 
+      (link now points to dc-terms) --> 
+      <item>
       <type>dcr</type> 
       <key>dce</key> 
-      <name>dublincore elements</name> 
-      <url>http://purl.org/dc/elements/1.1/</url> 
+      <name>dublincore elements</name>
+      <url>file:/C:/Users/m/3/clarin/SMC/cache/dcelements.rdf</url>       
+<!--      <url>http://purl.org/dc/elements/1.1/</url> -->
       <url_prefix>http://purl.org/dc/elements/1.1/</url_prefix> 
       <format>rdf</format> 
-   </item>
+   </item>-->
    <item>
       <type>dcr</type> 
       <key>dct</key> 
@@ -55,9 +78,18 @@
    </item>
    <item>
       <type>rr</type> 
-      <key>relcat</key> 
+      <key>rr-cmdi</key> 
       <name>Relation Registry CMDI-set</name> 
-      <url>http://lux13.mpi.nl/relcat/rest/set/cmdi</url> 
+      <url>http://lux13.mpi.nl/relcat/rest/set/cmdi</url>
+<!--      <url>file:/C:/Users/m/3lingua/clarin/CMDI/_repo2/SMC/data/cmdi.rdf</url>      -->
+      <url_prefix>null</url_prefix> 
+      <format>rdf</format> 
+   </item>
+   <item>
+      <type>rr</type> 
+      <key>rr-dc</key> 
+      <name>Relation Registry CMDI-set</name> 
+      <url>http://lux13.mpi.nl/relcat/rest/set/dc</url>
       <url_prefix>null</url_prefix> 
       <format>rdf</format> 
    </item>
