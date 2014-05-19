@@ -42,7 +42,7 @@
             otherwise all profiles are transformed</xd:p>
         </xd:desc>
     </xd:doc>
-    <xsl:param name="filter" select="'only-private'" />
+    <xsl:param name="filter" select="''" />
     
     <xsl:template match="/sru:scanResponse" >
         
