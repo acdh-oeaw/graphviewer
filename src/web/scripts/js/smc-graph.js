@@ -41,19 +41,21 @@ var userdocs_file = "userdocs.html";
 //now graph-param is used
 //var source_file = "/smc/smc-graph.d3";
 /*var source_file = "/smc/cmd-dep-graph.d3.js";*/
+var data_prefix = "data/";
 var detail_file = "/smc/data/smc_stats_detail.html";
 var userdocs_file = "/smc/docs/userdocs.html";
 
-var opts = {"graph": {"value":"/smc/data/smc-graph-basic.js", 
-                    "values":[{value: "/smc/data/smc-graph-basic.js", label:"SMC graph basic"},
-                              {value: "/smc/data/smc-graph-all.js", label:"SMC graph all"},                              
-                              {value: "/smc/data/smc-graph-profiles-datcats.js", label:"only profiles + datcats"},
-                              {value: "/smc/data/smc-graph-groups-profiles-datcats-rr.js", label:"profiles+datcats+groups+rr"},
-                              {value: "/smc/data/smc-graph-profiles-similarity.js", label:"just profiles"},                              
-                              {value: "/smc/data/dbpedia_philosophers_influence_years_graph.json", label:"Philosophers"},
-                              {value: "/smc/data/SC_Persons_120201_cAll_graph.json", label:"Schnitzler Cooccurrences"},
+
+var opts = {"graph": {"value":"smc-graph-basic.js", 
+                    "values":[{value: "smc-graph-basic.js", label:"SMC graph basic"},
+                              {value: "smc-graph-all.js", label:"SMC graph all"},                              
+                              {value: "smc-graph-profiles-datcats.js", label:"only profiles + datcats"},
+                              {value: "smc-graph-groups-profiles-datcats-rr.js", label:"profiles+datcats+groups+rr"},
+                              {value: "smc-graph-profiles-similarity.js", label:"just profiles"},                              
+                              {value: "dbpedia_philosophers_influence_years_graph.json", label:"Philosophers"},
+                              {value: "SC_Persons_120201_cAll_graph.json", label:"Schnitzler Cooccurrences"},
                               /*,
-                              {value: "/smc/data/smc-graph-mdrepo-stats.js", label:"instance data"}*/
+                              {value: "smc-graph-mdrepo-stats.js", label:"instance data"}*/
                               
                              ], "widget":"selectone" },
             "depth-before": {"value":2, "min":0, "max":10, "widget":"slider"}, 
@@ -63,6 +65,7 @@ var opts = {"graph": {"value":"/smc/data/smc-graph-basic.js",
             "friction":{"value":75, "min":1, "max":100, "widget":"slider" },
             "gravity":{"value":10, "min":1, "max":100, "widget":"slider" },
             "node-size": {"value":"4", "values":["1","4","8","16","count"], "widget":"selectone" },
+            "weight":{"value":100, "min":1, "max":100, "widget":"slider" },
             "labels": {"value":"show", "values":["show","hide"], "widget":"selectone" },                         
             "curve": {"value":"straight-arrow", "values":["straight-line","arc-line","straight-arrow","arc-arrow"], "widget":"selectone" },
            "layout": {"value":"horizontal-tree", "values":["vertical-tree", "horizontal-tree", "weak-tree","force","dot", "freeze"], "widget":"selectone" },
@@ -81,6 +84,10 @@ function opt(key) {
  return typeof val == 'undefined' ? "" : val;
 }
 
+function currentOpts () {
+ return $("#navigate").data("qi");
+}
+
 /**  gets the data for the graph and calls rendering of the lists 
  * @name initGraph
  * @function
@@ -89,7 +96,7 @@ function opt(key) {
     {
 
      // load data
-     d3.json(graph_source, 
+     d3.json(data_prefix + graph_source, 
                 function(json) {        
                     // return if data missing
                     if (json==null) { notifyUser("source data missing: " + graph_source ); return null}            
@@ -124,6 +131,27 @@ function opt(key) {
                  data_all.count_max = d3.max(init_count);
                  data_all.node_size_ratio = Math.sqrt(data_all.count_max) / max_circle;
 
+                    var init_weight = [];
+                    data_all.links.forEach(function(d,i){init_weight.push(+d.weight);})
+                 
+                 data_all.weight_min = d3.min(init_weight);
+                curr_params = $("#navigate").data("qi").params;
+                /* if weight is not used (all weight==1 deactivate the weight widget */
+                if (data_all.weight_min==1) {
+                            
+                           delete curr_params.weight;
+/*                           $("#navigate").init(curr_opts );*/
+                        $("#navigate").QueryInput({params: curr_params,
+                             onValueChanged: renderGraph
+                             });
+                } else {
+                      curr_params.weight = {"value":70, "min":1, "max":100, "widget":"slider" };
+                      $("#navigate").QueryInput({params: curr_params,
+                             onValueChanged: renderGraph
+                      });
+                }
+                
+                
                 notifyUser("count max: " + data_all.count_max + "; "
                         + "node_size_ratio: " + data_all.node_size_ratio);
                  
@@ -627,6 +655,15 @@ function loadDetailInfo () {
         if (nodes_sel) { renderDetail(nodes_sel) };
      
        });
+      } else {
+          var target_container = $(detail_container_selector).append(
+            '<div id="detail-summary-overall" class="cmds-ui-block init-show" ><div class="header">Overview</div></div>');
+            $(detail_container_selector).find('#detail-summary-overall').append('<div class="content"></div>');
+            target = $(detail_container_selector).find("#detail-summary-overall .content")
+            getDetailInfo("summary", "overall", target, function() {            
+                        handleUIBlock($(detail_container_selector).find(".cmds-ui-block"));
+                        });
+            
       }
   
   // loading css to store in extra variable, for later use = injecting into exported SVG 
@@ -637,7 +674,7 @@ function loadDetailInfo () {
   
 }
 
-function getDetailInfo(type, id, target) {
+function getDetailInfo(type, id, target,load_callback) {
     //notify("getDetailInfo: #" + type + "-" + id );
     
     if (type=='philosopher') {
@@ -649,9 +686,10 @@ function getDetailInfo(type, id, target) {
             var d = $(detail_info_holder_selector).find("#" + type + "-" + id );
             return d.html();       
         } else {
-            var url = detail_url + "?type=" + type + "&id=" + id;
+            var url = detail_url + "?type=" + type + "&key=" + id;
+            console.log("get-detail:" + url );
                 $(target).toggleClass("loading");
-                 $(target).load(url);
+                 $(target).load(url,load_callback);
         }
     // notify(d);
     
@@ -762,7 +800,6 @@ if (opt("layout")!='freeze') {
 /** Returns an event handler for highlighting the path of selected (mouseover) node.
 */
 function highlight() {
-//prevent endless highlight loop
    max_depth = parseInt(opt("depth-before")) + parseInt(opt("depth-after"));
    console.log ("max_depth:" + max_depth);
   return function(d, i) {
@@ -953,8 +990,9 @@ data_show.nodes.forEach(function(d,i){x_arr.push(d.x); y_arr.push(d.y)})
                  
 /** returns appropriate link
 */
-function neighboring(a, b) {
-  return linkedByIndex[a.index + "," + b.index];
+function neighbouring(a, b) {
+console.log("neighbouring: " +a.key + "," + b.key ); 
+  return data_all.links_index[a.key + "," + b.key];
 }
 
 
@@ -968,13 +1006,22 @@ function neighboursWithLinks (data, n, dir, depth) {
 // setting defaults
        depth = typeof depth !== 'undefined' ? depth : 1;
        data = typeof data !== 'undefined' ? data : data_all;
-
+    weight_threshold = parseInt(opt("weight")) / 100;
+console.log("weight_threshold:" + weight_threshold);
     if (depth==0) { return {nodes:[], links:[]};}
 
-        var n_in = data.nodes_in[n.key] ? data.nodes_in[n.key] : [] ;
-        var n_out = data.nodes_out[n.key] ? data.nodes_out[n.key] : [] ;
-        var l_in = data.links_in[n.key] ? data.links_in[n.key] : [] ;
-        var l_out = data.links_out[n.key] ? data.links_out[n.key] : [] ;
+        /* don't filter at all */
+        if (weight_threshold == 1) {
+           var n_in = data.nodes_in[n.key] ? data.nodes_in[n.key] : [] ;
+           var n_out = data.nodes_out[n.key] ? data.nodes_out[n.key] : [] ;
+           var l_in = data.links_in[n.key] ? data.links_in[n.key] : [] ;
+           var l_out = data.links_out[n.key] ? data.links_out[n.key]  : [] ;
+        } else {
+            var l_in = data.links_in[n.key] ? data.links_in[n.key].filter(function(d, i) { return d.weight>=weight_threshold }) : [] ;
+            var l_out = data.links_out[n.key] ? data.links_out[n.key].filter(function(d, i) { return d.weight>=weight_threshold })  : [] ;
+            var n_in = data.nodes_in[n.key] ? data.nodes_in[n.key].filter(function(d, i) { return neighbouring(d,n).weight>=weight_threshold })  : [] ;
+           var n_out = data.nodes_out[n.key] ? data.nodes_out[n.key].filter(function(d, i) { return neighbouring(n,d).weight>=weight_threshold })  : [] ;
+        }
         
         var result_n = {nodes:[], links:[]};
         if (dir == 'in' ) { result_n.nodes = n_in; result_n.links = l_in; }
