@@ -60,11 +60,11 @@ $(function(){
   
 		loadDetailInfo ();
 		
-		initGraph();
-		
 	
         addFunctionality();
    
+		initGraph(opt("graph"));
+		
 		////////////// CREATE  UI-LAYOUT
 		createBlock('base','');
 		createLayouts('base');
