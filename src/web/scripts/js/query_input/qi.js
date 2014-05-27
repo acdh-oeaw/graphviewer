@@ -65,6 +65,11 @@ $.fn.QueryInput = function (options)
                 case "autocomplete":
                   new_input = genAutocomplete (key, param);    
                   break;
+               case "cql":
+                  var cql_elems = genCQLInput(key, param);
+                  new_input = cql_elems[0];
+                  new_widget = cql_elems[1]; 
+                  break;
                 case "link":
                   new_input = genLink (key, param);    
                   break;
@@ -80,9 +85,9 @@ $.fn.QueryInput = function (options)
           if (new_input) {
             $(new_input).data("key", key)
                         .addClass("type-" + param.widget)
-                        .attr("id", settings.input_prefix + key)
-                        .data("param-object", param);
-                 
+                             .attr("id", settings.input_prefix + key)
+                             .data("param-object", param);
+                     
             if (param.widget!="link") {
                  // set initial valuelink
                  $(new_input).val(param.value);
@@ -118,19 +123,15 @@ $.fn.QueryInput = function (options)
         return input;
     }
     
-    /** 
-    generate a link to current state  based on the settings
-   PLANNED?: accept a function reference from opts (.onmousedown)
-    */
     function genLink(key, param_settings) {
          
         var a = $("<a>" + key + "</a>");
         a.attr("href", generateLink());
        
             $(a).mousedown(function(e) {
-                    $(this).attr("target", "_blank");
-                    $(this).attr("href", generateLink());
-             });
+                $(this).attr("target", "_blank");
+                $(this).attr("href", generateLink());
+         });
         return a;
     }
     
@@ -142,12 +143,35 @@ $.fn.QueryInput = function (options)
         return input;
     }
         
-    /** generating ou own comboboxes, because very annoying trying to use some of existing jquery plugins (easyui.combo, combobox, jquery-ui.autocomplete) */ 
+    /** generating our own comboboxes, because very annoying trying to use some of existing jquery plugins (easyui.combo, combobox, jquery-ui.autocomplete) */ 
     function genCombo (key, param_settings) {
     
-        var select = $("<select id='widget-" + key + "' />")
-            select.attr("id", settings.input_prefix + key)
-        param_settings.values.forEach(function(v) { $(select).append("<option value='" + v +"' >" + v + "</option>") });
+        var select = $("<select id='widget-" + key + "' />");
+            //select.attr("id", settings.input_prefix + key)
+            
+       if (param_settings.static_source) {
+              //var scanURL = settings.fcs_source +  param_settings.index
+              var source_url = param_settings.static_source.replace(/&amp;/g,'&');
+              // if static source - try to retrieve the data 
+              $.getJSON(source_url, function(data) {
+                    param_settings.values = data.terms
+                    param_settings.values.forEach(function(v) { $(select).append("<option value='" + v.value +"' >" + v.label + "</option>") });
+                    //console.log($(input).autocomplete().source);
+              });
+        
+             //param_settings.source = fcsScan;
+        } else if (param_settings.values) {
+            //    $(input).autocomplete(param_settings);
+            if (typeof  param_settings.values[0] ==='object') {// accept format with value and label
+                  param_settings.values.forEach(function(v) { $(select).append("<option value='" + v.value +"' >" + v.label + "</option>") });
+               } else { 
+                   param_settings.values.forEach(function(v) { $(select).append("<option value='" + v +"' >" + v + "</option>") });
+             }
+        } else { /* if no values,  rather make a textbox out of it? */ 
+          //select = 
+        }
+        
+        select.attr("id", settings.input_prefix + key)
         return select;
     }
 
@@ -156,15 +180,15 @@ $.fn.QueryInput = function (options)
         
         var input = $("<input />");
          $(input).attr("name",key)
-        
+   //     console.log(key, param_settings.static_source);
         if (param_settings.static_source) {
               //var scanURL = settings.fcs_source +  param_settings.index
-              var scanURL = param_settings.static_source.replace(/&amp;/g,'&');
+              var source_url = param_settings.static_source.replace(/&amp;/g,'&');
               // if static source - try to retrieve the data 
-              $.getJSON(scanURL, function(data) {
+              $.getJSON(source_url, function(data) {
                     param_settings.source = data.terms
                     $(input).autocomplete(param_settings);
-                  //  console.log($(input).autocomplete("option","source").length);
+                    //console.log($(input).autocomplete().source);
               });
         
              //param_settings.source = fcsScan;
@@ -175,6 +199,7 @@ $.fn.QueryInput = function (options)
         return input;
     }
 
+    
     function fcsScan(request, response) {
         response( $.ui.autocomplete.filter(
                           scan.terms, request.term ) );
