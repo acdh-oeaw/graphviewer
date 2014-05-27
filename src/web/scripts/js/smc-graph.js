@@ -8,19 +8,23 @@ var data_all = null; // global holder for all (input) data
 var nodes_sel = []; // global holder for selected data (selected nodes)
 var data_show = null; // global holder for data to show  closure over nodes_sel 
 var nest = {}; 
-var detail_data = null; // global holder for detail-data (in html)  
+var detail_data = null; // global holder for detail-data (in html)
+var mode = "dynamic";   // dynamic or static (default)  static=load detail data all at once on init; 
  
 
 var input_prefix = "input-";
 var select_rect_min_size = 5;
 var first_level_margin = 20;
+var base_font_size = 10;
 var min_circle = 4;
 var max_circle = 80;
 
 var show_count = 1;
-var show_arrows = 0; 
+ 
 
+var detail_url = "http://localhost:8580/exist/apps/smc-browser/get.xql";
 var comp_reg_url = "http://catalog.clarin.eu/ds/ComponentRegistry/?item=";
+var wiki_url = "http://en.wikipedia.org/wiki/";
 var mdrepo_url_search = "http://localhost:8680/exist/apps/cr-xq/mdrepo/index.html?operation=searchRetrieve&x-context=&query=";
 /*http://localhost:8680/exist/apps/cr-xq/mdrepo/fcs?operation=scan&scanClause=cmd:CountryName&x-context=&x-format=htmlpage*/
 var mdrepo_url_scan = "http://localhost:8680/exist/apps/cr-xq/mdrepo/fcs?operation=scan&x-context=&x-format=htmlpage&sort=size&scanClause=";
@@ -37,16 +41,17 @@ var userdocs_file = "userdocs.html";
 //now graph-param is used
 //var source_file = "/smc/smc-graph.d3";
 /*var source_file = "/smc/cmd-dep-graph.d3.js";*/
-var detail_file = "smc_stats_detail.html";
-var userdocs_file = "userdocs.html";
+var detail_file = "/smc/data/smc_stats_detail.html";
+var userdocs_file = "/smc/docs/userdocs.html";
 
-var opts = {"graph": {"value":"/smc/data/profiles.js", 
+var opts = {"graph": {"value":"/smc/data/smc-graph-basic.js", 
                     "values":[{value: "/smc/data/smc-graph-basic.js", label:"SMC graph basic"},
                               {value: "/smc/data/smc-graph-all.js", label:"SMC graph all"},                              
                               {value: "/smc/data/smc-graph-profiles-datcats.js", label:"only profiles + datcats"},
                               {value: "/smc/data/smc-graph-groups-profiles-datcats-rr.js", label:"profiles+datcats+groups+rr"},
-                              {value: "/smc/data/profiles.js", label:"just profiles"}                              
-                              
+                              {value: "/smc/data/smc-graph-profiles-similarity.js", label:"just profiles"},                              
+                              {value: "/smc/data/dbpedia_philosophers_influence_years_graph.json", label:"Philosophers"},
+                              {value: "/smc/data/SC_Persons_120201_cAll_graph.json", label:"Schnitzler Cooccurrences"},
                               /*,
                               {value: "/smc/data/smc-graph-mdrepo-stats.js", label:"instance data"}*/
                               
@@ -56,11 +61,11 @@ var opts = {"graph": {"value":"/smc/data/profiles.js",
             "link-distance": {"value":120, "min":10, "max":300, "widget":"slider" }, 
             "charge":{"value":250, "min":10, "max":1000, "widget":"slider" },
             "friction":{"value":75, "min":1, "max":100, "widget":"slider" },
-            "gravity":{"value":20, "min":1, "max":100, "widget":"slider" },
-            "node-size": {"value":"count", "values":["1","4","8","16","count"], "widget":"selectone" },
+            "gravity":{"value":10, "min":1, "max":100, "widget":"slider" },
+            "node-size": {"value":"4", "values":["1","4","8","16","count"], "widget":"selectone" },
             "labels": {"value":"show", "values":["show","hide"], "widget":"selectone" },                         
-            "curve": {"value":"straight", "values":["straight","arc"], "widget":"selectone" },
-           "layout": {"value":"force", "values":["vertical-tree", "horizontal-tree", "weak-tree","force","dot", "freeze"], "widget":"selectone" },
+            "curve": {"value":"straight-arrow", "values":["straight-line","arc-line","straight-arrow","arc-arrow"], "widget":"selectone" },
+           "layout": {"value":"horizontal-tree", "values":["vertical-tree", "horizontal-tree", "weak-tree","force","dot", "freeze"], "widget":"selectone" },
             "selected": {"widget":"hidden" },
             "link": {"widget":"link", "label":""},
             "download": {"widget":"link", "label":""},
@@ -111,7 +116,7 @@ function opt(key) {
 
                  var init_level = [];
                     data_all.nodes.forEach(function(d,i){init_level.push(+d.level);})
-                    data_all.level_min = d3.min(init_level);
+                    data_all.level_min = (d3.min(init_level)==d3.max(init_level)) ? (d3.min(init_level) - 1) : d3.min(init_level) ;
                 
                  var init_count = [];
                     data_all.nodes.forEach(function(d,i){init_count.push(+d.count);})
@@ -214,7 +219,8 @@ function renderNodeList (nodes, target_container_selector) {
                                         /*  .classed("node-detail", 1);*/
                             
                  item_detail.append("a")
-                            .attr("href",function (d) { if (d.type.toLowerCase()=='datcat') return d.id 
+                            .attr("href",function (d) { if (d.type.toLowerCase()=='datcat') return d.id
+                                                        else if (d.type.toLowerCase()=='philosopher') return wiki_url + d.id;  
                                                         else return comp_reg_url + d.id })
                             .text(function (d) { return d.id });
                 
@@ -234,7 +240,7 @@ function renderNodeList (nodes, target_container_selector) {
                 
                  item_detail_detail = item_detail.append("div").html(
                                  function (d) { 
-                                    var detail_info_div = getDetailInfo(d.type.toLowerCase(), d.key);
+                                    var detail_info_div = getDetailInfo(d.type.toLowerCase(), d.key, this);
                                     if (detail_info_div) {
                                         return detail_info_div 
                                     } else { 
@@ -314,6 +320,7 @@ function renderGraph (data, target_container) {
      
      var ratio = w / (data_all.init_x_max - data_all.init_x_min); 
     var node_size_int = parseInt(opt("node-size"));
+    var font_size_int = base_font_size + (node_size_int / 2);  
  var link_distance = parseInt(opt("link-distance"))
  
         // console.log (w + '-' + h);
@@ -326,13 +333,13 @@ function renderGraph (data, target_container) {
             
             .gravity(parseInt(opt("gravity")) / 100 )
             
-/*            .linkDistance(parseInt(opt("link-distance")))*/
+            .linkDistance(parseInt(opt("link-distance")))
             
-            .linkDistance(function(d){return link_distance / (d.weight * d.value) })
+/*            .linkDistance(function(d){return link_distance / (d.weight * d.value) })*/
             /* Profiles:           
-            
-            
-            .linkStrength(function(d){return d.weight})*/
+            .linkStrength(function(d){return d.value})
+                        
+            */
             //.charge(parseInt(opt("charge")) * -1)
           
           if (parseInt(opt("charge"))==0) {
@@ -366,7 +373,8 @@ function renderGraph (data, target_container) {
             .attr("width", w)        .attr("height", h);
         
         // Per-type markers, as they don't inherit styles.
-      if (show_arrows)  {
+        
+      if (opt("curve").indexOf("arrow") > -1)  {
         svg.append("svg:defs").selectAll("marker")
           .data(["uses"])
           .enter().append("svg:marker")
@@ -446,7 +454,7 @@ function renderGraph (data, target_container) {
                                     })    
             
             gnodes.append("title")
-/*                .text(function (d) { return d.name + ' |' + d.count + '|' })*/
+/*                .text(function (d) { return d.name + ' |' + d.count + '|' })*/                   
                   .text(renderItemText);
                   
                   
@@ -465,12 +473,28 @@ function renderGraph (data, target_container) {
            gnodes.append("svg:text")
                  .attr("x", 8)
                  .attr("y", ".31em")
+                 .style("font-size", function(d) {
+                                    var fontsize = '';
+                                if (opt("node-size")=="count") 
+                                        {  fontsize = (Math.sqrt(d.count)<=min_circle) ?  base_font_size : Math.sqrt(d.count) / data.node_size_ratio;                                        
+                                        }
+                                        else { fontsize = font_size_int; }
+                                        return fontsize + 'px';
+                                        })
                  .attr("class", "shadow")
                  .classed("hide", opt("labels")=='hide')
                  .text(function(d) { return d.name; });
            gnodes.append("svg:text")
                  .attr("x", 8)
                  .attr("y", ".31em")
+                 .style("font-size", function(d) {
+                                    var fontsize = '';
+                                if (opt("node-size")=="count") 
+                                        {  fontsize = (Math.sqrt(d.count)<=min_circle) ?  base_font_size  : Math.sqrt(d.count) / data.node_size_ratio;                                        
+                                        }
+                                        else { fontsize = font_size_int; }
+                                        return fontsize + 'px';
+                                        })
                  .classed("hide", function(d) { return !d.selected && opt("labels")=='hide'})
                  .text(function(d) { return d.name; });
         //}
@@ -507,9 +531,11 @@ function renderGraph (data, target_container) {
            } else if (opt("layout")=='horizontal-tree') {
                    var kx= 1.4 * e.alpha, ky = .4 * e.alpha;
                    data.links.forEach(function(d, i) {
-                       if (d.source.level==data_all.level_min) { d.source.x = first_level_margin };
+                       //if (d.source.level==data_all.level_min) { d.source.x = first_level_margin };
+                       if (data_show.roots.indexOf(d.source.key) > -1 ) { d.source.x = first_level_margin };
                        //d.target.y += (d.source.y - d.target.y)  * ky;
                        d.target.x += (d.source.x - d.target.x + link_distance_int  ) * kx;
+                       //d.target.x += (d.source.x - d.target.x ) * kx;
                   });
            }
            /*  parent foci 
@@ -527,7 +553,7 @@ function renderGraph (data, target_container) {
          
        path.attr("d", function(d) {
              // links as elliptical arc path segments
-            if (opt("curve")=="arc") 
+            if (opt("curve").indexOf("arc") > -1)
             {   var dx = d.target.x - d.source.x,
                     dy = d.target.y - d.source.y,
                     dr = Math.sqrt(dx * dx + dy * dy);
@@ -589,17 +615,19 @@ later used in renderDetail()
 invoked during the (jquery-)initalization */
 function loadDetailInfo () {
      
-  $(detail_info_holder_selector).load(detail_file,function(data) {
-     $(detail_container_selector).find("h3").after(
-     '<div id="detail-summary-overall" class="cmds-ui-block init-show" ><div class="header">Overview</div><div class="content">'
-     + getDetailInfo("summary", "overall") + '</div></div>');
+     if (mode=='static') {
+     $(detail_info_holder_selector).load(detail_file,function(data) {
+        $(detail_container_selector).find("h3").after(
+        '<div id="detail-summary-overall" class="cmds-ui-block init-show" ><div class="header">Overview</div><div class="content">'
+        + getDetailInfo("summary", "overall") + '</div></div>');
+        
+        handleUIBlock($(detail_container_selector).find(".cmds-ui-block"));
+        
+        // only render detail for initially selected nodes, after the detail info has been loaded 
+        if (nodes_sel) { renderDetail(nodes_sel) };
      
-     handleUIBlock($(detail_container_selector).find(".cmds-ui-block"));
-     
-     // only render detail for initially selected nodes, after the detail info has been loaded 
-     if (nodes_sel) { renderDetail(nodes_sel) };
-     
-  });
+       });
+      }
   
   // loading css to store in extra variable, for later use = injecting into exported SVG 
   $.get("scripts/style/smc-graph.css", function(data) {
@@ -609,11 +637,24 @@ function loadDetailInfo () {
   
 }
 
-function getDetailInfo(type, id) {
+function getDetailInfo(type, id, target) {
     //notify("getDetailInfo: #" + type + "-" + id );
-    var d = $(detail_info_holder_selector).find("#" + type + "-" + id );
+    
+    if (type=='philosopher') {
+    // access origin problem!
+        url = "http://localhost/smc-dev/get.php?link=" + wiki_url + id;
+         $(target).load(url + " .infobox");         
+    } else 
+        if (mode=='static' ) {
+            var d = $(detail_info_holder_selector).find("#" + type + "-" + id );
+            return d.html();       
+        } else {
+            var url = detail_url + "?type=" + type + "&id=" + id;
+                $(target).toggleClass("loading");
+                 $(target).load(url);
+        }
     // notify(d);
-    return d.html();
+    
 }
 
 /** generates a base64-data encoded url out of the current svg
@@ -721,10 +762,16 @@ if (opt("layout")!='freeze') {
 /** Returns an event handler for highlighting the path of selected (mouseover) node.
 */
 function highlight() {
+//prevent endless highlight loop
+   max_depth = parseInt(opt("depth-before")) + parseInt(opt("depth-after"));
+   console.log ("max_depth:" + max_depth);
   return function(d, i) {
     // console.log ("fade:" + d.key);
-    var connected_subgraph_in = neighboursWithLinks(data_show, d,'in', -1);
-    var connected_subgraph_out = neighboursWithLinks(data_show, d,'out', -1);
+    //var connected_subgraph_in = neighboursWithLinks(data_show, d,'in', -1);
+    //var connected_subgraph_out = neighboursWithLinks(data_show, d,'out', -1);
+    
+    var connected_subgraph_in = neighboursWithLinks(data_show, d,'in', max_depth);
+    var connected_subgraph_out = neighboursWithLinks(data_show, d,'out', max_depth);
     var connected_subgraph = {"nodes": [], "links": []};
         connected_subgraph.nodes = connected_subgraph.nodes.concat(connected_subgraph_in.nodes).concat(connected_subgraph_out.nodes);
         connected_subgraph.links = connected_subgraph.links.concat(connected_subgraph_in.links).concat(connected_subgraph_out.links);
@@ -821,15 +868,19 @@ function add_lookups(data) {
     var links = data.links;
     var neighbours = {"links_index": {}, "nodes_index": {}, 
                       "nodes_in": {}, "nodes_out": {},
-                      "links_in": {}, "links_out": {}};
+                      "links_in": {}, "links_out": {}, 
+                      "roots": []};
         
-        data.nodes.forEach(function(d){
+        data.nodes.forEach(function(d){            
             neighbours.nodes_index[d.key] = d;
         });
+        
+        var targets=[];
         
         links.forEach(function(d) { 
                             src_key = d.source.key;
                             trg_key = d.target.key;
+                            
                          // generate lookup hashes for neighbours;
                             neighbours.links_index[src_key + "," + trg_key] = d;
                             if (d.source) { 
@@ -841,7 +892,9 @@ function add_lookups(data) {
                                         neighbours.links_in[trg_key].push(d);
                                      }
                              }
-                            if (d.target) { 
+                            if (d.target) {
+                                if (targets.indexOf(d.target.key) == -1 ) { targets.push(d.target.key); }
+                                
                                     if (! neighbours.nodes_out[src_key]) { 
                                         neighbours.nodes_out[src_key] = [d.target];
                                         neighbours.links_out[src_key] = [d];
@@ -851,6 +904,16 @@ function add_lookups(data) {
                                     }
                              }
                        });
+            
+        data.nodes.forEach(function(d){
+            if (targets.indexOf(d.key) == -1)
+            { neighbours.roots.push(d.key); }
+        });
+
+    
+    //if it is target, it is no root
+                            
+                            
                        
     data = $.extend(data, neighbours);
     return data; 
