@@ -1,12 +1,14 @@
 
 /**
- * @fileOverview this is copy of mdservice/mdservice_ui_settings.js
-    It includes all variables and possibilities of app settings concerning following areas:
- * data loading  - actions - possible to set details of data loading (uri)
+ * @fileOverview this holds settings for UI. 
+ (copied from mdservice/mdservice_ui_settings.js and reduced/adjusted)
+ 
+ It includes settings for:
  * pane structure 
  *	- layout_settings[pane_name], layoutBaseSettings - sets the properties of particular panes (ui-layout plugin settings )
  *	- layout_initialisation - structure of particular pane placement
- * app functionality - blocks_settings - the properties of particular ui blocks (type of detail-window display, commands-TODO)
+  
+ *
  * @author 
  * @version 
  */
@@ -24,58 +26,6 @@ var  elements_hashtable =  {};
 
 var outerLayout, middleLayout, innerLayout;
 var block_positions = ["center","north","south","east","west"];
-
-
-// LOAD DATA SEETTINGS
-var actions = {
-			base: {
-			base_uri: "/MDService2/"
-		},
-		collections: {
-			base_uri: "/MDService2/collections/",			
-			current:'olac'},
-		elements: {
-				base_uri: "/MDService2/element/",			
-				current:''},
-		terms: {
-			base_uri: "/MDService2/terms/",			
-			current:'all',
-			maxdepth: 8},
-		terms_autocomplete: {
-				base_uri: "/MDService2/terms/",	
-				current:''},
-		components: {
-				base_uri: "/MDService2/comp/",				
-				current:''},
-				/* current:'cmdi-corpus-aac2'}, */		
-		compprofiles: {
-				base_uri: "/MDService2/compprofile/",				
-					current:''},
-					/* current:'cmdi-corpus-aac2'}, */		
-				
-		search: {
-				base_uri: "/MDService2/search/"
-				},
-
-		isocat: {
-				base_uri: "/MDService2/datcats/",
-				current:5
-				},
-		sru: {
-				base_uri: "/MDService2/sru/"
-			 },
-		pazpar: {
-					base_uri: "/MDService2/pazpar2/"
-				 },
-		smc: {
-					base_uri: "/MDService2/smc/"
-				},
-		fcs: {
-					base_uri: "/MDService2/fcs"
-				}	
-
-	};
-
 
 
 // LAYOUT SETTING

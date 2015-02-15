@@ -56,7 +56,7 @@ $(function(){
 	
     	
   // loading userdocs as welcome info
-  $(graph_container).load(userdocs_file + " div.document");
+  $(graph_container).load(config.url.userdocs + " div.document");
   
 		loadDetailInfo ();
 		

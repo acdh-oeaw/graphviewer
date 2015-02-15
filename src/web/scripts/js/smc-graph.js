@@ -13,16 +13,16 @@ var mode = "dynamic";   // dynamic or static (default)  static=load detail data 
  
 
 var input_prefix = "input-";
-var select_rect_min_size = 5;
-var first_level_margin = 20;
-var base_font_size = 10;
-var min_circle = 4;
-var max_circle = 80;
+var select_rect_min_size = config.select_rect_min_size;
+var first_level_margin = config.first_level_margin ;
+var base_font_size = config.base_font_size ;
+var min_circle = config.min_circle;
+var max_circle = config.max_circle;
 
-var show_count = 1;
+var show_count = config.show_count;
  
 
-var detail_url = "http://localhost:8580/exist/apps/smc-browser/get.xql";
+//var detail_url = "http://localhost:8580/exist/apps/smc-browser/get.xql"; obsoleted by config
 var comp_reg_url = "http://catalog.clarin.eu/ds/ComponentRegistry/?item=";
 var wiki_url = "http://en.wikipedia.org/wiki/";
 var mdrepo_url_search = "http://localhost:8680/exist/apps/cr-xq/mdrepo/index.html?operation=searchRetrieve&x-context=&query=";
@@ -41,39 +41,10 @@ var userdocs_file = "userdocs.html";
 //now graph-param is used
 //var source_file = "/smc/smc-graph.d3";
 /*var source_file = "/smc/cmd-dep-graph.d3.js";*/
-var data_prefix = "data/";
-var detail_file = "/smc/data/smc_stats_detail.html";
-var userdocs_file = "/smc/docs/userdocs.html";
+//var data_prefix = "data/";
+//var detail_file = "/smc/data/smc_stats_detail.html"; obsoleted by config
+//var userdocs_file = "/smc/docs/userdocs.html"; obsoleted by config
 
-
-var opts = {"graph": {"value":"smc-graph-basic.js", 
-                    "values":[{value: "smc-graph-basic.js", label:"SMC graph basic"},
-                              {value: "smc-graph-all.js", label:"SMC graph all"},                              
-                              {value: "smc-graph-profiles-datcats.js", label:"only profiles + datcats"},
-                              {value: "smc-graph-groups-profiles-datcats-rr.js", label:"profiles+datcats+groups+rr"},
-                              {value: "smc-graph-profiles-similarity.js", label:"just profiles"},                              
-                              {value: "dbpedia_philosophers_influence_years_graph.json", label:"Philosophers"},
-                              {value: "SC_Persons_120201_cAll_graph.json", label:"Schnitzler Cooccurrences"},
-                              /*,
-                              {value: "smc-graph-mdrepo-stats.js", label:"instance data"}*/
-                              
-                             ], "widget":"selectone" },
-            "depth-before": {"value":2, "min":0, "max":10, "widget":"slider"}, 
-            "depth-after":{"value":2, "min":0, "max":10, "widget":"slider"}, 
-            "link-distance": {"value":120, "min":10, "max":300, "widget":"slider" }, 
-            "charge":{"value":250, "min":10, "max":1000, "widget":"slider" },
-            "friction":{"value":75, "min":1, "max":100, "widget":"slider" },
-            "gravity":{"value":10, "min":1, "max":100, "widget":"slider" },
-            "node-size": {"value":"4", "values":["1","4","8","16","count"], "widget":"selectone" },
-            "weight":{"value":100, "min":1, "max":100, "widget":"slider" },
-            "labels": {"value":"show", "values":["show","hide"], "widget":"selectone" },                         
-            "curve": {"value":"straight-arrow", "values":["straight-line","arc-line","straight-arrow","arc-arrow"], "widget":"selectone" },
-           "layout": {"value":"horizontal-tree", "values":["vertical-tree", "horizontal-tree", "weak-tree","force","dot", "freeze"], "widget":"selectone" },
-            "selected": {"widget":"hidden" },
-            "link": {"widget":"link", "label":""},
-            "download": {"widget":"link", "label":""},
-            "add_profile": {"widget":"link", "label":"Add profile", "widget":""}
-            };
 
 
 /** temporary helper function
@@ -96,7 +67,7 @@ function currentOpts () {
     {
 
      // load data
-     d3.json(data_prefix + graph_source, 
+     d3.json(config.url.data_prefix + graph_source, 
                 function(json) {        
                     // return if data missing
                     if (json==null) { notifyUser("source data missing: " + graph_source ); return null}            
@@ -407,11 +378,12 @@ function renderGraph (data, target_container) {
           .data(["uses"])
           .enter().append("svg:marker")
             .attr("id", String)
+            .attr("markerUnits", "userSpaceOnUse")
             .attr("viewBox", "0 -5 10 10")
-            .attr("refX", 15)
-            .attr("refY", -1.5)
-            .attr("markerWidth", 6)
-            .attr("markerHeight", 6)
+            .attr("refX", 10)
+            /*.attr("refY", -1.5)*/
+            .attr("markerWidth", 10)
+            .attr("markerHeight", 10)
             .attr("orient", "auto")
           .append("svg:path")
             .attr("d", "M0,-3L10,0L0,3");
@@ -424,9 +396,12 @@ function renderGraph (data, target_container) {
             .classed("link", 1)
             .classed("uses", 1)
             .classed("highlight", function(d) { d.highlight } )
-            .attr("marker-end", function(d) { return "url(#uses)"; })
-            .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+            .attr("marker-end", function(d) { return "url(#uses)"; });
+            
+            if (opt("link-width")=="value") {
+                path.style("stroke-width", function(d) { return Math.sqrt(d.value); });
 /*             .style("stroke-width", function(d) { return d.value });*/
+            } 
 
            path.append("title").text(function(d){ return d.value });
             
@@ -644,7 +619,7 @@ invoked during the (jquery-)initalization */
 function loadDetailInfo () {
      
      if (mode=='static') {
-     $(detail_info_holder_selector).load(detail_file,function(data) {
+     $(detail_info_holder_selector).load(config.url.detail,function(data) {
         $(detail_container_selector).find("h3").after(
         '<div id="detail-summary-overall" class="cmds-ui-block init-show" ><div class="header">Overview</div><div class="content">'
         + getDetailInfo("summary", "overall") + '</div></div>');
@@ -686,7 +661,7 @@ function getDetailInfo(type, id, target,load_callback) {
             var d = $(detail_info_holder_selector).find("#" + type + "-" + id );
             return d.html();       
         } else {
-            var url = detail_url + "?type=" + type + "&key=" + id;
+            var url = config.url.detail + "?type=" + type + "&key=" + id;
             console.log("get-detail:" + url );
                 $(target).toggleClass("loading");
                  $(target).load(url,load_callback);
@@ -1011,7 +986,7 @@ console.log("weight_threshold:" + weight_threshold);
     if (depth==0) { return {nodes:[], links:[]};}
 
         /* don't filter at all */
-        if (weight_threshold == 1) {
+        if (weight_threshold == 1 | opt("weight")=="") {
            var n_in = data.nodes_in[n.key] ? data.nodes_in[n.key] : [] ;
            var n_out = data.nodes_out[n.key] ? data.nodes_out[n.key] : [] ;
            var l_in = data.links_in[n.key] ? data.links_in[n.key] : [] ;
