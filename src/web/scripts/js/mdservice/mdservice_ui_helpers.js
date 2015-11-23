@@ -23,7 +23,8 @@ function createBlock(name, _parent){
  
 	var settings;
 	if (layout_initialisation[name].settings == ""){
-		settings = new CloneObject(layout_initialisation[name].model_settings);
+		// settings = new CloneObject(layout_initialisation[name].model_settings);
+		settings = jQuery.extend(true, {}, layout_initialisation[name].model_settings );
 	} else {
 		settings = layout_initialisation[name].settings;
 	}

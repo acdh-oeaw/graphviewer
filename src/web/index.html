@@ -1,81 +1,52 @@
-<!DOCTYPE html>
+<?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<title>CLARIN SMC Browser</title>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <title>CLARIN SMC Browser</title>
+        <link rel="stylesheet" href="scripts/style/jquery/clarindotblue/jquery-ui-1.8.5.custom.css" type="text/css" />
+        <link href="scripts/style/cmds-ui.css" type="text/css" rel="stylesheet" />
+        <link href="scripts/style/smc-graph.css" media="screen" rel="stylesheet" type="text/css" />
 
-	<link rel="stylesheet" href="scripts/style/jquery/clarindotblue/jquery-ui-1.8.5.custom.css" type="text/css" />
-	<link href="scripts/style/cmds-ui.css" type="text/css" rel="stylesheet" />
-	<link href="scripts/style/smc-graph.css" media="screen" rel="stylesheet" type="text/css" />
-	
-<script src="scripts/js/d3.v2.js" type="text/javascript" ></script>	
-<script src="scripts/js/jquery/jquery-1.4.2.js" type="text/javascript"></script>
-<script src="scripts/js/jquery/jquery-ui-1.8.5.custom.min.js" type="text/javascript"></script>
-<!--
-<script src="scripts/jquery/jquery-treeview/jquery.treeview.js" type="text/javascript"></script>
-<script src="scripts/jquery/jquery-treeTable/jquery.treeTable.js" type="text/javascript"></script>
+        <script src="scripts/js/d3.js" type="text/javascript"></script>
+        <script src="scripts/js/jquery/jquery-1.10.2.js" type="text/javascript"></script>
+        <script src="scripts/js/jquery/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+        <script src="scripts/js/jquery/jquery.layout-latest.js" type="text/javascript"></script>
+        <script src="scripts/js/mdservice/mdservice_ui_helpers.js" type="text/javascript"></script>
+         <script src="scripts/js/query_input/qi.js" type="text/javascript"></script> 
+				<script src="scripts/js/query_input/lib/URI.js" type="text/javascript"></script>
 
-<script src="scripts/jquery/jsTree.v.1.0rc2/jquery.jstree.js" type="text/javascript"></script>
-<script src="scripts/jquery/jquery-autocomplete/jquery.autocomplete.js" type="text/javascript"></script>-->
-<script src="scripts/js/jquery/jquery.layout-1.3.0.rc29.12.js" type="text/javascript"></script>
-
-
-<script src="scripts/js/mdservice/mdservice_helpers.js" type="text/javascript"></script>
-<script src="scripts/js/mdservice/mdservice_ui_helpers.js" type="text/javascript"></script>
-	<script src="scripts/js/query_input/qi.js" type="text/javascript"></script>
-	
-<!--<script src="scripts/js/ui_helpers.js" type="text/javascript"></script>-->
-<script src="scripts/js/mdservice/mdservice_widgets.js" type="text/javascript"></script>
-<!--	<script src="scripts/js/mdservice/mdservice_model.js" type="text/javascript"></script>-->
-	
-	<!--<script src="scripts/js/mdservice/mdservice_searchclause.js" type="text/javascript"></script>
-		<script src="scripts/js/mdservice/mdservice_pz2.js" type="text/javascript"></script>
-		<script src="scripts/js/mdservice/mdservice_ui_detail.js" type="text/javascript"></script>
-		<script src="scripts/js/mdservice/mdservice_ui_load.js" type="text/javascript"></script> -->
-	
-	<script src="scripts/js/smc-graph.js" type="text/javascript"></script>
-	<script src="scripts/js/ui_settings.js" type="text/javascript"></script>
-	<script src="scripts/js/ui.js" type="text/javascript"></script>
-	
-</head>
-
-<body>
+        <script src="scripts/js/config.js" type="text/javascript"></script>
+        <script src="scripts/js/smc-graph.js" type="text/javascript"></script>
+        <script src="scripts/js/ui_settings.js" type="text/javascript"></script>
+        <script src="scripts/js/main.js" type="text/javascript"></script>
+    </head>
+    <body>
 
 <!--  - BLOCK -->
-<div class="cmds-ui-block" id="header">
-			<span id="logo"><a href="http://www.clarin.eu"><img
-						src="scripts/style/imgs/clarin-logo.png" alt="CLARIN" /></a>
-			</span>
-			<div id="site-name">SMC Browser</div>
-	<span id="top-menu">
-				<!-- class="open-in-context"  -->
-				<a href="."> home </a>
-				<a target="_blank" href="docs/userdocs.html"> docs</a>
-				<a target="_blank" href="smc_stats.html"> stats</a>
-		<a target="_blank" href="docs/examples.html"> examples</a>
-		<a target="_blank" href="docs/reports.html"> reports</a>
-			</span>
-		
-			<div id="notify" class="cmds-elem-plus note">
-				<div id="notifylist" class="note">
+        <div class="cmds-ui-block" id="header"><span id="logo"><a href="http://www.clarin.eu"><img src="scripts/style/imgs/clarin-logo.png" alt="CLARIN" /></a></span>
+            <div id="site-name">SMC Browser</div><span id="top-menu">
+				<!-- class="open-in-context"  --><a href="."> home </a><a target="_blank" href="docs/userdocs.html"> docs</a><a target="_blank" href="data/smc_stats_summary1.html"> stats</a><a target="_blank" href="docs/examples.html"> examples</a><a target="_blank" href="docs/reports.html"> reports</a></span>
+            <div id="notify" class="cmds-elem-plus note">
+                <div id="notifylist" class="note">
 					<!--  class="cmds-elem-plus note" > -->
-				</div>
-			</div>
-		</div>
-
-	<div id="navigate" class="block">navigate 
+                </div>
+            </div>
+        </div>
+        <div id="navigate" class="block">navigate 
 		<!--<label for="input-depth-before">before</label><input type="text" id="input-depth-before" value="1" size="3"/> 
 		<label for="input-depth-after">after</label><input type="text" id="input-depth-after" value="1" size="3"/> -->
-	</div>
-	
-		<div id="index-container" class="block"><h3>Index <input type="text" id="input-filter-index" size="10" /></h3>
-		
-		</div>
-	<div id="infovis-wrapper">
-		<div id="infovis">graph</div>
-	</div>
-		<div id="detail-container" class="block"><h3>Detail</h3></div>
-	<div id="detail-info-holder" class="data"></div>
+        </div>
+        <div id="index-container" class="block">
+            <h3>Index <input type="text" id="input-filter-index" size="10" />
+            </h3>
+        </div>
+        <div id="infovis-wrapper">
+            <div id="infovis">graph</div>
+        </div>
+        <div id="detail-container" class="block">
+            <h3>Detail</h3>
+        </div>
+        <div id="detail-info-holder" class="data"></div>
 	
 	
 
@@ -85,7 +56,5 @@
 	 	<div class="header ui-widget-header ui-state-default ui-corner-top" ><span>Querysearch</span></div>
 	 	<div class="content" id="query-input" >   	
 	 	-->
-		
-</body>
-
+    </body>
 </html>

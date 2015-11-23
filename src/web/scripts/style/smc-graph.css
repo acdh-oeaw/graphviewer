@@ -112,6 +112,10 @@ circle.highlight {
   font-style: italic;
 }
 
+/* persons (m/w) */
+.type-m circle { fill: #339; }
+.type-f circle { fill: #393; }
+
 
 .highlight circle,
 .selected circle {

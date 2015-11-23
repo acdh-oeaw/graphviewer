@@ -72,17 +72,29 @@ function currentOpts () {
                     // return if data missing
                     if (json==null) { notifyUser("source data missing: " + graph_source ); return null}            
                     data_all = json;
+                    data_all.nodes_index = {};
+                    data_all.nodes.forEach(function(d){            
+                        data_all.nodes_index[d.key] = d;
+                    });
+                    
                     data_all.links.forEach(function(d) { 
                                         //resolve numeric index to node references
                                                 src_ix = d.source;
-                                                d.source = data_all.nodes[src_ix];
-                                                d.source.index = src_ix;
+                                                d.source = data_all.nodes_index[src_ix];
+                                                //d.source.index = src_ix;
                                                 trg_ix = d.target;
-                                                d.target = data_all.nodes[trg_ix];
-                                                d.target.index = trg_ix;
-                                                src_key = d.source.key;
-                                                trg_key = d.target.key;
+                                                d.target = data_all.nodes_index[trg_ix];
+                                                //d.target.index = trg_ix;
+//                                                src_key = d.source.key;
+  //                                              trg_key = d.target.key;
+                                                if (d.target == null | d.source == null) { 
+                                                  notifyUser("nodes for link missing: " + src_ix + " - " + trg_ix);
+                                                } 
+  
                                              });
+                   // remove links for which nodes are missing!
+                  data_all.links = data_all.links.filter(function(d){return (d.source !=null & d.target != null ) } )
+  
                 // generate lookup hashes for neighbours;                                             
                  add_lookups(data_all);
                  
@@ -184,9 +196,9 @@ function renderNodeList (nodes, target_container_selector) {
         var group_divs = target_container.selectAll("div.node-detail").data(nest)
                         .enter().append("div")
                        .attr("id", function (d) { return "detail-" + d.key })                        
-                        .classed("node-detail cmds-ui-block", 1)
+                        .classed("node-detail cmds-ui-block init-show", 1)
                         // collapse groups in index, but expand right away in detail view
-                        .classed("init-show", (target_container_selector != index_container_selector)); 
+                        //.classed("init-show", (target_container_selector != index_container_selector)); 
                         
       var group_headers = group_divs.append("div").classed("header", 1)
                         .text(function (d) { return d.key + " |" + d.values.length + "|"});
@@ -448,7 +460,9 @@ function renderGraph (data, target_container) {
           */  
             gnodes.append("svg:circle")
 /*            .attr("r", 6)*/
-                    .on("click", function(d) {d.selected= d.selected ? 0 : 1; updateSelected() })
+                    .on("click", function(d) {d.selected= d.selected ? 0 : 1; 
+                                                console.log("click:" + d.key); 
+                                                updateSelected(); })
                       .on("mouseover", highlight()).on("mouseout", unhighlight())
             .attr("r", function(d) { if (opt("node-size")=="count") 
                                         {return (Math.sqrt(d.count)<=min_circle) ?  min_circle  : Math.sqrt(d.count) / data.node_size_ratio;                                        
@@ -755,7 +769,7 @@ function updateSelected () {
     // don't change the selected nodes on freeze-layout
 if (opt("layout")!='freeze') {
     nodes_sel = data_all.nodes.filter(function (d) { return d.selected });
-    
+console.log("updateSelected:" + nodes_sel);    
     // update param
       var selected = [];
       nodes_sel.forEach(function(d) { selected.push(d.key) });
@@ -966,7 +980,7 @@ data_show.nodes.forEach(function(d,i){x_arr.push(d.x); y_arr.push(d.y)})
 /** returns appropriate link
 */
 function neighbouring(a, b) {
-console.log("neighbouring: " +a.key + "," + b.key ); 
+//console.log("neighbouring: " +a.key + "," + b.key ); 
   return data_all.links_index[a.key + "," + b.key];
 }
 
@@ -982,7 +996,7 @@ function neighboursWithLinks (data, n, dir, depth) {
        depth = typeof depth !== 'undefined' ? depth : 1;
        data = typeof data !== 'undefined' ? data : data_all;
     weight_threshold = parseInt(opt("weight")) / 100;
-console.log("weight_threshold:" + weight_threshold);
+//console.log("weight_threshold:" + weight_threshold + "; depth:" + depth + "; key: " + n.key); 
     if (depth==0) { return {nodes:[], links:[]};}
 
         /* don't filter at all */
@@ -1047,4 +1061,8 @@ function unique_links(links)
         }
     }
     return result;
+}
+
+function notifyUser (msg) {
+  $("#notifylist").append(msg);
 }

@@ -1,7 +1,9 @@
 
 var config ={
-       "url": {"data_prefix":"data/",
-                "detail":"get.xql" ,
+       "url": {// "data_prefix":"data/",
+                 "data_prefix":"/graph-data/",
+                //"detail":"get.xql" ,
+                "detail":"http://localhost:8082/exist/rest/db/cr-projects/tester/get.xql?key=",
              //  "detail":"http://localhost:8580/exist/apps/smc-browser/get.xql" ,
             // "detail":"data/smc_stats_detail.html",
                "userdocs":"docs/userdocs.html"
@@ -17,14 +19,16 @@ var config ={
 };
 
 // configuration of the navigation widgets 
-var opts = {"graph": {"value":"smc-graph-basic.js", 
-                    "values":[{value: "smc-graph-basic.js", label:"SMC graph basic"},
-                              {value: "smc-graph-all.js", label:"SMC graph all"},                              
-                              {value: "smc-graph-profiles-datcats.js", label:"only profiles + datcats"},
-                              {value: "smc-graph-groups-profiles-datcats-rr.js", label:"profiles+datcats+groups+rr"},
-                              {value: "smc-graph-profiles-similarity.js", label:"profiles similarity"}                              
-                              /*{value: "dbpedia_philosophers_influence_years_graph.json", label:"Philosophers"},
-                              {value: "SC_Persons_120201_cAll_graph.json", label:"Schnitzler Cooccurrences"},*/
+var opts = {"graph": {"value":"issues/issues_all_c747_2015-03-20_graph.json", 
+                    "values":[{value: "smc/smc-graph-basic.js", label:"SMC graph basic"},
+                              {value: "smc/smc-graph-all.js", label:"SMC graph all"},                              
+                              {value: "smc/smc-graph-profiles-datcats.js", label:"only profiles + datcats"},
+                              {value: "smc/smc-graph-groups-profiles-datcats-rr.js", label:"profiles+datcats+groups+rr"},
+                              {value: "smc/smc-graph-profiles-similarity.js", label:"profiles similarity"},                              
+                              {value: "philosophers/dbpedia_philosophers_influence_years_graph.json", label:"Philosophers"},
+                              {value: "SC_Persons_120201_cAll_graph.json", label:"Schnitzler Cooccurrences"},
+                              {value: "issues/issues_all_c747_2015-03-20_graph.json", label:"Issues"},
+                             
                               /*,
                               {value: "smc-graph-mdrepo-stats.js", label:"instance data"}*/
                               
