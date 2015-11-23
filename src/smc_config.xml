@@ -80,7 +80,7 @@
       <type>rr</type> 
       <key>rr-cmdi</key> 
       <name>Relation Registry CMDI-set</name> 
-      <url>http://lux13.mpi.nl/relcat/rest/set/cmdi</url>
+      <url>https://lux17.mpi.nl/relcat/rest/set/cmdi</url>
 <!--      <url>file:/C:/Users/m/3lingua/clarin/CMDI/_repo2/SMC/data/cmdi.rdf</url>      -->
       <url_prefix>null</url_prefix> 
       <format>rdf</format> 
@@ -89,7 +89,7 @@
       <type>rr</type> 
       <key>rr-dc</key> 
       <name>Relation Registry CMDI-set</name> 
-      <url>http://lux13.mpi.nl/relcat/rest/set/dc</url>
+      <url>https://lux17.mpi.nl/relcat/rest/set/dc</url>
       <url_prefix>null</url_prefix> 
       <format>rdf</format> 
    </item>
