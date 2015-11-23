@@ -6,7 +6,7 @@ Explore the `Component Metadata Framework`
 
 .. _Component Metadata Framework: http://clarin.eu/cmdi
 
-In *CMD*, metadata schemas are defined by profiles, that are constructed out of reusable components  - collections
+In *CMD*, metadata schemas are defined by profiles that are constructed out of reusable components  - collections
 of metadata fields. The components can contain other components, and they can be reused in multiple profiles.
 Furthermore, every CMD element (metadata field) refers via a PID to a data category to indicate unambiguously how the content of the field in a metadata description should
 be interpreted (Broeder et al., 2010).
@@ -16,11 +16,15 @@ and elements or data categories as leaf nodes, parent-child relationship being d
 
 SMC Browser visualizes this graph structure in an interactive fashion. You can have a look at the `examples`_ for inspiration.
 
-It is implemented on top of wonderful js-library d3_, the code checked in `clarin-svn`_ (and needs refactoring). More technical documentation follows soon.
+It is implemented on top of wonderful js-library d3_, the code checked in `clarin-svn`_ (and needs refactoring). There is also some preliminary `technical documentation`_
+
+See also `SMC on CCV`_ for more general and theoretical information about the SMC module and the SMC Browser.
 
 .. _d3: https://github.com/mbostock/d3
 .. _clarin-svn: https://svn.clarin.eu/SMC/trunk/SMC
 .. _examples: examples.html
+.. _technical documentation: devdocs.html
+.. _smc on ccv: http://clarin.oeaw.ac.at/ccv/smc
 
 
 Data
@@ -28,6 +32,21 @@ Data
 The graph is constructed from all profiles defined in the `Component Registry`_.
 To resolve name and description of data categories referenced in the CMD elements
 definitions of all (public) data categories from `DublinCore`_ and `ISOcat`_ (from the `Metadata Profile`_ [RDF] - retrieving takes some time!) are fetched. However only data categories used in CMD will get part of the graph. Here is a `quantitative summary`_ of the dataset. 
+
+Multiple variants of the graph are being offered:
+
+SMC graph basic
+  the basic graph contains ``profiles -> components -> elements -> datcats``;
+  processing 155 profiles yields a graph with over 4.500 nodes and over 7.500 edges
+SMC graph all 
+  additionally rendering the profile-groups and relations between data categories (from Relation Registry)
+only profiles + datcats 
+	just profiles and data categories are rendered (with direct links between those, skipping all components and elements)
+profiles + datcats + datcats + groups + rr 
+	as above but again with profile-groups and relations
+profiles similarity 
+	just profiles with links between them representing the degree of similarity
+	based on the reuse of components and data categories    
 
 When inspecting the numbers, it is important to be aware of the occurrence expansion resulting from the reusability of the components. 
 So in an example, a component C has 2 subcomponents and is reused within one profile by two other components A and B, the resulting profile
@@ -52,12 +71,12 @@ Currently there are such lists for:
 User Interface
 ==============
 
-The User interface is divided into 4 main parts:
+The user interface is divided into 4 main parts:
 
 Index
    Lists all available Profiles, Components, Elements and used Data Categories
-   The lists can be filtered (enter search pattern in the input box at the top of the index-pane)
-   By clicking on individual items, they are added to the `selected nodes` and get rendered in the graph pane
+   The lists can be filtered (enter search pattern in the input box at the top of the index-pane).
+   By clicking on individual items, they are added to the `selected nodes` and get rendered in the graph pane.
    
 Main (Graph)
    Pane for rendering the graph.
@@ -73,15 +92,14 @@ Detail
 Interaction
 -----------
 
-Following data sets are distinguished wrt user interaction:
+Following data sets are distinguished with respect to the user interaction:
 
 all data 
    the full graph with all profiles, components, elements and data categories and links between them.
-   
-   Currently this amounts to roughly 2.000 nodes and 3.000 links
+   Currently this amounts to roughly 4.600 nodes and 7.500 links.
 
 selected nodes
-   nodes explicitely selected by the user (see below how to `select nodes`_) 
+   nodes explicitely selected by the user (see below how to `select nodes`_). 
 
 data to show
    the subset of data that shall be displayed. 
@@ -93,7 +111,7 @@ The nodes are colour-coded by type:
 
 .. image:: graph_legend.svg
 	 :alt: the legend to the graph
-	 :height: 80px
+	 :height: 100px
 
 .. _select nodes:
 
@@ -134,8 +152,10 @@ drag a node
 
 Options
 -------
-The navigation pane provides following option to control the rendering of the graph:
+The navigation pane provides the following options to control the rendering of the graph:
 
+graph
+  select data source
 
 depth-before
   how many levels of connected ancestor nodes shall be displayed  
@@ -163,10 +183,10 @@ node-size
 labels
   show/hide all labels
   hiding the labels accelerates the rendering significantly, which may be an issue if more nodes are displayed.
-  irrespective of this option, on mouseover labels for all and only the highlighted nodes are displayed
+  irrespective of this option, on hover labels for all and only the highlighted nodes are displayed
 
 curve
-  straight or arc (better visibility)
+  straight or arc (better visibility), arrow or line
   
 layout
   There are a few layouting algorithms provided. They are all not optimal in any way, but most of the time, they deliver quite good results.

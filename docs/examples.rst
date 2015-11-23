@@ -2,7 +2,8 @@
 SMC Browser Examples
 ====================
 
-Following are a few examples of graphs generated in the SMC browser. The links point either to a static exported ``[SVG]`` graph, to a rasterized ``[PNG]`` version of it, or **live** to the ``[SMC]`` browser. (With live links, sometimes, the graph does not get rendered right away. In such case just change any of the options to refresh the graph pane.)Links pointing to the definition of given term either in `Component Registry`_ or ISOcat_ are marked with ``[DEF]``.
+Following are a few examples of graphs generated in the SMC browser. The links point either to a static exported ``[SVG]`` graph, to a rasterized ``[PNG]`` version of it, or **live** to the ``[SMC]`` browser. (With live links, sometimes, the graph does not get rendered right away. In such case just change any of the options to refresh the graph pane.)
+Links pointing to the definition of given term either in `Component Registry`_ or ISOcat_ are marked with ``[DEF]``.
 
 .. _Component Registry: http://catalog.clarin.eu/ds/ComponentRegistry/
 .. _ISOcat: http://isocat.org
@@ -91,7 +92,7 @@ There are multiple profiles modelling the dublincore terms [DEF]:
 .. _dc-terms: http://catalog.clarin.eu/ds/ComponentRegistry/?item=clarin.eu:cr1:p_1271859438218
 .. _dc-terms-modular: http://catalog.clarin.eu/ds/ComponentRegistry/?item=clarin.eu:cr1:p_1271859438217
 
-From the figure we can see the two distinct pairs of related profiles. The two with "DcmiTerms" point to the `dublincore terms`_ the other two "dc-terms" refer to `dublincore elements`_. This is a good example for the role of `Relation Registry`_. It allows to express relations beetween data categories, e.g. `the equivalencies between dc-elements and dc-terms`_. (Displaying the relations from RR is soon to be added feature for SMC browser.)
+From the figure we can see the two distinct pairs of related profiles. The two with 'DcmiTerms' point to the `dublincore terms`_ the other two 'dc-terms' refer to `dublincore elements`_. This is a good example for the role of `Relation Registry`_. It allows to express relations beetween data categories, e.g. `the equivalencies between dc-elements and dc-terms`_. (Displaying the relations from RR is soon to be added feature for SMC browser.)
 
 .. _dublincore terms: http://purl.org/dc/terms
 .. _dublincore elements: http://purl.org/dc/elements/1.1/
