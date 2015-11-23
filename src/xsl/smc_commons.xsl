@@ -68,8 +68,8 @@
                 <xsl:call-template name="message">
                     <xsl:with-param name="message">getData writing to: <xsl:value-of select="$cache_path"></xsl:value-of></xsl:with-param>							
                 </xsl:call-template>
-                
-             <xsl:result-document href="{$cache_path}" format="xml" >
+                 
+             <xsl:result-document href="{$cache_path}" format="xml"  >
                  <xsl:sequence select="$result" />
              </xsl:result-document>
             </xsl:if>

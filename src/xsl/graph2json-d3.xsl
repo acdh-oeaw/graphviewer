@@ -97,6 +97,10 @@ into a json-object as expected by d3
         <xsl:value-of select="@ix_to"/>
         <xsl:text>, "value":</xsl:text>
         <xsl:value-of select="@value"/>
+        <xsl:if test="exists(@weight)" >
+           <xsl:text>, "weight":</xsl:text>
+           <xsl:value-of select="@weight"/>
+        </xsl:if>
 <!--        <xsl:text>{"source":"</xsl:text><xsl:value-of select="@from" /><xsl:text>", "target":"</xsl:text><xsl:value-of select="@to" /><xsl:text>", "value":</xsl:text><xsl:value-of select="$count" />-->
         <xsl:text>}</xsl:text>
         <xsl:if test="not(position()=last())">

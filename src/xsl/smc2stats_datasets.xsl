@@ -23,12 +23,14 @@ main input file is expected dcr-cmd-map.xml
 -->
  
 
-<xsl:import href="smc_commons.xsl"/>
+<xsl:import href="smc_commons_vars.xsl"/>
 
 	<xsl:output method="xml" indent="yes" />
 	
   <xsl:param name="title" select="'SMC Stats'" />
 
+  <xsl:param name="parts" select="'overall,profiles,components,datcats,ambigue-terms,list'" />
+	
 	<!--
 		
 	        <info>
@@ -70,11 +72,11 @@ main input file is expected dcr-cmd-map.xml
 <!--<xsl:template name="continue-root">-->	
 	<xsl:template match="/">
 		<multiresult>
-	        <xsl:call-template name="summary-overall"></xsl:call-template>
-			<xsl:call-template name="summary-profiles"></xsl:call-template>
-			<xsl:call-template name="summary-components"></xsl:call-template>
-			<xsl:call-template name="summary-datcats"></xsl:call-template>
-			<xsl:call-template name="ambigue-terms"></xsl:call-template>
+			<xsl:if test="contains($parts, 'overall')" ><xsl:call-template name="summary-overall"></xsl:call-template></xsl:if>
+			<xsl:if test="contains($parts, 'profiles')" ><xsl:call-template name="summary-profiles"></xsl:call-template></xsl:if>
+			<xsl:if test="contains($parts, 'components')" ><xsl:call-template name="summary-components"></xsl:call-template></xsl:if>
+			<xsl:if test="contains($parts, 'datcats')" ><xsl:call-template name="summary-datcats"></xsl:call-template></xsl:if>
+			<xsl:if test="contains($parts, 'ambigue-terms')" ><xsl:call-template name="ambigue-terms"></xsl:call-template></xsl:if>
 		</multiresult>
 <!--		<xsl:call-template name="summary-concepts"></xsl:call-template>
 		<xsl:call-template name="summary-terms"></xsl:call-template>	
@@ -98,7 +100,7 @@ main input file is expected dcr-cmd-map.xml
 			<ds:label key="elems-with-datcats">Elements with DatCats</ds:label>
 			<ds:label key="elems-without-datcats">Elements without DatCats</ds:label>
 			<ds:label key="elems-without-datcats-ratio" >ratio of elements without DatCats</ds:label>			
-<!--			<ds:label key="distinct-datcats">distinct used Data Categories</ds:label>-->			
+			<ds:label key="distinct-datcats">distinct used Data Categories</ds:label>			
 			<ds:label key="used-concepts">used Concept</ds:label>
 			<ds:label key="available-concepts">available Concepts (in Metadata profile or used in CMD)</ds:label>
 			<!--<ds:label key="blind-concepts">blind Concepts (not in public ISOcat)</ds:label>
@@ -119,7 +121,7 @@ main input file is expected dcr-cmd-map.xml
 			<xsl:variable name="elems-distinct-without-datcats-ratio" select="count(distinct-values($cmd-terms//Term[@type='CMD_Element'][@datcat='']/@id)) div $count_distinct_elems"></xsl:variable>
 			<ds:value key="elems-without-datcats-ratio" formatted="{format-number($elems-distinct-without-datcats-ratio, '0.00 %')}">
 				<xsl:value-of select="$elems-distinct-without-datcats-ratio"/></ds:value>
-<!--			<ds:value key="distinct-datcats"><xsl:value-of select="$count_distinct_datcats"/></ds:value>-->
+			<ds:value key="distinct-datcats"><xsl:value-of select="$count_distinct_datcats"/></ds:value>
 			<ds:value key="used-concepts"><xsl:value-of select="count($dcr-cmd-map//Concept)"/></ds:value>
 <!--			<ds:value key="blind-concepts"><xsl:value-of select="count(//Concept[not(Term[@set='isocat'])])"/></ds:value>-->
 			<ds:value key="available-concepts"><xsl:value-of select="count($dcr-terms//Concept)"/></ds:value>
@@ -212,12 +214,14 @@ main input file is expected dcr-cmd-map.xml
 	    		<xsl:call-template name="list">
 	    			<xsl:with-param name="key">distinct-datcats</xsl:with-param>
 	    			<xsl:with-param name="type">datcat</xsl:with-param>
-	    			<xsl:with-param name="data" select="distinct-values(./Term[@type='CMD_Element']/@datcat[not(.='')])"></xsl:with-param>
+<!--	    			<xsl:with-param name="data" select="distinct-values(./Term[@type='CMD_Element']/@datcat[not(.='')])"></xsl:with-param>-->
+	    			<xsl:with-param name="data" select="distinct-values(./Term/data(@datcat[not(.='')]))"></xsl:with-param>
 	    		</xsl:call-template>
 	    		
-<!--	    		<ds:value key=""><xsl:value-of select="$count_distinct_datcats"/></ds:value>-->
+<!--	    		<ds:value key=""><xsl:value-of select="$count_distinct_datcats"/></ds:value>-->	    		
 	    		<ds:value key="elems-with-datcats"><xsl:value-of select="count(./Term[@type='CMD_Element']/@datcat[not(.='')])"/></ds:value>
 	    		<ds:value key="elems-without-datcats"><xsl:value-of select="count(./Term[@type='CMD_Element'][@datcat=''])"/></ds:value>
+<!--	    		<ds:value key="comp-with-datcats"><xsl:value-of select="count(./Term[@type='CMD_Components']/@datcat[not(.='')])"/></ds:value>-->
 		    	<xsl:variable name="elems-without-datcats-ratio" select="if($count_elems &gt; 0) then count(./Term[@type='CMD_Element'][@datcat='']) div $count_elems else 0"></xsl:variable>
 	    		<ds:value key="elems-without-datcats-ratio" formatted="{format-number($elems-without-datcats-ratio, '0.00 %')}">
 	    		<xsl:value-of select="$elems-without-datcats-ratio"/></ds:value>
@@ -282,16 +286,18 @@ main input file is expected dcr-cmd-map.xml
 		<!--<Term set="cmd" type="full-path" schema="clarin.eu:cr1:p_1297242111880"
 			id="#applicationType">AnnotationTool.applicationType</Term>-->
 		<xsl:for-each select="$dcr-cmd-map//Concept" >		          
-			<xsl:sort select="lower-case(Term[@type='label'][1])" order="ascending"/>
+<!--			<xsl:sort select="lower-case(Term[@type=('label','mnemonic')][1])" order="ascending"/>-->
+			<xsl:sort select="count(distinct-values(Term[@type='full-path']/@schema))" data-type="number" order="descending"/>
+			
 			
 			<xsl:variable name="def" select="$dcr-terms//Concept[@id=current()/@id]/info[1]" ></xsl:variable>
 			<xsl:variable name="count_elems" select="count(Term[@type='full-path'])" ></xsl:variable>
 			<xsl:variable name="profiles" select="distinct-values(Term[@type='full-path']/@schema)" ></xsl:variable>
 			
-			<ds:dataseries key="{@id}" label="{Term[@type='label'][1]}" >
+			<ds:dataseries key="{@id}" label="{concat(Term[@type=('label','mnemonic')][1],' [', my:shortURL(@id), ']')}" >
 				<!--		    	<ds:value key="distinct-components"><xsl:value-of select="$count_distinct_components"/></ds:value>-->
 				
-				<ds:value key="def"><xsl:value-of select="$def"/></ds:value>
+				<ds:value key="def"><xsl:value-of select="$def"/></ds:value>				
 				<xsl:call-template name="list">
 					<xsl:with-param name="key" >used-in-profiles</xsl:with-param>
 					<xsl:with-param name="type" >profile</xsl:with-param>
@@ -422,7 +428,6 @@ main input file is expected dcr-cmd-map.xml
 <xsl:param name="key" ></xsl:param>	
 <xsl:param name="type" ></xsl:param>
 <xsl:param name="data" ></xsl:param>
-	
 	<xsl:variable name="processed_data">
 		<xsl:choose>
 			<xsl:when test="$data[1] instance of element(li)">
@@ -473,14 +478,17 @@ main input file is expected dcr-cmd-map.xml
 		</xsl:choose>
 	</xsl:variable>
 	<ds:value key="{$key}" abs="{count($processed_data/*)}" >
-		<ds:list>
-			<xsl:for-each select="$processed_data/*" >
-				<xsl:sort select="lower-case(.)" ></xsl:sort>
-				<!--<xsl:variable name="profile-name" select="$all_profiles[@id=current()]/@name"></xsl:variable>-->
-<!--				<li><a href="#{.}" ><xsl:value-of select="$profile-name" /></a></li>-->
-					<xsl:copy-of select="."></xsl:copy-of>
-			</xsl:for-each>
-		</ds:list>
+		<xsl:if test="contains($parts,'list')" >
+			
+			<ds:list>
+				<xsl:for-each select="$processed_data/*" >
+					<xsl:sort select="lower-case(.)" ></xsl:sort>
+					<!--<xsl:variable name="profile-name" select="$all_profiles[@id=current()]/@name"></xsl:variable>-->
+	<!--				<li><a href="#{.}" ><xsl:value-of select="$profile-name" /></a></li>-->
+						<xsl:copy-of select="."></xsl:copy-of>
+				</xsl:for-each>
+			</ds:list>
+		</xsl:if>
 	</ds:value>
 </xsl:template>
 	<!--

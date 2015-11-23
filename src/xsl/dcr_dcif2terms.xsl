@@ -40,17 +40,25 @@
 name="TextCorpusProfile" count="8" count_text="199" count_distinct_text="87" path="TextCorpusProfile"/>
  -->
  
- <!--  handling compressed dcif-format 
- 	<dcif:dataCategory definition="start time of recording" identifier="recordingTime"
- 	name="recording time" owner="Reichel, Uwe" pid="http://www.isocat.org/datcat/DC-4521"
- 	type="complex" version="1:0">
- 	<dcif:conceptualDomain type="constrained">
- 	<dcif:dataType>string</dcif:dataType>
- 	<dcif:ruleType>XML Schema regular expression</dcif:ruleType>
- 	<dcif:rule>([01][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9]</dcif:rule>
- 	</dcif:conceptualDomain>
- 	</dcif:dataCategory> 	
- -->
+
+	<xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+		<xd:desc>
+			<xd:p>handling compressed dcif-format</xd:p>
+			<xd:pre>
+				 	<dcif:dataCategory definition="start time of recording" identifier="recordingTime"
+				 	name="recording time" owner="Reichel, Uwe" pid="http://www.isocat.org/datcat/DC-4521"
+				 	type="complex" version="1:0">
+				 	<dcif:conceptualDomain type="constrained">
+				 	<dcif:dataType>string</dcif:dataType>
+				 	<dcif:ruleType>XML Schema regular expression</dcif:ruleType>
+				 	<dcif:rule>([01][0-9]|2[0-4]):[0-5][0-9]:[0-5][0-9]</dcif:rule>
+				 	</dcif:conceptualDomain>
+				 	</dcif:dataCategory> 	
+			</xd:pre>
+		</xd:desc>
+		
+		<xd:param name="set">the set from which the concept is coming (only valid value: 'isocat' (?))</xd:param>
+	</xd:doc>
 <xsl:template match="dcif:dataCategory[@name]" >
 	<xsl:param name="set" />
 	<Concept type="datcat" id="{@pid}" datcat-type="{@type}">
@@ -75,7 +83,13 @@ name="TextCorpusProfile" count="8" count_text="199" count_distinct_text="87" pat
 	</Concept>
 </xsl:template>
 
- <!--  handling full dcif-format -->
+	<xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+		<xd:desc>
+			<xd:p>handling full dcif-format </xd:p>
+			<xd:p>TODO: should process all ocurring languages</xd:p>
+		</xd:desc>
+		<xd:param name="set"></xd:param>
+	</xd:doc>
 <xsl:template match="dcif:dataCategory" >
 	<xsl:param name="set" />
 	
@@ -103,6 +117,9 @@ name="TextCorpusProfile" count="8" count_text="199" count_distinct_text="87" pat
 	
 	<Concept type="datcat" id="{@pid}" datcat-type="{@type}">
 		<Term set="{$set}" type="mnemonic" >			 
+			<xsl:value-of select=".//dcif:identifier" />			
+		</Term>
+		<Term set="{$set}" type="mnemonic" xml:lang="{($n/*/xs:string(@xml:lang),$lang)[1]}" >			 
 			<xsl:value-of select="$n" />
 		</Term>
 		<Term set="{$set}" type="id" >			 

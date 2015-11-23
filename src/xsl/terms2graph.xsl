@@ -25,7 +25,7 @@
         </xd:desc>
     </xd:doc>
 
-    <xsl:output method="xml" encoding="utf-8"/>
+    <xsl:output method="xml" encoding="utf-8" indent="yes"/>
 
     <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
         <xd:desc>
@@ -33,10 +33,12 @@
             <xd:p>profiles are output always</xd:p>
             <xd:p>recognized values: collections,components,profile-groups,datcats,relations (delimited by ',')</xd:p>            
             <xd:p>if datcats and no components - direct links between profiles and datcats are generated</xd:p>
+            <xd:p>if no datcats and no components - direct links between profiles are generated (weighted by the number of shared data categories</xd:p>
             <xd:p>profile-groups generates extra nodes grouping profiles by metadata (creatore, groupName, domainName)</xd:p>
         </xd:desc>
     </xd:doc>
 <!--        <xsl:param name="parts" select="'profile-groups'"/>-->
+    <xsl:param name="debug" select="false()"/>
     <xsl:param name="parts" select="'collections,profile-groups,components,datcats,relations'"/>
     <xsl:variable name="parts-sequence" select="tokenize($parts,',')"></xsl:variable>
     
@@ -46,6 +48,14 @@
         </xd:desc>
     </xd:doc>
     <xsl:param name="profiles" select="''"/>  <!--teiHeader-->
+    
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>threshold for the similarity quotient (matched_datcats : profile_terms), when linking profiles (mode=edges-profiles)</xd:p>
+        </xd:desc>
+    </xd:doc>
+    <xsl:param name="match_threshold" select="0.5"/>
+    
 
 
     <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
@@ -109,6 +119,8 @@
         </xd:desc>
     </xd:doc>
     <xsl:key name="cmd-terms-path" match="Term" use="@path"/>
+    
+    <xsl:key name="cmd-terms-datcat" match="Term" use="@datcat"/>
 
     <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
         <xd:desc>
@@ -206,6 +218,7 @@
             <xsl:if test="'components' = $parts-sequence"><xsl:apply-templates select="$enriched-termsets//Term" mode="edges"/></xsl:if>
             <xsl:if test="'datcats' = $parts-sequence and 'components' = $parts-sequence" ><xsl:apply-templates select="$enriched-termsets//Term" mode="edges-datcats"/></xsl:if>
             <xsl:if test="'datcats' = $parts-sequence and not('components' = $parts-sequence)" ><xsl:apply-templates select="$enriched-termsets//Term" mode="edges-profiles-datcats"/></xsl:if>
+            <xsl:if test="not('datcats' = $parts-sequence) and not('components' = $parts-sequence)" ><xsl:apply-templates select="$enriched-termsets//Termset[@type='CMD_Profile']" mode="edges-profiles"/></xsl:if>
             <xsl:if test="'relations' = $parts-sequence" ><xsl:apply-templates select="$rr-relations//Relation" mode="edges-rels"/></xsl:if>            
             <xsl:if test="'profile-groups' = $parts-sequence">
                 <xsl:apply-templates select="$enriched-termsets//info/(groupName | domainName | creatorName)[. ne '']" mode="edges-profiles-groups"/>
@@ -220,15 +233,17 @@
         </xsl:variable>
         <xsl:variable name="distinct-edges">
             <xsl:for-each-group select="$edges/*" group-by="concat(@from, @to)">
-                <xsl:variable name="count" select="count(current-group())"/>
+                <xsl:variable name="value" select="if (exists(@value)) then sum(@value) else count(current-group())"/>
+                <xsl:variable name="weight" select="if (exists(@weight)) then sum(@weight) else 1"/>
                 <xsl:variable name="ix_from" select="$distinct-nodes/*[@key=current()/@from]/@position - 1 "/>
                 <xsl:variable name="ix_to" select="$distinct-nodes/*[@key=current()/@to]/@position - 1"/>
-                <edge ix_from="{$ix_from}" ix_to="{$ix_to}" from="{@from}" to="{@to}" value="{$count}"/>
+                <edge ix_from="{$ix_from}" ix_to="{$ix_to}" from="{@from}" to="{@to}" value="{$value}" weight="{$weight}"/>
             </xsl:for-each-group>
         </xsl:variable>
         <xsl:variable name="graph">
             <graph>
-                <nodes count="{count($filtered-termsets//Term)}">
+<!--                <nodes count="{count($filtered-termsets//Term)}">-->
+           <nodes count="{count($distinct-nodes)}">
                     
 <!--                                                            <xsl:copy-of select="$dcr-terms-copy"/>-->
                     <xsl:copy-of select="$distinct-nodes"/>
@@ -236,7 +251,7 @@
                 </nodes>
                 <edges>
                     <xsl:copy-of select="$distinct-edges"/>
-<!--                    <debug><xsl:copy-of select="$edges"/></debug>-->
+                    <xsl:if test="$debug"><debug><xsl:copy-of select="$edges"/></debug></xsl:if>
                 </edges>
             </graph>
         </xsl:variable>
@@ -255,13 +270,13 @@
     <xsl:template match="Termset" mode="nodes">
         
         <xsl:variable name="current_profile_key" select="my:normalize(@id)"/>
-        <node id="{@id}" key="{$current_profile_key}" name="{@name}" type="Profile" level="0" count="{@count}" path="{@path}">
+        <node id="{@id}" key="{$current_profile_key}" name="{@name}" type="Profile" level="0" count="{(@count, count(.//Term))[1]}" path="{@path}">
             <!--       <xsl:value-of select="$equivalent_schema_term"></xsl:value-of>-->
         </node>
         <!-- if root component not profile generate a separte node for it -->
         <xsl:if test="xs:string(@id) ne Term/xs:string(@id)">
             <xsl:for-each select="Term">
-                <node id="{@id}" key="{my:normalize(@id)}" name="{@name}" type="Component" level="1" count="{@count}" path="{@path}"/>
+                <node id="{@id}" key="{my:normalize(@id)}" name="{@name}" type="Component" level="1" count="{(@count, count(.//Term))[1]}" path="{@path}"/>
             </xsl:for-each>
         </xsl:if>
     </xsl:template> 
@@ -469,6 +484,55 @@
     <xsl:template match="Term[exists(@datcat) and not(@datcat='')]" mode="edges-profiles-datcats">
         <xsl:variable name="current_profile_key" select="my:normalize(ancestor::Termset/@id)"/>
         <edge from="{$current_profile_key}" to="{my:normalize(@datcat)}"/>
+    </xsl:template>
+
+    <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
+        <xd:desc>
+            <xd:p>create direct links between profiles based on shared Datcats</xd:p>
+        </xd:desc>
+    </xd:doc>
+    <xsl:template match="Termset[@type='CMD_Profile']" mode="edges-profiles">
+        <xsl:variable name="current_profile_key" select="my:normalize(@id)"/>
+        <xsl:variable name="current_profile_name" select="@name"/>
+        <xsl:variable name="profile_datcats" select="distinct-values(.//Term/data(@datcat)[not(.='')])"/>
+        <xsl:variable name="profile_terms" select=".//Term/data(@id)"/>
+<!--        <edge from="{$current_profile_key}" weight="{count($profile_datcats)}"/>-->
+        <xsl:for-each select="following-sibling::Termset" >
+            <xsl:variable name="other_profile_key" select="my:normalize(@id)"/>
+            <xsl:variable name="matching_datcats" select="distinct-values(.//Term[not(@datcat='')][@datcat=$profile_datcats]/data(@datcat))"/>
+            <xsl:variable name="other_datcats" select="distinct-values(.//Term[not(@datcat='')]/data(@datcat))"/>
+            <xsl:variable name="matching_terms" select="distinct-values(.//Term[@id=$profile_terms]/data(@id))"/>
+            <!--<xsl:variable name="matching_datcats">            
+                <xsl:copy-of select=".//Term[key('cmd-terms-datcat',$profile_datcats)]"/>            
+            </xsl:variable>-->
+<!--            <xsl:if test="exists($matching_datcats)" > -->
+            <xsl:variable name="match_quotient1" select="if (exists($profile_datcats)) then count($matching_datcats) div count($profile_datcats) else 0 " />
+            <xsl:variable name="match_quotient2" select="if (exists($other_datcats)) then count($matching_datcats) div count($other_datcats) else 0" />
+            <xsl:variable name="match_quotient" select="number(($match_quotient1 + $match_quotient2) div 2)" />
+            
+            <xsl:if test="number($match_quotient) &gt; number($match_threshold)" >
+            <!--<xsl:if test="not(number($match_quotient) = number($match_quotient))" >  
+            <xsl:message>DEBUG: <xsl:value-of select="$match_quotient"></xsl:value-of> </xsl:message>
+            </xsl:if>-->
+<!--                weight="{count($matching_datcats) + count($matching_terms)}"-->
+                <edge from="{$current_profile_key}" to="{$other_profile_key}"
+                    from_name="{$current_profile_name}" to_name="{data(@name)}"
+                    value="{count($matching_datcats)}"
+                    weight="{$match_quotient}"                    
+                    count_matching_distinct_terms="{count($matching_terms)}" match_quotient="{$match_quotient}"
+                    count_matching_datcats="{count($matching_datcats)}" 
+                    count_profile_datcats="{count($profile_datcats)}"
+                    count_other_datcats="{count($other_datcats)}"
+                    count_terms="{count($profile_terms)}"
+                    count_other_terms="{count(.//Term)}"
+                    >
+                   <!--DEBUG:
+                       <xsl:copy-of select="$matching_datcats"></xsl:copy-of>-->
+               </edge>
+            </xsl:if>
+            
+        </xsl:for-each>
+        
     </xsl:template>
     
     <xd:doc xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl">
