@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.11: http://docutils.sourceforge.net/" />
+<title>SMC Browser Examples</title>
+<link rel="stylesheet" href="../scripts/style/cmds-ui.css" type="text/css" />
+</head>
+<body>
+<div class="document" id="smc-browser-examples">
+<h1 class="title">SMC Browser Examples</h1>
+
+<p>Following are a few examples of graphs generated in the SMC browser. The links point either to a static exported <tt class="docutils literal">[SVG]</tt> graph, to a rasterized <tt class="docutils literal">[PNG]</tt> version of it, or <strong>live</strong> to the <tt class="docutils literal">[SMC]</tt> browser. (With live links, sometimes, the graph does not get rendered right away. In such case just change any of the options to refresh the graph pane.)
+Links pointing to the definition of given term either in <a class="reference external" href="http://catalog.clarin.eu/ds/ComponentRegistry/">Component Registry</a> or <a class="reference external" href="http://isocat.org">ISOcat</a> are marked with <tt class="docutils literal">[DEF]</tt>.</p>
+<div class="section" id="description">
+<h1>Description</h1>
+<p>By far the most often used data category is <a class="reference external" href="http://www.isocat.org/datcat/DC-2520">description [DEF]</a> (used in 44 profiles on 550 elements).
+Following image depicts the surroundings of this <cite>description</cite> data category:</p>
+<div class="figure">
+<img alt="examples/description-datcat-smaller.png" src="examples/description-datcat-smaller.png" style="width: 800px;" />
+<p class="caption">In this graph, the node size is set relative to the usage of given term within the whole CMD (<a class="reference external" href="userdocs.html#Options">option</a> <tt class="docutils literal"><span class="pre">node-size=usage</span></tt>).</p>
+<div class="legend">
+View <a class="reference external" href="examples/description-datcat-smaller.png">description-datcat [PNG]</a>, <a class="reference external" href="examples/description-datcat-smaller.svg">description-datcat [SVG]</a> or <a class="reference external" href="./?depth-before=2&amp;depth-after=4&amp;link-distance=84&amp;charge=179&amp;friction=86&amp;node-size=usage&amp;labels=show&amp;curve=straight&amp;layout=horizontal-tree&amp;selected=clarin_eucr1c_1271859438177,httpZZwww_isocat_orgZdatcatZDC_2520&amp;">description data category [SMC]</a> in SMC browser.</div>
+</div>
+<p>If we dig <a class="reference external" href="examples/description-datcat.svg">higher up the trees [SVG]</a>  (option <tt class="docutils literal"><span class="pre">depth-before=6</span></tt>) we get up to all the profiles using this data category (and all the paths), which becomes somewhat unreadable.
+Alternatively, we can inspect the related <a class="reference external" href="http://catalog.clarin.eu/ds/ComponentRegistry/?item=clarin.eu:cr1:c_1271859438118">description component [DEF]</a> in <a class="reference external" href=".?depth-before=2&amp;depth-after=2&amp;link-distance=95&amp;charge=360&amp;friction=86&amp;node-size=usage&amp;labels=show&amp;curve=straight&amp;layout=dot&amp;selected=clarin_eucr1c_1271859438118,clarin_eucr1c_1271859438177&amp;">dot-layout [SMC]</a> (<a class="reference external" href="examples/description-component-dot.svg">dot-layout [SVG]</a>) or as <a class="reference external" href=".?depth-before=2&amp;depth-after=2&amp;link-distance=95&amp;charge=360&amp;friction=86&amp;node-size=usage&amp;labels=show&amp;curve=straight&amp;layout=horizontal-tree&amp;selected=clarin_eucr1c_1271859438118,clarin_eucr1c_1271859438177&amp;">horizontal-tree [SMC]</a>.</p>
+</div>
+<div class="section" id="access">
+<h1>Access</h1>
+<p>There are multiple components and elements describing <em>access</em> (<a class="reference external" href=".?depth-before=2&amp;depth-after=4&amp;link-distance=42&amp;charge=239&amp;friction=58&amp;node-size=4&amp;labels=hide&amp;curve=straight&amp;layout=force&amp;selected=clarin_eucr1c_1271859438124,clarin_eucr1c_1349361150637,clarin_eucr1c_1271859438187,clarin_eucr1c_1284723009146Access,clarin_eucr1c_1284723009150Access,clarin_eucr1c_1284723009151Access,TITUS_metadata_ResourceAccess,clarin_eucr1c_1311927752326&amp;">access [SMC]</a>) to a resource.
+Here are a few layout variants:</p>
+<div class="figure">
+<img alt="examples/access_resize.png" src="examples/access_resize.png" />
+<p class="caption">View <a class="reference external" href="examples/access.png">access-htree [PNG]</a>, <a class="reference external" href="examples/access.svg">access-htree [SVG]</a></p>
+</div>
+<div class="figure">
+<img alt="examples/access-dot_resize.png" src="examples/access-dot_resize.png" />
+<p class="caption">View <a class="reference external" href="examples/access-dot.png">access-dot [PNG]</a>, <a class="reference external" href="examples/access-dot.svg">access-dot [SVG]</a></p>
+</div>
+<div class="figure">
+<img alt="examples/access-force_resize.png" src="examples/access-force_resize.png" />
+<p class="caption">View <a class="reference external" href="examples/access-force.png">access-force [PNG]</a>, <a class="reference external" href="examples/access-force.svg">access-force [SVG]</a></p>
+</div>
+</div>
+<div class="section" id="dublincore">
+<h1>dublincore</h1>
+<p>There are multiple profiles modelling the dublincore terms [DEF]:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://catalog.clarin.eu/ds/ComponentRegistry/?item=clarin.eu:cr1:p_1288172614023">DcmiTerms</a></li>
+<li><a class="reference external" href="http://catalog.clarin.eu/ds/ComponentRegistry/?item=clarin.eu:cr1:p_1288172614026">OLAC-DcmiTerms</a></li>
+<li><a class="reference external" href="http://catalog.clarin.eu/ds/ComponentRegistry/?item=clarin.eu:cr1:p_1271859438218">dc-terms</a></li>
+<li><a class="reference external" href="http://catalog.clarin.eu/ds/ComponentRegistry/?item=clarin.eu:cr1:p_1271859438217">dc-terms-modular</a></li>
+</ul>
+<div class="figure">
+<img alt="examples/dcterms-dcmiterms-vtree.png" src="examples/dcterms-dcmiterms-vtree.png" style="width: 800px;" />
+<p class="caption">View <a class="reference external" href=".?depth-before=3&amp;depth-after=5&amp;link-distance=187&amp;charge=179&amp;friction=54&amp;node-size=4&amp;labels=hide&amp;curve=straight&amp;layout=horizontal-tree&amp;selected=clarin_eucr1p_1271859438218,clarin_eucr1p_1271859438217,clarin_eucr1p_1288172614023,clarin_eucr1p_1288172614026&amp;">dcterms and dcmiterms [SMC]</a>, <a class="reference external" href="examples/dcterms-dcmiterms-vtree.svg">dcterms and dcmiterms v-tree [SVG]</a>, <a class="reference external" href="examples/dcterms-dcmiterms.svg">dcterms and dcmiterms h-tree [SVG]</a>,
+<a class="reference external" href="examples/dcterms-dcmiterms-vtree.png">dcterms and dcmiterms v-tree [PNG]</a>, <a class="reference external" href="examples/dcterms-dcmiterms.png">dcterms and dcmiterms h-tree [PNG]</a></p>
+<div class="legend">
+View <a class="reference external" href=".?link-distance=24&amp;charge=107&amp;layout=force&amp;selected=clarin_eucr1p_1288172614023,clarin_eucr1p_1288172614026&amp;">dcmi-terms only [SMC]</a>, <a class="reference external" href="examples/dcmiterms.svg">dcmi-terms [SVG]</a>, <a class="reference external" href="examples/dcmiterms.png">dcmi-terms [PNG]</a></div>
+</div>
+<p>From the figure we can see the two distinct pairs of related profiles. The two with 'DcmiTerms' point to the <a class="reference external" href="http://purl.org/dc/terms">dublincore terms</a> the other two 'dc-terms' refer to <a class="reference external" href="http://purl.org/dc/elements/1.1/">dublincore elements</a>. This is a good example for the role of <a class="reference external" href="http://lux13.mpi.nl/relcat/site/index.html">Relation Registry</a>. It allows to express relations beetween data categories, e.g. <a class="reference external" href="http://lux13.mpi.nl/relcat/set/dc">the equivalencies between dc-elements and dc-terms</a>. (Displaying the relations from RR is soon to be added feature for SMC browser.)</p>
+<p>The dublincore terms (or rather elements) are used as data categories in a few more profiles:</p>
+<ul class="simple">
+<li>teiHeader</li>
+<li>HZSKCorpus</li>
+<li>EastRepublican</li>
+</ul>
+<div class="figure">
+<img alt="examples/dc-terms-force.png" src="examples/dc-terms-force.png" style="width: 800px;" />
+<p class="caption">View <a class="reference external" href=".?depth-before=3&amp;depth-after=6&amp;link-distance=91&amp;charge=342&amp;friction=58&amp;node-size=4&amp;labels=show&amp;curve=straight&amp;layout=force&amp;selected=clarin_eucr1p_1271859438218,clarin_eucr1p_1271859438217,clarin_eucr1c_1324638957707,clarin_eucr1p_1282306194508,clarin_eucr1c_1282306194507,httpZZpurl_orgZdcZelementsZ1_1Zsource,httpZZpurl_orgZdcZtermsZcreated,httpZZpurl_orgZdcZtermsZrightsHolder&amp;">dc-terms force [SMC]</a>, <a class="reference external" href=".?depth-before=3&amp;depth-after=6&amp;link-distance=190&amp;charge=264&amp;friction=86&amp;node-size=4&amp;labels=show&amp;curve=straight&amp;layout=horizontal-tree&amp;selected=clarin_eucr1p_1271859438218,clarin_eucr1p_1271859438217,clarin_eucr1c_1324638957707,clarin_eucr1p_1282306194508,clarin_eucr1c_1282306194507,httpZZpurl_orgZdcZelementsZ1_1Zsource,httpZZpurl_orgZdcZtermsZcreated,httpZZpurl_orgZdcZtermsZrightsHolder&amp;">dc-terms horizontal-tree [SMC]</a>, <a class="reference external" href="examples/dc-terms-htree.svg">dc-terms horizontal-tree [SVG]</a></p>
+</div>
+</div>
+<div class="section" id="web-services">
+<h1>Web Services</h1>
+<p>The below figure displays two profiles modelling WebServices: <a class="reference external" href="http://catalog.clarin.eu/ds/ComponentRegistry/?item=clarin.eu:cr1:p_1324638957718">BASWebService [DEF]</a> and <a class="reference external" href="http://catalog.clarin.eu/ds/ComponentRegistry/?item=clarin.eu:cr1:p_1311927752335">CLARINWebService [DEF]</a>. It nicely exposes the similarity and parallel structure of the two profiles as well as both of them binding to the same data categories. Although the graph shows completely only the two profiles, there are more related profiles: the <a class="reference external" href="http://catalog.clarin.eu/ds/ComponentRegistry/?item=clarin.eu:cr1:p_1311927752306">ToolService [DEF]</a> and the <a class="reference external" href="http://catalog.clarin.eu/ds/ComponentRegistry/?item=clarin.eu:cr1:p_1320657629644">WeblichtWebService [DEF]</a>
+The <cite>ToolService</cite> is also visible in the graph (related via the component data category <a class="reference external" href="http://www.isocat.org/datcat/DC-4159">DC-4159 [DEF]</a>), but it is deliberately not selected, because it is too big
+and makes the graph unreadable. You can still view it separately: <a class="reference external" href=".?depth-before=2&amp;depth-after=10&amp;link-distance=42&amp;charge=143&amp;friction=93&amp;node-size=4&amp;labels=hide&amp;curve=straight&amp;layout=force&amp;selected=clarin_eucr1p_1311927752306&amp;">ToolService [SMC]</a>.</p>
+<div class="figure">
+<img alt="examples/webservices.png" src="examples/webservices.png" style="width: 800px;" />
+<p class="caption">View <a class="reference external" href=".?depth-before=2&amp;depth-after=9&amp;link-distance=176&amp;charge=324&amp;friction=75&amp;node-size=4&amp;labels=show&amp;curve=straight&amp;layout=horizontal-tree&amp;selected=clarin_eucr1p_1324638957718,clarin_eucr1p_1311927752335,httpZZwww_isocat_orgZdatcatZDC_4159&amp;">webservices [SMC]</a>, <a class="reference external" href="examples/webservices.svg">webservices [SVG]</a>, <a class="reference external" href="examples/webservices.png">webservices [PNG]</a></p>
+</div>
+</div>
+</div>
+</body>
+</html>

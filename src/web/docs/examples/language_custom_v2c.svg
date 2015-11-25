@@ -1,0 +1,4709 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1052.3622"
+   height="744.09448"
+   title="SMC Browser - export"
+   version="1.1"
+   viewBox="-67 93 1052.3622 744.09448"
+   id="svg2"
+   inkscape:version="0.48.1 "
+   sodipodi:docname="SMC-export_language_custom_v2c.svg">
+  <metadata
+     id="metadata1395">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1600"
+     inkscape:window-height="838"
+     id="namedview1393"
+     showgrid="false"
+     inkscape:zoom="0.5"
+     inkscape:cx="534.291"
+     inkscape:cy="359.87343"
+     inkscape:window-x="1272"
+     inkscape:window-y="188"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <defs
+     id="defs4">
+    <marker
+       id="uses"
+       viewBox="0 -5 10 10"
+       refX="15"
+       refY="-1.5"
+       markerWidth="6"
+       markerHeight="6"
+       orient="auto">
+      <path
+         d="M 0,-3 10,0 0,3"
+         id="path7"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <style
+     type="text/css"
+     id="style9"> /*div#infovis-wrapper {border: 1px solid grey; margin: 20px; padding: 5px;
+    height:450px; width:70%;}*/ #infovis {height: 95%; width: 100%; overflow: auto;}
+    #index-container, #detail-container, #navigate { overflow: auto;} #navigate { line-height:
+    2.5em;} #navigate select { margin-right: 0.5em; } #navigate label {padding: 0px 2px;}
+    a.type-link { padding: 2px 4px;} .block { border: 1px solid #999; /* background-color:
+    rgba(180,180,240,0.6); */ } .detail{ display: none; } .hide { display:none;} .highlight,
+    .selected { font-weight: bold; background: #f66; } .widget-slider {width: 80px;
+    display:inline-block; font-size: 70%; margin: 6px 12px 0 2px;} .detaildivs-wrapper {
+    float:right; } path.link { fill: none; stroke: #999; } path.link.highlight { stroke: #f66;
+    stroke-width: 1.5px; } path.link.fade { stroke-opacity: 0.2; } circle.highlight { stroke: #f66;
+    stroke-width: 1.5px; } .fade circle, circle.fade { opacity: 0.2; } .type-collection circle {
+    fill: #ffa; stroke: #aa9; stroke-width: 2px; } .type-element circle { fill: #99f; stroke: #66a;
+    stroke-width: 1px; } .type-profile circle { fill: #66a; stroke: #339; } .type-profile text{
+    font-size: 11px; font-weight: normal; fill: #006;} .type-component circle { fill: #ddf; stroke: #99c; }
+    .type-datcat circle { fill: #6a6; stroke: #393; } .type-datcat text{ font-style: italic; font-weight: bold; font-size: 13px; fill: #060; }
+    .highlight circle, .selected circle { fill: #f66; } circle.selected { fill: #f66; stroke-width:
+    2px; } text { font: 10px sans-serif; /* pointer-events: none; */ } text.shadow { stroke: #fff;
+    stroke-width: 3px; stroke-opacity: .8; } </style>
+  <g
+     id="g9100"
+     transform="matrix(1.0395235,0,0,1.0395235,-4.5452287,-15.247185)">
+    <rect
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       y="132.76122"
+       x="-36.807777"
+       height="657.83685"
+       width="962.19763"
+       id="rect5843"
+       style="fill:#ffffff;fill-opacity:1;stroke:none" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 643.70045,270.37012 a 274.72722,274.72722 0 0 1 -137.688,237.73317"
+       id="path13"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 741.06842,495.34569 a 235.40192,235.40192 0 0 1 -235.05597,12.7576"
+       id="path15"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 425.05866,756.79877 A 261.5396,261.5396 0 0 1 506.01245,508.10329"
+       id="path17"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 431.15992,742.86836 A 246.40929,246.40929 0 0 1 506.01245,508.10329"
+       id="path19"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 437.81114,727.29144 A 229.55361,229.55361 0 0 1 506.01245,508.10329"
+       id="path21"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 449.53612,695.94826 A 196.15123,196.15123 0 0 1 506.01245,508.10329"
+       id="path23"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 443.16682,710.92159 a 212.3319,212.3319 0 0 1 62.84563,-202.8183"
+       id="path25"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 401.51919,328.90895 A 207.43542,207.43542 0 0 1 506.01245,508.10329"
+       id="path27"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 683.07094,718.8857 A 275.27973,275.27973 0 0 1 506.01245,508.10329"
+       id="path29"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 368.48967,344.55925 A 213.68005,213.68005 0 0 1 506.01245,508.10329"
+       id="path31"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 705.54514,593.41532 A 217.00563,217.00563 0 0 1 506.01245,508.10329"
+       id="path33"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 334.12086,287.15516 A 279.93711,279.93711 0 0 1 506.01245,508.10329"
+       id="path35"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 491.41089,209.27753 a 299.18229,299.18229 0 0 1 14.60156,298.82576"
+       id="path37"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 712.18212,414.02678 A 226.61934,226.61934 0 0 1 506.01245,508.10329"
+       id="path39"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 631.18941,252.04482 A 285.0179,285.0179 0 0 1 506.01245,508.10329"
+       id="path41"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 196.55027,629.69535 A 332.4928,332.4928 0 0 1 506.01245,508.10329"
+       id="path43"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 564.5027,309.96027 A 206.59566,206.59566 0 0 1 506.01245,508.10329"
+       id="path45"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 566.46103,264.89281 A 250.60999,250.60999 0 0 1 506.01245,508.10329"
+       id="path47"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 487.217,269.05281 a 239.78825,239.78825 0 0 1 18.79545,239.05048"
+       id="path49"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 413.64521,300.45371 a 227.26648,227.26648 0 0 1 92.36724,207.64958"
+       id="path51"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 346.12588,247.81726 A 305.47102,305.47102 0 0 1 506.01245,508.10329"
+       id="path53"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 417.14996,772.12874 A 278.57849,278.57849 0 0 1 506.01245,508.10329"
+       id="path55"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 799.6498,456.21443 A 298.18677,298.18677 0 0 1 506.01245,508.10329"
+       id="path57"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 524.9462,174.15556 A 334.48404,334.48404 0 0 1 506.01245,508.10329"
+       id="path59"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       sodipodi:nodetypes="csc"
+       class="link uses"
+       d="m 699.99731,536.31279 c -24.94244,10.12883 -93.76922,6.55656 -120.43442,2.85717 -26.66519,-3.69939 -52.3074,-14.5303 -73.55044,-31.06667"
+       id="path61"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 540.62613,327.37269 a 184.01537,184.01537 0 0 1 -34.61368,180.7306"
+       id="path63"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 594.48538,595.46731 A 124.33796,124.33796 0 0 1 506.01245,508.10329"
+       id="path65"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 549.07688,232.73156 A 278.71875,278.71875 0 0 1 506.01245,508.10329"
+       id="path67"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 191.22178,357.28527 A 349.05479,349.05479 0 0 1 506.01245,508.10329"
+       id="path69"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 676.89656,548.14133 A 175.51188,175.51188 0 0 1 506.01245,508.10329"
+       id="path71"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 694.38049,392.41862 A 221.05534,221.05534 0 0 1 506.01245,508.10329"
+       id="path73"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 700.26629,205.80524 A 359.33086,359.33086 0 0 1 506.01245,508.10329"
+       id="path75"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 701.10322,175.9272 A 385.22898,385.22898 0 0 1 506.01245,508.10329"
+       id="path77"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 721.37327,192.20069 A 382.32806,382.32806 0 0 1 506.01245,508.10329"
+       id="path79"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 715.78442,162.53565 A 404.25397,404.25397 0 0 1 506.01245,508.10329"
+       id="path81"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 672.83962,431.31117 A 183.65276,183.65276 0 0 1 506.01245,508.10329"
+       id="path83"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       sodipodi:nodetypes="csc"
+       class="link uses"
+       d="m 723.25371,522.77675 c -33.14258,7.93609 -84.74506,13.93997 -119.14156,13.36813 -34.39648,-0.57185 -68.59739,-10.34811 -98.0997,-28.04159"
+       id="path85"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 659.02215,702.47362 A 247.36973,247.36973 0 0 1 506.01245,508.10329"
+       id="path87"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 671.72324,670.12186 A 231.75436,231.75436 0 0 1 506.01245,508.10329"
+       id="path89"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 354.28293,314.91691 A 245.64778,245.64778 0 0 1 506.01245,508.10329"
+       id="path91"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 645.85673,685.27749 A 225.71468,225.71468 0 0 1 506.01245,508.10329"
+       id="path93"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 687.80058,363.58171 A 232.23568,232.23568 0 0 1 506.01245,508.10329"
+       id="path95"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 709.78073,346.74746 A 259.91771,259.91771 0 0 1 506.01245,508.10329"
+       id="path99"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 558.55418,624.77972 A 127.96101,127.96101 0 0 1 506.01245,508.10329"
+       id="path101"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 623.06217,311.36708 A 228.92308,228.92308 0 0 1 506.01245,508.10329"
+       id="path103"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 671.45082,638.99202 A 210.95428,210.95428 0 0 1 506.01245,508.10329"
+       id="path105"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 714.72602,472.89648 A 211.66217,211.66217 0 0 1 506.01245,508.10329"
+       id="path107"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       sodipodi:nodetypes="csc"
+       class="link uses"
+       d="m 740.58203,510.7868 c -22.54395,16.36195 -125.27264,7.38329 -152.97724,10.28119 -27.70461,2.89789 -56.1505,-1.62203 -81.59234,-12.9647"
+       id="path109"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 642.64031,655.48796 A 200.97117,200.97117 0 0 1 506.01245,508.10329"
+       id="path111"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 196.02373,659.52539 A 344.99515,344.99515 0 0 1 506.01245,508.10329"
+       id="path115"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 599.77508,345.41715 A 187.77169,187.77169 0 0 1 506.01245,508.10329"
+       id="path117"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 307.53245,143.34495 a 415.26252,415.26252 0 0 1 198.48,364.75834"
+       id="path119"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 805.73789,619.63103 A 319.8027,319.8027 0 0 1 506.01245,508.10329"
+       id="path121"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 573.46164,193.56036 A 321.69342,321.69342 0 0 1 506.01245,508.10329"
+       id="path123"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 614.7605,234.23304 A 294.6711,294.6711 0 0 1 506.01245,508.10329"
+       id="path125"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 485.89805,346.17623 a 163.17158,163.17158 0 0 1 20.1144,161.92706"
+       id="path127"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 633.73252,570.72712 A 142.24682,142.24682 0 0 1 506.01245,508.10329"
+       id="path129"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 360.77016,196.28133 A 343.98875,343.98875 0 0 1 506.01245,508.10329"
+       id="path131"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 662.77681,735.11795 A 275.88172,275.88172 0 0 1 506.01245,508.10329"
+       id="path133"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 523.30144,289.31184 A 219.47348,219.47348 0 0 1 506.01245,508.10329"
+       id="path135"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 630.79734,217.90944 A 315.88565,315.88565 0 0 1 506.01245,508.10329"
+       id="path137"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 446.99352,249.63805 a 265.11793,265.11793 0 0 1 59.01893,258.46524"
+       id="path139"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 801.51984,604.75972 A 310.91331,310.91331 0 0 1 506.01245,508.10329"
+       id="path143"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 790.64181,582.85154 A 294.28079,294.28079 0 0 1 506.01245,508.10329"
+       id="path145"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 831.46426,326.16829 a 372.85282,372.85282 0 0 1 -325.45181,181.935"
+       id="path147"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 695.70551,456.31382 A 196.63571,196.63571 0 0 1 506.01245,508.10329"
+       id="path149"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 815.95242,546.58133 A 312.31929,312.31929 0 0 1 506.01245,508.10329"
+       id="path151"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 196.00062,643.88147 A 338.4421,338.4421 0 0 1 506.01245,508.10329"
+       id="path153"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 401.44477,228.99299 a 298.05529,298.05529 0 0 1 104.56768,279.1103"
+       id="path155"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 720.37558,379.69677 A 249.87955,249.87955 0 0 1 506.01245,508.10329"
+       id="path157"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 684.23804,443.86759 a 189.44811,189.44811 0 0 1 -178.22559,64.2357"
+       id="path159"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 371.92211,176.23628 A 357.93285,357.93285 0 0 1 506.01245,508.10329"
+       id="path161"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 595.37862,611.25056 A 136.47589,136.47589 0 0 1 506.01245,508.10329"
+       id="path163"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 484.73411,308.5304 a 200.70404,200.70404 0 0 1 21.27834,199.57289"
+       id="path165"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 457.20483,288.58971 a 224.87417,224.87417 0 0 1 48.80762,219.51358"
+       id="path167"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 425.354,269.76066 a 251.62074,251.62074 0 0 1 80.65845,238.34263"
+       id="path169"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 366.69283,269.64756 A 276.17221,276.17221 0 0 1 506.01245,508.10329"
+       id="path171"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 682.60695,331.86141 A 249.49313,249.49313 0 0 1 506.01245,508.10329"
+       id="path173"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 794.30539,563.4769 A 293.5627,293.5627 0 0 1 506.01245,508.10329"
+       id="path175"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 189.94789,427.36441 a 326.214,326.214 0 0 1 316.06456,80.73888"
+       id="path177"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#339933;stroke-width:1.92395842;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M -27.431686,299.46793 A 252.21298,252.21298 0 0 1 189.94789,427.36441"
+       id="path179"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M -27.221039,315.25592 A 244.39856,244.39856 0 0 1 189.94789,427.36441"
+       id="path181"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M -26.198414,347.98785 A 230.26043,230.26043 0 0 1 189.94789,427.36441"
+       id="path183"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 191.22178,357.28527 a 70.090722,70.090722 0 0 1 -1.27389,70.07914"
+       id="path185"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M -27.237423,331.42694 A 237.43095,237.43095 0 0 1 189.94789,427.36441"
+       id="path187"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 354.76476,461.61707 A 168.33849,168.33849 0 0 1 189.94789,427.36441"
+       id="path189"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#339933;stroke-width:1.92395842;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 506.01245,508.10329 A 326.214,326.214 0 0 1 189.94789,427.36441"
+       id="path191"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#339933;stroke-width:1.92395842;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 142.01085,529.54932 A 112.87034,112.87034 0 0 1 189.94789,427.36441"
+       id="path193"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#339933;stroke-width:1.92395842;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 189.94789,427.36441 a 168.33849,168.33849 0 0 1 164.81687,34.25266"
+       id="path195"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#339933;stroke-width:1.92395842;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 189.94789,427.36441 A 112.87034,112.87034 0 0 1 142.01085,529.54932"
+       id="path197"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#339933;stroke-width:1.92395842;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 643.70045,270.37012 A 346.49562,346.49562 0 0 1 354.76476,461.61707"
+       id="path199"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 741.06842,495.34569 A 387.77331,387.77331 0 0 1 354.76476,461.61707"
+       id="path201"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 401.51919,328.90895 A 140.7033,140.7033 0 0 1 354.76476,461.61707"
+       id="path203"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 683.07094,718.8857 A 417.09961,417.09961 0 0 1 354.76476,461.61707"
+       id="path205"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 368.48967,344.55925 A 117.85969,117.85969 0 0 1 354.76476,461.61707"
+       id="path207"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 705.54514,593.41532 A 374.72345,374.72345 0 0 1 354.76476,461.61707"
+       id="path209"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 119.03953,210.5675 A 344.37229,344.37229 0 0 1 354.76476,461.61707"
+       id="path211"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 334.12086,287.15516 a 175.67905,175.67905 0 0 1 20.6439,174.46191"
+       id="path213"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 491.41089,209.27753 A 286.96238,286.96238 0 0 1 354.76476,461.61707"
+       id="path215"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 712.18212,414.02678 A 360.57177,360.57177 0 0 1 354.76476,461.61707"
+       id="path217"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 631.18941,252.04482 A 346.88775,346.88775 0 0 1 354.76476,461.61707"
+       id="path219"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 196.55027,629.69535 A 230.82923,230.82923 0 0 1 354.76476,461.61707"
+       id="path221"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 564.5027,309.96027 A 258.82386,258.82386 0 0 1 354.76476,461.61707"
+       id="path223"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 566.46103,264.89281 A 288.99091,288.99091 0 0 1 354.76476,461.61707"
+       id="path225"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 487.217,269.05281 A 233.71905,233.71905 0 0 1 354.76476,461.61707"
+       id="path227"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 413.64521,300.45371 A 171.58244,171.58244 0 0 1 354.76476,461.61707"
+       id="path229"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 346.12588,247.81726 a 213.97428,213.97428 0 0 1 8.63888,213.79981"
+       id="path231"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 118.86349,178.51338 A 368.5066,368.5066 0 0 1 354.76476,461.61707"
+       id="path233"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 799.6498,456.21443 a 444.91785,444.91785 0 0 1 -444.88504,5.40264"
+       id="path235"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 524.9462,174.15556 A 334.05963,334.05963 0 0 1 354.76476,461.61707"
+       id="path237"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       sodipodi:nodetypes="csc"
+       class="link uses"
+       d="m 698.24393,536.75113 c -51.86022,16.3013 -147.46996,11.25183 -200.53285,-0.56095 -53.0629,-11.81275 -102.89889,-37.81151 -142.94632,-74.57311"
+       id="path239"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 540.62613,327.37269 A 229.27276,229.27276 0 0 1 354.76476,461.61707"
+       id="path241"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 594.48538,595.46731 A 274.55756,274.55756 0 0 1 354.76476,461.61707"
+       id="path243"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 549.07688,232.73156 A 300.24286,300.24286 0 0 1 354.76476,461.61707"
+       id="path245"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 191.22178,357.28527 a 193.98823,193.98823 0 0 1 163.54298,104.3318"
+       id="path247"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 676.89656,548.14133 A 333.5496,333.5496 0 0 1 354.76476,461.61707"
+       id="path249"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 118.51572,194.5021 A 356.60064,356.60064 0 0 1 354.76476,461.61707"
+       id="path251"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 694.38049,392.41862 A 346.59381,346.59381 0 0 1 354.76476,461.61707"
+       id="path253"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 700.26629,205.80524 A 429.8965,429.8965 0 0 1 354.76476,461.61707"
+       id="path255"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 701.10322,175.9272 A 448.9644,448.9644 0 0 1 354.76476,461.61707"
+       id="path257"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 721.37327,192.20069 A 454.95823,454.95823 0 0 1 354.76476,461.61707"
+       id="path259"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 715.78442,162.53565 A 468.81221,468.81221 0 0 1 354.76476,461.61707"
+       id="path261"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 672.83962,431.31117 a 319.51534,319.51534 0 0 1 -318.07486,30.3059"
+       id="path263"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       sodipodi:nodetypes="csc"
+       class="link uses"
+       d="M 722.81536,521.90006 C 665.82343,544.77552 583.05452,541.85035 522.26034,533.16512 461.46615,524.4799 403.07146,499.53579 354.76476,461.61707"
+       id="path265"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 659.02215,702.47362 A 388.0521,388.0521 0 0 1 354.76476,461.61707"
+       id="path267"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 671.72324,670.12186 A 379.39019,379.39019 0 0 1 354.76476,461.61707"
+       id="path269"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 354.28293,314.91691 a 146.70097,146.70097 0 0 1 0.48183,146.70016"
+       id="path271"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 645.85673,685.27749 A 367.09469,367.09469 0 0 1 354.76476,461.61707"
+       id="path273"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 119.09611,162.77543 A 380.58644,380.58644 0 0 1 354.76476,461.61707"
+       id="path275"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 687.80058,363.58171 A 347.16535,347.16535 0 0 1 354.76476,461.61707"
+       id="path277"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 709.78073,346.74746 A 373.1372,373.1372 0 0 1 354.76476,461.61707"
+       id="path281"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 558.55418,624.77972 A 261.0597,261.0597 0 0 1 354.76476,461.61707"
+       id="path283"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 623.06217,311.36708 A 307.50375,307.50375 0 0 1 354.76476,461.61707"
+       id="path285"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 671.45082,638.99202 A 362.97648,362.97648 0 0 1 354.76476,461.61707"
+       id="path287"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 714.72602,472.89648 A 360.13793,360.13793 0 0 1 354.76476,461.61707"
+       id="path289"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       sodipodi:nodetypes="csc"
+       class="link uses"
+       d="m 741.89706,512.10183 c -49.46171,22.53443 -182.0418,11.20188 -236.14409,5.98639 -54.10231,-5.21547 -106.74198,-24.90325 -150.98821,-56.47115"
+       id="path291"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 642.64031,655.48796 A 347.07095,347.07095 0 0 1 354.76476,461.61707"
+       id="path293"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 196.02373,659.52539 A 253.70537,253.70537 0 0 1 354.76476,461.61707"
+       id="path297"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 599.77508,345.41715 A 271.16873,271.16873 0 0 1 354.76476,461.61707"
+       id="path299"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 307.53245,143.34495 a 321.75774,321.75774 0 0 1 47.23231,318.27212"
+       id="path301"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 119.91674,146.72499 A 392.82391,392.82391 0 0 1 354.76476,461.61707"
+       id="path305"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 805.73789,619.63103 A 477.85475,477.85475 0 0 1 354.76476,461.61707"
+       id="path311"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 573.46164,193.56036 A 345.95192,345.95192 0 0 1 354.76476,461.61707"
+       id="path313"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 614.7605,234.23304 A 345.40017,345.40017 0 0 1 354.76476,461.61707"
+       id="path315"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 485.89805,346.17623 A 174.70698,174.70698 0 0 1 354.76476,461.61707"
+       id="path317"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 633.73252,570.72712 A 299.54634,299.54634 0 0 1 354.76476,461.61707"
+       id="path319"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 360.77016,196.28133 a 265.4037,265.4037 0 0 1 -6.0054,265.33574"
+       id="path321"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 662.77681,735.11795 A 411.91522,411.91522 0 0 1 354.76476,461.61707"
+       id="path323"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 523.30144,289.31184 A 241.02636,241.02636 0 0 1 354.76476,461.61707"
+       id="path325"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 630.79734,217.90944 A 368.22193,368.22193 0 0 1 354.76476,461.61707"
+       id="path327"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 446.99352,249.63805 A 231.17363,231.17363 0 0 1 354.76476,461.61707"
+       id="path329"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 801.51984,604.75972 A 469.12675,469.12675 0 0 1 354.76476,461.61707"
+       id="path333"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 790.64181,582.85154 A 452.42304,452.42304 0 0 1 354.76476,461.61707"
+       id="path335"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 831.46426,326.16829 A 495.56915,495.56915 0 0 1 354.76476,461.61707"
+       id="path337"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 695.70551,456.31382 a 340.98198,340.98198 0 0 1 -340.94075,5.30325"
+       id="path339"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 815.95242,546.58133 A 468.94879,468.94879 0 0 1 354.76476,461.61707"
+       id="path341"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 196.00062,643.88147 A 241.71546,241.71546 0 0 1 354.76476,461.61707"
+       id="path343"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 401.44477,228.99299 A 237.26143,237.26143 0 0 1 354.76476,461.61707"
+       id="path345"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="m 720.37558,379.69677 a 374.67614,374.67614 0 0 1 -365.61082,81.9203"
+       id="path347"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 684.23804,443.86759 A 329.95103,329.95103 0 0 1 354.76476,461.61707"
+       id="path349"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 371.92211,176.23628 A 285.89608,285.89608 0 0 1 354.76476,461.61707"
+       id="path351"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 595.37862,611.25056 A 283.34646,283.34646 0 0 1 354.76476,461.61707"
+       id="path353"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 484.73411,308.5304 A 200.81722,200.81722 0 0 1 354.76476,461.61707"
+       id="path355"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 457.20483,288.58971 A 201.07818,201.07818 0 0 1 354.76476,461.61707"
+       id="path357"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 425.354,269.76066 A 204.43024,204.43024 0 0 1 354.76476,461.61707"
+       id="path359"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 366.69283,269.64756 A 192.33972,192.33972 0 0 1 354.76476,461.61707"
+       id="path361"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 682.60695,331.86141 A 352.58621,352.58621 0 0 1 354.76476,461.61707"
+       id="path363"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 794.30539,563.4769 A 451.18886,451.18886 0 0 1 354.76476,461.61707"
+       id="path365"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 196.55027,629.69535 A 114.03409,114.03409 0 0 1 142.01085,529.54932"
+       id="path367"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       inkscape:transform-center-y="8.8591659"
+       inkscape:transform-center-x="57.690487"
+       class="link uses"
+       d="M -14.094486,566.59976 A 152.01599,240.31795 11.037388 0 1 142.01085,529.60115"
+       id="path369"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       inkscape:transform-center-y="27.868512"
+       inkscape:transform-center-x="57.676539"
+       class="link uses"
+       d="M -14.503042,604.00161 A 153.84879,243.21536 11.037389 0 1 142.01085,529.60115"
+       id="path371"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       inkscape:transform-center-y="18.594495"
+       inkscape:transform-center-x="57.672737"
+       class="link uses"
+       d="M -14.351164,585.17929 A 152.50013,241.08331 11.037388 0 1 142.01085,529.60115"
+       id="path373"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 196.02373,659.52539 A 140.75215,140.75215 0 0 1 142.01085,529.54932"
+       id="path377"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <path
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="link uses"
+       d="M 196.00062,643.88147 A 126.43866,126.43866 0 0 1 142.01085,529.54932"
+       id="path379"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#999999;stroke-width:0.96197921;marker-end:url(#uses)" />
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-datcat"
+       transform="matrix(1.2628657,0,0,1.2628657,506.01245,508.10329)"
+       id="g383">
+      <circle
+         r="4"
+         id="circle385"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#66aa66;stroke:#339933;stroke-width:0.76174319" />
+      <title
+         id="title387">languageName |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text389"
+         style="font-size:13px;font-style:italic;font-weight:bold;fill:#006600;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">isocat:languageName</text>
+      <text
+         x="8"
+         y="8"
+         id="text391"
+         style="font-size:13px;font-style:italic;font-weight:bold;fill:#006600">isocat:languageName</text>
+    </g>
+    <circle
+       transform="matrix(1.2628657,0,0,1.2628657,354.76476,461.61707)"
+       style="fill:#66aa66;stroke:#339933;stroke-width:0.76174319"
+       sodipodi:ry="4"
+       sodipodi:rx="4"
+       sodipodi:cy="0"
+       sodipodi:cx="0"
+       cy="0"
+       cx="0"
+       d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+       id="circle395"
+       r="4" />
+    <text
+       style="font-size:16.41725349px;font-style:italic;font-weight:bold;fill:#006600;stroke:#ffffff;stroke-width:2.88593769px;stroke-opacity:0.8"
+       id="text399"
+       class="shadow"
+       y="471.72"
+       x="364.86768">isocat:languageID</text>
+    <text
+       style="font-size:16.41725349px;font-style:italic;font-weight:bold;fill:#006600"
+       id="text401"
+       y="471.72"
+       x="364.86768">isocat:languageID</text>
+    <circle
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       transform="matrix(1.2628657,0,0,1.2628657,189.94789,427.36441)"
+       style="fill:#66aa66;stroke:#339933;stroke-width:0.76174319"
+       sodipodi:ry="4"
+       sodipodi:rx="4"
+       sodipodi:cy="0"
+       sodipodi:cx="0"
+       cy="0"
+       cx="0"
+       d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+       id="circle405"
+       r="4" />
+    <circle
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       transform="matrix(1.2628657,0,0,1.2628657,142.01085,529.54932)"
+       style="fill:#66aa66;stroke:#339933;stroke-width:0.76174319"
+       sodipodi:ry="4"
+       sodipodi:rx="4"
+       sodipodi:cy="0"
+       sodipodi:cx="0"
+       cy="0"
+       cx="0"
+       d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+       id="circle415"
+       r="4" />
+    <text
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       style="font-size:16.41725349px;font-style:italic;font-weight:bold;fill:#006600;stroke:#ffffff;stroke-width:2.88593769px;stroke-opacity:0.8"
+       id="text419"
+       class="shadow"
+       y="539.65222"
+       x="152.11377">dcterms:Language</text>
+    <text
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       style="font-size:16.41725349px;font-style:italic;font-weight:bold;fill:#006600"
+       id="text421"
+       y="539.65222"
+       x="152.11377">dcterms:Language</text>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,643.70045,270.37012)"
+       id="g423">
+      <circle
+         r="4"
+         id="circle425"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title427">AnnotatedCorpusProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text429"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">AnnotatedCorpusProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text431"
+         style="font-size:11px;font-weight:normal;fill:#000066">AnnotatedCorpusProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,741.06842,495.34569)"
+       id="g433">
+      <circle
+         r="4"
+         id="circle435"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title437">AnnotationTool |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text439"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">AnnotationTool</text>
+      <text
+         x="8"
+         y="8"
+         id="text441"
+         style="font-size:11px;font-weight:normal;fill:#000066">AnnotationTool</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,425.05866,756.79877)"
+       id="g443">
+      <circle
+         r="4"
+         id="circle445"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title447">BamdesLexicalResource |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text449"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">BamdesLexicalResource</text>
+      <text
+         x="8"
+         y="8"
+         id="text451"
+         style="font-size:11px;font-weight:normal;fill:#000066">BamdesLexicalResource</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,431.15992,742.86836)"
+       id="g453">
+      <circle
+         r="4"
+         id="circle455"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title457">BamdesMultimodalCorpus |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text459"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">BamdesMultimodalCorpus</text>
+      <text
+         x="8"
+         y="8"
+         id="text461"
+         style="font-size:11px;font-weight:normal;fill:#000066">BamdesMultimodalCorpus</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,437.81114,727.29144)"
+       id="g463">
+      <circle
+         r="4"
+         id="circle465"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title467">BamdesOralCorpus |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text469"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">BamdesOralCorpus</text>
+      <text
+         x="8"
+         y="8"
+         id="text471"
+         style="font-size:11px;font-weight:normal;fill:#000066">BamdesOralCorpus</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,449.53612,695.94826)"
+       id="g473">
+      <circle
+         r="4"
+         id="circle475"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title477">BamdesTool |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text479"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">BamdesTool</text>
+      <text
+         x="8"
+         y="8"
+         id="text481"
+         style="font-size:11px;font-weight:normal;fill:#000066">BamdesTool</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,443.16682,710.92159)"
+       id="g483">
+      <circle
+         r="4"
+         id="circle485"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title487">BamdesWrittenCorpus |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text489"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">BamdesWrittenCorpus</text>
+      <text
+         x="8"
+         y="8"
+         id="text491"
+         style="font-size:11px;font-weight:normal;fill:#000066">BamdesWrittenCorpus</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,401.51919,328.90895)"
+       id="g493">
+      <circle
+         r="4"
+         id="circle495"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title497">Bedevaartbank |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text499"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">Bedevaartbank</text>
+      <text
+         x="8"
+         y="8"
+         id="text501"
+         style="font-size:11px;font-weight:normal;fill:#000066">Bedevaartbank</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,683.07094,718.8857)"
+       id="g503">
+      <circle
+         r="4"
+         id="circle505"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title507">BilingualDictionaryProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text509"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">BilingualDictionaryProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text511"
+         style="font-size:11px;font-weight:normal;fill:#000066">BilingualDictionaryProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,368.48967,344.55925)"
+       id="g513">
+      <circle
+         r="4"
+         id="circle515"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title517">Boedelbank |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text519"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">Boedelbank</text>
+      <text
+         x="8"
+         y="8"
+         id="text521"
+         style="font-size:11px;font-weight:normal;fill:#000066">Boedelbank</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,705.54514,593.41532)"
+       id="g523">
+      <circle
+         r="4"
+         id="circle525"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title527">Book |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text529"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">Book</text>
+      <text
+         x="8"
+         y="8"
+         id="text531"
+         style="font-size:11px;font-weight:normal;fill:#000066">Book</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,334.12086,287.15516)"
+       id="g533">
+      <circle
+         r="4"
+         id="circle535"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title537">ComicBook |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text539"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">ComicBook</text>
+      <text
+         x="8"
+         y="8"
+         id="text541"
+         style="font-size:11px;font-weight:normal;fill:#000066">ComicBook</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,491.41089,209.27753)"
+       id="g543">
+      <circle
+         r="4"
+         id="circle545"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title547">CorpusProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text549"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">CorpusProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text551"
+         style="font-size:11px;font-weight:normal;fill:#000066">CorpusProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,712.18212,414.02678)"
+       id="g553">
+      <circle
+         r="4"
+         id="circle555"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title557">CorrespondenceHistorical |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text559"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">CorrespondenceHistorical</text>
+      <text
+         x="8"
+         y="8"
+         id="text561"
+         style="font-size:11px;font-weight:normal;fill:#000066">CorrespondenceHistorical</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,631.18941,252.04482)"
+       id="g563">
+      <circle
+         r="4"
+         id="circle565"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title567">CorrespondenceHistorical |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text569"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">CorrespondenceHistorical</text>
+      <text
+         x="8"
+         y="8"
+         id="text571"
+         style="font-size:11px;font-weight:normal;fill:#000066">CorrespondenceHistorical</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,196.55027,627.16962)"
+       id="g573">
+      <circle
+         r="4"
+         id="circle575"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title577">data |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text579"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">data</text>
+      <text
+         x="8"
+         y="8"
+         id="text581"
+         style="font-size:11px;font-weight:normal;fill:#000066">data</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,564.5027,309.96027)"
+       id="g583">
+      <circle
+         r="4"
+         id="circle585"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title587">DBD |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text589"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">DBD</text>
+      <text
+         x="8"
+         y="8"
+         id="text591"
+         style="font-size:11px;font-weight:normal;fill:#000066">DBD</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,566.46103,264.89281)"
+       id="g593">
+      <circle
+         r="4"
+         id="circle595"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title597">DBNL |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text599"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">DBNL</text>
+      <text
+         x="8"
+         y="8"
+         id="text601"
+         style="font-size:11px;font-weight:normal;fill:#000066">DBNL</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,487.217,269.05281)"
+       id="g603">
+      <circle
+         r="4"
+         id="circle605"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title607">DIDDD |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text609"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">DIDDD</text>
+      <text
+         x="8"
+         y="8"
+         id="text611"
+         style="font-size:11px;font-weight:normal;fill:#000066">DIDDD</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,413.64521,300.45371)"
+       id="g613">
+      <circle
+         r="4"
+         id="circle615"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title617">DSOL |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text619"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">DSOL</text>
+      <text
+         x="8"
+         y="8"
+         id="text621"
+         style="font-size:11px;font-weight:normal;fill:#000066">DSOL</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,346.12588,247.81726)"
+       id="g623">
+      <circle
+         r="4"
+         id="circle625"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title627">DynaSAND |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text629"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">DynaSAND</text>
+      <text
+         x="8"
+         y="8"
+         id="text631"
+         style="font-size:11px;font-weight:normal;fill:#000066">DynaSAND</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,417.14996,772.12874)"
+       id="g633">
+      <circle
+         r="4"
+         id="circle635"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title637">Example_Profile_Instance |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text639"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">Example_Profile_Instance</text>
+      <text
+         x="8"
+         y="8"
+         id="text641"
+         style="font-size:11px;font-weight:normal;fill:#000066">Example_Profile_Instance</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,799.6498,456.21443)"
+       id="g643">
+      <circle
+         r="4"
+         id="circle645"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title647">ExperimentProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text649"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">ExperimentProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text651"
+         style="font-size:11px;font-weight:normal;fill:#000066">ExperimentProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,524.9462,174.15556)"
+       id="g653">
+      <circle
+         r="4"
+         id="circle655"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title657">Familienamenbank |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text659"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">Familienamenbank</text>
+      <text
+         x="8"
+         y="8"
+         id="text661"
+         style="font-size:11px;font-weight:normal;fill:#000066">Familienamenbank</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,699.55895,535.43609)"
+       id="g663">
+      <circle
+         r="4"
+         id="circle665"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title667">FrequencyListProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text669"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">FrequencyListProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text671"
+         style="font-size:11px;font-weight:normal;fill:#000066">FrequencyListProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,540.62613,327.37269)"
+       id="g673">
+      <circle
+         r="4"
+         id="circle675"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title677">GBA-derived |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text679"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">GBA-derived</text>
+      <text
+         x="8"
+         y="8"
+         id="text681"
+         style="font-size:11px;font-weight:normal;fill:#000066">GBA-derived</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,594.48538,595.46731)"
+       id="g683">
+      <circle
+         r="4"
+         id="circle685"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title687">GenericTextStructure |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text689"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">GenericTextStructure</text>
+      <text
+         x="8"
+         y="8"
+         id="text691"
+         style="font-size:11px;font-weight:normal;fill:#000066">GenericTextStructure</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,549.07688,232.73156)"
+       id="g693">
+      <circle
+         r="4"
+         id="circle695"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title697">GTRP |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text699"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">GTRP</text>
+      <text
+         x="8"
+         y="8"
+         id="text701"
+         style="font-size:11px;font-weight:normal;fill:#000066">GTRP</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,191.22178,357.28527)"
+       id="g703">
+      <circle
+         r="4"
+         id="circle705"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title707">HZSKCorpus |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text709"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">HZSKCorpus</text>
+      <text
+         x="8"
+         y="8"
+         id="text711"
+         style="font-size:11px;font-weight:normal;fill:#000066">HZSKCorpus</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,676.89656,548.14133)"
+       id="g713">
+      <circle
+         r="4"
+         id="circle715"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title717">IDSAGD_Event |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text719"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">IDSAGD_Event</text>
+      <text
+         x="8"
+         y="8"
+         id="text721"
+         style="font-size:11px;font-weight:normal;fill:#000066">IDSAGD_Event</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,694.38049,392.41862)"
+       id="g723">
+      <circle
+         r="4"
+         id="circle725"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title727">LanguageDocumentationCorpus |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text729"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">LanguageDocumentationCorpus</text>
+      <text
+         x="8"
+         y="8"
+         id="text731"
+         style="font-size:11px;font-weight:normal;fill:#000066">LanguageDocumentationCorpus</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,700.26629,205.80524)"
+       id="g733">
+      <circle
+         r="4"
+         id="circle735"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title737">LCC_CorpusProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text739"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">LCC_CorpusProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text741"
+         style="font-size:11px;font-weight:normal;fill:#000066">LCC_CorpusProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,701.10322,175.9272)"
+       id="g743">
+      <circle
+         r="4"
+         id="circle745"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title747">LCC_CorpusProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text749"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">LCC_CorpusProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text751"
+         style="font-size:11px;font-weight:normal;fill:#000066">LCC_CorpusProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,721.37327,192.20069)"
+       id="g753">
+      <circle
+         r="4"
+         id="circle755"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title757">LCC_DataProviderProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text759"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">LCC_DataProviderProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text761"
+         style="font-size:11px;font-weight:normal;fill:#000066">LCC_DataProviderProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,715.78442,162.53565)"
+       id="g763">
+      <circle
+         r="4"
+         id="circle765"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title767">LCC_DataSourceProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text769"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">LCC_DataSourceProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text771"
+         style="font-size:11px;font-weight:normal;fill:#000066">LCC_DataSourceProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,672.83962,431.31117)"
+       id="g773">
+      <circle
+         r="4"
+         id="circle775"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title777">LCC_SentenceProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text779"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">LCC_SentenceProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text781"
+         style="font-size:11px;font-weight:normal;fill:#000066">LCC_SentenceProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,725.00709,521.02336)"
+       id="g783">
+      <circle
+         r="4"
+         id="circle785"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title787">LemmaListProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text789"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">LemmaListProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text791"
+         style="font-size:11px;font-weight:normal;fill:#000066">LemmaListProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,659.02215,702.47362)"
+       id="g793">
+      <circle
+         r="4"
+         id="circle795"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title797">LexicalResourceProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text799"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">LexicalResourceProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text801"
+         style="font-size:11px;font-weight:normal;fill:#000066">LexicalResourceProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,671.72324,670.12186)"
+       id="g803">
+      <circle
+         r="4"
+         id="circle805"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title807">LexicalResourceProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text809"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">LexicalResourceProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text811"
+         style="font-size:11px;font-weight:normal;fill:#000066">LexicalResourceProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,354.28293,314.91691)"
+       id="g813">
+      <circle
+         r="4"
+         id="circle815"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title817">Liederenbank |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text819"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">Liederenbank</text>
+      <text
+         x="8"
+         y="8"
+         id="text821"
+         style="font-size:11px;font-weight:normal;fill:#000066">Liederenbank</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,645.85673,685.27749)"
+       id="g823">
+      <circle
+         r="4"
+         id="circle825"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title827">LiteraryCorpusProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text829"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">LiteraryCorpusProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text831"
+         style="font-size:11px;font-weight:normal;fill:#000066">LiteraryCorpusProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,687.80058,363.58171)"
+       id="g833">
+      <circle
+         r="4"
+         id="circle835"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title837">media-corpus-profile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text839"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">media-corpus-profile</text>
+      <text
+         x="8"
+         y="8"
+         id="text841"
+         style="font-size:11px;font-weight:normal;fill:#000066">media-corpus-profile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,709.78073,346.74746)"
+       id="g853">
+      <circle
+         r="4"
+         id="circle855"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title857">media-session-profile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text859"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">media-session-profile</text>
+      <text
+         x="8"
+         y="8"
+         id="text861"
+         style="font-size:11px;font-weight:normal;fill:#000066">media-session-profile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,558.55418,624.77972)"
+       id="g863">
+      <circle
+         r="4"
+         id="circle865"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title867">MonolingualDictionaryProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text869"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">MonolingualDictionaryProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text871"
+         style="font-size:11px;font-weight:normal;fill:#000066">MonolingualDictionaryProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,623.06217,311.36708)"
+       id="g873">
+      <circle
+         r="4"
+         id="circle875"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title877">MultilingualDictionaryProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text879"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">MultilingualDictionaryProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text881"
+         style="font-size:11px;font-weight:normal;fill:#000066">MultilingualDictionaryProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,671.45082,638.99202)"
+       id="g883">
+      <circle
+         r="4"
+         id="circle885"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title887">MultimodalCorpus |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text889"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">MultimodalCorpus</text>
+      <text
+         x="8"
+         y="8"
+         id="text891"
+         style="font-size:11px;font-weight:normal;fill:#000066">MultimodalCorpus</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,714.72602,472.89648)"
+       id="g893">
+      <circle
+         r="4"
+         id="circle895"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title897">NamedEntityListProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text899"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">NamedEntityListProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text901"
+         style="font-size:11px;font-weight:normal;fill:#000066">NamedEntityListProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,741.89706,510.34845)"
+       id="g903">
+      <circle
+         r="4"
+         id="circle905"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title907">OralHistoryInterview |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text909"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">OralHistoryInterview</text>
+      <text
+         x="8"
+         y="8"
+         id="text911"
+         style="font-size:11px;font-weight:normal;fill:#000066">OralHistoryInterview</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,642.64031,655.48796)"
+       id="g913">
+      <circle
+         r="4"
+         id="circle915"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title917">OralHistoryInterview |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text919"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">OralHistoryInterview</text>
+      <text
+         x="8"
+         y="8"
+         id="text921"
+         style="font-size:11px;font-weight:normal;fill:#000066">OralHistoryInterview</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,196.02373,656.99966)"
+       id="g933">
+      <circle
+         r="4"
+         id="circle935"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title937">OralHistoryInterviewDANS |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text939"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">OralHistoryInterviewDANS</text>
+      <text
+         x="8"
+         y="8"
+         id="text941"
+         style="font-size:11px;font-weight:normal;fill:#000066">OralHistoryInterviewDANS</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,599.77508,345.41715)"
+       id="g943">
+      <circle
+         r="4"
+         id="circle945"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title947">PLAND |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text949"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">PLAND</text>
+      <text
+         x="8"
+         y="8"
+         id="text951"
+         style="font-size:11px;font-weight:normal;fill:#000066">PLAND</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,307.53245,143.34495)"
+       id="g953">
+      <circle
+         r="4"
+         id="circle955"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title957">resourceInfo |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text959"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">resourceInfo</text>
+      <text
+         x="8"
+         y="8"
+         id="text961"
+         style="font-size:11px;font-weight:normal;fill:#000066">resourceInfo</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,805.73789,619.63103)"
+       id="g963">
+      <circle
+         r="4"
+         id="circle965"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title967">SessionProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text969"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">SessionProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text971"
+         style="font-size:11px;font-weight:normal;fill:#000066">SessionProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,573.46164,193.56036)"
+       id="g973">
+      <circle
+         r="4"
+         id="circle975"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title977">SL-IPROSLA |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text979"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">SL-IPROSLA</text>
+      <text
+         x="8"
+         y="8"
+         id="text981"
+         style="font-size:11px;font-weight:normal;fill:#000066">SL-IPROSLA</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,614.7605,234.23304)"
+       id="g983">
+      <circle
+         r="4"
+         id="circle985"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title987">SoNaRcorpus |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text989"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">SoNaRcorpus</text>
+      <text
+         x="8"
+         y="8"
+         id="text991"
+         style="font-size:11px;font-weight:normal;fill:#000066">SoNaRcorpus</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,485.89805,346.17623)"
+       id="g993">
+      <circle
+         r="4"
+         id="circle995"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title997">Soundbites |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text999"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">Soundbites</text>
+      <text
+         x="8"
+         y="8"
+         id="text1001"
+         style="font-size:11px;font-weight:normal;fill:#000066">Soundbites</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,633.73252,570.72712)"
+       id="g1003">
+      <circle
+         r="4"
+         id="circle1005"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1007">SpeechCorpus |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1009"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">SpeechCorpus</text>
+      <text
+         x="8"
+         y="8"
+         id="text1011"
+         style="font-size:11px;font-weight:normal;fill:#000066">SpeechCorpus</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,360.77016,196.28133)"
+       id="g1013">
+      <circle
+         r="4"
+         id="circle1015"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1017">SpeechCorpusProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1019"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">SpeechCorpusProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text1021"
+         style="font-size:11px;font-weight:normal;fill:#000066">SpeechCorpusProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,662.77681,735.11795)"
+       id="g1023">
+      <circle
+         r="4"
+         id="circle1025"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1027">SpeechCorpusProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1029"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">SpeechCorpusProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text1031"
+         style="font-size:11px;font-weight:normal;fill:#000066">SpeechCorpusProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,523.30144,289.31184)"
+       id="g1033">
+      <circle
+         r="4"
+         id="circle1035"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1037">SpeechCorpusProfile_Autonomata_speaker |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1039"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">SpeechCorpusProfile_Autonomata_speaker</text>
+      <text
+         x="8"
+         y="8"
+         id="text1041"
+         style="font-size:11px;font-weight:normal;fill:#000066">SpeechCorpusProfile_Autonomata_speaker</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,630.79734,217.90944)"
+       id="g1043">
+      <circle
+         r="4"
+         id="circle1045"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1047">TEIDocumentDescription |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1049"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">TEIDocumentDescription</text>
+      <text
+         x="8"
+         y="8"
+         id="text1051"
+         style="font-size:11px;font-weight:normal;fill:#000066">TEIDocumentDescription</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,446.99352,249.63805)"
+       id="g1053">
+      <circle
+         r="4"
+         id="circle1055"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1057">TextCorpusProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1059"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">TextCorpusProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text1061"
+         style="font-size:11px;font-weight:normal;fill:#000066">TextCorpusProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,801.51984,604.75972)"
+       id="g1073">
+      <circle
+         r="4"
+         id="circle1075"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1077">TextProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1079"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">TextProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text1081"
+         style="font-size:11px;font-weight:normal;fill:#000066">TextProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,790.64181,582.85154)"
+       id="g1083">
+      <circle
+         r="4"
+         id="circle1085"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1087">ThesaurusProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1089"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">ThesaurusProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text1091"
+         style="font-size:11px;font-weight:normal;fill:#000066">ThesaurusProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,831.46426,326.16829)"
+       id="g1093">
+      <circle
+         r="4"
+         id="circle1095"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1097">Tool |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1099"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">Tool</text>
+      <text
+         x="8"
+         y="8"
+         id="text1101"
+         style="font-size:11px;font-weight:normal;fill:#000066">Tool</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,695.70551,456.31382)"
+       id="g1103">
+      <circle
+         r="4"
+         id="circle1105"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1107">ToolProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1109"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">ToolProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text1111"
+         style="font-size:11px;font-weight:normal;fill:#000066">ToolProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,815.07572,550.52644)"
+       id="g1113">
+      <circle
+         r="4"
+         id="circle1115"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1117">ToolService |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1119"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">ToolService</text>
+      <text
+         x="8"
+         y="8"
+         id="text1121"
+         style="font-size:11px;font-weight:normal;fill:#000066">ToolService</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,196.00062,641.35574)"
+       id="g1123">
+      <circle
+         r="4"
+         id="circle1125"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1127">ToolService |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1129"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">ToolService</text>
+      <text
+         x="8"
+         y="8"
+         id="text1131"
+         style="font-size:11px;font-weight:normal;fill:#000066">ToolService</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,401.44477,228.99299)"
+       id="g1133">
+      <circle
+         r="4"
+         id="circle1135"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1137">TreebankProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1139"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">TreebankProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text1141"
+         style="font-size:11px;font-weight:normal;fill:#000066">TreebankProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,720.37558,379.69677)"
+       id="g1143">
+      <circle
+         r="4"
+         id="circle1145"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1147">TxtCrpsProfile-20110928 |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1149"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">TxtCrpsProfile-20110928</text>
+      <text
+         x="8"
+         y="8"
+         id="text1151"
+         style="font-size:11px;font-weight:normal;fill:#000066">TxtCrpsProfile-20110928</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,684.23804,443.86759)"
+       id="g1153">
+      <circle
+         r="4"
+         id="circle1155"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1157">UnannotatedCorpusProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1159"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">UnannotatedCorpusProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text1161"
+         style="font-size:11px;font-weight:normal;fill:#000066">UnannotatedCorpusProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,371.92211,176.23628)"
+       id="g1163">
+      <circle
+         r="4"
+         id="circle1165"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1167">Voornamenbank |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1169"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">Voornamenbank</text>
+      <text
+         x="8"
+         y="8"
+         id="text1171"
+         style="font-size:11px;font-weight:normal;fill:#000066">Voornamenbank</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,595.37862,611.25056)"
+       id="g1173">
+      <circle
+         r="4"
+         id="circle1175"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1177">VU-DNC-profile-20111101 |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1179"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">VU-DNC-profile-20111101</text>
+      <text
+         x="8"
+         y="8"
+         id="text1181"
+         style="font-size:11px;font-weight:normal;fill:#000066">VU-DNC-profile-20111101</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,484.73411,308.5304)"
+       id="g1183">
+      <circle
+         r="4"
+         id="circle1185"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1187">VVB |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1189"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">VVB</text>
+      <text
+         x="8"
+         y="8"
+         id="text1191"
+         style="font-size:11px;font-weight:normal;fill:#000066">VVB</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,457.20483,288.58971)"
+       id="g1193">
+      <circle
+         r="4"
+         id="circle1195"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1197">WBD |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1199"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">WBD</text>
+      <text
+         x="8"
+         y="8"
+         id="text1201"
+         style="font-size:11px;font-weight:normal;fill:#000066">WBD</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,425.354,269.76066)"
+       id="g1203">
+      <circle
+         r="4"
+         id="circle1205"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1207">WLD |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1209"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">WLD</text>
+      <text
+         x="8"
+         y="8"
+         id="text1211"
+         style="font-size:11px;font-weight:normal;fill:#000066">WLD</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,366.69283,269.64756)"
+       id="g1213">
+      <circle
+         r="4"
+         id="circle1215"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1217">WND |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1219"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">WND</text>
+      <text
+         x="8"
+         y="8"
+         id="text1221"
+         style="font-size:11px;font-weight:normal;fill:#000066">WND</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,682.60695,331.86141)"
+       id="g1223">
+      <circle
+         r="4"
+         id="circle1225"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1227">WordListProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1229"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">WordListProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text1231"
+         style="font-size:11px;font-weight:normal;fill:#000066">WordListProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,794.30539,563.4769)"
+       id="g1233">
+      <circle
+         r="4"
+         id="circle1235"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1237">WordNetProfile |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1239"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">WordNetProfile</text>
+      <text
+         x="8"
+         y="8"
+         id="text1241"
+         style="font-size:11px;font-weight:normal;fill:#000066">WordNetProfile</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,-27.431686,299.46793)"
+       id="g1243">
+      <circle
+         r="4"
+         id="circle1245"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1247">component-dc-terms |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1249"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">component-dc-terms</text>
+      <text
+         x="8"
+         y="8"
+         id="text1251"
+         style="font-size:11px;font-weight:normal;fill:#000066">component-dc-terms</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,-27.221039,315.25592)"
+       id="g1253">
+      <circle
+         r="4"
+         id="circle1255"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1257">component-dc-terms-modular |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1259"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">component-dc-terms-modular</text>
+      <text
+         x="8"
+         y="8"
+         id="text1261"
+         style="font-size:11px;font-weight:normal;fill:#000066">component-dc-terms-modular</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,-26.198414,347.98785)"
+       id="g1263">
+      <circle
+         r="4"
+         id="circle1265"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1267">DC-UBU |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1269"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">DC-UBU</text>
+      <text
+         x="8"
+         y="8"
+         id="text1271"
+         style="font-size:11px;font-weight:normal;fill:#000066">DC-UBU</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,-27.237423,331.42694)"
+       id="g1273">
+      <circle
+         r="4"
+         id="circle1275"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1277">teiHeader |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1279"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">teiHeader</text>
+      <text
+         x="8"
+         y="8"
+         id="text1281"
+         style="font-size:11px;font-weight:normal;fill:#000066">teiHeader</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,119.03953,210.5675)"
+       id="g1283">
+      <circle
+         r="4"
+         id="circle1285"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1287">collection |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1289"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">collection</text>
+      <text
+         x="8"
+         y="8"
+         id="text1291"
+         style="font-size:11px;font-weight:normal;fill:#000066">collection</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,118.86349,178.51338)"
+       id="g1293">
+      <circle
+         r="4"
+         id="circle1295"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1297">EastRepublican |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1299"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">EastRepublican</text>
+      <text
+         x="8"
+         y="8"
+         id="text1301"
+         style="font-size:11px;font-weight:normal;fill:#000066">EastRepublican</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,118.51572,194.5021)"
+       id="g1303">
+      <circle
+         r="4"
+         id="circle1305"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1307">imdi-session |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1309"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">imdi-session</text>
+      <text
+         x="8"
+         y="8"
+         id="text1311"
+         style="font-size:11px;font-weight:normal;fill:#000066">imdi-session</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,119.09611,162.77543)"
+       id="g1313">
+      <circle
+         r="4"
+         id="circle1315"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1317">LrtInventoryResource |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1319"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">LrtInventoryResource</text>
+      <text
+         x="8"
+         y="8"
+         id="text1321"
+         style="font-size:11px;font-weight:normal;fill:#000066">LrtInventoryResource</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,119.91674,146.72499)"
+       id="g1333">
+      <circle
+         r="4"
+         id="circle1335"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1337">resourceInfo |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1339"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">resourceInfo</text>
+      <text
+         x="8"
+         y="8"
+         id="text1341"
+         style="font-size:11px;font-weight:normal;fill:#000066">resourceInfo</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,-13.62013,562.74891)"
+       id="g1363">
+      <circle
+         r="4"
+         id="circle1365"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1367">DcmiTerms |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1369"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">DcmiTerms</text>
+      <text
+         x="8"
+         y="8"
+         id="text1371"
+         style="font-size:11px;font-weight:normal;fill:#000066">DcmiTerms</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,-14.232362,600.04165)"
+       id="g1373">
+      <circle
+         r="4"
+         id="circle1375"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1377">OLAC-DcmiTerms |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1379"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">OLAC-DcmiTerms</text>
+      <text
+         x="8"
+         y="8"
+         id="text1381"
+         style="font-size:11px;font-weight:normal;fill:#000066">OLAC-DcmiTerms</text>
+    </g>
+    <g
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       class="node type-profile"
+       transform="matrix(1.2628657,0,0,1.2628657,-14.004769,581.2599)"
+       id="g1383">
+      <circle
+         r="4"
+         id="circle1385"
+         d="M 4,0 C 4,2.209139 2.209139,4 0,4 -2.209139,4 -4,2.209139 -4,0 c 0,-2.209139 1.790861,-4 4,-4 2.209139,0 4,1.790861 4,4 z"
+         cx="0"
+         cy="0"
+         sodipodi:cx="0"
+         sodipodi:cy="0"
+         sodipodi:rx="4"
+         sodipodi:ry="4"
+         style="fill:#6666aa;stroke:#333399;stroke-width:0.76174319" />
+      <title
+         id="title1387">OLAC-DcmiTerms |0|</title>
+      <text
+         x="8"
+         y="8"
+         class="shadow"
+         id="text1389"
+         style="font-size:11px;font-weight:normal;fill:#000066;stroke:#ffffff;stroke-width:2.28522968px;stroke-opacity:0.8">OLAC-DcmiTerms</text>
+      <text
+         x="8"
+         y="8"
+         id="text1391"
+         style="font-size:11px;font-weight:normal;fill:#000066">OLAC-DcmiTerms</text>
+    </g>
+    <text
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       style="font-size:16.41725349px;font-style:italic;font-weight:bold;fill:#006600;stroke:#ffffff;stroke-width:2.88593769px;stroke-opacity:0.8"
+       id="text409"
+       class="shadow"
+       y="437.46735"
+       x="200.05083">dc:Language</text>
+    <text
+       inkscape:export-ydpi="299.93777"
+       inkscape:export-xdpi="299.93777"
+       inkscape:export-filename="C:\Users\m\3\clarin\SMC\output\SMC-export_language_custom_v2c.png"
+       style="font-size:16.41725349px;font-style:italic;font-weight:bold;fill:#006600"
+       id="text411"
+       y="437.46735"
+       x="200.05083">dc:Language</text>
+  </g>
+</svg>

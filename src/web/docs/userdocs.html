@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.11: http://docutils.sourceforge.net/" />
+<title>SMC Browser</title>
+<link rel="stylesheet" href="../scripts/style/cmds-ui.css" type="text/css" />
+</head>
+<body>
+<div class="document" id="smc-browser">
+<h1 class="title">SMC Browser</h1>
+
+<p>Explore the <cite>Component Metadata Framework</cite></p>
+<p>In <em>CMD</em>, metadata schemas are defined by profiles that are constructed out of reusable components  - collections
+of metadata fields. The components can contain other components, and they can be reused in multiple profiles.
+Furthermore, every CMD element (metadata field) refers via a PID to a data category to indicate unambiguously how the content of the field in a metadata description should
+be interpreted (Broeder et al., 2010).</p>
+<p>Thus, every profile can be expressed as a tree, with the profile component as the root node, the used components as intermediate nodes
+and elements or data categories as leaf nodes, parent-child relationship being defined by the inclusion (<tt class="docutils literal">componentA <span class="pre">-includes-&gt;</span> componentB</tt>) or referencing (<tt class="docutils literal">elementA <span class="pre">-refersTo-&gt;</span> datcat1</tt>).The reuse of components in multiple profiles and especially also the referencing of the same data categories in multiple CMD elements leads to a blending of the individual profile trees into a graph (acyclic directed, but not necessarily connected).</p>
+<p>SMC Browser visualizes this graph structure in an interactive fashion. You can have a look at the <a class="reference external" href="examples.html">examples</a> for inspiration.</p>
+<p>It is implemented on top of wonderful js-library <a class="reference external" href="https://github.com/mbostock/d3">d3</a>, the code checked in <a class="reference external" href="https://svn.clarin.eu/SMC/trunk/SMC">clarin-svn</a> (and needs refactoring). There is also some preliminary <a class="reference external" href="devdocs.html">technical documentation</a></p>
+<div class="section" id="data">
+<h1>Data</h1>
+<p>The graph is constructed from all profiles defined in the <a class="reference external" href="http://catalog.clarin.eu/ds/ComponentRegistry/#">Component Registry</a>.
+To resolve name and description of data categories referenced in the CMD elements
+definitions of all (public) data categories from <a class="reference external" href="http://dublincore.org">DublinCore</a> and <a class="reference external" href="http://www.isocat.org">ISOcat</a> (from the <a class="reference external" href="http://www.isocat.org/rest/profile/5.rdf">Metadata Profile</a> [RDF] - retrieving takes some time!) are fetched. However only data categories used in CMD will get part of the graph. Here is a <a class="reference external" href="smc_stats.html">quantitative summary</a> of the dataset.</p>
+<p>When inspecting the numbers, it is important to be aware of the occurrence expansion resulting from the reusability of the components.
+So in an example, a component C has 2 subcomponents and is reused within one profile by two other components A and B, the resulting profile
+will consist of (at least) 8 components (<tt class="docutils literal">[A, B, A/C, B/C, A/C/C1, A/C/C2, B/C/C1, B/C/C2]</tt>), although only 5 distinct components are used.
+The same goes for elements in reused components. In most cases it is indicated in the label, if the number reflect distinct items, or all (expanded) occurrences.</p>
+<p>(Some of the) numbers in the statistics lead to a list of corresponding terms.
+E.g. in the summary for a profile, clicking on the components-number lists all the components of given profile alphabetically.
+Currently there are such lists for:</p>
+<blockquote>
+<ul class="simple">
+<li><tt class="docutils literal">profile <span class="pre">-&gt;</span> components</tt></li>
+<li><tt class="docutils literal">profile <span class="pre">-&gt;</span> elements</tt></li>
+<li><tt class="docutils literal">profile <span class="pre">-&gt;</span> data categories</tt></li>
+<li><tt class="docutils literal">data category <span class="pre">-&gt;</span> profiles</tt></li>
+</ul>
+</blockquote>
+</div>
+<div class="section" id="user-interface">
+<h1>User Interface</h1>
+<p>The user interface is divided into 4 main parts:</p>
+<dl class="docutils">
+<dt>Index</dt>
+<dd>Lists all available Profiles, Components, Elements and used Data Categories
+The lists can be filtered (enter search pattern in the input box at the top of the index-pane).
+By clicking on individual items, they are added to the <cite>selected nodes</cite> and get rendered in the graph pane.</dd>
+<dt>Main (Graph)</dt>
+<dd>Pane for rendering the graph.</dd>
+<dt>Navigation</dt>
+<dd>This is the control panel governing the rendering of the graph. See below for available <a class="reference internal" href="#options">Options</a>.</dd>
+<dt>Detail</dt>
+<dd>In this pane, overall summary of the data is displayed by default,
+but mainly the detail information about the selected nodes is listed here.</dd>
+</dl>
+<div class="section" id="interaction">
+<h2>Interaction</h2>
+<p>Following data sets are distinguished with respect to the user interaction:</p>
+<dl class="docutils">
+<dt>all data</dt>
+<dd>the full graph with all profiles, components, elements and data categories and links between them.
+Currently this amounts to roughly 4.600 nodes and 7.500 links.</dd>
+<dt>selected nodes</dt>
+<dd>nodes explicitely selected by the user (see below how to <a class="reference internal" href="#select-nodes">select nodes</a>).</dd>
+<dt>data to show</dt>
+<dd><p class="first">the subset of data that shall be displayed.</p>
+<p class="last">Starting from the selected nodes, connected nodes (and connecting edges)
+are determined  based on the options (<tt class="docutils literal"><span class="pre">depth-before</span></tt>, <tt class="docutils literal"><span class="pre">depth-after</span></tt>).</p>
+</dd>
+</dl>
+<p>The nodes are colour-coded by type:</p>
+<object data="graph_legend.svg" style="height: 100px;" type="image/svg+xml">
+the legend to the graph</object>
+<p id="select-nodes">There are multiple ways to select/unselect nodes:</p>
+<dl class="docutils">
+<dt>select from index</dt>
+<dd><p class="first">by clicking individual items in the index list, the item will be <strong>added</strong> to the selected nodes</p>
+<p class="last">clicking on an already selected item unselects it</p>
+</dd>
+<dt>select in graph</dt>
+<dd><p class="first">by clicking on a visible node in the graph, the node will be <strong>added</strong> to the selected nodes</p>
+<p class="last">clicking on an already selected node unselects it</p>
+</dd>
+<dt>select area in graph</dt>
+<dd>by dragging (hold mouse button down and pull) a rectangle in the graph pane, all nodes within that rectangle get selected
+all other nodes will be unselected</dd>
+<dt>unselect in detail pane</dt>
+<dd>clicking on an item in the detail pane unselects it</dd>
+<dt>select in statistics</dt>
+<dd>as mentioned in <a class="reference internal" href="#data">Data</a> (some) numbers in the statistics reveal a list of corresponding terms.
+Clicking on these terms in the statistics page leads to the browser, with given term as selected node (and default settings)</dd>
+<dt>select in statistics in the detail pane</dt>
+<dd>the numbers from statistics page are shown also in the detail pane for selected nodes.
+Here, clicking on a term from these lists adds it to the graph, as a selected node.</dd>
+<dt>mouseover</dt>
+<dd>on mouse over a node, all connected nodes to given node (and connecting links) within the visible sub-graph are highlighted
+and all other nodes and links are faded</dd>
+<dt>drag a node</dt>
+<dd>click and hold on a node, one can move the node around, however usually the layout is stronger
+and puts the node back to its original position. Not so with the freeze-layout, that freezes all the nodes and lets you move them around freely</dd>
+</dl>
+</div>
+<div class="section" id="options">
+<h2>Options</h2>
+<p>The navigation pane provides the following options to control the rendering of the graph:</p>
+<dl class="docutils">
+<dt>depth-before</dt>
+<dd>how many levels of connected ancestor nodes shall be displayed</dd>
+<dt>depth-after</dt>
+<dd>how many levels of connected descendant nodes shall be displayed</dd>
+<dt>link-distance</dt>
+<dd>approximate distance between individual nodes
+(not exact, because it is just one of multiple factor for the layouting of the graph)</dd>
+<dt>charge</dt>
+<dd>the higher the charge, the more the nodes tend to drift apart</dd>
+<dt>friction</dt>
+<dd>factor for &quot;cooling down&quot; the layout, lower numbers (50-70) stabilize the graph more quickly,
+but it may be too early, with higher numbers (95-100) the layout has more time/freedom to arrange,
+but may get jittery</dd>
+<dt>node-size</dt>
+<dd><p class="first">N = all nodes have given diameter N;</p>
+<p class="last">usage = node is scaled based on how often the node appears in the complete dataset
+i.e. often reused elements (like description or language) will be bigger</p>
+</dd>
+<dt>labels</dt>
+<dd>show/hide all labels
+hiding the labels accelerates the rendering significantly, which may be an issue if more nodes are displayed.
+irrespective of this option, on mouseover labels for all and only the highlighted nodes are displayed</dd>
+<dt>curve</dt>
+<dd>straight or arc (better visibility)</dd>
+<dt>layout</dt>
+<dd><p class="first">There are a few layouting algorithms provided. They are all not optimal in any way, but most of the time, they deliver quite good results.
+For different data displayed other algorithm may be more appropriate:</p>
+<dl class="last docutils">
+<dt>force</dt>
+<dd>undirected layout, trying to spread the nodes in the pane optimally, equally in all directions
+This is the underlying <a class="reference external" href="https://github.com/mbostock/d3/wiki/Force-Layout">layouting algorithm</a>. All the other layouts build on top of it, by just adding further constraints.</dd>
+<dt>vertical-tree</dt>
+<dd>top-down layout respect the direction of the edges, children are always below the parents</dd>
+<dt>horizontal-tree</dt>
+<dd>left-right layout respect the direction of the edges, children are always right to the parents
+(at least they should be, currently, in certain configurations, the layout does not get the orientation for some links right)</dd>
+<dt>weak-tree</dt>
+<dd>a layout that &quot;tends&quot; towards left to right arrangement, but not strictly so (experimental)</dd>
+<dt>dot</dt>
+<dd>strict left to right reusing the x-positioning as determined by <a class="reference external" href="http://www.graphviz.org/">dot</a>
+Arranges the nodes in strict ranks (typical for dot layout)
+This is done in a separate preprocessing step for the whole graph, so the positioning may be suboptimal
+for a given subgraph. The y-coordinate is approximated on the fly by the base algorithm.</dd>
+<dt>freeze</dt>
+<dd>this is actually a &quot;no-layout&quot; - the nodes just stay fixed in their last position,
+However, individual nodes still can be dragged around, so this can be used to adjust a few nodes for better legibility (or aesthetics),
+but only when you start moving around inividual nodes, you will learn to appreciate the great (and tedious) work of the layouting algorithms,
+so generally you want to try to play around with the other settings to achieve a satisfying result.</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="linking-export">
+<h2>Linking, Export</h2>
+<p>The navigation pane exposes a <strong>link</strong>, that captures the exact current state of the interface
+(just the options and the selection, not the positioning of the elements),
+so that it can be bookmarked, emailed etc.</p>
+<p>Furthermore, there is the <strong>download</strong>, that allows to export the current graph as SVG.
+This is accomplished without a round trip to the server, with a <a class="reference external" href="https://groups.google.com/forum/?fromgroups=#!topic/d3-js/aQSWnEDFxIc">javascript trick</a>
+serializing the svg as base64-data into the url (so you don't want to save (or see) the exported url).
+But you can both, right click the link and [Save link as...], or click on the link, which opens the SVG in a new tab
+where you can view, resize, print and save it.
+Employing this simple method also means, that there is no possibility to export the graph in PNG, PDF or any other format,
+because this would require <a class="reference external" href="http://d3export.cancan.cshl.edu/">server-side processing</a>. (However this is a planned future enhancement.)</p>
+</div>
+</div>
+<div class="section" id="issues">
+<h1>Issues</h1>
+<dl class="docutils">
+<dt>Performance</dt>
+<dd>Chrome is by far the fastest, followed by IE(9).
+A serious performance degradation was observed for graphs above 200 nodes on Firefox.
+Showing labels also significantly affects performance.</dd>
+<dt>Bounds</dt>
+<dd>When the graph gets to big, it does not fit in the viewing pane.
+This will be tackled soon (either scrollbars or applying boundaries). Meanwhile,
+you can reduce the link-distance and charge parameters or change the layout.</dd>
+</dl>
+</div>
+<div class="section" id="plans-and-todos">
+<h1>Plans and ToDos</h1>
+<p>Substantial issues:</p>
+<ul class="simple">
+<li>Add information from <strong>RelationRegistry</strong> (relations between DatCats)</li>
+<li>Blend in instance data from <strong>MDRepository</strong> (allow search on MDRepository)</li>
+<li>graph operations (intersect, difference of subrgraphs)</li>
+</ul>
+<p>Smaller enhancements of the user interface:</p>
+<ul class="simple">
+<li>select nodes by querying the names (e.g. show me all nodes with &quot;Access&quot; in their name)</li>
+<li>option to show only selected types of nodes (e.g. only profiles and datcats)</li>
+<li>detail-info on hover</li>
+<li>full HTML-rendering of a node (Profile, Component)</li>
+<li>backlinking from detail (e.g. view all the profiles a data category is used in by clicking on the number ('used in profiles')</li>
+<li>store/export SVG/PDF/PNG-renderings of the graphs</li>
+<li>add edge-weight: scale based on usage, i.e. how often appears the relation in the complete dataset
+i.e. often reused combinations of components/elements will be nearer</li>
+<li>allow to blend in further (private) CMD-profiles dynamically</li>
+</ul>
+</div>
+</div>
+</body>
+</html>

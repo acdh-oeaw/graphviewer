@@ -1429,7 +1429,7 @@ $.fn.layout = function (opts) {
 				$C.css( CSS );
 
 				if ($C.is(":visible") && $C.innerHeight() < 2){
-					alert( lang.errContainerHeight.replace(/CONTAINER/, sC.ref) );
+					console.log( lang.errContainerHeight.replace(/CONTAINER/, sC.ref) );
 				}
 
 			}
@@ -1755,7 +1755,7 @@ $.fn.layout = function (opts) {
 		});
 
 		if ($Container.innerHeight() < 2){
-			alert( lang.errContainerHeight.replace(/CONTAINER/, sC.ref) );
+			console.log( lang.errContainerHeight.replace(/CONTAINER/, sC.ref) );
 		}
 		
 	};
