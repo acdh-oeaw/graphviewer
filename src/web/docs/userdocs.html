@@ -4,43 +4,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.11: http://docutils.sourceforge.net/" />
-<title>SMC Browser</title>
+<title>GraphViewer</title>
 <link rel="stylesheet" href="../scripts/style/cmds-ui.css" type="text/css" />
 </head>
 <body>
 <div class="document" id="smc-browser">
-<h1 class="title">SMC Browser</h1>
+<h1 class="title">GraphViewer</h1>
 
-<p>Explore the <cite>Component Metadata Framework</cite></p>
-<p>In <em>CMD</em>, metadata schemas are defined by profiles that are constructed out of reusable components  - collections
-of metadata fields. The components can contain other components, and they can be reused in multiple profiles.
-Furthermore, every CMD element (metadata field) refers via a PID to a data category to indicate unambiguously how the content of the field in a metadata description should
-be interpreted (Broeder et al., 2010).</p>
-<p>Thus, every profile can be expressed as a tree, with the profile component as the root node, the used components as intermediate nodes
-and elements or data categories as leaf nodes, parent-child relationship being defined by the inclusion (<tt class="docutils literal">componentA <span class="pre">-includes-&gt;</span> componentB</tt>) or referencing (<tt class="docutils literal">elementA <span class="pre">-refersTo-&gt;</span> datcat1</tt>).The reuse of components in multiple profiles and especially also the referencing of the same data categories in multiple CMD elements leads to a blending of the individual profile trees into a graph (acyclic directed, but not necessarily connected).</p>
-<p>SMC Browser visualizes this graph structure in an interactive fashion. You can have a look at the <a class="reference external" href="examples.html">examples</a> for inspiration.</p>
-<p>It is implemented on top of wonderful js-library <a class="reference external" href="https://github.com/mbostock/d3">d3</a>, the code checked in <a class="reference external" href="https://svn.clarin.eu/SMC/trunk/SMC">clarin-svn</a> (and needs refactoring). There is also some preliminary <a class="reference external" href="devdocs.html">technical documentation</a></p>
-<div class="section" id="data">
-<h1>Data</h1>
-<p>The graph is constructed from all profiles defined in the <a class="reference external" href="http://catalog.clarin.eu/ds/ComponentRegistry/#">Component Registry</a>.
-To resolve name and description of data categories referenced in the CMD elements
-definitions of all (public) data categories from <a class="reference external" href="http://dublincore.org">DublinCore</a> and <a class="reference external" href="http://www.isocat.org">ISOcat</a> (from the <a class="reference external" href="http://www.isocat.org/rest/profile/5.rdf">Metadata Profile</a> [RDF] - retrieving takes some time!) are fetched. However only data categories used in CMD will get part of the graph. Here is a <a class="reference external" href="smc_stats.html">quantitative summary</a> of the dataset.</p>
-<p>When inspecting the numbers, it is important to be aware of the occurrence expansion resulting from the reusability of the components.
-So in an example, a component C has 2 subcomponents and is reused within one profile by two other components A and B, the resulting profile
-will consist of (at least) 8 components (<tt class="docutils literal">[A, B, A/C, B/C, A/C/C1, A/C/C2, B/C/C1, B/C/C2]</tt>), although only 5 distinct components are used.
-The same goes for elements in reused components. In most cases it is indicated in the label, if the number reflect distinct items, or all (expanded) occurrences.</p>
-<p>(Some of the) numbers in the statistics lead to a list of corresponding terms.
-E.g. in the summary for a profile, clicking on the components-number lists all the components of given profile alphabetically.
-Currently there are such lists for:</p>
-<blockquote>
-<ul class="simple">
-<li><tt class="docutils literal">profile <span class="pre">-&gt;</span> components</tt></li>
-<li><tt class="docutils literal">profile <span class="pre">-&gt;</span> elements</tt></li>
-<li><tt class="docutils literal">profile <span class="pre">-&gt;</span> data categories</tt></li>
-<li><tt class="docutils literal">data category <span class="pre">-&gt;</span> profiles</tt></li>
-</ul>
-</blockquote>
-</div>
 <div class="section" id="user-interface">
 <h1>User Interface</h1>
 <p>The user interface is divided into 4 main parts:</p>
