@@ -11,6 +11,8 @@
 <div class="document" id="smc-browser">
 <h1 class="title">GraphViewer</h1>
 
+<p>GraphViewer is a web application for visualizing and interactive exploration of graph data. GraphViewer is a generalized version of the original <a href="https://clarin.oeaw.ac.at/smc-browser/">SMC Browser</a>. It is implemented on top of wonderful js-library d3, the code available on <a href="https://github.com/acdh-oeaw/graphviewer">github</a>. There is also some preliminary technical documentation.</p>
+
 <div class="section" id="user-interface">
 <h1>User Interface</h1>
 <p>The user interface is divided into 4 main parts:</p>
@@ -32,8 +34,7 @@ but mainly the detail information about the selected nodes is listed here.</dd>
 <p>Following data sets are distinguished with respect to the user interaction:</p>
 <dl class="docutils">
 <dt>all data</dt>
-<dd>the full graph with all profiles, components, elements and data categories and links between them.
-Currently this amounts to roughly 4.600 nodes and 7.500 links.</dd>
+<dd>the full graph with all profiles, components, elements and data categories and links between them.</dd>
 <dt>selected nodes</dt>
 <dd>nodes explicitely selected by the user (see below how to <a class="reference internal" href="#select-nodes">select nodes</a>).</dd>
 <dt>data to show</dt>
@@ -159,13 +160,6 @@ you can reduce the link-distance and charge parameters or change the layout.</dd
 </div>
 <div class="section" id="plans-and-todos">
 <h1>Plans and ToDos</h1>
-<p>Substantial issues:</p>
-<ul class="simple">
-<li>Add information from <strong>RelationRegistry</strong> (relations between DatCats)</li>
-<li>Blend in instance data from <strong>MDRepository</strong> (allow search on MDRepository)</li>
-<li>graph operations (intersect, difference of subrgraphs)</li>
-</ul>
-<p>Smaller enhancements of the user interface:</p>
 <ul class="simple">
 <li>select nodes by querying the names (e.g. show me all nodes with &quot;Access&quot; in their name)</li>
 <li>option to show only selected types of nodes (e.g. only profiles and datcats)</li>
