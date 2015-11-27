@@ -77,6 +77,8 @@ function initGraph(graph_source) {
                 data_all.nodes_index = {};
                 data_all.nodes.forEach(function (d) {
                     data_all.nodes_index[d.key] = d;
+                    d.links_to = [];
+                    d.links_from = [];
                 });
 
                 data_all.links.forEach(function (d) {
@@ -96,8 +98,10 @@ function initGraph(graph_source) {
                                         
                     if (d.target === null || d.source === null) {
                         notifyUser("nodes for link missing: " + src_ix + " - " + trg_ix);
+                    }else{
+//                    	d.target.links_from.push(d);
+ //                   	d.source.links_to.push(d);
                     }
-
                 });
                 // remove links for which nodes are missing!
                 data_all.links = data_all.links.filter(function (d) {
@@ -533,7 +537,10 @@ function renderGraph(data, target_container) {
     gnodes.append("svg:circle")
             /*            .attr("r", 6)*/
             .on("click", function (d) {
-                d.selected = d.selected ? 0 : 1;
+	            data_all.nodes.forEach(function (d) {
+	                d.selected = 0
+                });
+                d.selected = 1;//d.selected ? 0 : 1;
                 console.log("click:" + d.key);
                 updateSelected();
             })
