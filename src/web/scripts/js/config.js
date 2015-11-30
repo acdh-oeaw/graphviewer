@@ -20,17 +20,15 @@ var config = {
 // configuration of the navigation widgets 
 var opts = {
     "graph": {
-        "value":"data/philosophers/dbpedia_philosophers_influence_years_graph.json", 
+        "value":"dbpedia_philosophers_influence_years_graph.json", 
         "values":[
             {value: "data/smc/smc-graph-basic.js", label:"SMC graph basic"},
             {value: "data/smc/smc-graph-all.js", label:"SMC graph all"},                              
             {value: "data/smc/smc-graph-profiles-datcats.js", label:"only profiles + datcats"},
             {value: "data/smc/smc-graph-groups-profiles-datcats-rr.js", label:"profiles+datcats+groups+rr"},
             {value: "data/smc/smc-graph-profiles-similarity.js", label:"profiles similarity"},                              
-            {value: "data/philosophers/dbpedia_philosophers_influencedBy_graph.json", label:"Philosophers influenced by"},
             {value: "data/philosophers/dbpedia_philosophers_influence_graph.json", label:"Philosophers influence"},
-            {value: "data/philosophers/dbpedia_philosophers_influence_years_graph.json", label:"Philosophers influence years"}
-            /*{value: "SC_Persons_120201_cAll_graph.json", label:"Schnitzler Cooccurrences"}*/
+            {value: "data/co-occurrences/SC_Persons_120201_cAll_graph.json", label:"Schnitzler Cooccurrences"}
             /*{value: "issues/issues_all_c747_2015-03-20_graph.json", label:"Issues"}*/
             /*{value: "smc-graph-mdrepo-stats.js", label:"instance data"}*/
         ], 
