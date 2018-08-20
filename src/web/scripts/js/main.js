@@ -51,9 +51,6 @@ function addFunctionality() {
         filterIndex($(this).val());
     });
 
-    /*fillOpts(navi_container_selector);
-     $("#navigate .slider").slider();
-     */
     $("#navigate").QueryInput({params: opts, onValueChanged: renderGraph});
 
     /*  $('#infovis-wrapper').resizable( {

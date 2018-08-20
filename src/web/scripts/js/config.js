@@ -69,5 +69,5 @@ var opts = {
     "selected": {"widget":"hidden" },
     "link": {"widget":"link", "label":""},
     "download": {"widget":"link", "label":""},
-    "add_profile": {"widget":"link", "label":"Add profile", "widget":""}
+    "add_profile": {"widget":"link", "label":"Add profile"}
 };

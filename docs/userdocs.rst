@@ -1,72 +1,16 @@
 ***********
-SMC Browser
+GraphViewer
 ***********
 
-Explore the `Component Metadata Framework`
+GraphViewer is a web application for visualizing and interactive exploration of graph data. GraphViewer is a generalized version of the original `SMC Browser`_. It is implemented on top of wonderful js-library `d3`_, the code is available on `github`_.
 
-.. _Component Metadata Framework: http://clarin.eu/cmdi
-
-In *CMD*, metadata schemas are defined by profiles that are constructed out of reusable components  - collections
-of metadata fields. The components can contain other components, and they can be reused in multiple profiles.
-Furthermore, every CMD element (metadata field) refers via a PID to a data category to indicate unambiguously how the content of the field in a metadata description should
-be interpreted (Broeder et al., 2010).
-
-Thus, every profile can be expressed as a tree, with the profile component as the root node, the used components as intermediate nodes
-and elements or data categories as leaf nodes, parent-child relationship being defined by the inclusion (``componentA -includes-> componentB``) or referencing (``elementA -refersTo-> datcat1``).The reuse of components in multiple profiles and especially also the referencing of the same data categories in multiple CMD elements leads to a blending of the individual profile trees into a graph (acyclic directed, but not necessarily connected).
-
-SMC Browser visualizes this graph structure in an interactive fashion. You can have a look at the `examples`_ for inspiration.
-
-It is implemented on top of wonderful js-library d3_, the code checked in `clarin-svn`_ (and needs refactoring). There is also some preliminary `technical documentation`_
-
-See also `SMC on CCV`_ for more general and theoretical information about the SMC module and the SMC Browser.
 
 .. _d3: https://github.com/mbostock/d3
-.. _clarin-svn: https://svn.clarin.eu/SMC/trunk/SMC
+.. _SMC Browser: https://clarin.oeaw.ac.at/smc-browser/
+.. _github: https://github.com/acdh-oeaw/graphviewer
 .. _examples: examples.html
-.. _technical documentation: devdocs.html
-.. _smc on ccv: http://clarin.oeaw.ac.at/ccv/smc
-
-
-Data
-====
-The graph is constructed from all profiles defined in the `Component Registry`_.
-To resolve name and description of data categories referenced in the CMD elements
-definitions of all (public) data categories from `DublinCore`_ and `ISOcat`_ (from the `Metadata Profile`_ [RDF] - retrieving takes some time!) are fetched. However only data categories used in CMD will get part of the graph. Here is a `quantitative summary`_ of the dataset. 
-
-Multiple variants of the graph are being offered:
-
-SMC graph basic
-  the basic graph contains ``profiles -> components -> elements -> datcats``;
-  processing 155 profiles yields a graph with over 4.500 nodes and over 7.500 edges
-SMC graph all 
-  additionally rendering the profile-groups and relations between data categories (from Relation Registry)
-only profiles + datcats 
-	just profiles and data categories are rendered (with direct links between those, skipping all components and elements)
-profiles + datcats + datcats + groups + rr 
-	as above but again with profile-groups and relations
-profiles similarity 
-	just profiles with links between them representing the degree of similarity
-	based on the reuse of components and data categories    
-
-When inspecting the numbers, it is important to be aware of the occurrence expansion resulting from the reusability of the components. 
-So in an example, a component C has 2 subcomponents and is reused within one profile by two other components A and B, the resulting profile
-will consist of (at least) 8 components (``[A, B, A/C, B/C, A/C/C1, A/C/C2, B/C/C1, B/C/C2]``), although only 5 distinct components are used.
-The same goes for elements in reused components. In most cases it is indicated in the label, if the number reflect distinct items, or all (expanded) occurrences.
-
-(Some of the) numbers in the statistics lead to a list of corresponding terms. 
-E.g. in the summary for a profile, clicking on the components-number lists all the components of given profile alphabetically.
-Currently there are such lists for:
-
-  * ``profile -> components`` 
-  * ``profile -> elements``
-  * ``profile -> data categories``
-  * ``data category -> profiles``
-
-.. _Component Registry: http://catalog.clarin.eu/ds/ComponentRegistry/#
-.. _ISOcat: http://www.isocat.org
-.. _Metadata Profile: http://www.isocat.org/rest/profile/5.rdf
-.. _DublinCore: http://dublincore.org
-.. _quantitative summary: smc_stats.html
+?.. _technical documentation: devdocs.html
+?.. _smc on ccv: http://clarin.oeaw.ac.at/ccv/smc
 
 User Interface
 ==============
@@ -74,7 +18,7 @@ User Interface
 The user interface is divided into 4 main parts:
 
 Index
-   Lists all available Profiles, Components, Elements and used Data Categories
+   Lists all available nodes grouped by type.
    The lists can be filtered (enter search pattern in the input box at the top of the index-pane).
    By clicking on individual items, they are added to the `selected nodes` and get rendered in the graph pane.
    
