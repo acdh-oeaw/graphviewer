@@ -26,19 +26,19 @@ The code consists of 3 main parts:
 Installation
 -------------
 
-- SMC Browser is a client side JS application, so it doesn't have any 
+- Graph Viewer is a client side JS application, so it doesn't have any 
   server-side requirements. You can simply open it in a browser and it should 
   work.
-- You can find SMC Browser client application in src/web directory. The directory structure is as 
+- You can find Graph Viewer client application in src/web directory. The directory structure is as 
   follows:
   - index.html - HTML template
   - get.php - very simple HTTP proxy script (it returns content of a given URL 
     making it possible to bypass AJAX cross-domain restrictions).
     Currently used only for gathering details about philosopers (see "handling
     details" below).
-  - scripts - all js libraries and css stylesheets SMC Browser depends on
+  - scripts - all js libraries and css stylesheets Graph Viewer depends on
   - docs - static HTML content
-  - data - sample data consistent with the SMC Browser configuration commited to 
+  - data - sample data consistent with the Graph Viewer configuration commited to 
     the repo
 - Available data sources
   To adjust a list of available data sources edit opts.graph variable in 
@@ -51,7 +51,7 @@ Installation
   You can use rst2html (part of docutils package) to convert them into HTML.
   HTML files should be then moved to docs/
 - Handling details
-  - The right column of the SMC Browser displays node details. 
+  - The right column of the Graph Viewer displays node details. 
     Details can come from different sources:
     - If the node is of type "philosopher" they are simply read from Wikipedia.
       To bypass AJAX cross-domain restrictions and assure proper encoding a 
@@ -69,6 +69,6 @@ Installation
           config.url.detail + "?type=" + type + "&key=" + id
         where type and id comes from the node and config.url.detail is defined
         in scripts/js/config.js
-        SMC Browser running at https://clarin.oeaw.ac.at/exist/apps/smc-browser/
+        The predecessor of Graph Viewer, the SMC Browser running at https://clarin.oeaw.ac.at/smc-browser/
         is using xql query run in eXist to generate details.
       
